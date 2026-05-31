@@ -1,0 +1,247 @@
+/* Базові налаштування (Уніфікований сучасний шрифт для всього сайту) */
+:root {
+  --bg-color: #0b0b0c;
+  --card-bg: #121214;
+  --text-main: #ffffff;
+  --bronze: #A76D45; /* Основний середній тон */
+  --bronze-gradient: linear-gradient(135deg, #7A4526 0%, #A76D45 35%, #D59469 50%, #A76D45 65%, #7A4526 100%);
+  --bronze-hover: linear-gradient(135deg, #A76D45 0%, #D59469 50%, #7A4526 100%);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Inter', sans-serif;
+}
+
+body {
+  background-color: var(--bg-color);
+  color: var(--text-main);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* Хедер / Навігація */
+header {
+  padding: 20px 0;
+  border-bottom: 1px solid rgba(167, 109, 69, 0.15);
+}
+
+.nav-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-weight: 700;
+  font-size: 1.3rem;
+  letter-spacing: 1px;
+  color: var(--text-main);
+  text-transform: uppercase;
+}
+
+.logo i {
+  color: var(--bronze);
+  font-size: 1.6rem;
+}
+
+.logo span {
+  color: var(--text-main);
+  font-weight: 300;
+  display: block;
+  font-size: 0.75rem;
+  letter-spacing: 2px;
+  margin-top: -2px;
+}
+
+nav ul {
+  display: flex;
+  list-style: none;
+  gap: 32px;
+  align-items: center;
+}
+
+nav a {
+  color: var(--text-main);
+  text-decoration: none;
+  font-size: 0.95rem;
+  font-weight: 400;
+  transition: color 0.3s;
+}
+
+nav a:hover, nav a.active {
+  color: var(--bronze);
+}
+
+.btn-consult {
+  background: var(--bronze-gradient);
+  color: var(--text-main);
+  padding: 10px 22px;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.btn-consult:hover {
+  background: var(--bronze-hover);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 15px rgba(167, 109, 69, 0.4);
+}
+
+/* Геро-секція (Головний екран) */
+.hero {
+  padding: 90px 0;
+  display: flex;
+  align-items: center;
+  min-height: 75vh;
+}
+
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 40px;
+  align-items: center;
+}
+
+.hero-content h1 {
+  font-size: 3.5rem;
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: -0.5px;
+  margin-bottom: 24px;
+  text-transform: uppercase;
+  background: linear-gradient(180deg, #ffffff 0%, #D59469 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.hero-content p {
+  color: var(--text-main);
+  font-size: 1.15rem;
+  max-width: 540px;
+  margin-bottom: 36px;
+  font-weight: 300;
+}
+
+.btn-hero {
+  background: var(--bronze-gradient);
+  color: var(--text-main);
+  padding: 16px 36px;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.btn-hero:hover {
+  background: var(--bronze-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(167, 109, 69, 0.5);
+}
+
+/* Заглушка під інтерактивну графіку (Права часть) */
+.hero-graphics {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.graphics-mockup {
+  width: 100%;
+  max-width: 450px;
+  opacity: 0.25;
+  filter: drop-shadow(0 0 30px rgba(167, 109, 69, 0.3));
+}
+
+/* Секція послуг */
+.services-section {
+  padding: 60px 0 100px;
+}
+
+.section-title {
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--bronze);
+  margin-bottom: 40px;
+  font-weight: 600;
+  border-bottom: 1px solid rgba(167, 109, 69, 0.3);
+  padding-bottom: 12px;
+}
+
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+}
+
+.service-card {
+  background-color: var(--card-bg);
+  padding: 32px;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.03);
+  transition: border-color 0.3s, transform 0.3s;
+}
+
+.service-card:hover {
+  border-color: rgba(167, 109, 69, 0.4);
+  transform: translateY(-4px);
+}
+
+.service-icon {
+  font-size: 2rem;
+  color: var(--bronze);
+  margin-bottom: 20px;
+}
+
+.service-card h3 {
+  font-size: 1.15rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 12px;
+}
+
+.service-card p {
+  color: var(--text-main);
+  font-size: 0.95rem;
+  font-weight: 300;
+}
+
+/* Адаптивність для мобільних пристроїв */
+@media (max-width: 992px) {
+  .hero-grid {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+  .hero-content p {
+    margin: 0 auto 36px;
+  }
+  .hero-graphics {
+    display: none; /* Ховаємо графіку на малих екранах */
+  }
+  .services-grid {
+    grid-template-columns: 1fr;
+  }
+}

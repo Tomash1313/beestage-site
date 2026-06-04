@@ -1,27 +1,25 @@
 <!DOCTYPE html>
-<html lang="uk">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Busy Bee Bookkeeping</title>
+  <title>B-Stage Bookkeeping — Precision Financial Services for Canadian Businesses</title>
+  <meta name="description" content="Dedicated bookkeeping and financial analysis for ambitious Canadian ventures. Automated bookkeeping, growth insights, and CRA compliance — mastered.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  
-  <!-- Підключаємо твої стилі з окремого файлу -->
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
   <header>
     <div class="container nav-wrapper">
-      <div class="logo" style="display: flex; align-items: center; gap: 8px; user-select: none;">
-        <img src="https://lh3.googleusercontent.com/d/1BlgtNi_1AfoW8gtx9K9NCfahCJ2IOaBG" alt="Logo" style="height: 52px; width: auto; object-fit: contain; display: block;">
-        
-        <div style="display: flex; flex-direction: column; justify-content: center; line-height: 1.05; text-align: left;">
-          <span style="font-size: 1.35rem; font-weight: 700; letter-spacing: 0.3px; color: #A76D45; text-transform: uppercase; font-family: 'Inter', sans-serif;">B-STAGE</span>
-          <span style="font-size: 0.72rem; font-weight: 500; letter-spacing: 1.8px; color: #D59469; text-transform: uppercase; font-family: 'Inter', sans-serif; margin-top: 2px;">BOOKKEEPING</span>
+      <div class="logo">
+        <img src="https://lh3.googleusercontent.com/d/1BlgtNi_1AfoW8gtx9K9NCfahCJ2IOaBG" alt="B-Stage Bookkeeping Logo" style="height:52px;width:auto;object-fit:contain;display:block;">
+        <div style="display:flex;flex-direction:column;justify-content:center;line-height:1.05;text-align:left;">
+          <span style="font-size:1.35rem;font-weight:700;letter-spacing:0.3px;color:#A76D45;text-transform:uppercase;font-family:'Inter',sans-serif;">B-STAGE</span>
+          <span style="font-size:0.72rem;font-weight:500;letter-spacing:1.8px;color:#D59469;text-transform:uppercase;font-family:'Inter',sans-serif;margin-top:2px;">BOOKKEEPING</span>
         </div>
       </div>
       <nav>
@@ -29,7 +27,7 @@
           <li><a href="#" class="active">Home</a></li>
           <li><a href="#">Services</a></li>
           <li><a href="#">Approach</a></li>
-          <li><a href="#">Сontacts</a></li>
+          <li><a href="#">Contacts</a></li>
           <li><button class="btn-consult">Request Consult</button></li>
         </ul>
       </nav>
@@ -40,15 +38,11 @@
     <div class="container hero-grid">
       <div class="hero-content">
         <h1>Precision in every figure.<br>Clarity for your growth.</h1>
-        <p>Dedicated bookkeeping & financial analysis for ambitious Canadian ventures. Your numbers, mastered.</p>
+        <p>Dedicated bookkeeping &amp; financial analysis for ambitious Canadian ventures. Your numbers, mastered.</p>
         <button class="btn-hero">Start Securing Your Profits</button>
       </div>
       <div class="hero-graphics">
-        <svg class="graphics-mockup" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <circle cx="100" cy="100" r="80" stroke="#A76D45" stroke-width="2" stroke-dasharray="4 4" />
-          <path d="M40 140 L80 100 L120 120 L160 60" stroke="#A76D45" stroke-width="3" stroke-linecap="round"/>
-          <circle cx="160" cy="60" r="6" fill="#ffffff" />
-        </svg>
+        <canvas id="c" width="800" height="640"></canvas>
       </div>
     </div>
   </section>
@@ -57,27 +51,21 @@
     <div class="container">
       <h2 class="section-title">Services</h2>
       <div class="services-grid">
-        
+
         <div class="service-card">
-          <div class="service-icon">
-            <i class="fa-solid fa-book"></i>
-          </div>
+          <div class="service-icon"><i class="fa-solid fa-book"></i></div>
           <h3>Automated Bookkeeping</h3>
           <p>Let systems handle the numbers; you handle the strategy. Clean, real-time data entries matching CRA expectations.</p>
         </div>
 
         <div class="service-card">
-          <div class="service-icon">
-            <i class="fa-solid fa-rocket"></i>
-          </div>
+          <div class="service-icon"><i class="fa-solid fa-rocket"></i></div>
           <h3>Growth</h3>
           <p>Scale your business with reliable bookkeeping benefits, deep financial insights, and tailored financial automation.</p>
         </div>
 
         <div class="service-card">
-          <div class="service-icon">
-            <i class="fa-solid fa-shield-halved"></i>
-          </div>
+          <div class="service-icon"><i class="fa-solid fa-shield-halved"></i></div>
           <h3>Compliance</h3>
           <p>Corporate accounts, GST/HST tracking, and corporate filings handled perfectly without missed deadlines.</p>
         </div>
@@ -86,7 +74,6 @@
     </div>
   </section>
 
-  <!-- Підключаємо твій майбутній JS-скрипт з анімацією -->
   <script src="script.js"></script>
 </body>
 </html>

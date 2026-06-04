@@ -1,9 +1,12 @@
-/* Базові налаштування (Уніфікований сучасний шрифт для всього сайту) */
+/* ============================================================
+   B-Stage Bookkeeping — style.css
+   ============================================================ */
+
 :root {
   --bg-color: #0b0b0c;
   --card-bg: #121214;
   --text-main: #ffffff;
-  --bronze: #A76D45; /* Основний середній тон */
+  --bronze: #A76D45;
   --bronze-gradient: linear-gradient(135deg, #7A4526 0%, #A76D45 35%, #D59469 50%, #A76D45 65%, #7A4526 100%);
   --bronze-hover: linear-gradient(135deg, #A76D45 0%, #D59469 50%, #7A4526 100%);
 }
@@ -28,7 +31,7 @@ body {
   padding: 0 24px;
 }
 
-/* Хедер / Навігація */
+/* ── Header / Nav ── */
 header {
   padding: 20px 0;
   border-bottom: 1px solid rgba(167, 109, 69, 0.15);
@@ -43,26 +46,8 @@ header {
 .logo {
   display: flex;
   align-items: center;
-  gap: 12px;
-  font-weight: 700;
-  font-size: 1.3rem;
-  letter-spacing: 1px;
-  color: var(--text-main);
-  text-transform: uppercase;
-}
-
-.logo i {
-  color: var(--bronze);
-  font-size: 1.6rem;
-}
-
-.logo span {
-  color: var(--text-main);
-  font-weight: 300;
-  display: block;
-  font-size: 0.75rem;
-  letter-spacing: 2px;
-  margin-top: -2px;
+  gap: 8px;
+  user-select: none;
 }
 
 nav ul {
@@ -80,7 +65,8 @@ nav a {
   transition: color 0.3s;
 }
 
-nav a:hover, nav a.active {
+nav a:hover,
+nav a.active {
   color: var(--bronze);
 }
 
@@ -104,18 +90,19 @@ nav a:hover, nav a.active {
   box-shadow: 0 4px 15px rgba(167, 109, 69, 0.4);
 }
 
-/* Геро-секція (Головний екран) */
+/* ── Hero ── */
 .hero {
   padding: 90px 0;
   display: flex;
   align-items: center;
   min-height: 75vh;
+  overflow: hidden;
 }
 
 .hero-grid {
   display: grid;
-  grid-template-columns: 1.2fr 0.8fr;
-  gap: 40px;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 0;
   align-items: center;
 }
 
@@ -159,22 +146,38 @@ nav a:hover, nav a.active {
   box-shadow: 0 6px 20px rgba(167, 109, 69, 0.5);
 }
 
-/* Заглушка під інтерактивну графіку (Права часть) */
+/* ── Hero Graphics (Canvas dashboard) ── */
 .hero-graphics {
   position: relative;
   display: flex;
-  justify-content: center;
+  justify-content: flex-end;
   align-items: center;
+  margin-right: -80px;
+  margin-top: -40px;
+  margin-bottom: -40px;
 }
 
-.graphics-mockup {
-  width: 100%;
-  max-width: 450px;
-  opacity: 0.25;
-  filter: drop-shadow(0 0 30px rgba(167, 109, 69, 0.3));
+.hero-graphics canvas {
+  display: block;
+  width: 680px;
+  height: auto;
+  -webkit-mask-image: radial-gradient(
+    ellipse 75% 80% at 65% 50%,
+    black 30%,
+    rgba(0,0,0,0.85) 50%,
+    rgba(0,0,0,0.4) 68%,
+    transparent 100%
+  );
+  mask-image: radial-gradient(
+    ellipse 75% 80% at 65% 50%,
+    black 30%,
+    rgba(0,0,0,0.85) 50%,
+    rgba(0,0,0,0.4) 68%,
+    transparent 100%
+  );
 }
 
-/* Секція послуг */
+/* ── Services ── */
 .services-section {
   padding: 60px 0 100px;
 }
@@ -229,7 +232,7 @@ nav a:hover, nav a.active {
   font-weight: 300;
 }
 
-/* Адаптивність для мобільних пристроїв */
+/* ── Responsive ── */
 @media (max-width: 992px) {
   .hero-grid {
     grid-template-columns: 1fr;
@@ -239,7 +242,7 @@ nav a:hover, nav a.active {
     margin: 0 auto 36px;
   }
   .hero-graphics {
-    display: none; /* Ховаємо графіку на малих екранах */
+    display: none;
   }
   .services-grid {
     grid-template-columns: 1fr;

@@ -12,67 +12,339 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+<body>
 
-  <header>
-    <div class="container nav-wrapper">
+<header>
+  <div class="container nav-wrapper">
+    <div class="logo">
+      <img src="https://lh3.googleusercontent.com/d/1BlgtNi_1AfoW8gtx9K9NCfahCJ2IOaBG" alt="B-Stage Bookkeeping Logo" style="height:52px;width:auto;object-fit:contain;display:block;">
+      <div style="display:flex;flex-direction:column;justify-content:center;line-height:1.05;text-align:left;">
+        <span style="font-size:1.35rem;font-weight:700;letter-spacing:0.3px;color:#A76D45;text-transform:uppercase;font-family:'Inter',sans-serif;">B-STAGE</span>
+        <span style="font-size:0.72rem;font-weight:500;letter-spacing:1.8px;color:#D59469;text-transform:uppercase;font-family:'Inter',sans-serif;margin-top:2px;">BOOKKEEPING</span>
+      </div>
+    </div>
+    <nav>
+      <ul>
+        <li><a href="#" id="nav-home" class="active">Home</a></li>
+        <li><a href="#services" id="nav-services">Services</a></li>
+        <li><a href="#approach" id="nav-approach">Approach</a></li>
+        <li><a href="#contacts" id="nav-contacts">Contacts</a></li>
+        <li><button class="btn-consult" onclick="openConsultModal()">Request Consult</button></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="container hero-grid">
+    <div class="hero-content">
+      <h1>Precision in every figure.<br>Clarity for your growth.</h1>
+      <p>Dedicated bookkeeping &amp; financial analysis for ambitious Canadian ventures. Your numbers, mastered.</p>
+      <button class="btn-hero" onclick="openConsultModal()">Start Securing Your Profits</button>
+    </div>
+    <div class="hero-graphics">
+      <canvas id="c" width="800" height="640"></canvas>
+    </div>
+  </div>
+</section>
+
+<section class="services-section" id="services">
+  <div class="container">
+    <h2 class="section-title">Services</h2>
+    <div class="services-grid">
+
+      <div class="service-card">
+        <div class="service-icon">
+          <svg width="58" height="58" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <filter id="glow-book-outer" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="1.8" result="blur"/><feComposite in="SourceGraphic" in2="blur" operator="over"/></filter>
+              <filter id="glow-book-lg" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="0.7" result="blur"/><feComposite in="SourceGraphic" in2="blur" operator="over"/></filter>
+            </defs>
+            <g filter="url(#glow-book-outer)" opacity="0.45" stroke="#C86428" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="9" y="4" width="22" height="28" rx="2" stroke-width="1.5" fill="none"/>
+              <line x1="7.5" y1="9.5" x2="10.5" y2="9.5" stroke-width="1.2"/><line x1="7.5" y1="15" x2="10.5" y2="15" stroke-width="1.2"/><line x1="7.5" y1="20.5" x2="10.5" y2="20.5" stroke-width="1.2"/><line x1="7.5" y1="26" x2="10.5" y2="26" stroke-width="1.2"/>
+              <path d="M31 9 L33 9 L33 13 L31 13" stroke-width="1.2" fill="none"/><path d="M31 16 L33 16 L33 20 L31 20" stroke-width="1.2" fill="none"/><path d="M31 23 L33 23 L33 27 L31 27" stroke-width="1.2" fill="none"/>
+              <rect x="12.5" y="7.5" width="14" height="8" rx="0" stroke-width="1.2" fill="none"/>
+              <line x1="13.5" y1="20" x2="25.5" y2="20" stroke-width="1.2"/><line x1="13.5" y1="23.5" x2="25.5" y2="23.5" stroke-width="1.2"/><line x1="13.5" y1="27" x2="22" y2="27" stroke-width="1.2"/>
+            </g>
+            <g filter="url(#glow-book-lg)" stroke="#E07838" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="9" y="4" width="22" height="28" rx="2" stroke-width="1.0" fill="none"/>
+              <line x1="7.5" y1="9.5" x2="10.5" y2="9.5" stroke-width="0.9"/><line x1="7.5" y1="15" x2="10.5" y2="15" stroke-width="0.9"/><line x1="7.5" y1="20.5" x2="10.5" y2="20.5" stroke-width="0.9"/><line x1="7.5" y1="26" x2="10.5" y2="26" stroke-width="0.9"/>
+              <path d="M31 9 L33 9 L33 13 L31 13" stroke-width="0.9" fill="none"/><path d="M31 16 L33 16 L33 20 L31 20" stroke-width="0.9" fill="none"/><path d="M31 23 L33 23 L33 27 L31 27" stroke-width="0.9" fill="none"/>
+              <rect x="12.5" y="7.5" width="14" height="8" rx="0" stroke-width="0.9" fill="none"/>
+              <line x1="13.5" y1="20" x2="25.5" y2="20" stroke-width="0.9"/><line x1="13.5" y1="23.5" x2="25.5" y2="23.5" stroke-width="0.9"/><line x1="13.5" y1="27" x2="22" y2="27" stroke-width="0.9"/>
+            </g>
+          </svg>
+        </div>
+        <h3>Automated Bookkeeping</h3>
+        <p>We turn your financial chaos into a streamlined system. Your data flows automatically into the cloud, freeing you from manual routine.</p>
+      </div>
+
+      <div class="service-card">
+        <div class="service-icon">
+          <svg width="58" height="58" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <filter id="glow-rocket-outer" x="-80%" y="-80%" width="260%" height="260%"><feGaussianBlur stdDeviation="1.8" result="blur"/><feComposite in="SourceGraphic" in2="blur" operator="over"/></filter>
+              <filter id="glow-rocket-lg" x="-80%" y="-80%" width="260%" height="260%"><feGaussianBlur stdDeviation="0.7" result="blur"/><feComposite in="SourceGraphic" in2="blur" operator="over"/></filter>
+            </defs>
+            <g filter="url(#glow-rocket-outer)" opacity="0.45" stroke="#C86428" stroke-linecap="round" stroke-linejoin="round" transform="rotate(45 18 18) translate(0 -4)">
+              <path d="M18 4.5 Q28 17 22 29 Q18 31 14 29 Q8 17 18 4.5 Z" stroke-width="1.5" fill="none"/>
+              <circle cx="18" cy="16" r="2.2" stroke-width="1.2" fill="none"/>
+              <path d="M16 33 Q12 38 18 43" stroke-width="1.2" fill="none"/><path d="M20 33 Q24 38 18 43" stroke-width="1.2" fill="none"/>
+              <path d="M22 28.5 Q25.3 27 28.8 28.5 Q28.8 24.7 26.9 21.7 Q25.3 20.9 24.7 20.9" stroke-width="1.4" fill="none" stroke-linejoin="miter"/>
+              <path d="M14 28.5 Q10.7 27 7.2 28.5 Q7.2 24.7 9.1 21.7 Q10.7 20.9 11.3 20.9" stroke-width="1.4" fill="none" stroke-linejoin="miter"/>
+            </g>
+            <g filter="url(#glow-rocket-lg)" stroke="#E07838" stroke-linecap="round" stroke-linejoin="round" transform="rotate(45 18 18) translate(0 -4)">
+              <path d="M18 4.5 Q28 17 22 29 Q18 31 14 29 Q8 17 18 4.5 Z" stroke-width="1.0" fill="none"/>
+              <circle cx="18" cy="16" r="2.2" stroke-width="0.9" fill="none"/>
+              <path d="M16 33 Q12 38 18 43" stroke-width="0.9" fill="none"/><path d="M20 33 Q24 38 18 43" stroke-width="0.9" fill="none"/>
+              <path d="M22 28.5 Q25.3 27 28.8 28.5 Q28.8 24.7 26.9 21.7 Q25.3 20.9 24.7 20.9" stroke-width="1.2" fill="none" stroke-linejoin="miter"/>
+              <path d="M14 28.5 Q10.7 27 7.2 28.5 Q7.2 24.7 9.1 21.7 Q10.7 20.9 11.3 20.9" stroke-width="1.2" fill="none" stroke-linejoin="miter"/>
+            </g>
+          </svg>
+        </div>
+        <h3>Growth Intelligence</h3>
+        <p>We analyze numbers not as historians, but as partners. Real-time, clear reporting helps you identify exactly where your business gains momentum.</p>
+      </div>
+
+      <div class="service-card">
+        <div class="service-icon">
+          <svg width="58" height="58" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <filter id="glow-shield-outer" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="1.8" result="blur"/><feComposite in="SourceGraphic" in2="blur" operator="over"/></filter>
+              <filter id="glow-shield-lg" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="0.7" result="blur"/><feComposite in="SourceGraphic" in2="blur" operator="over"/></filter>
+            </defs>
+            <g filter="url(#glow-shield-outer)" opacity="0.45" stroke="#C86428" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M18 3 Q26 7 30 7 L30 18 Q30 27 18 33 Q6 27 6 18 L6 7 Q10 7 18 3 Z" stroke-width="1.5" fill="none"/>
+              <path d="M12 18 Q14 21 16 22 Q20 17 24 14" stroke-width="1.5" fill="none"/>
+            </g>
+            <g filter="url(#glow-shield-lg)" stroke="#E07838" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M18 3 Q26 7 30 7 L30 18 Q30 27 18 33 Q6 27 6 18 L6 7 Q10 7 18 3 Z" stroke-width="1.0" fill="none"/>
+              <path d="M12 18 Q14 21 16 22 Q20 17 24 14" stroke-width="1.0" fill="none"/>
+            </g>
+          </svg>
+        </div>
+        <h3>Compliance Assurance</h3>
+        <p>Ironclad discipline in reporting. We prepare your books so the tax authorities see total transparency, and you see absolute peace of mind.</p>
+      </div>
+
+      <div class="service-card">
+        <div class="service-icon">
+          <svg width="58" height="58" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <filter id="glow-cash-outer" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="1.8" result="blur"/><feComposite in="SourceGraphic" in2="blur" operator="over"/></filter>
+              <filter id="glow-cash-lg" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="0.7" result="blur"/><feComposite in="SourceGraphic" in2="blur" operator="over"/></filter>
+            </defs>
+            <g filter="url(#glow-cash-outer)" opacity="0.45" stroke="#C86428" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="18" y1="5" x2="18" y2="16" stroke-width="1.2"/><polyline points="13,12 18,17 23,12" stroke-width="1.2" fill="none"/>
+              <line x1="18" y1="31" x2="18" y2="20" stroke-width="1.2"/><polyline points="13,24 18,19 23,24" stroke-width="1.2" fill="none"/>
+              <line x1="6" y1="18" x2="30" y2="18" stroke-width="1.2"/>
+              <circle cx="9" cy="18" r="1.2" stroke-width="1.0"/><circle cx="27" cy="18" r="1.2" stroke-width="1.0"/>
+            </g>
+            <g filter="url(#glow-cash-lg)" stroke="#E07838" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="18" y1="5" x2="18" y2="16" stroke-width="1.0"/><polyline points="13,12 18,17 23,12" stroke-width="1.0" fill="none"/>
+              <line x1="18" y1="31" x2="18" y2="20" stroke-width="1.0"/><polyline points="13,24 18,19 23,24" stroke-width="1.0" fill="none"/>
+              <line x1="6" y1="18" x2="30" y2="18" stroke-width="0.9"/>
+              <circle cx="9" cy="18" r="1.2" stroke-width="0.9"/><circle cx="27" cy="18" r="1.2" stroke-width="0.9"/>
+            </g>
+          </svg>
+        </div>
+        <h3>Cash Flow Rhythm</h3>
+        <p>Finances have a rhythm. We monitor your inflows and outflows, ensuring your cash flow never stalls due to overlooked details.</p>
+      </div>
+
+      <div class="service-card">
+        <div class="service-icon">
+          <svg width="58" height="58" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <filter id="glow-payroll-outer" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="1.8" result="blur"/><feComposite in="SourceGraphic" in2="blur" operator="over"/></filter>
+              <filter id="glow-payroll-lg" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="0.7" result="blur"/><feComposite in="SourceGraphic" in2="blur" operator="over"/></filter>
+            </defs>
+            <g filter="url(#glow-payroll-outer)" opacity="0.45" stroke="#C86428" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="18" cy="10" r="4" stroke-width="1.2" fill="none"/>
+              <path d="M10 28 Q10 20 18 20 Q26 20 26 28" stroke-width="1.2" fill="none"/>
+              <circle cx="8" cy="12" r="3" stroke-width="1.0" fill="none"/>
+              <path d="M3 28 Q3 22 8 22" stroke-width="1.0" fill="none"/>
+              <circle cx="28" cy="12" r="3" stroke-width="1.0" fill="none"/>
+              <path d="M33 28 Q33 22 28 22" stroke-width="1.0" fill="none"/>
+              <path d="M14 10 L17 13 L22 7" stroke-width="1.2" fill="none"/>
+            </g>
+            <g filter="url(#glow-payroll-lg)" stroke="#E07838" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="18" cy="10" r="4" stroke-width="1.0" fill="none"/>
+              <path d="M10 28 Q10 20 18 20 Q26 20 26 28" stroke-width="1.0" fill="none"/>
+              <circle cx="8" cy="12" r="3" stroke-width="0.9" fill="none"/>
+              <path d="M3 28 Q3 22 8 22" stroke-width="0.9" fill="none"/>
+              <circle cx="28" cy="12" r="3" stroke-width="0.9" fill="none"/>
+              <path d="M33 28 Q33 22 28 22" stroke-width="0.9" fill="none"/>
+              <path d="M14 10 L17 13 L22 7" stroke-width="1.0" fill="none"/>
+            </g>
+          </svg>
+        </div>
+        <h3>Strategic Payroll</h3>
+        <p>Payroll is more than a calculation; it's about team loyalty. We guarantee precision and punctuality, balancing strict reporting with simplicity for you.</p>
+      </div>
+
+      <div class="service-card">
+        <div class="service-icon">
+          <svg width="58" height="58" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <filter id="glow-bridge-outer" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="1.8" result="blur"/><feComposite in="SourceGraphic" in2="blur" operator="over"/></filter>
+              <filter id="glow-bridge-lg" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="0.7" result="blur"/><feComposite in="SourceGraphic" in2="blur" operator="over"/></filter>
+            </defs>
+            <g filter="url(#glow-bridge-outer)" opacity="0.45" stroke="#C86428" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="13" width="8" height="10" rx="1.5" stroke-width="1.2" fill="none"/>
+              <rect x="25" y="13" width="8" height="10" rx="1.5" stroke-width="1.2" fill="none"/>
+              <path d="M18 10 L22 18 L18 26 L14 18 Z" stroke-width="1.2" fill="none"/>
+              <line x1="11" y1="18" x2="14" y2="18" stroke-width="1.0"/>
+              <line x1="22" y1="18" x2="25" y2="18" stroke-width="1.0"/>
+              <circle cx="18" cy="18" r="1.5" stroke-width="0.9"/>
+            </g>
+            <g filter="url(#glow-bridge-lg)" stroke="#E07838" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="13" width="8" height="10" rx="1.5" stroke-width="1.0" fill="none"/>
+              <rect x="25" y="13" width="8" height="10" rx="1.5" stroke-width="1.0" fill="none"/>
+              <path d="M18 10 L22 18 L18 26 L14 18 Z" stroke-width="1.0" fill="none"/>
+              <line x1="11" y1="18" x2="14" y2="18" stroke-width="0.9"/>
+              <line x1="22" y1="18" x2="25" y2="18" stroke-width="0.9"/>
+              <circle cx="18" cy="18" r="1.5" stroke-width="0.9"/>
+            </g>
+          </svg>
+        </div>
+        <h3>Operational Bridge</h3>
+        <p>We act as the vital link between your operations and your CPA. We handle the invoices, bills, and communication, so you can focus on strategy, not paperwork.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- Approach -->
+<section class="approach-section" id="approach">
+  <div class="container">
+
+    <h2 class="section-title">Approach</h2>
+
+    <div class="approach-statement">
+      <div class="approach-sub">Our philosophy of operational partnership</div>
+      <p class="approach-title">
+        More than just numbers —<br>
+        <strong>your operational heartbeat.</strong>
+      </p>
+    </div>
+
+    <div class="approach-principles">
+
+      <div class="approach-principle">
+        <span class="ap-num">01</span>
+        <div class="ap-title">Digital First</div>
+        <p class="ap-text">We don't handle paper. Your accounting is cloud-native, accessible worldwide 24/7. You see the real picture of your business — not a report two months after quarter close.</p>
+      </div>
+
+      <div class="approach-principle">
+        <span class="ap-num">02</span>
+        <div class="ap-title">Precision to Submit</div>
+        <p class="ap-text">We work to high-level bookkeeping standards. Your books are prepared so your CPA can hit 'Submit' in the tax return — saving you hundreds on audit hours.</p>
+      </div>
+
+      <div class="approach-principle">
+        <span class="ap-num">03</span>
+        <div class="ap-title">Proactive,<br>Not Reactive</div>
+        <p class="ap-text">We don't wait for year-end to tell you what you owe. We remind you, check payment status, and warn of risks before they become problems.</p>
+      </div>
+
+      <div class="approach-principle">
+        <span class="ap-num">04</span>
+        <div class="ap-title">Team Integration</div>
+        <p class="ap-text">We are your financial back-office — integrating with your CRM, banks, and invoices. Not just an external contractor, but a genuine part of your operation.</p>
+      </div>
+
+    </div>
+
+    <div class="approach-closing">
+      <div class="approach-closing-dash"></div>
+      <p class="approach-closing-text">
+        Bridging the gap between your <em>daily operations</em> and your <em>accountant's requirements</em> — so nothing falls through the cracks.
+      </p>
+    </div>
+
+  </div>
+</section>
+
+<footer class="footer-section" id="contacts">
+  <div class="container">
+    <div style="display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:28px;">
       <div class="logo">
-        <img src="https://lh3.googleusercontent.com/d/1BlgtNi_1AfoW8gtx9K9NCfahCJ2IOaBG" alt="B-Stage Bookkeeping Logo" style="height:52px;width:auto;object-fit:contain;display:block;">
-        <div style="display:flex;flex-direction:column;justify-content:center;line-height:1.05;text-align:left;">
-          <span style="font-size:1.35rem;font-weight:700;letter-spacing:0.3px;color:#A76D45;text-transform:uppercase;font-family:'Inter',sans-serif;">B-STAGE</span>
-          <span style="font-size:0.72rem;font-weight:500;letter-spacing:1.8px;color:#D59469;text-transform:uppercase;font-family:'Inter',sans-serif;margin-top:2px;">BOOKKEEPING</span>
+        <img src="https://lh3.googleusercontent.com/d/1BlgtNi_1AfoW8gtx9K9NCfahCJ2IOaBG" style="height:42px;">
+        <div style="display:flex;flex-direction:column;line-height:1;">
+          <span style="color:#A76D45;font-weight:700;">B-STAGE</span>
+          <span style="color:#D59469;font-size:0.7rem;letter-spacing:1px;">BOOKKEEPING</span>
         </div>
       </div>
-      <nav>
-        <ul>
-          <li><a href="#" class="active">Home</a></li>
-          <li><a href="#">Services</a></li>
-          <li><a href="#">Approach</a></li>
-          <li><a href="#">Contacts</a></li>
-          <li><button class="btn-consult">Request Consult</button></li>
-        </ul>
-      </nav>
-    </div>
-  </header>
-
-  <section class="hero">
-    <div class="container hero-grid">
-      <div class="hero-content">
-        <h1>Precision in every figure.<br>Clarity for your growth.</h1>
-        <p>Dedicated bookkeeping &amp; financial analysis for ambitious Canadian ventures. Your numbers, mastered.</p>
-        <button class="btn-hero">Start Securing Your Profits</button>
-      </div>
-      <div class="hero-graphics">
-        <canvas id="c" width="800" height="640"></canvas>
+      <div style="display:flex;gap:64px;align-items:flex-start;">
+        <!-- Contacts -->
+        <div style="display:flex;flex-direction:column;align-items:flex-end;gap:10px;">
+          <span style="font-size:0.72rem;text-transform:uppercase;letter-spacing:2px;color:rgba(167,109,69,0.6);font-weight:500;">Contacts</span>
+          <a href="mailto:hello@beestage.ca" style="color:#fff;text-decoration:none;font-size:0.85rem;font-weight:300;transition:color 0.3s;" onmouseover="this.style.color='#A76D45'" onmouseout="this.style.color='#fff'">hello@beestage.ca</a>
+          <a href="tel:2048921309" style="color:#fff;text-decoration:none;font-size:0.85rem;font-weight:300;transition:color 0.3s;" onmouseover="this.style.color='#A76D45'" onmouseout="this.style.color='#fff'">(204) 892-1309</a>
+        </div>
+        <!-- Navigation -->
+        <div style="display:flex;flex-direction:column;align-items:flex-end;gap:10px;">
+          <span style="font-size:0.72rem;text-transform:uppercase;letter-spacing:2px;color:rgba(167,109,69,0.6);font-weight:500;">Navigation</span>
+          <nav style="display:flex;gap:32px;">
+            <a href="#" style="color:#fff;text-decoration:none;font-size:0.85rem;transition:color 0.3s;" onmouseover="this.style.color='#A76D45'" onmouseout="this.style.color='#fff'">Home</a>
+            <a href="#services" style="color:#fff;text-decoration:none;font-size:0.85rem;transition:color 0.3s;" onmouseover="this.style.color='#A76D45'" onmouseout="this.style.color='#fff'">Services</a>
+            <a href="#approach" style="color:#fff;text-decoration:none;font-size:0.85rem;transition:color 0.3s;" onmouseover="this.style.color='#A76D45'" onmouseout="this.style.color='#fff'">Approach</a>
+            <a href="#contacts" style="color:#fff;text-decoration:none;font-size:0.85rem;transition:color 0.3s;" onmouseover="this.style.color='#A76D45'" onmouseout="this.style.color='#fff'">Contacts</a>
+          </nav>
+        </div>
       </div>
     </div>
-  </section>
+    <div style="border-top:1px solid rgba(167,109,69,0.15);padding-top:20px;">
+      <p style="color:rgba(255,255,255,0.38);font-size:0.82rem;line-height:1.7;text-align:center;max-width:860px;margin:0 auto;">B-Stage provides operational bookkeeping and management support. We are not a CPA firm and do not provide legal or tax advice. We bridge the gap between your daily operations and your accountant's requirements.</p>
+      <div class="footer-bottom">© 2026 B-Stage Bookkeeping. All rights reserved.</div>
+    </div>
+  </div>
+</footer>
 
-  <section class="services-section">
-    <div class="container">
-      <h2 class="section-title">Services</h2>
-      <div class="services-grid">
-
-        <div class="service-card">
-          <div class="service-icon"><i class="fa-solid fa-book"></i></div>
-          <h3>Automated Bookkeeping</h3>
-          <p>Let systems handle the numbers; you handle the strategy. Clean, real-time data entries matching CRA expectations.</p>
-        </div>
-
-        <div class="service-card">
-          <div class="service-icon"><i class="fa-solid fa-rocket"></i></div>
-          <h3>Growth</h3>
-          <p>Scale your business with reliable bookkeeping benefits, deep financial insights, and tailored financial automation.</p>
-        </div>
-
-        <div class="service-card">
-          <div class="service-icon"><i class="fa-solid fa-shield-halved"></i></div>
-          <h3>Compliance</h3>
-          <p>Corporate accounts, GST/HST tracking, and corporate filings handled perfectly without missed deadlines.</p>
-        </div>
-
+<!-- Modal -->
+<div class="consult-modal-overlay" id="consultModal">
+  <div class="consult-modal">
+    <h3>Request Consultation</h3>
+    <button class="modal-close" onclick="closeConsultModal()">×</button>
+    <div class="cf" id="cf-name">
+      <div class="cf-input" id="ci-name" contenteditable="true" data-ph="Your Name" spellcheck="false"></div>
+    </div>
+    <div class="cf" id="cf-contact">
+      <div class="cf-input" id="ci-contact" contenteditable="true" data-ph="Email or Phone" spellcheck="false"></div>
+    </div>
+    <select id="consultType" style="display:none;">
+      <option value="">Type of inquiry (optional)</option>
+      <option value="Personal Taxes">Personal Taxes</option>
+      <option value="Business Bookkeeping">Business Bookkeeping</option>
+      <option value="Not Sure">Not Sure</option>
+    </select>
+    <div class="custom-select" id="customSelect">
+      <div class="custom-select-trigger" id="customSelectTrigger">
+        <span id="customSelectValue">Type of inquiry (optional)</span>
+        <svg class="custom-select-arrow" width="12" height="12" viewBox="0 0 12 12" fill="none">
+          <path d="M2 4 L6 8 L10 4" stroke="#A76D45" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <div class="custom-select-dropdown" id="customSelectDropdown">
+        <div class="custom-select-option" data-value="Personal Taxes">Personal Taxes</div>
+        <div class="custom-select-option" data-value="Business Bookkeeping">Business Bookkeeping</div>
+        <div class="custom-select-option" data-value="Not Sure">Not Sure</div>
       </div>
     </div>
-  </section>
+    <div class="cf" id="cf-msg">
+      <div class="cf-input cf-textarea" id="ci-msg" contenteditable="true" data-ph="Message (optional)" spellcheck="false"></div>
+    </div>
+    <div class="char-counter"><span id="charCount">0</span>/250</div>
+    <button class="btn-consult" onclick="submitConsultForm()">Send Request</button>
+  </div>
+</div>
+
+<!-- Toast -->
+<div class="toast" id="toast"></div>
 
   <script src="script.js"></script>
 </body>

@@ -1,3 +1,25 @@
+  <link rel="canonical" href="https://beestage.ca">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://beestage.ca">
+  <meta property="og:title" content="B-Stage Bookkeeping — Precision Financial Services for Canadian Businesses">
+  <meta property="og:description" content="Dedicated bookkeeping and financial analysis for ambitious Canadian ventures. Automated bookkeeping, growth insights, and CRA compliance — mastered.">
+  <meta property="og:image" content="https://beestage.ca/og-image.jpg">
+  <meta property="og:locale" content="en_CA">
+  <meta property="og:site_name" content="B-Stage Bookkeeping">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:url" content="https://beestage.ca">
+  <meta name="twitter:title" content="B-Stage Bookkeeping — Precision Financial Services for Canadian Businesses">
+  <meta name="twitter:description" content="Dedicated bookkeeping and financial analysis for ambitious Canadian ventures. Automated bookkeeping, growth insights, and CRA compliance — mastered.">
+  <meta name="twitter:image" content="https://beestage.ca/og-image.jpg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
 :root {
   --bg-color: #0b0b0c;
   --card-bg: #121214;
@@ -120,10 +142,45 @@ nav a.active { color: var(--bronze); }
 .service-card p { color: var(--text-main); font-size: 0.95rem; font-weight: 300; }
 
 @media (max-width: 992px) {
-  .hero-grid { grid-template-columns: 1fr; text-align: center; }
-  .hero-content p { margin: 0 auto 36px; }
+  /* Hero */
+  .hero { padding: 40px 0 40px; }
+  .hero-grid { display: block; min-height: unset; }
+  .hero-content {
+    position: static;
+    transform: none;
+    padding: 0 24px;
+    text-align: center;
+    max-width: 100%;
+  }
+  .hero-content h1 {
+    font-size: 2.2rem;
+    white-space: normal;
+    margin-top: 0;
+    margin-bottom: 16px;
+  }
+  .hero-content > * { max-width: 100%; }
+  .hero-content p { margin: 0 auto 24px; max-width: 480px; }
   .hero-graphics { display: none; }
+
+  /* Services */
   .services-grid { grid-template-columns: 1fr; }
+  .services-section { margin-top: 0; }
+
+  /* Approach */
+  .approach-principle {
+    flex-direction: column;
+    gap: 12px;
+  }
+  .ap-title { width: 100%; font-size: 1.4rem; }
+  .ap-text { padding-left: 0; border-left: none; border-top: 1px solid rgba(167,109,69,0.25); padding-top: 12px; }
+  .ap-num { width: auto; }
+
+  /* Footer */
+  .container > div[style*="justify-content:space-between"] {
+    flex-direction: column;
+    gap: 32px;
+    align-items: flex-start !important;
+  }
 }
 
 /* ── Approach ── */

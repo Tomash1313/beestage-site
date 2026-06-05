@@ -46,27 +46,28 @@
         <span style="font-size:0.72rem;font-weight:500;letter-spacing:1.8px;color:#D59469;text-transform:uppercase;font-family:'Inter',sans-serif;margin-top:2px;">BOOKKEEPING</span>
       </div>
     </div>
-    <nav>
+    <nav aria-label="Main navigation">
       <ul>
         <li><a href="#" id="nav-home" class="active">Home</a></li>
         <li><a href="#services" id="nav-services">Services</a></li>
         <li><a href="#approach" id="nav-approach">Approach</a></li>
+        <li><a href="/pricing" id="nav-pricing">Pricing</a></li>
         <li><a href="#contacts" id="nav-contacts">Contacts</a></li>
-        <li><button class="btn-consult" onclick="openConsultModal()">Request Consult</button></li>
+        <li><button class="btn-consult" onclick="openConsultModal()" aria-label="Request a consultation">Request Consult</button></li>
       </ul>
     </nav>
   </div>
 </header>
 
-<section class="hero">
+<section class="hero" role="banner">
   <div class="container hero-grid">
     <div class="hero-content">
       <h1>Precision in every figure.<br>Clarity for your growth.</h1>
       <p>Dedicated bookkeeping &amp; financial analysis for ambitious Canadian ventures. Your numbers, mastered.</p>
-      <button class="btn-hero" onclick="openConsultModal()">Start Securing Your Profits</button>
+      <button class="btn-hero" onclick="openConsultModal()" aria-label="Start securing your profits - request a consultation">Start Securing Your Profits</button>
     </div>
     <div class="hero-graphics">
-      <canvas id="c" width="800" height="640"></canvas>
+      <canvas id="c" width="800" height="640" aria-hidden="true" role="presentation"></canvas>
     </div>
   </div>
 </section>
@@ -296,7 +297,7 @@
   <div class="container">
     <div style="display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:28px;">
       <div class="logo">
-        <img src="/logo.webp" style="height:42px;">
+        <img src="/logo.webp" alt="B-Stage Bookkeeping Logo" style="height:42px;">
         <div style="display:flex;flex-direction:column;line-height:1;">
           <span style="color:#A76D45;font-weight:700;">B-STAGE</span>
           <span style="color:#D59469;font-size:0.7rem;letter-spacing:1px;">BOOKKEEPING</span>
@@ -332,7 +333,7 @@
 <div class="consult-modal-overlay" id="consultModal">
   <div class="consult-modal">
     <h3>Request Consultation</h3>
-    <button class="modal-close" onclick="closeConsultModal()">×</button>
+    <button class="modal-close" onclick="closeConsultModal()" aria-label="Close">×</button>
     <div class="cf" id="cf-name">
       <div class="cf-input" id="ci-name" contenteditable="true" data-ph="Your Name" spellcheck="false"></div>
     </div>

@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pricing — B-Stage Bookkeeping</title>
+  <meta name="description" content="Transparent bookkeeping packages for Canadian businesses. Core, Growth, and Scale plans starting at C$250/month.">
+
+  <!-- SEO -->
+  <meta name="robots" content="index, follow">
+  <meta name="author" content="B-Stage Bookkeeping">
+  <link rel="canonical" href="https://beestage.ca/pricing">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://beestage.ca/pricing">
+  <meta property="og:title" content="Pricing — B-Stage Bookkeeping">
+  <meta property="og:description" content="Transparent bookkeeping packages for Canadian businesses. Starting at C$250/month.">
+  <meta property="og:image" content="https://beestage.ca/og-image.jpg">
+  <meta property="og:locale" content="en_CA">
+  <meta property="og:site_name" content="B-Stage Bookkeeping">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-color: #0b0b0c;
+      --card-bg: #121214;
+      --text-main: #ffffff;
+      --bronze: #A76D45;
+      --bronze-light: #D59469;
+      --bronze-dark: #7A4526;
+      --bronze-gradient: linear-gradient(135deg, #7A4526 0%, #A76D45 35%, #D59469 50%, #A76D45 65%, #7A4526 100%);
+      --bronze-hover: linear-gradient(135deg, #A76D45 0%, #D59469 50%, #7A4526 100%);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Inter', sans-serif; }
+    ::-webkit-scrollbar { width: 4px; }
+    ::-webkit-scrollbar-track { background: #0b0b0c; }
+    ::-webkit-scrollbar-thumb { background: rgba(167,109,69,0.5); border-radius: 2px; }
+    ::-webkit-scrollbar-thumb:hover { background: rgba(167,109,69,0.85); }
+    * { scrollbar-width: thin; scrollbar-color: rgba(167,109,69,0.5) #0b0b0c; }
+    body { background-color: var(--bg-color); color: var(--text-main); line-height: 1.6; overflow-x: hidden; padding-top: 95px; }
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+
+    /* Header */
+    header { position: fixed; top: 0; left: 0; width: 100%; z-index: 9999; padding: 20px 0; border-bottom: 2px solid rgba(167,109,69,0.35); background: rgba(11,11,12,0.97); transition: box-shadow 0.3s ease; }
+    header.scrolled { box-shadow: 0 6px 20px rgba(0,0,0,0.35); backdrop-filter: blur(10px); }
+    .nav-wrapper { display: flex; justify-content: space-between; align-items: center; }
+    .logo { display: flex; align-items: center; gap: 8px; user-select: none; }
+    nav ul { display: flex; list-style: none; gap: 32px; align-items: center; }
+    nav a { color: var(--text-main); text-decoration: none; font-size: 0.95rem; font-weight: 400; transition: color 0.3s; }
+    nav a:hover { color: var(--bronze); }
+    nav a.active { color: var(--bronze); }
+    .btn-consult { background: var(--bronze-gradient); color: var(--text-main); padding: 10px 22px; border-radius: 6px; font-weight: 600; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.5px; border: none; cursor: pointer; transition: transform 0.2s, box-shadow 0.2s; }
+    .btn-consult:hover { background: var(--bronze-hover); transform: translateY(-1px); box-shadow: 0 4px 15px rgba(167,109,69,0.4); }
+
+    /* Footer */
+    .footer-section { margin-top: 80px; padding: 40px 0 20px; border-top: 1px solid rgba(167,109,69,0.25); background: linear-gradient(180deg, transparent, rgba(10,10,10,0.85)); }
+    .footer-bottom { margin-top: 20px; text-align: center; font-size: 0.8rem; color: rgba(255,255,255,0.4); }
+
+    /* Modal */
+    .consult-modal-overlay { position: fixed; inset: 0; display: none; align-items: center; justify-content: center; background: rgba(0,0,0,0.7); z-index: 99999; }
+    .consult-modal-overlay.active { display: flex; }
+    .consult-modal { position: relative; width: 420px; background: var(--card-bg); border: 1px solid rgba(167,109,69,0.25); border-radius: 10px; padding: 24px; }
+    .consult-modal h3 { color: var(--bronze); margin-bottom: 16px; text-transform: uppercase; font-size: 0.95rem; }
+    .modal-close { position: absolute; top: 18px; right: 16px; background: transparent; border: none; color: rgba(167,109,69,0.6); font-size: 20px; line-height: 1; cursor: pointer; transition: color 0.2s; padding: 0; }
+    .modal-close:hover { color: #D59469; }
+    .char-counter { text-align: right; font-size: 0.75rem; color: rgba(255,255,255,0.4); margin-top: -8px; margin-bottom: 10px; }
+
+    /* Custom Fields */
+    input, textarea, select, button { font-family: 'Inter', sans-serif; font-size: 14px; }
+    .cf { width: 100%; margin-bottom: 12px; background: #0e0e10; border: 1px solid rgba(255,255,255,0.08); border-radius: 6px; transition: border-color 0.25s ease; }
+    .cf:focus-within { border-color: rgba(167,109,69,0.5); }
+    .cf.invalid { border-color: rgba(180,50,50,0.7); box-shadow: 0 0 0 2px rgba(180,50,50,0.12); }
+    .cf-input { display: block; width: 100%; padding: 10px; font-size: 14px; font-family: 'Inter', sans-serif; color: white; outline: none; line-height: 1.5; min-height: 38px; word-break: break-word; }
+    .cf-input:empty::before { content: attr(data-ph); color: rgba(255,255,255,0.35); pointer-events: none; }
+    .cf-textarea { min-height: 80px; max-height: 160px; overflow-y: auto; scrollbar-width: thin; scrollbar-color: rgba(167,109,69,0.4) #0e0e10; }
+    .cf-textarea::-webkit-scrollbar { width: 3px; }
+    .cf-textarea::-webkit-scrollbar-track { background: #0e0e10; }
+    .cf-textarea::-webkit-scrollbar-thumb { background: rgba(167,109,69,0.4); border-radius: 2px; }
+
+    /* Custom Select */
+    .custom-select { position: relative; width: 100%; margin-bottom: 12px; user-select: none; }
+    .custom-select-trigger { display: flex; align-items: center; justify-content: space-between; padding: 10px; background: #0e0e10; border: 1px solid rgba(255,255,255,0.08); border-radius: 6px; cursor: pointer; transition: border-color 0.25s ease; font-size: 14px; font-family: 'Inter', sans-serif; }
+    .custom-select-trigger:hover { border-color: rgba(167,109,69,0.3); }
+    .custom-select.open .custom-select-trigger { border-color: rgba(167,109,69,0.5); border-radius: 6px 6px 0 0; }
+    .custom-select-trigger span { color: rgba(255,255,255,0.35); font-size: 14px; }
+    .custom-select.selected .custom-select-trigger span { color: white; }
+    .custom-select-arrow { transition: transform 0.25s ease; flex-shrink: 0; }
+    .custom-select.open .custom-select-arrow { transform: rotate(180deg); }
+    .custom-select-dropdown { position: absolute; top: 100%; left: 0; right: 0; background: #0e0e10; border: 1px solid rgba(167,109,69,0.5); border-top: none; border-radius: 0 0 6px 6px; overflow: hidden; max-height: 0; opacity: 0; transition: max-height 0.25s ease, opacity 0.2s ease; z-index: 9999; }
+    .custom-select.open .custom-select-dropdown { max-height: 200px; opacity: 1; }
+    .custom-select-option { padding: 10px 12px; font-size: 14px; font-family: 'Inter', sans-serif; color: rgba(255,255,255,0.75); cursor: pointer; transition: color 0.2s ease; }
+    .custom-select-option:hover { color: #A76D45; }
+    .custom-select-option.active { color: #A76D45; }
+
+    /* Toast */
+    .toast { position: fixed; bottom: 32px; left: 50%; transform: translateX(-50%) translateY(20px); background: #1a1a1c; border: 1px solid rgba(167,109,69,0.4); color: #fff; padding: 12px 28px; border-radius: 6px; font-size: 0.88rem; opacity: 0; transition: opacity 0.3s ease, transform 0.3s ease; z-index: 999999; pointer-events: none; }
+    .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+    .toast.error { border-color: rgba(180,50,50,0.5); background: #1a1212; }
+
+    /* ── Pricing page ── */
+    .pricing-page { padding-top: 20px; padding-bottom: 40px; }
+
+    .page-label {
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: #ffffff;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 32px;
+    }
+    .page-label::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(to right, rgba(167,109,69,0.7), rgba(167,109,69,0.1));
+    }
+    .page-title {
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 300;
+      line-height: 1.2;
+      color: #fff;
+      margin-bottom: 16px;
+    }
+    .page-title strong {
+      font-weight: 700;
+      background: linear-gradient(135deg, #7A4526, #A76D45, #D59469);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .page-sub {
+      font-size: 0.95rem;
+      font-weight: 300;
+      color: rgba(255,255,255,0.6);
+      max-width: 580px;
+      line-height: 1.7;
+    }
+    .page-tax {
+      font-size: 0.78rem;
+      color: rgba(255,255,255,0.3);
+      font-weight: 300;
+      margin-top: 12px;
+    }
+
+    /* ── Hybrid intro ── */
+    .hybrid-intro {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: end;
+      padding: 24px 0 40px;
+      border-bottom: 1px solid rgba(167,109,69,0.12);
+      margin-bottom: 40px;
+    }
+    .hybrid-quote {
+      font-size: clamp(1.4rem, 2.5vw, 2rem);
+      font-weight: 300;
+      line-height: 1.4;
+      color: #fff;
+    }
+    .hybrid-quote strong {
+      font-weight: 600;
+      color: #D59469;
+    }
+    .hybrid-note {
+      font-size: 0.88rem;
+      color: rgba(255,255,255,0.5);
+      line-height: 1.75;
+      font-weight: 300;
+    }
+
+    /* ── Cards ── */
+    .hybrid-cards {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 1px;
+      background: rgba(167,109,69,0.12);
+    }
+    .hcard {
+      background: var(--bg-color);
+      padding: 40px 36px;
+      position: relative;
+    }
+    .hcard.hfeatured { background: #0f0d0a; }
+    .hcard-accent {
+      position: absolute;
+      top: 0; left: 36px; right: 36px;
+      height: 2px;
+      background: linear-gradient(to right, #A76D45, transparent);
+    }
+    .hfeatured .hcard-accent {
+      background: linear-gradient(to right, #D59469, #A76D45, transparent);
+    }
+    .hcard-tag {
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      letter-spacing: 2.5px;
+      color: rgba(167,109,69,0.6);
+      font-weight: 600;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .hfeatured .hcard-tag { color: #A76D45; }
+    .hcard-tag-dot {
+      width: 5px; height: 5px;
+      border-radius: 50%;
+      background: rgba(167,109,69,0.4);
+      flex-shrink: 0;
+    }
+    .hfeatured .hcard-tag-dot { background: #A76D45; }
+    .hcard-name {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 10px;
+    }
+    .hcard-desc {
+      font-size: 0.82rem;
+      color: rgba(255,255,255,0.5);
+      font-weight: 300;
+      line-height: 1.6;
+      margin-bottom: 16px;
+    }
+    .hcard-price {
+      font-size: 2.8rem;
+      font-weight: 700;
+      line-height: 1;
+      margin-bottom: 4px;
+      color: #fff;
+    }
+    .hfeatured .hcard-price {
+      background: linear-gradient(135deg, #7A4526, #A76D45, #D59469);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .hcard-per {
+      font-size: 0.75rem;
+      color: rgba(255,255,255,0.3);
+      margin-bottom: 12px;
+      font-weight: 300;
+    }
+    .hcard-divider {
+      width: 100%;
+      height: 1px;
+      background: linear-gradient(to right, rgba(167,109,69,0.3), transparent);
+      margin-bottom: 24px;
+    }
+    .hcard-list {
+      list-style: none;
+      margin-bottom: 36px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .hcard-list li {
+      font-size: 0.83rem;
+      color: rgba(255,255,255,0.6);
+      font-weight: 300;
+      display: flex;
+      gap: 8px;
+      line-height: 1.5;
+    }
+    .hcard-list li::before { content: '—'; color: #A76D45; flex-shrink: 0; }
+    .hcard-btn {
+      width: 100%;
+      padding: 13px;
+      border-radius: 6px;
+      font-size: 0.78rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      cursor: pointer;
+      border: none;
+      transition: all 0.2s;
+    }
+    .hcard-btn-outline {
+      background: transparent;
+      border: 1px solid rgba(167,109,69,0.25);
+      color: rgba(255,255,255,0.5);
+    }
+    .hcard-btn-outline:hover { border-color: #A76D45; color: #A76D45; }
+    .hcard-btn-filled {
+      background: var(--bronze-gradient);
+      color: #fff;
+    }
+    .hcard-btn-filled:hover { box-shadow: 0 6px 20px rgba(167,109,69,0.35); }
+
+    @media (max-width: 992px) {
+      .hybrid-intro { grid-template-columns: 1fr; gap: 32px; }
+      .hybrid-cards { grid-template-columns: 1fr; }
+      .hcard-accent { left: 24px; right: 24px; }
+      .hcard { padding: 36px 24px; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="container nav-wrapper">
+    <div class="logo">
+      <img src="/logo.webp" alt="B-Stage Bookkeeping Logo" style="height:52px;width:auto;object-fit:contain;display:block;">
+      <div style="display:flex;flex-direction:column;justify-content:center;line-height:1.05;text-align:left;">
+        <span style="font-size:1.35rem;font-weight:700;letter-spacing:0.3px;color:#A76D45;text-transform:uppercase;font-family:'Inter',sans-serif;">B-STAGE</span>
+        <span style="font-size:0.72rem;font-weight:500;letter-spacing:1.8px;color:#D59469;text-transform:uppercase;font-family:'Inter',sans-serif;margin-top:2px;">BOOKKEEPING</span>
+      </div>
+    </div>
+    <nav aria-label="Main navigation">
+      <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/#services">Services</a></li>
+        <li><a href="/#approach">Approach</a></li>
+        <li><a href="/pricing" class="active">Pricing</a></li>
+        <li><a href="/#contacts">Contacts</a></li>
+        <li><button class="btn-consult" onclick="openConsultModal()" aria-label="Request a consultation">Request Consult</button></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main class="pricing-page">
+  <div class="container">
+
+    <div class="page-label">Pricing</div>
+
+    <div class="hybrid-intro">
+      <div class="hybrid-quote">
+        You pay for <strong>results and reliability</strong> — not for hours spent figuring out your books.
+      </div>
+      <div class="hybrid-note" style="font-size:0.95rem;font-weight:300;color:#fff;line-height:1.7;">
+        Every plan includes CRA-compliant bookkeeping, cloud access, and a dedicated point of contact. No hidden fees. No surprise invoices at year-end. Just clean books and peace of mind.
+      </div>
+    </div>
+
+    <div class="hybrid-cards">
+
+      <div class="hcard">
+        <div class="hcard-accent"></div>
+        <div class="hcard-tag"><span class="hcard-tag-dot"></span>Core</div>
+        <div class="hcard-name">Essential</div>
+        <div class="hcard-desc">Essential monthly bookkeeping and tax readiness. Your books stay clean so your CPA can focus on strategy, not cleanup.</div>
+        <div class="hcard-price">C$250</div>
+        <div class="hcard-per">per month</div>
+        <div class="hcard-divider"></div>
+        <ul class="hcard-list">
+          <li>Monthly cloud bookkeeping (QuickBooks/Xero)</li>
+          <li>Bank & credit card reconciliation</li>
+          <li>GST/HST & PST filing</li>
+          <li>Tax-ready year-end books</li>
+          <li>Email & chat support</li>
+        </ul>
+        <button class="hcard-btn hcard-btn-outline" onclick="openConsultModal('Core — C$250/mo')">Get Started</button>
+      </div>
+
+      <div class="hcard hfeatured">
+        <div class="hcard-accent"></div>
+        <div class="hcard-tag"><span class="hcard-tag-dot"></span>Growth — Most Popular</div>
+        <div class="hcard-name">Operational</div>
+        <div class="hcard-desc">Full operational bookkeeping plus payroll. You see real numbers every month — not just a bank balance.</div>
+        <div class="hcard-price">C$450</div>
+        <div class="hcard-per">per month</div>
+        <div class="hcard-divider"></div>
+        <ul class="hcard-list">
+          <li>Everything in Essential</li>
+          <li>Payroll management (up to 5 people)</li>
+          <li>Monthly P&L & Balance Sheet reports</li>
+          <li>Subcontractor reporting (T5018)</li>
+          <li>Priority support + quick calls</li>
+        </ul>
+        <button class="hcard-btn hcard-btn-filled" onclick="openConsultModal('Growth — C$450/mo')">Get Started</button>
+      </div>
+
+      <div class="hcard">
+        <div class="hcard-accent"></div>
+        <div class="hcard-tag"><span class="hcard-tag-dot"></span>Scale</div>
+        <div class="hcard-name">Full Back-Office</div>
+        <div class="hcard-desc">We handle everything — invoices, bills, payroll, and CPA coordination. You focus on running your business.</div>
+        <div class="hcard-price">C$800</div>
+        <div class="hcard-per">per month</div>
+        <div class="hcard-divider"></div>
+        <ul class="hcard-list">
+          <li>Everything in Operational</li>
+          <li>Accounts Receivable & Payable</li>
+          <li>Extended payroll (up to 15) + T4/T4A</li>
+          <li>Direct CPA coordination at year-end</li>
+          <li>VIP support + monthly Zoom review</li>
+        </ul>
+        <button class="hcard-btn hcard-btn-outline" onclick="openConsultModal('Scale — C$800/mo')">Get Started</button>
+      </div>
+
+    </div>
+
+    <div style="padding: 24px 0 0; border-top: 1px solid rgba(167,109,69,0.12); margin-top: 1px;">
+      <h2 style="font-size:clamp(1.6rem,3vw,2.4rem);font-weight:300;color:#fff;line-height:1.2;margin-bottom:16px;">Transparent pricing. <strong style="font-weight:700;color:#A76D45;">No surprises, ever.</strong></h2>
+      <p style="font-size:0.95rem;font-weight:300;color:#fff;line-height:1.7;margin-bottom:8px;">Choose the level of support your business needs. All plans include cloud bookkeeping and CRA compliance — we grow with you.</p>
+      <p style="font-size:0.95rem;font-weight:300;color:#fff;line-height:1.7;">All prices are in CAD and exclude applicable GST/HST and PST.</p>
+    </div>
+
+  </div>
+</main>
+
+<footer class="footer-section" id="contacts">
+  <div class="container">
+    <div style="display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:28px;">
+      <div class="logo">
+        <img src="/logo.webp" alt="B-Stage Bookkeeping Logo" style="height:42px;">
+        <div style="display:flex;flex-direction:column;line-height:1;">
+          <span style="color:#A76D45;font-weight:700;">B-STAGE</span>
+          <span style="color:#D59469;font-size:0.7rem;letter-spacing:1px;">BOOKKEEPING</span>
+        </div>
+      </div>
+      <div style="display:flex;gap:64px;align-items:flex-start;">
+        <div style="display:flex;flex-direction:column;align-items:flex-end;gap:10px;">
+          <span style="font-size:0.72rem;text-transform:uppercase;letter-spacing:2px;color:rgba(167,109,69,0.6);font-weight:500;">Contacts</span>
+          <a href="mailto:hello@beestage.ca" style="color:#fff;text-decoration:none;font-size:0.85rem;font-weight:300;transition:color 0.3s;" onmouseover="this.style.color='#A76D45'" onmouseout="this.style.color='#fff'">hello@beestage.ca</a>
+          <a href="tel:2048921309" style="color:#fff;text-decoration:none;font-size:0.85rem;font-weight:300;transition:color 0.3s;" onmouseover="this.style.color='#A76D45'" onmouseout="this.style.color='#fff'">(204) 892-1309</a>
+        </div>
+        <div style="display:flex;flex-direction:column;align-items:flex-end;gap:10px;">
+          <span style="font-size:0.72rem;text-transform:uppercase;letter-spacing:2px;color:rgba(167,109,69,0.6);font-weight:500;">Navigation</span>
+          <nav style="display:flex;gap:32px;">
+            <a href="/" style="color:#fff;text-decoration:none;font-size:0.85rem;transition:color 0.3s;" onmouseover="this.style.color='#A76D45'" onmouseout="this.style.color='#fff'">Home</a>
+            <a href="/#services" style="color:#fff;text-decoration:none;font-size:0.85rem;transition:color 0.3s;" onmouseover="this.style.color='#A76D45'" onmouseout="this.style.color='#fff'">Services</a>
+            <a href="/#approach" style="color:#fff;text-decoration:none;font-size:0.85rem;transition:color 0.3s;" onmouseover="this.style.color='#A76D45'" onmouseout="this.style.color='#fff'">Approach</a>
+            <a href="/pricing" style="color:#A76D45;text-decoration:none;font-size:0.85rem;">Pricing</a>
+            <a href="/#contacts" style="color:#fff;text-decoration:none;font-size:0.85rem;transition:color 0.3s;" onmouseover="this.style.color='#A76D45'" onmouseout="this.style.color='#fff'">Contacts</a>
+          </nav>
+        </div>
+      </div>
+    </div>
+    <div style="border-top:1px solid rgba(167,109,69,0.15);padding-top:20px;">
+      <p style="color:rgba(255,255,255,0.38);font-size:0.82rem;line-height:1.7;text-align:center;max-width:860px;margin:0 auto;font-style:italic;">B-Stage provides operational bookkeeping and management support. We are not a CPA firm and do not provide legal or tax advice. We bridge the gap between your daily operations and your accountant's requirements — so nothing falls through the cracks.</p>
+      <div class="footer-bottom">© 2026 B-Stage Bookkeeping. All rights reserved.</div>
+    </div>
+  </div>
+</footer>
+
+<!-- Modal -->
+<div class="consult-modal-overlay" id="consultModal">
+  <div class="consult-modal">
+    <h3 id="modal-title">Request Consultation</h3>
+    <button class="modal-close" onclick="closeConsultModal()" aria-label="Close">×</button>
+    <div id="modal-pkg-badge" style="display:none;margin-bottom:12px;">
+      <span id="modal-pkg-label" style="font-size:0.7rem;text-transform:uppercase;letter-spacing:2px;color:var(--bronze);font-weight:600;border:1px solid rgba(167,109,69,0.4);padding:4px 12px;border-radius:20px;"></span>
+    </div>
+    <div class="cf" id="cf-name">
+      <div class="cf-input" id="ci-name" contenteditable="true" data-ph="Your Name" spellcheck="false"></div>
+    </div>
+    <div class="cf" id="cf-contact">
+      <div class="cf-input" id="ci-contact" contenteditable="true" data-ph="Email or Phone" spellcheck="false"></div>
+    </div>
+    <input id="consultName" type="hidden">
+    <input id="consultContact" type="hidden">
+    <select id="consultType" style="display:none;">
+      <option value="">Type of inquiry (optional)</option>
+      <option value="Personal Taxes">Personal Taxes</option>
+      <option value="Business Bookkeeping">Business Bookkeeping</option>
+      <option value="Not Sure">Not Sure</option>
+    </select>
+    <div class="custom-select" id="customSelect">
+      <div class="custom-select-trigger" id="customSelectTrigger">
+        <span id="customSelectValue">Type of inquiry (optional)</span>
+        <svg class="custom-select-arrow" width="12" height="12" viewBox="0 0 12 12" fill="none">
+          <path d="M2 4 L6 8 L10 4" stroke="#A76D45" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <div class="custom-select-dropdown" id="customSelectDropdown">
+        <div class="custom-select-option" data-value="Personal Taxes">Personal Taxes</div>
+        <div class="custom-select-option" data-value="Business Bookkeeping">Business Bookkeeping</div>
+        <div class="custom-select-option" data-value="Not Sure">Not Sure</div>
+      </div>
+    </div>
+    <div class="cf" id="cf-msg">
+      <div class="cf-input cf-textarea" id="ci-msg" contenteditable="true" data-ph="Message (optional)" spellcheck="false"></div>
+    </div>
+    <input id="consultMessage" type="hidden">
+    <div class="char-counter"><span id="charCount">0</span>/250</div>
+    <button class="btn-consult" id="modal-submit-btn" onclick="submitConsultForm()">Send Request</button>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+/* ── Modal ── */
+function openConsultModal(pkg) {
+  const modal = document.getElementById('consultModal');
+  const title = document.getElementById('modal-title');
+  const badge = document.getElementById('modal-pkg-badge');
+  const badgeLabel = document.getElementById('modal-pkg-label');
+  const submitBtn = document.getElementById('modal-submit-btn');
+  const customSelect = document.getElementById('customSelect');
+
+  if(pkg) {
+    // Get Started mode
+    title.textContent = 'Get Started';
+    badge.style.display = 'block';
+    badgeLabel.textContent = pkg;
+    customSelect.style.display = 'none';
+    submitBtn.textContent = 'Start';
+    // Set hidden value
+    document.getElementById('consultType').value = pkg;
+  } else {
+    // Request Consult mode
+    title.textContent = 'Request Consultation';
+    badge.style.display = 'none';
+    badgeLabel.textContent = '';
+    customSelect.style.display = 'block';
+    submitBtn.textContent = 'Send Request';
+    document.getElementById('consultType').value = '';
+    document.getElementById('customSelectValue').textContent = 'Type of inquiry (optional)';
+    document.getElementById('customSelect').classList.remove('selected','open');
+    document.querySelectorAll('.custom-select-option').forEach(o => o.classList.remove('active'));
+  }
+
+  modal.classList.add('active');
+  const counter = document.getElementById('charCount');
+  const ciMsg = document.getElementById('ci-msg');
+  if(counter && ciMsg) counter.textContent = ciMsg.innerText.length;
+}
+
+function closeConsultModal() {
+  document.getElementById('consultModal').classList.remove('active');
+  document.getElementById('ci-name').innerText = '';
+  document.getElementById('ci-contact').innerText = '';
+  document.getElementById('ci-msg').innerText = '';
+  document.getElementById('charCount').textContent = '0';
+  document.getElementById('cf-name').classList.remove('invalid');
+  document.getElementById('cf-contact').classList.remove('invalid');
+}
+
+document.getElementById('consultModal').addEventListener('click', function(e) {
+  if(e.target === this) closeConsultModal();
+});
+document.addEventListener('keydown', e => { if(e.key === 'Escape') closeConsultModal(); });
+
+/* ── Custom Fields ── */
+(function(){
+  const MAX = 250;
+  const cfName = document.getElementById('cf-name');
+  const cfContact = document.getElementById('cf-contact');
+  const ciName = document.getElementById('ci-name');
+  const ciContact = document.getElementById('ci-contact');
+  const ciMsg = document.getElementById('ci-msg');
+  const counter = document.getElementById('charCount');
+
+  ciName.addEventListener('input', () => cfName.classList.remove('invalid'));
+  ciContact.addEventListener('input', () => cfContact.classList.remove('invalid'));
+  ciMsg.addEventListener('input', () => {
+    const text = ciMsg.innerText;
+    if(text.length > MAX) {
+      const sel = window.getSelection();
+      ciMsg.innerText = text.slice(0, MAX);
+      const range = document.createRange();
+      range.selectNodeContents(ciMsg); range.collapse(false);
+      sel.removeAllRanges(); sel.addRange(range);
+    }
+    counter.textContent = Math.min(ciMsg.innerText.length, MAX);
+  });
+  [ciName, ciContact].forEach(el => {
+    el.addEventListener('keydown', e => { if(e.key === 'Enter') e.preventDefault(); });
+  });
+  [ciName, ciContact, ciMsg].forEach(el => {
+    el.addEventListener('paste', e => {
+      e.preventDefault();
+      document.execCommand('insertText', false, e.clipboardData.getData('text/plain'));
+    });
+  });
+})();
+
+/* ── Custom Select ── */
+(function(){
+  const cs = document.getElementById('customSelect');
+  const trigger = document.getElementById('customSelectTrigger');
+  const dropdown = document.getElementById('customSelectDropdown');
+  const valSpan = document.getElementById('customSelectValue');
+  const hidden = document.getElementById('consultType');
+  const options = dropdown.querySelectorAll('.custom-select-option');
+
+  trigger.addEventListener('click', e => { e.stopPropagation(); cs.classList.toggle('open'); });
+  options.forEach(opt => {
+    opt.addEventListener('click', () => {
+      hidden.value = opt.dataset.value;
+      valSpan.textContent = opt.dataset.value;
+      cs.classList.add('selected');
+      cs.classList.remove('open', 'invalid');
+      options.forEach(o => o.classList.remove('active'));
+      opt.classList.add('active');
+    });
+  });
+  document.addEventListener('click', () => cs.classList.remove('open'));
+})();
+
+/* ── Toast ── */
+function showToast(msg, type='success') {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.remove('show', 'error');
+  if(type === 'error') t.classList.add('error');
+  requestAnimationFrame(() => requestAnimationFrame(() => {
+    t.classList.add('show');
+    setTimeout(() => t.classList.remove('show', 'error'), 3500);
+  }));
+}
+
+/* ── Validation ── */
+function isEmail(v) { return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v); }
+function isCanadianPhone(v) { const n = v.replace(/\D/g,''); return n.length===10||(n.length===11&&n.startsWith('1')); }
+
+/* ── Submit ── */
+function submitConsultForm() {
+  const cfName = document.getElementById('cf-name');
+  const cfContact = document.getElementById('cf-contact');
+  const name = document.getElementById('ci-name').innerText.trim();
+  const contact = document.getElementById('ci-contact').innerText.trim();
+  const type = document.getElementById('consultType').value;
+  const message = document.getElementById('ci-msg').innerText.trim();
+
+  cfName.classList.remove('invalid');
+  cfContact.classList.remove('invalid');
+
+  if(!name) { cfName.classList.add('invalid'); showToast('Please enter your name.', 'error'); return; }
+  if(!contact) { cfContact.classList.add('invalid'); showToast('Please enter your email or phone.', 'error'); return; }
+  if(!isEmail(contact) && !isCanadianPhone(contact)) { cfContact.classList.add('invalid'); showToast('Invalid email or phone number.', 'error'); return; }
+
+  const btn = document.querySelector('#consultModal .btn-consult');
+  btn.textContent = 'Sending...'; btn.disabled = true;
+
+  const params = new URLSearchParams({name, contact, type, message});
+  const url = 'https://script.google.com/macros/s/AKfycbxKsKnTR9_AIHq-o0qsvDLNh94VW4gcgnrV8nZFMxNTCWX9Z2lMMEQ3VXWkiWp4sSRf/exec?' + params.toString();
+
+  fetch(url, {method:'GET', mode:'no-cors'})
+    .then(() => {
+      btn.textContent = 'Send Request'; btn.disabled = false;
+      closeConsultModal();
+      document.getElementById('ci-name').innerText = '';
+      document.getElementById('ci-contact').innerText = '';
+      document.getElementById('ci-msg').innerText = '';
+      document.getElementById('consultType').value = '';
+      document.getElementById('customSelectValue').textContent = 'Type of inquiry (optional)';
+      document.getElementById('customSelect').classList.remove('selected','open');
+      document.querySelectorAll('.custom-select-option').forEach(o => o.classList.remove('active'));
+      document.getElementById('charCount').textContent = '0';
+      showToast('Request sent successfully!');
+    })
+    .catch(() => {
+      btn.textContent = 'Send Request'; btn.disabled = false;
+      showToast('Something went wrong. Please try again.', 'error');
+    });
+}
+
+/* ── Scroll header ── */
+window.addEventListener('scroll', () => {
+  document.querySelector('header').classList.toggle('scrolled', window.scrollY > 20);
+});
+</script>
+</body>
+</html>

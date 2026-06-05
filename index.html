@@ -12,6 +12,36 @@
   <meta name="keywords" content="bookkeeping Canada, bookkeeping Winnipeg, CRA compliance, GST HST filing, small business bookkeeping, financial reporting Canada">
   <link rel="canonical" href="https://beestage.ca">
 
+  <!-- Schema Markup -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "B-Stage Bookkeeping",
+    "url": "https://beestage.ca",
+    "logo": "https://beestage.ca/logo.webp",
+    "image": "https://beestage.ca/og-image.jpg",
+    "description": "Dedicated bookkeeping and financial analysis for ambitious Canadian ventures. Automated bookkeeping, growth insights, and CRA compliance — mastered.",
+    "telephone": "+12048921309",
+    "email": "hello@beestage.ca",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Winnipeg",
+      "addressRegion": "MB",
+      "addressCountry": "CA"
+    },
+    "areaServed": {
+      "@type": "Country",
+      "name": "Canada"
+    },
+    "priceRange": "C$250 - C$800",
+    "openingHours": "Mo-Fr 09:00-18:00",
+    "sameAs": [
+      "https://share.google/2QQOuX1PEvF26DStp"
+    ]
+  }
+  </script>
+
   <!-- Open Graph -->
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://beestage.ca">
@@ -47,7 +77,10 @@
       </div>
     </div>
     <nav aria-label="Main navigation">
-      <ul>
+      <button class="burger" id="burger" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+      <ul id="nav-menu">
         <li><a href="#" id="nav-home" class="active">Home</a></li>
         <li><a href="#services" id="nav-services">Services</a></li>
         <li><a href="#approach" id="nav-approach">Approach</a></li>
@@ -258,26 +291,34 @@
     <div class="approach-principles">
 
       <div class="approach-principle">
-        <span class="ap-num">01</span>
-        <div class="ap-title">Digital First</div>
+        <div class="ap-left">
+          <span class="ap-num">01</span>
+          <div class="ap-title">Digital First</div>
+        </div>
         <p class="ap-text">We don't handle paper. Your accounting is cloud-native, accessible worldwide 24/7. You see the real picture of your business — not a report two months after quarter close.</p>
       </div>
 
       <div class="approach-principle">
-        <span class="ap-num">02</span>
-        <div class="ap-title">Precision to Submit</div>
+        <div class="ap-left">
+          <span class="ap-num">02</span>
+          <div class="ap-title">Precision to Submit</div>
+        </div>
         <p class="ap-text">We work to high-level bookkeeping standards. Your books are prepared so your CPA can hit 'Submit' in the tax return — saving you hundreds on audit hours.</p>
       </div>
 
       <div class="approach-principle">
-        <span class="ap-num">03</span>
-        <div class="ap-title">Proactive,<br>Not Reactive</div>
+        <div class="ap-left">
+          <span class="ap-num">03</span>
+          <div class="ap-title">Proactive, Not Reactive</div>
+        </div>
         <p class="ap-text">We don't wait for year-end to tell you what you owe. We remind you, check payment status, and warn of risks before they become problems.</p>
       </div>
 
       <div class="approach-principle">
-        <span class="ap-num">04</span>
-        <div class="ap-title">Team Integration</div>
+        <div class="ap-left">
+          <span class="ap-num">04</span>
+          <div class="ap-title">Team Integration</div>
+        </div>
         <p class="ap-text">We are your financial back-office — integrating with your CRM, banks, and invoices. Not just an external contractor, but a genuine part of your operation.</p>
       </div>
 
@@ -311,7 +352,7 @@
           <a href="tel:2048921309" style="color:#fff;text-decoration:none;font-size:0.85rem;font-weight:300;transition:color 0.3s;" onmouseover="this.style.color='#A76D45'" onmouseout="this.style.color='#fff'">(204) 892-1309</a>
         </div>
         <!-- Navigation -->
-        <div style="display:flex;flex-direction:column;align-items:flex-end;gap:10px;">
+        <div class="footer-nav-block" style="flex-direction:column;align-items:flex-end;gap:10px;display:flex;">
           <span style="font-size:0.72rem;text-transform:uppercase;letter-spacing:2px;color:rgba(167,109,69,0.6);font-weight:500;">Navigation</span>
           <nav style="display:flex;gap:32px;">
             <a href="#" style="color:#fff;text-decoration:none;font-size:0.85rem;transition:color 0.3s;" onmouseover="this.style.color='#A76D45'" onmouseout="this.style.color='#fff'">Home</a>

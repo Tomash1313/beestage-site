@@ -9,7 +9,65 @@
   <!-- SEO -->
   <meta name="robots" content="index, follow">
   <meta name="author" content="B-Stage Bookkeeping">
+  <meta name="keywords" content="bookkeeping pricing Canada, bookkeeping packages Winnipeg, CRA compliance pricing, small business bookkeeping cost Canada">
   <link rel="canonical" href="https://beestage.ca/pricing">
+
+  <!-- Schema Markup -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "B-Stage Bookkeeping",
+    "url": "https://beestage.ca",
+    "logo": "https://beestage.ca/logo.webp",
+    "image": "https://beestage.ca/og-image.jpg",
+    "description": "Dedicated bookkeeping and financial analysis for ambitious Canadian ventures. Automated bookkeeping, growth insights, and CRA compliance — mastered.",
+    "telephone": "+12048921309",
+    "email": "hello@beestage.ca",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Winnipeg",
+      "addressRegion": "MB",
+      "addressCountry": "CA"
+    },
+    "areaServed": {
+      "@type": "Country",
+      "name": "Canada"
+    },
+    "priceRange": "C$250 - C$800",
+    "openingHours": "Mo-Fr 09:00-18:00",
+    "sameAs": [
+      "https://share.google/2QQOuX1PEvF26DStp"
+    ],
+    "hasOfferCatalog": {
+      "@type": "OfferCatalog",
+      "name": "Bookkeeping Packages",
+      "itemListElement": [
+        {
+          "@type": "Offer",
+          "name": "Core — Essential",
+          "price": "250",
+          "priceCurrency": "CAD",
+          "description": "Essential monthly bookkeeping and tax readiness."
+        },
+        {
+          "@type": "Offer",
+          "name": "Growth — Operational",
+          "price": "450",
+          "priceCurrency": "CAD",
+          "description": "Full operational bookkeeping plus payroll."
+        },
+        {
+          "@type": "Offer",
+          "name": "Scale — Full Back-Office",
+          "price": "800",
+          "priceCurrency": "CAD",
+          "description": "Complete back-office outsourcing with CPA coordination."
+        }
+      ]
+    }
+  }
+  </script>
 
   <!-- Open Graph -->
   <meta property="og:type" content="website">
@@ -19,6 +77,13 @@
   <meta property="og:image" content="https://beestage.ca/og-image.jpg">
   <meta property="og:locale" content="en_CA">
   <meta property="og:site_name" content="B-Stage Bookkeeping">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:url" content="https://beestage.ca/pricing">
+  <meta name="twitter:title" content="Pricing — B-Stage Bookkeeping">
+  <meta name="twitter:description" content="Transparent bookkeeping packages for Canadian businesses. Starting at C$250/month.">
+  <meta name="twitter:image" content="https://beestage.ca/og-image.jpg">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -54,6 +119,7 @@
     nav a.active { color: var(--bronze); }
     .btn-consult { background: var(--bronze-gradient); color: var(--text-main); padding: 10px 22px; border-radius: 6px; font-weight: 600; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.5px; border: none; cursor: pointer; transition: transform 0.2s, box-shadow 0.2s; }
     .btn-consult:hover { background: var(--bronze-hover); transform: translateY(-1px); box-shadow: 0 4px 15px rgba(167,109,69,0.4); }
+    .burger { display: none; }
 
     /* Footer */
     .footer-section { margin-top: 80px; padding: 40px 0 20px; border-top: 1px solid rgba(167,109,69,0.25); background: linear-gradient(180deg, transparent, rgba(10,10,10,0.85)); }
@@ -293,10 +359,35 @@
     .hcard-btn-filled:hover { box-shadow: 0 6px 20px rgba(167,109,69,0.35); }
 
     @media (max-width: 992px) {
-      .hybrid-intro { grid-template-columns: 1fr; gap: 32px; }
+      .logo img { height: 78px !important; }
+      .logo span:first-child { font-size: 2rem !important; }
+      .logo span:last-child { font-size: 1rem !important; letter-spacing: 2px !important; }
+      .burger { display: flex; flex-direction: column; width: 28px; height: 20px; background: transparent; border: none; cursor: pointer; padding: 0; z-index: 10001; position: relative; }
+      .burger span { display: block; width: 100%; height: 2px; background: #fff; border-radius: 2px; position: absolute; left: 0; transition: transform 0.4s cubic-bezier(0.23,1,0.32,1), opacity 0.3s ease, top 0.4s cubic-bezier(0.23,1,0.32,1); }
+      .burger span:nth-child(1) { top: 0; }
+      .burger span:nth-child(2) { top: 9px; }
+      .burger span:nth-child(3) { top: 18px; }
+      .burger.open span:nth-child(1) { top: 9px; transform: rotate(45deg); }
+      .burger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+      .burger.open span:nth-child(3) { top: 9px; transform: rotate(-45deg); }
+      #nav-menu { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(11,11,12,0.97); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); flex-direction: column; align-items: center; justify-content: center; gap: 36px; z-index: 10000; display: flex; opacity: 0; transform: translateY(-20px); transition: opacity 0.4s ease, transform 0.4s cubic-bezier(0.23,1,0.32,1); pointer-events: none; }
+      #nav-menu.open { opacity: 1; transform: translateY(0); pointer-events: all; }
+      #nav-menu li { list-style: none; opacity: 0; transform: translateY(16px); transition: opacity 0.35s ease, transform 0.35s ease; }
+      #nav-menu.open li:nth-child(1) { opacity: 1; transform: translateY(0); transition-delay: 0.08s; }
+      #nav-menu.open li:nth-child(2) { opacity: 1; transform: translateY(0); transition-delay: 0.13s; }
+      #nav-menu.open li:nth-child(3) { opacity: 1; transform: translateY(0); transition-delay: 0.18s; }
+      #nav-menu.open li:nth-child(4) { opacity: 1; transform: translateY(0); transition-delay: 0.23s; }
+      #nav-menu.open li:nth-child(5) { opacity: 1; transform: translateY(0); transition-delay: 0.28s; }
+      #nav-menu.open li:nth-child(6) { opacity: 1; transform: translateY(0); transition-delay: 0.33s; }
+      #nav-menu a { font-size: 1.5rem; font-weight: 300; color: #fff; text-decoration: none; letter-spacing: 1px; transition: color 0.3s; display: block; }
+      #nav-menu a:hover, #nav-menu a.active { color: #A76D45; }
+      #nav-menu .btn-consult { margin-top: 8px; padding: 14px 40px; font-size: 1rem; }
+      .pricing-page { padding-top: 40px; padding-bottom: 40px; }
       .hybrid-cards { grid-template-columns: 1fr; }
+      .hcard { padding: 32px 24px; }
       .hcard-accent { left: 24px; right: 24px; }
-      .hcard { padding: 36px 24px; }
+      .hcard-price { font-size: 2.2rem; }
+      .footer-nav-block { display: none !important; }
     }
   </style>
 </head>
@@ -312,7 +403,10 @@
       </div>
     </div>
     <nav aria-label="Main navigation">
-      <ul>
+      <button class="burger" id="burger" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+      <ul id="nav-menu">
         <li><a href="/">Home</a></li>
         <li><a href="/#services">Services</a></li>
         <li><a href="/#approach">Approach</a></li>
@@ -324,7 +418,7 @@
   </div>
 </header>
 
-<main class="pricing-page">
+<main class="pricing-page" role="main">
   <div class="container">
 
     <div class="page-label">Pricing</div>
@@ -355,7 +449,7 @@
           <li>Tax-ready year-end books</li>
           <li>Email & chat support</li>
         </ul>
-        <button class="hcard-btn hcard-btn-outline" onclick="openConsultModal('Core — C$250/mo')">Get Started</button>
+        <button class="hcard-btn hcard-btn-outline" onclick="openConsultModal('Core — C$250/mo')" aria-label="Get started with Core package at C$250 per month">Get Started</button>
       </div>
 
       <div class="hcard hfeatured">
@@ -373,7 +467,7 @@
           <li>Subcontractor reporting (T5018)</li>
           <li>Priority support + quick calls</li>
         </ul>
-        <button class="hcard-btn hcard-btn-filled" onclick="openConsultModal('Growth — C$450/mo')">Get Started</button>
+        <button class="hcard-btn hcard-btn-filled" onclick="openConsultModal('Growth — C$450/mo')" aria-label="Get started with Growth package at C$450 per month">Get Started</button>
       </div>
 
       <div class="hcard">
@@ -391,7 +485,7 @@
           <li>Direct CPA coordination at year-end</li>
           <li>VIP support + monthly Zoom review</li>
         </ul>
-        <button class="hcard-btn hcard-btn-outline" onclick="openConsultModal('Scale — C$800/mo')">Get Started</button>
+        <button class="hcard-btn hcard-btn-outline" onclick="openConsultModal('Scale — C$800/mo')" aria-label="Get started with Scale package at C$800 per month">Get Started</button>
       </div>
 
     </div>
@@ -421,8 +515,7 @@
           <a href="mailto:hello@beestage.ca" style="color:#fff;text-decoration:none;font-size:0.85rem;font-weight:300;transition:color 0.3s;" onmouseover="this.style.color='#A76D45'" onmouseout="this.style.color='#fff'">hello@beestage.ca</a>
           <a href="tel:2048921309" style="color:#fff;text-decoration:none;font-size:0.85rem;font-weight:300;transition:color 0.3s;" onmouseover="this.style.color='#A76D45'" onmouseout="this.style.color='#fff'">(204) 892-1309</a>
         </div>
-        <div style="display:flex;flex-direction:column;align-items:flex-end;gap:10px;">
-          <span style="font-size:0.72rem;text-transform:uppercase;letter-spacing:2px;color:rgba(167,109,69,0.6);font-weight:500;">Navigation</span>
+        <div class="footer-nav-block" style="display:flex;flex-direction:column;align-items:flex-end;gap:10px;">
           <nav style="display:flex;gap:32px;">
             <a href="/" style="color:#fff;text-decoration:none;font-size:0.85rem;transition:color 0.3s;" onmouseover="this.style.color='#A76D45'" onmouseout="this.style.color='#fff'">Home</a>
             <a href="/#services" style="color:#fff;text-decoration:none;font-size:0.85rem;transition:color 0.3s;" onmouseover="this.style.color='#A76D45'" onmouseout="this.style.color='#fff'">Services</a>
@@ -653,6 +746,36 @@ function submitConsultForm() {
       showToast('Something went wrong. Please try again.', 'error');
     });
 }
+
+/* ── Burger menu ── */
+const burger = document.getElementById('burger');
+const navMenu = document.getElementById('nav-menu');
+
+function closeMobileMenu() {
+  burger.classList.remove('open');
+  navMenu.classList.remove('open');
+  document.body.style.overflow = '';
+  document.body.style.paddingRight = '';
+  document.querySelector('header').style.paddingRight = '';
+}
+
+burger.addEventListener('click', () => {
+  burger.classList.toggle('open');
+  navMenu.classList.toggle('open');
+  if(navMenu.classList.contains('open')) {
+    const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
+    document.body.style.paddingRight = scrollbarWidth + 'px';
+    document.querySelector('header').style.paddingRight = scrollbarWidth + 'px';
+    document.body.style.overflow = 'hidden';
+  } else {
+    document.body.style.overflow = '';
+    document.body.style.paddingRight = '';
+    document.querySelector('header').style.paddingRight = '';
+  }
+});
+navMenu.querySelectorAll('a').forEach(link => {
+  link.addEventListener('click', closeMobileMenu);
+});
 
 /* ── Scroll header ── */
 window.addEventListener('scroll', () => {

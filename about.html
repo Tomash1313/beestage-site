@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About — B-Stage Bookkeeping</title>
+  <meta name="description" content="Meet Yurii Tomashevskyi, founder of B-Stage Bookkeeping. Dedicated bookkeeping and financial operations for ambitious Canadian businesses.">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="manifest" href="/site.webmanifest">
+
+  <!-- SEO -->
+  <meta name="robots" content="index, follow">
+  <meta name="author" content="B-Stage Bookkeeping">
+  <meta name="keywords" content="B-Stage Bookkeeping founder, bookkeeping Winnipeg, Canadian bookkeeper, Yurii Tomashevskyi">
+  <link rel="canonical" href="https://beestage.ca/about">
+
+  <!-- Schema Markup -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "B-Stage Bookkeeping",
+    "url": "https://beestage.ca",
+    "logo": "https://beestage.ca/logo.webp",
+    "image": "https://beestage.ca/og-image.jpg",
+    "description": "Dedicated bookkeeping and financial analysis for ambitious Canadian ventures.",
+    "telephone": "+12048921309",
+    "email": "hello@beestage.ca",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Winnipeg",
+      "addressRegion": "MB",
+      "addressCountry": "CA"
+    },
+    "areaServed": { "@type": "Country", "name": "Canada" },
+    "priceRange": "C$250 - C$800",
+    "openingHours": "Mo-Fr 09:00-18:00",
+    "sameAs": ["https://share.google/2QQOuX1PEvF26DStp"]
+  }
+  </script>
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://beestage.ca/about">
+  <meta property="og:title" content="About — B-Stage Bookkeeping">
+  <meta property="og:description" content="Meet Yurii Tomashevskyi, founder of B-Stage Bookkeeping. Dedicated bookkeeping for ambitious Canadian businesses.">
+  <meta property="og:image" content="https://beestage.ca/og-image.jpg">
+  <meta property="og:locale" content="en_CA">
+  <meta property="og:site_name" content="B-Stage Bookkeeping">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:url" content="https://beestage.ca/about">
+  <meta name="twitter:title" content="About — B-Stage Bookkeeping">
+  <meta name="twitter:description" content="Meet Yurii Tomashevskyi, founder of B-Stage Bookkeeping.">
+  <meta name="twitter:image" content="https://beestage.ca/og-image.jpg">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg-color: #0b0b0c;
+      --card-bg: #121214;
+      --text-main: #ffffff;
+      --bronze: #A76D45;
+      --bronze-light: #D59469;
+      --bronze-dark: #7A4526;
+      --bronze-gradient: linear-gradient(135deg, #7A4526 0%, #A76D45 35%, #D59469 50%, #A76D45 65%, #7A4526 100%);
+      --bronze-hover: linear-gradient(135deg, #A76D45 0%, #D59469 50%, #7A4526 100%);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Inter', sans-serif; }
+    ::-webkit-scrollbar { width: 4px; }
+    ::-webkit-scrollbar-track { background: #0b0b0c; }
+    ::-webkit-scrollbar-thumb { background: rgba(167,109,69,0.5); border-radius: 2px; }
+    body { background-color: var(--bg-color); color: var(--text-main); line-height: 1.6; overflow-x: hidden; padding-top: 95px; }
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+
+    /* ── Header ── */
+    header { position: fixed; top: 0; left: 0; width: 100%; z-index: 9999; padding: 20px 0; border-bottom: 2px solid rgba(167,109,69,0.35); background: rgba(11,11,12,0.97); transition: box-shadow 0.3s ease; }
+    header.scrolled { box-shadow: 0 6px 20px rgba(0,0,0,0.35); backdrop-filter: blur(10px); }
+    .nav-wrapper { display: flex; justify-content: space-between; align-items: center; }
+    .logo { display: flex; align-items: center; gap: 8px; user-select: none; text-decoration: none; }
+    nav ul { display: flex; list-style: none; gap: 32px; align-items: center; }
+    nav a { color: var(--text-main); text-decoration: none; font-size: 0.95rem; font-weight: 400; transition: color 0.3s; }
+    nav a:hover { color: var(--bronze); }
+    nav a.active { color: var(--bronze); }
+    .btn-consult { background: var(--bronze-gradient); color: var(--text-main); padding: 10px 22px; border-radius: 6px; font-weight: 600; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.5px; border: none; cursor: pointer; transition: transform 0.2s, box-shadow 0.2s; }
+    .btn-consult:hover { background: var(--bronze-hover); transform: translateY(-1px); box-shadow: 0 4px 15px rgba(167,109,69,0.4); }
+    .burger { display: none; }
+
+    /* ── About Section ── */
+    .about-wrap {
+      position: relative;
+      min-height: calc(100vh - 95px);
+      overflow: hidden;
+    }
+
+    .bg-photo {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+    }
+    .bg-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 15%;
+      filter: brightness(0.45) saturate(0.7);
+      display: block;
+    }
+    .bg-photo::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(to right, rgba(11,11,12,0.97) 0%, rgba(11,11,12,0.7) 35%, rgba(11,11,12,0.2) 65%, transparent 100%),
+        linear-gradient(to bottom, rgba(11,11,12,0.5) 0%, transparent 20%, transparent 65%, rgba(11,11,12,1) 100%);
+    }
+
+    .about-content {
+      position: relative;
+      z-index: 10;
+      min-height: calc(100vh - 95px);
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      padding: 20px 60px 60px;
+      max-width: 620px;
+    }
+
+    .section-label {
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: #ffffff;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 36px;
+    }
+    .section-label::after {
+      content: '';
+      width: 80px;
+      height: 1px;
+      background: linear-gradient(to right, rgba(167,109,69,0.7), transparent);
+    }
+
+    .about-content h1 {
+      font-size: clamp(2.4rem, 4vw, 3.8rem);
+      font-weight: 300;
+      line-height: 1.12;
+      margin-bottom: 12px;
+      color: #fff;
+      letter-spacing: -0.5px;
+    }
+    .about-content h1 strong {
+      font-weight: 700;
+      background: linear-gradient(135deg, var(--bronze-dark), var(--bronze), var(--bronze-light));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .founder-name {
+      font-size: 0.85rem;
+      font-weight: 400;
+      color: rgba(255,255,255,0.35);
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      margin-bottom: 40px;
+    }
+
+    .divider {
+      width: 48px;
+      height: 1px;
+      background: linear-gradient(to right, var(--bronze), transparent);
+      margin-bottom: 32px;
+    }
+
+    .about-content p {
+      font-size: 0.97rem;
+      font-weight: 300;
+      color: rgba(255,255,255,0.72);
+      line-height: 1.85;
+      margin-bottom: 16px;
+      max-width: 480px;
+    }
+
+    .stats {
+      display: flex;
+      gap: 48px;
+      margin-top: 48px;
+      padding-top: 32px;
+      border-top: 1px solid rgba(167,109,69,0.18);
+    }
+    .stat-num {
+      font-size: 1.9rem;
+      font-weight: 700;
+      line-height: 1;
+      margin-bottom: 6px;
+      background: linear-gradient(135deg, var(--bronze), var(--bronze-light));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .stat-label {
+      font-size: 0.68rem;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: rgba(255,255,255,0.3);
+      font-weight: 400;
+    }
+
+    /* ── Footer ── */
+    .footer-section { padding: 40px 0 20px; border-top: 1px solid rgba(167,109,69,0.25); background: linear-gradient(180deg, transparent, rgba(10,10,10,0.85)); }
+    .footer-bottom { margin-top: 20px; text-align: center; font-size: 0.8rem; color: rgba(255,255,255,0.4); }
+
+    /* ── Modal ── */
+    .consult-modal-overlay { position: fixed; inset: 0; display: none; align-items: center; justify-content: center; background: rgba(0,0,0,0.7); z-index: 99999; }
+    .consult-modal-overlay.active { display: flex; }
+    .consult-modal { position: relative; width: 420px; background: var(--card-bg); border: 1px solid rgba(167,109,69,0.25); border-radius: 10px; padding: 24px; }
+    .consult-modal h3 { color: var(--bronze); margin-bottom: 16px; text-transform: uppercase; font-size: 0.95rem; }
+    .modal-close { position: absolute; top: 18px; right: 16px; background: transparent; border: none; color: rgba(167,109,69,0.6); font-size: 20px; cursor: pointer; transition: color 0.2s; padding: 0; }
+    .modal-close:hover { color: #D59469; }
+    .char-counter { text-align: right; font-size: 0.75rem; color: rgba(255,255,255,0.4); margin-top: -8px; margin-bottom: 10px; }
+    .cf { width: 100%; margin-bottom: 12px; background: #0e0e10; border: 1px solid rgba(255,255,255,0.08); border-radius: 6px; transition: border-color 0.25s; }
+    .cf:focus-within { border-color: rgba(167,109,69,0.5); }
+    .cf.invalid { border-color: rgba(180,50,50,0.7); }
+    .cf-input { display: block; width: 100%; padding: 10px; font-size: 14px; color: white; outline: none; min-height: 38px; }
+    .cf-input:empty::before { content: attr(data-ph); color: rgba(255,255,255,0.35); }
+    .cf-textarea { min-height: 80px; max-height: 160px; overflow-y: auto; }
+    .custom-select { position: relative; width: 100%; margin-bottom: 12px; user-select: none; }
+    .custom-select-trigger { display: flex; align-items: center; justify-content: space-between; padding: 10px; background: #0e0e10; border: 1px solid rgba(255,255,255,0.08); border-radius: 6px; cursor: pointer; font-size: 14px; }
+    .custom-select-trigger span { color: rgba(255,255,255,0.35); }
+    .custom-select.selected .custom-select-trigger span { color: white; }
+    .custom-select-dropdown { position: absolute; top: 100%; left: 0; right: 0; background: #0e0e10; border: 1px solid rgba(167,109,69,0.5); border-top: none; border-radius: 0 0 6px 6px; max-height: 0; opacity: 0; transition: max-height 0.25s, opacity 0.2s; z-index: 9999; overflow: hidden; }
+    .custom-select.open .custom-select-dropdown { max-height: 200px; opacity: 1; }
+    .custom-select-option { padding: 10px 12px; font-size: 14px; color: rgba(255,255,255,0.75); cursor: pointer; }
+    .custom-select-option:hover { color: #A76D45; }
+    .toast { position: fixed; bottom: 32px; left: 50%; transform: translateX(-50%) translateY(20px); background: #1a1a1c; border: 1px solid rgba(167,109,69,0.4); color: #fff; padding: 12px 28px; border-radius: 6px; font-size: 0.88rem; opacity: 0; transition: opacity 0.3s, transform 0.3s; z-index: 999999; pointer-events: none; }
+    .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+    /* ── Mobile ── */
+    @media (max-width: 992px) {
+      .logo img { height: 78px !important; }
+      .logo span:first-child { font-size: 2rem !important; }
+      .logo span:last-child { font-size: 1rem !important; }
+      .burger { display: flex; flex-direction: column; width: 28px; height: 20px; background: transparent; border: none; cursor: pointer; padding: 0; z-index: 10001; position: relative; }
+      .burger span { display: block; width: 100%; height: 2px; background: #fff; border-radius: 2px; position: absolute; left: 0; transition: transform 0.4s cubic-bezier(0.23,1,0.32,1), opacity 0.3s ease, top 0.4s cubic-bezier(0.23,1,0.32,1); }
+      .burger span:nth-child(1) { top: 0; }
+      .burger span:nth-child(2) { top: 9px; }
+      .burger span:nth-child(3) { top: 18px; }
+      .burger.open span:nth-child(1) { top: 9px; transform: rotate(45deg); }
+      .burger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+      .burger.open span:nth-child(3) { top: 9px; transform: rotate(-45deg); }
+      #nav-menu { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(11,11,12,0.97); backdrop-filter: blur(16px); flex-direction: column; align-items: center; justify-content: center; gap: 36px; z-index: 10000; display: flex; opacity: 0; transition: opacity 0.4s ease; pointer-events: none; }
+      #nav-menu.open { opacity: 1; pointer-events: all; }
+      #nav-menu li { list-style: none; opacity: 0; transform: translateY(16px); transition: opacity 0.35s ease, transform 0.35s ease; }
+      #nav-menu.open li:nth-child(1) { opacity: 1; transform: translateY(0); transition-delay: 0.08s; }
+      #nav-menu.open li:nth-child(2) { opacity: 1; transform: translateY(0); transition-delay: 0.13s; }
+      #nav-menu.open li:nth-child(3) { opacity: 1; transform: translateY(0); transition-delay: 0.18s; }
+      #nav-menu.open li:nth-child(4) { opacity: 1; transform: translateY(0); transition-delay: 0.23s; }
+      #nav-menu.open li:nth-child(5) { opacity: 1; transform: translateY(0); transition-delay: 0.28s; }
+      #nav-menu.open li:nth-child(6) { opacity: 1; transform: translateY(0); transition-delay: 0.33s; }
+      #nav-menu.open li:nth-child(7) { opacity: 1; transform: translateY(0); transition-delay: 0.38s; }
+      #nav-menu a { font-size: 1.5rem; font-weight: 300; color: #fff; text-decoration: none; letter-spacing: 1px; transition: color 0.3s; display: block; }
+      #nav-menu a:hover, #nav-menu a.active { color: #A76D45; }
+      #nav-menu .btn-consult { margin-top: 8px; padding: 14px 40px; font-size: 1rem; }
+      .about-content { padding: 48px 24px; max-width: 100%; min-height: auto; }
+      .about-content h1 { font-size: 2rem; }
+      .stats { flex-wrap: wrap; gap: 28px; }
+      .footer-nav-block { display: none !important; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="container nav-wrapper">
+    <a href="/" class="logo">
+      <img src="/logo.webp" alt="B-Stage Bookkeeping Logo" style="height:52px;width:auto;object-fit:contain;display:block;">
+      <div style="display:flex;flex-direction:column;justify-content:center;line-height:1.05;">
+        <span style="font-size:1.35rem;font-weight:700;letter-spacing:0.3px;color:#A76D45;text-transform:uppercase;">B-STAGE</span>
+        <span style="font-size:0.72rem;font-weight:500;letter-spacing:1.8px;color:#D59469;text-transform:uppercase;margin-top:2px;">BOOKKEEPING</span>
+      </div>
+    </a>
+    <nav aria-label="Main navigation">
+      <button class="burger" id="burger" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+      <ul id="nav-menu">
+        <li><a href="/">Home</a></li>
+        <li><a href="/#services">Services</a></li>
+        <li><a href="/#approach">Approach</a></li>
+        <li><a href="/pricing">Pricing</a></li>
+        <li><a href="/about" class="active">About</a></li>
+        <li><a href="/#contacts">Contacts</a></li>
+        <li><button class="btn-consult" onclick="openConsultModal()" aria-label="Request a consultation">Request Consult</button></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main role="main">
+  <div class="about-wrap">
+    <div class="bg-photo">
+      <img src="https://lh3.googleusercontent.com/d/1CqAWR0r2USSAIegqAlxVku-PRlHvRUtJ" alt="">
+    </div>
+    <div class="about-content">
+      <div class="section-label">About</div>
+      <h1>The person<br>behind your <strong>numbers.</strong></h1>
+      <div class="founder-name">Yurii Tomashevskyi — Founder</div>
+      <div class="divider"></div>
+      <p>I built B-Stage because I saw too many ambitious businesses drown in paperwork while their actual growth stalled. Your books should work for you — not against you.</p>
+      <p>With a background in operations and financial systems, I bridge the gap between raw transactions and strategic clarity. Every client gets my direct attention — no junior staff, no handoffs.</p>
+      <div class="stats">
+        <div>
+          <div class="stat-num">100%</div>
+          <div class="stat-label">Cloud-based</div>
+        </div>
+        <div>
+          <div class="stat-num">CRA</div>
+          <div class="stat-label">Compliant</div>
+        </div>
+        <div>
+          <div class="stat-num">Direct</div>
+          <div class="stat-label">Access</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer class="footer-section" id="contacts">
+  <div class="container">
+    <div style="display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:28px;">
+      <a href="/" class="logo">
+        <img src="/logo.webp" alt="B-Stage Bookkeeping Logo" style="height:42px;">
+        <div style="display:flex;flex-direction:column;line-height:1;">
+          <span style="color:#A76D45;font-weight:700;">B-STAGE</span>
+          <span style="color:#D59469;font-size:0.7rem;letter-spacing:1px;">BOOKKEEPING</span>
+        </div>
+      </a>
+      <div style="display:flex;gap:64px;align-items:flex-start;">
+        <div style="display:flex;flex-direction:column;align-items:flex-end;gap:10px;">
+          <span style="font-size:0.72rem;text-transform:uppercase;letter-spacing:2px;color:rgba(167,109,69,0.6);font-weight:500;">Contacts</span>
+          <a href="mailto:hello@beestage.ca" style="color:#fff;text-decoration:none;font-size:0.85rem;font-weight:300;transition:color 0.3s;" onmouseover="this.style.color='#A76D45'" onmouseout="this.style.color='#fff'">hello@beestage.ca</a>
+          <a href="tel:2048921309" style="color:#fff;text-decoration:none;font-size:0.85rem;font-weight:300;transition:color 0.3s;" onmouseover="this.style.color='#A76D45'" onmouseout="this.style.color='#fff'">(204) 892-1309</a>
+        </div>
+        <div class="footer-nav-block" style="display:flex;flex-direction:column;align-items:flex-end;gap:10px;">
+          <span style="font-size:0.72rem;text-transform:uppercase;letter-spacing:2px;color:rgba(167,109,69,0.6);font-weight:500;">Navigation</span>
+          <nav style="display:flex;gap:32px;">
+            <a href="/" style="color:#fff;text-decoration:none;font-size:0.85rem;transition:color 0.3s;" onmouseover="this.style.color='#A76D45'" onmouseout="this.style.color='#fff'">Home</a>
+            <a href="/#services" style="color:#fff;text-decoration:none;font-size:0.85rem;transition:color 0.3s;" onmouseover="this.style.color='#A76D45'" onmouseout="this.style.color='#fff'">Services</a>
+            <a href="/#approach" style="color:#fff;text-decoration:none;font-size:0.85rem;transition:color 0.3s;" onmouseover="this.style.color='#A76D45'" onmouseout="this.style.color='#fff'">Approach</a>
+            <a href="/pricing" style="color:#fff;text-decoration:none;font-size:0.85rem;transition:color 0.3s;" onmouseover="this.style.color='#A76D45'" onmouseout="this.style.color='#fff'">Pricing</a>
+            <a href="/about" style="color:#A76D45;text-decoration:none;font-size:0.85rem;">About</a>
+            <a href="/#contacts" style="color:#fff;text-decoration:none;font-size:0.85rem;transition:color 0.3s;" onmouseover="this.style.color='#A76D45'" onmouseout="this.style.color='#fff'">Contacts</a>
+          </nav>
+        </div>
+      </div>
+    </div>
+    <div style="border-top:1px solid rgba(167,109,69,0.15);padding-top:20px;">
+      <p style="color:rgba(255,255,255,0.38);font-size:0.82rem;line-height:1.7;text-align:center;max-width:860px;margin:0 auto;font-style:italic;">B-Stage provides operational bookkeeping and management support. We are not a CPA firm and do not provide legal or tax advice. We bridge the gap between your daily operations and your accountant's requirements — so nothing falls through the cracks.</p>
+      <div class="footer-bottom">© 2026 B-Stage Bookkeeping. All rights reserved.</div>
+    </div>
+  </div>
+</footer>
+
+<!-- Modal -->
+<div class="consult-modal-overlay" id="consultModal">
+  <div class="consult-modal">
+    <h3 id="modal-title">Request Consultation</h3>
+    <button class="modal-close" onclick="closeConsultModal()" aria-label="Close">×</button>
+    <div class="cf" id="cf-name">
+      <div class="cf-input" id="ci-name" contenteditable="true" data-ph="Your Name" spellcheck="false"></div>
+    </div>
+    <div class="cf" id="cf-contact">
+      <div class="cf-input" id="ci-contact" contenteditable="true" data-ph="Email or Phone" spellcheck="false"></div>
+    </div>
+    <input id="consultType" type="hidden">
+    <div class="custom-select" id="customSelect">
+      <div class="custom-select-trigger" id="customSelectTrigger">
+        <span id="customSelectValue">Type of inquiry (optional)</span>
+        <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 4 L6 8 L10 4" stroke="#A76D45" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+      <div class="custom-select-dropdown" id="customSelectDropdown">
+        <div class="custom-select-option" data-value="Personal Taxes">Personal Taxes</div>
+        <div class="custom-select-option" data-value="Business Bookkeeping">Business Bookkeeping</div>
+        <div class="custom-select-option" data-value="Not Sure">Not Sure</div>
+      </div>
+    </div>
+    <div class="cf" id="cf-msg">
+      <div class="cf-input cf-textarea" id="ci-msg" contenteditable="true" data-ph="Message (optional)" spellcheck="false"></div>
+    </div>
+    <input id="consultMessage" type="hidden">
+    <div class="char-counter"><span id="charCount">0</span>/250</div>
+    <button class="btn-consult" id="modal-submit-btn" onclick="submitConsultForm()">Send Request</button>
+  </div>
+</div>
+<div class="toast" id="toast"></div>
+
+<script>
+/* ── Burger ── */
+const burger = document.getElementById('burger');
+const navMenu = document.getElementById('nav-menu');
+
+function closeMobileMenu() {
+  burger.classList.remove('open');
+  navMenu.classList.remove('open');
+  const scrollY = parseInt(document.body.style.top || '0') * -1;
+  document.body.style.position = '';
+  document.body.style.top = '';
+  document.body.style.width = '';
+  document.body.style.paddingRight = '';
+  document.querySelector('header').style.paddingRight = '';
+  window.scrollTo(0, scrollY);
+}
+
+burger.addEventListener('click', () => {
+  burger.classList.toggle('open');
+  navMenu.classList.toggle('open');
+  if(navMenu.classList.contains('open')) {
+    const sw = window.innerWidth - document.documentElement.clientWidth;
+    document.body.style.paddingRight = sw + 'px';
+    document.querySelector('header').style.paddingRight = sw + 'px';
+    document.body.style.overflow = 'hidden';
+  } else {
+    document.body.style.overflow = '';
+    document.body.style.paddingRight = '';
+    document.querySelector('header').style.paddingRight = '';
+  }
+});
+navMenu.querySelectorAll('a').forEach(l => l.addEventListener('click', closeMobileMenu));
+
+/* ── Scroll header ── */
+window.addEventListener('scroll', () => {
+  document.querySelector('header').classList.toggle('scrolled', window.scrollY > 20);
+});
+
+/* ── Modal ── */
+function openConsultModal() {
+  document.getElementById('consultModal').classList.add('active');
+}
+function closeConsultModal() {
+  document.getElementById('consultModal').classList.remove('active');
+  document.getElementById('ci-name').innerText = '';
+  document.getElementById('ci-contact').innerText = '';
+  document.getElementById('ci-msg').innerText = '';
+  document.getElementById('charCount').textContent = '0';
+  document.getElementById('cf-name').classList.remove('invalid');
+  document.getElementById('cf-contact').classList.remove('invalid');
+}
+document.getElementById('consultModal').addEventListener('click', function(e) {
+  if(e.target === this) closeConsultModal();
+});
+document.addEventListener('keydown', e => { if(e.key === 'Escape') closeConsultModal(); });
+
+/* ── Custom Fields ── */
+const MAX = 250;
+document.getElementById('ci-name').addEventListener('input', () => document.getElementById('cf-name').classList.remove('invalid'));
+document.getElementById('ci-contact').addEventListener('input', () => document.getElementById('cf-contact').classList.remove('invalid'));
+document.getElementById('ci-msg').addEventListener('input', function() {
+  if(this.innerText.length > MAX) {
+    this.innerText = this.innerText.slice(0, MAX);
+    const r = document.createRange(); r.selectNodeContents(this); r.collapse(false);
+    window.getSelection().removeAllRanges(); window.getSelection().addRange(r);
+  }
+  document.getElementById('charCount').textContent = Math.min(this.innerText.length, MAX);
+});
+[document.getElementById('ci-name'), document.getElementById('ci-contact')].forEach(el => {
+  el.addEventListener('keydown', e => { if(e.key === 'Enter') e.preventDefault(); });
+  el.addEventListener('paste', e => { e.preventDefault(); document.execCommand('insertText', false, e.clipboardData.getData('text/plain')); });
+});
+
+/* ── Custom Select ── */
+const cs = document.getElementById('customSelect');
+document.getElementById('customSelectTrigger').addEventListener('click', e => { e.stopPropagation(); cs.classList.toggle('open'); });
+document.querySelectorAll('.custom-select-option').forEach(opt => {
+  opt.addEventListener('click', () => {
+    document.getElementById('consultType').value = opt.dataset.value;
+    document.getElementById('customSelectValue').textContent = opt.dataset.value;
+    cs.classList.add('selected'); cs.classList.remove('open');
+  });
+});
+document.addEventListener('click', () => cs.classList.remove('open'));
+
+/* ── Toast ── */
+function showToast(msg, type='success') {
+  const t = document.getElementById('toast');
+  t.textContent = msg; t.classList.remove('show','error');
+  if(type==='error') t.classList.add('error');
+  requestAnimationFrame(() => requestAnimationFrame(() => {
+    t.classList.add('show');
+    setTimeout(() => t.classList.remove('show','error'), 3500);
+  }));
+}
+
+/* ── Submit ── */
+function isEmail(v) { return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v); }
+function isPhone(v) { const n = v.replace(/\D/g,''); return n.length===10||(n.length===11&&n.startsWith('1')); }
+
+function submitConsultForm() {
+  const name = document.getElementById('ci-name').innerText.trim();
+  const contact = document.getElementById('ci-contact').innerText.trim();
+  const type = document.getElementById('consultType').value;
+  const message = document.getElementById('ci-msg').innerText.trim();
+  document.getElementById('cf-name').classList.remove('invalid');
+  document.getElementById('cf-contact').classList.remove('invalid');
+  if(!name) { document.getElementById('cf-name').classList.add('invalid'); showToast('Please enter your name.','error'); return; }
+  if(!contact) { document.getElementById('cf-contact').classList.add('invalid'); showToast('Please enter your email or phone.','error'); return; }
+  if(!isEmail(contact) && !isPhone(contact)) { document.getElementById('cf-contact').classList.add('invalid'); showToast('Invalid email or phone number.','error'); return; }
+  const btn = document.getElementById('modal-submit-btn');
+  btn.textContent = 'Sending...'; btn.disabled = true;
+  const params = new URLSearchParams({name, contact, type, message});
+  fetch('https://script.google.com/macros/s/AKfycbxKsKnTR9_AIHq-o0qsvDLNh94VW4gcgnrV8nZFMxNTCWX9Z2lMMEQ3VXWkiWp4sSRf/exec?' + params.toString(), {method:'GET', mode:'no-cors'})
+    .then(() => {
+      btn.textContent = 'Send Request'; btn.disabled = false;
+      closeConsultModal();
+      showToast('Request sent successfully!');
+    })
+    .catch(() => { btn.textContent = 'Send Request'; btn.disabled = false; showToast('Something went wrong.','error'); });
+}
+</script>
+</body>
+</html>

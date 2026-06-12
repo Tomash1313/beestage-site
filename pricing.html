@@ -6,6 +6,13 @@
   <title>Pricing — B-Stage Bookkeeping</title>
   <meta name="description" content="Transparent bookkeeping packages for Canadian businesses. Core, Growth, and Scale plans starting at C$250/month.">
 
+  <!-- Favicon -->
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="manifest" href="/site.webmanifest">
+
   <!-- SEO -->
   <meta name="robots" content="index, follow">
   <meta name="author" content="B-Stage Bookkeeping">
@@ -370,8 +377,8 @@
       .burger.open span:nth-child(1) { top: 9px; transform: rotate(45deg); }
       .burger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
       .burger.open span:nth-child(3) { top: 9px; transform: rotate(-45deg); }
-      #nav-menu { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(11,11,12,0.97); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); flex-direction: column; align-items: center; justify-content: center; gap: 36px; z-index: 10000; display: flex; opacity: 0; transform: translateY(-20px); transition: opacity 0.4s ease, transform 0.4s cubic-bezier(0.23,1,0.32,1); pointer-events: none; }
-      #nav-menu.open { opacity: 1; transform: translateY(0); pointer-events: all; }
+      #nav-menu { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(11,11,12,0.97); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); flex-direction: column; align-items: center; justify-content: center; gap: 36px; z-index: 10000; display: flex; opacity: 0; transition: opacity 0.4s ease; pointer-events: none; }
+      #nav-menu.open { opacity: 1; pointer-events: all; }
       #nav-menu li { list-style: none; opacity: 0; transform: translateY(16px); transition: opacity 0.35s ease, transform 0.35s ease; }
       #nav-menu.open li:nth-child(1) { opacity: 1; transform: translateY(0); transition-delay: 0.08s; }
       #nav-menu.open li:nth-child(2) { opacity: 1; transform: translateY(0); transition-delay: 0.13s; }
@@ -754,9 +761,13 @@ const navMenu = document.getElementById('nav-menu');
 function closeMobileMenu() {
   burger.classList.remove('open');
   navMenu.classList.remove('open');
-  document.body.style.overflow = '';
+  const scrollY = parseInt(document.body.style.top || '0') * -1;
+  document.body.style.position = '';
+  document.body.style.top = '';
+  document.body.style.width = '';
   document.body.style.paddingRight = '';
   document.querySelector('header').style.paddingRight = '';
+  window.scrollTo(0, scrollY);
 }
 
 burger.addEventListener('click', () => {
@@ -764,13 +775,14 @@ burger.addEventListener('click', () => {
   navMenu.classList.toggle('open');
   if(navMenu.classList.contains('open')) {
     const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
+    const scrollY = window.scrollY;
     document.body.style.paddingRight = scrollbarWidth + 'px';
     document.querySelector('header').style.paddingRight = scrollbarWidth + 'px';
-    document.body.style.overflow = 'hidden';
+    document.body.style.position = 'fixed';
+    document.body.style.top = '-' + scrollY + 'px';
+    document.body.style.width = '100%';
   } else {
-    document.body.style.overflow = '';
-    document.body.style.paddingRight = '';
-    document.querySelector('header').style.paddingRight = '';
+    closeMobileMenu();
   }
 });
 navMenu.querySelectorAll('a').forEach(link => {

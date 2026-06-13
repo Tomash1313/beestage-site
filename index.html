@@ -195,9 +195,9 @@ nav a.active { color: var(--bronze); }
 }
 
 /* ── Services ── */
-.services-section { padding: 0 0 60px; margin-top: -80px; }
-.approach-section { padding: 0 0 80px; }
-.footer-section { }
+.services-section { padding: 0 0 60px; margin-top: -80px; scroll-margin-top: 95px; }
+.approach-section { padding: 0 0 80px; scroll-margin-top: 95px; }
+.footer-section { scroll-margin-top: 95px; }
 .section-title {
   font-size: 0.9rem; text-transform: uppercase; letter-spacing: 2px;
   color: #ffffff; margin-bottom: 40px; font-weight: 600;
@@ -332,7 +332,7 @@ nav a.active { color: var(--bronze); }
 }
 
 /* ── Reviews ── */
-.reviews-section { padding: 0 0 80px; }
+.reviews-section { padding: 0 0 80px; scroll-margin-top: 95px; }
 .reviews-carousel-wrap { position: relative; display: flex; align-items: center; gap: 16px; margin-bottom: 24px; }
 .reviews-carousel {
   display: grid;
@@ -373,11 +373,11 @@ nav a.active { color: var(--bronze); }
   line-height: 1.75; flex: 1; font-style: italic;
 }
 .review-link {
-  font-size: 0.75rem; color: rgba(167,109,69,0.9);
+  font-size: 0.75rem; color: #ffffff;
   text-decoration: none; font-weight: 500;
   transition: color 0.3s; align-self: flex-start;
 }
-.review-link:hover { color: #A76D45; }
+.review-link:hover { color: #D59469; }
 .carousel-btn {
   min-width: 48px; min-height: 48px; width: 48px; height: 48px;
   background: transparent;
@@ -396,7 +396,9 @@ nav a.active { color: var(--bronze); }
   width: 6px; height: 6px; border-radius: 50%;
   background: rgba(167,109,69,0.25);
   cursor: pointer; transition: background 0.3s;
-  border: none; padding: 0;
+  border: none; padding: 21px;
+  box-sizing: content-box;
+  background-clip: content-box;
 }
 .reviews-dot.active { background: #A76D45; }
 .reviews-cta { text-align: center; }
@@ -662,7 +664,7 @@ nav a.active { color: var(--bronze); }
   top: 100%;
   left: 50%;
   transform: translateX(-50%) translateY(-6px);
-  background: rgba(11,11,12,0.15);
+  background: rgba(11,11,12,0.55);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border: none;
@@ -1424,7 +1426,32 @@ function submitConsultForm(){
     });
 }
 
-function smoothScrollTop() { document.documentElement.scrollTop = 0; document.body.scrollTop = 0; }
+function smoothScrollTop() {
+  if(document.body.style.position === 'fixed') {
+    const scrollY = parseInt(document.body.style.top || '0') * -1;
+    document.body.style.position = '';
+    document.body.style.top = '';
+    document.body.style.width = '';
+    document.body.style.paddingRight = '';
+    document.querySelector('header').style.paddingRight = '';
+    window.scrollTo(0, scrollY);
+  }
+  const start = window.scrollY;
+  if(start === 0) return;
+  const els = document.querySelectorAll('.services-section,.approach-section,.reviews-section,.footer-section');
+  els.forEach(el => el.style.scrollMarginTop = '0px');
+  const duration = 700;
+  const startTime = performance.now();
+  function step(now) {
+    const elapsed = now - startTime;
+    const progress = Math.min(elapsed / duration, 1);
+    const ease = 1 - Math.pow(1 - progress, 4);
+    window.scrollTo(0, Math.round(start * (1 - ease)));
+    if(progress < 1) { requestAnimationFrame(step); }
+    else { els.forEach(el => el.style.scrollMarginTop = ''); }
+  }
+  requestAnimationFrame(step);
+}
 (function(){
   const btn = document.getElementById('scrollTopBtn');
   if(!btn) return;

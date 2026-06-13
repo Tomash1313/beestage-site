@@ -393,14 +393,22 @@ nav a.active { color: var(--bronze); }
 .carousel-btn svg { width: 32px; height: 32px; }
 .reviews-dots { display: flex; justify-content: center; gap: 8px; margin-bottom: 32px; }
 .reviews-dot {
+  width: 44px; height: 44px; border-radius: 50%;
+  background: transparent;
+  cursor: pointer; transition: background 0.3s;
+  border: none; padding: 0;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.reviews-dot::after {
+  content: '';
   width: 6px; height: 6px; border-radius: 50%;
   background: rgba(167,109,69,0.25);
-  cursor: pointer; transition: background 0.3s;
-  border: none; padding: 21px;
-  box-sizing: content-box;
-  background-clip: content-box;
+  transition: background 0.3s;
+  display: block;
 }
-.reviews-dot.active { background: #A76D45; }
+.reviews-dot.active::after { background: #A76D45; }
+.reviews-dot:hover::after { background: rgba(167,109,69,0.6); }
 .reviews-cta { text-align: center; }
 .reviews-cta-link {
   display: inline-flex; align-items: center; gap: 8px;

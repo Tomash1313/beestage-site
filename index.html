@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>B-Stage Bookkeeping — Precision Financial Services for Canadian Businesses</title>
@@ -45,16 +44,37 @@
     "openingHours": "Mo-Fr 09:00-18:00",
     "sameAs": [
       "https://share.google/2QQOuX1PEvF26DStp"
+    ],
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "5.0",
+      "reviewCount": "2",
+      "bestRating": "5",
+      "worstRating": "1"
+    },
+    "review": [
+      {
+        "@type": "Review",
+        "author": { "@type": "Person", "name": "Nadiya Skhab" },
+        "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" },
+        "reviewBody": "Thank you, Yuriy, for your timely and excellent work with our tax filing. Your professionalism, attention to detail, and dedication made the entire process smooth and stress-free.",
+        "datePublished": "2026-06-10"
+      },
+      {
+        "@type": "Review",
+        "author": { "@type": "Person", "name": "Оксана Нестерук" },
+        "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" },
+        "reviewBody": "Why do I recommend and will recommend this accounting company to everyone? Because I have been a client of this company for a long time. This is an accountant who will ALWAYS make a full and detailed analysis of your activities.",
+        "datePublished": "2026-06-08"
+      }
     ]
   }
   </script>
-
-  <!-- Open Graph -->
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://beestage.ca">
   <meta property="og:title" content="B-Stage Bookkeeping — Precision Financial Services for Canadian Businesses">
   <meta property="og:description" content="Dedicated bookkeeping and financial analysis for ambitious Canadian ventures. Automated bookkeeping, growth insights, and CRA compliance — mastered.">
-  <meta property="og:image" content="https://beestage.ca/og-image.jpg">
+  <meta property="og:image" content="/og-image.jpg">
   <meta property="og:locale" content="en_CA">
   <meta property="og:site_name" content="B-Stage Bookkeeping">
 
@@ -63,28 +83,633 @@
   <meta name="twitter:url" content="https://beestage.ca">
   <meta name="twitter:title" content="B-Stage Bookkeeping — Precision Financial Services for Canadian Businesses">
   <meta name="twitter:description" content="Dedicated bookkeeping and financial analysis for ambitious Canadian ventures. Automated bookkeeping, growth insights, and CRA compliance — mastered.">
-  <meta name="twitter:image" content="https://beestage.ca/og-image.jpg">
-
+  <meta name="twitter:image" content="/og-image.jpg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preconnect" href="https://cdnjs.cloudflare.com">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" media="print" onload="this.media='all'">
   <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"></noscript>
-  <link rel="stylesheet" href="style.css">
+<style>
+:root {
+  --bg-color: #0b0b0c;
+  --card-bg: #121214;
+  --text-main: #ffffff;
+  --bronze: #A76D45;
+  --bronze-gradient: linear-gradient(135deg, #7A4526 0%, #A76D45 35%, #D59469 50%, #A76D45 65%, #7A4526 100%);
+  --bronze-hover: linear-gradient(135deg, #A76D45 0%, #D59469 50%, #7A4526 100%);
+}
+html { scroll-behavior: smooth; }
+* { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Inter', sans-serif; }
+
+/* ── Custom scrollbar ── */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: #0b0b0c; }
+::-webkit-scrollbar-thumb { background: rgba(167,109,69,0.5); border-radius: 2px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(167,109,69,0.85); }
+.consult-modal textarea::-webkit-scrollbar { width: 3px; }
+.consult-modal textarea::-webkit-scrollbar-track { background: #0e0e10; }
+.consult-modal textarea::-webkit-scrollbar-thumb { background: rgba(167,109,69,0.4); border-radius: 2px; }
+.consult-modal textarea::-webkit-scrollbar-thumb:hover { background: rgba(167,109,69,0.75); }
+* { scrollbar-width: thin; scrollbar-color: rgba(167,109,69,0.5) #0b0b0c; }
+.consult-modal textarea { scrollbar-width: thin; scrollbar-color: rgba(167,109,69,0.4) #0e0e10; }
+
+body { background-color: var(--bg-color); color: var(--text-main); line-height: 1.6; overflow-x: hidden; padding-top: 95px; }
+.container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+
+/* ── Header ── */
+header {
+  position: fixed; top: 0; left: 0; width: 100%; z-index: 9999;
+  padding: 20px 0; border-bottom: 2px solid rgba(167,109,69,0.35);
+  background: rgba(11,11,12,0.97);
+  transition: box-shadow 0.3s ease;
+}
+header.scrolled {
+  box-shadow: 0 6px 20px rgba(0,0,0,0.35);
+  backdrop-filter: blur(10px);
+}
+.nav-wrapper { display: flex; justify-content: space-between; align-items: center; }
+.logo { display: flex; align-items: center; gap: 8px; user-select: none; }
+nav ul { display: flex; list-style: none; gap: 32px; align-items: center; }
+nav a { color: var(--text-main); text-decoration: none; font-size: 0.95rem; font-weight: 400; transition: color 0.3s; }
+nav a:hover { color: var(--bronze); }
+nav a.active { color: var(--bronze); }
+.burger { display: none; }
+.btn-consult {
+  background: var(--bronze-gradient); color: var(--text-main);
+  padding: 10px 22px; border-radius: 6px; font-weight: 600;
+  font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.5px;
+  border: none; cursor: pointer; transition: transform 0.2s, box-shadow 0.2s;
+}
+.btn-consult:hover { background: var(--bronze-hover); transform: translateY(-1px); box-shadow: 0 4px 15px rgba(167,109,69,0.4); }
+
+/* ── Hero ── */
+.hero { padding: 0 0 0; }
+.hero-grid {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr;
+}
+.hero-content {
+  position: absolute;
+  inset: 0;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding-top: 40px;
+  padding: 0 24px;
+  pointer-events: none;
+}
+.hero-content > * { pointer-events: auto; }
+.hero-content p { color: var(--text-main); font-size: 1.15rem; max-width: 480px; margin-bottom: 48px; font-weight: 300; }
+.hero-content h1 {
+  font-size: 3.56rem; font-weight: 300; line-height: 1.08;
+  letter-spacing: -1px; margin-bottom: 32px; margin-top: 48px; text-transform: uppercase;
+  background: linear-gradient(180deg, #ffffff 0%, #D59469 100%);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  white-space: nowrap;
+}
+
+.btn-hero {
+  display: inline-block;
+  background: var(--bronze-gradient); color: var(--text-main);
+  padding: 16px 36px; border-radius: 6px; font-weight: 600;
+  font-size: 1rem; text-transform: uppercase; letter-spacing: 1px;
+  border: none; cursor: pointer; transition: transform 0.2s, box-shadow 0.2s;
+  max-width: fit-content;
+}
+.btn-hero:hover { background: var(--bronze-hover); transform: translateY(-2px); box-shadow: 0 6px 20px rgba(167,109,69,0.5); }
+
+/* ── Hero Graphics ── */
+.hero-graphics {
+  position: relative; display: flex;
+  justify-content: flex-end; align-items: center;
+  margin-right: -80px; margin-top: -40px; margin-bottom: -40px;
+  min-height: 480px;
+}
+.hero-graphics canvas {
+  display: block; width: 760px; height: auto;
+  -webkit-mask-image: radial-gradient(ellipse 75% 80% at 65% 50%, black 30%, rgba(0,0,0,0.85) 50%, rgba(0,0,0,0.4) 68%, transparent 100%);
+  mask-image: radial-gradient(ellipse 75% 80% at 65% 50%, black 30%, rgba(0,0,0,0.85) 50%, rgba(0,0,0,0.4) 68%, transparent 100%);
+}
+
+/* ── Services ── */
+.services-section { padding: 0 0 60px; margin-top: -80px; }
+.approach-section { padding: 0 0 80px; }
+.footer-section { }
+.section-title {
+  font-size: 0.9rem; text-transform: uppercase; letter-spacing: 2px;
+  color: #ffffff; margin-bottom: 40px; font-weight: 600;
+  display: flex; align-items: center; gap: 16px;
+}
+.section-title::after {
+  content: ''; flex: 1; height: 1px;
+  background: linear-gradient(to right, rgba(167,109,69,0.7), rgba(167,109,69,0.1));
+}
+.services-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 32px; }
+.service-card { padding: 32px; }
+.service-icon { font-size: 2rem; color: var(--bronze); margin-bottom: 20px; }
+.service-icon svg { width: 58px; height: 58px; }
+.service-card h3 { font-size: 1.15rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 12px; }
+.service-card p { color: var(--text-main); font-size: 0.95rem; font-weight: 300; }
+
+@media (max-width: 992px) {
+  /* Logo */
+  .logo img { height: 78px !important; }
+  .logo span:first-child { font-size: 2rem !important; }
+  .logo span:last-child { font-size: 1rem !important; letter-spacing: 2px !important; }
+  .burger {
+    display: flex;
+    flex-direction: column;
+    width: 28px;
+    height: 20px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    z-index: 10001;
+    position: relative;
+  }
+  .burger span {
+    display: block;
+    width: 100%;
+    height: 2px;
+    background: #fff;
+    border-radius: 2px;
+    position: absolute;
+    left: 0;
+    transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1),
+                opacity 0.3s ease,
+                top 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+  }
+  .burger span:nth-child(1) { top: 0; }
+  .burger span:nth-child(2) { top: 9px; }
+  .burger span:nth-child(3) { top: 18px; }
+  .burger.open span:nth-child(1) { top: 9px; transform: rotate(45deg); }
+  .burger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+  .burger.open span:nth-child(3) { top: 9px; transform: rotate(-45deg); }
+
+  /* Mobile nav menu */
+  #nav-menu {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(11,11,12,0.97);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 36px;
+    z-index: 10000;
+    display: flex;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    pointer-events: none;
+  }
+  #nav-menu.open { opacity: 1; pointer-events: all; }
+  #nav-menu li { list-style: none; opacity: 0; transform: translateY(16px); transition: opacity 0.35s ease, transform 0.35s ease; }
+  #nav-menu.open li:nth-child(1) { opacity: 1; transform: translateY(0); transition-delay: 0.08s; }
+  #nav-menu.open li:nth-child(2) { opacity: 1; transform: translateY(0); transition-delay: 0.13s; }
+  #nav-menu.open li:nth-child(3) { opacity: 1; transform: translateY(0); transition-delay: 0.18s; }
+  #nav-menu.open li:nth-child(4) { opacity: 1; transform: translateY(0); transition-delay: 0.23s; }
+  #nav-menu.open li:nth-child(5) { opacity: 1; transform: translateY(0); transition-delay: 0.28s; }
+  #nav-menu.open li:nth-child(6) { opacity: 1; transform: translateY(0); transition-delay: 0.33s; }
+  #nav-menu.open li:nth-child(7) { opacity: 1; transform: translateY(0); transition-delay: 0.38s; }
+  #nav-menu a { font-size: 1.5rem; font-weight: 300; color: #fff; text-decoration: none; letter-spacing: 1px; transition: color 0.3s; display: block; }
+  #nav-menu a:hover, #nav-menu a.active { color: #A76D45; }
+  #nav-menu .btn-consult { margin-top: 8px; padding: 14px 40px; font-size: 1rem; }
+
+  /* Hero */
+  .hero { padding: 48px 0 32px; }
+  .hero-grid { display: block; min-height: unset; }
+  .hero-content {
+    position: static;
+    transform: none;
+    padding: 0 20px;
+    text-align: center;
+    max-width: 100%;
+  }
+  .hero-content h1 {
+    font-size: 2rem;
+    white-space: normal;
+    margin-top: 0;
+    margin-bottom: 16px;
+  }
+  .hero-content > * { max-width: 100%; }
+  .hero-content p { margin: 0 auto 24px; max-width: 480px; font-size: 1rem; }
+  .btn-hero { width: auto; max-width: 380px; padding: 16px 36px; font-size: 0.9rem; white-space: nowrap; display: block; margin: 0 auto; }
+  .hero-graphics { display: none; }
+
+  /* Services */
+  .services-grid { grid-template-columns: 1fr; gap: 24px; }
+  .services-section { margin-top: 0; padding: 0 0 40px; }
+
+  .reviews-grid { grid-template-columns: 1fr; }
+  .review-card { padding: 24px; }
+
+  .reviews-carousel-wrap { gap: 8px; }
+  .reviews-carousel { display: block; width: 100%; min-width: 0; }
+  .review-card { padding: 24px 0; width: 100%; min-width: 0; }
+  .carousel-btn { width: 36px; height: 36px; font-size: 0.9rem; flex-shrink: 0; }
+
+  .service-icon svg { width: 48px; height: 48px; }
+  .service-icon svg filter { display: none; }
+  .service-icon svg [filter] { filter: none !important; }
+  .approach-principle { flex-direction: column; gap: 0; padding-left: 0; padding-right: 0; }
+  .approach-section { padding: 0 0 40px; }
+  .approach-section .container { padding: 0 12px; }
+  .ap-left { display: flex !important; align-items: center; gap: 12px; width: 100%; padding: 20px 0 12px; }
+  .ap-num { width: auto; padding: 0; font-size: 0.7rem; flex-shrink: 0; }
+  .ap-title { width: auto !important; flex-shrink: 1; font-size: 1.15rem; border: none; padding: 0; white-space: nowrap; }
+  .ap-text { padding-left: 0; border-left: none; border-top: 1px solid rgba(167,109,69,0.25); padding-top: 16px; padding-bottom: 20px; }
+  .approach-title { font-size: 2rem; }
+
+  /* Footer */
+  .footer-inner { flex-direction: row !important; align-items: flex-start; }
+  .footer-section nav { display: none; }
+  .footer-nav-block { display: none !important; }
+}
+
+/* ── Reviews ── */
+.reviews-section { padding: 0 0 80px; }
+.reviews-carousel-wrap { position: relative; display: flex; align-items: center; gap: 16px; margin-bottom: 24px; }
+.reviews-carousel {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0 40px;
+  overflow: hidden;
+  flex: 1;
+}
+.review-card {
+  background: transparent;
+  border: none;
+  border-top: 1px solid rgba(167,109,69,0.12);
+  border-radius: 0;
+  padding: 32px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  transition: border-color 0.3s;
+  min-width: 0;
+}
+.review-card:hover { border-color: rgba(167,109,69,0.25); }
+.review-header { display: flex; align-items: center; gap: 14px; }
+.reviewer-avatar {
+  width: 42px; height: 42px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #7A4526, #A76D45);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1rem; font-weight: 700; color: #fff;
+  flex-shrink: 0;
+}
+.reviewer-info { flex: 1; }
+.reviewer-name { font-size: 0.92rem; font-weight: 600; color: #fff; margin-bottom: 2px; }
+.reviewer-meta { font-size: 0.72rem; color: rgba(255,255,255,0.35); font-weight: 300; }
+.review-stars { color: #A76D45; font-size: 1rem; letter-spacing: 1px; }
+.review-text {
+  font-size: 0.88rem; font-weight: 300;
+  color: rgba(255,255,255,0.7);
+  line-height: 1.75; flex: 1; font-style: italic;
+}
+.review-link {
+  font-size: 0.75rem; color: rgba(167,109,69,0.6);
+  text-decoration: none; font-weight: 500;
+  transition: color 0.3s; align-self: flex-start;
+}
+.review-link:hover { color: #A76D45; }
+.carousel-btn {
+  width: 48px; height: 48px;
+  background: transparent;
+  border: none;
+  cursor: pointer; flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+  opacity: 0.5;
+  transition: opacity 0.3s;
+  padding: 0;
+}
+.carousel-btn:hover { opacity: 1; }
+.carousel-btn:disabled { opacity: 0.15; cursor: default; }
+.carousel-btn svg { width: 32px; height: 32px; }
+.reviews-dots { display: flex; justify-content: center; gap: 8px; margin-bottom: 32px; }
+.reviews-dot {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: rgba(167,109,69,0.25);
+  cursor: pointer; transition: background 0.3s;
+  border: none; padding: 0;
+}
+.reviews-dot.active { background: #A76D45; }
+.reviews-cta { text-align: center; }
+.reviews-cta-link {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-size: 0.85rem; color: rgba(255,255,255,0.5);
+  text-decoration: none;
+  border: 1px solid rgba(167,109,69,0.2);
+  padding: 10px 24px; border-radius: 6px;
+  transition: all 0.3s; font-weight: 300;
+}
+.reviews-cta-link span { color: #A76D45; font-weight: 600; }
+.reviews-cta-link:hover { border-color: rgba(167,109,69,0.5); color: #fff; }
+
+
+.approach-statement { margin-bottom: 56px; text-align: center; }
+.approach-sub {
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 2.5px;
+  color: var(--bronze);
+  font-weight: 500;
+  margin-bottom: 16px;
+}
+.approach-title {
+  font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+  font-weight: 300;
+  line-height: 1.25;
+  color: #fff;
+  max-width: 820px;
+  margin: 0 auto;
+}
+.approach-title strong {
+  font-weight: 600;
+  background: linear-gradient(135deg, #A76D45, #D59469);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.ap-left { display: contents; }
+.approach-principles { width: 100%; }
+
+.approach-principle {
+  border-top: 1px solid rgba(167,109,69,0.12);
+  padding: 40px 0;
+  display: flex;
+  align-items: baseline;
+  position: relative;
+  overflow: hidden;
+}
+.approach-principle:last-child {
+  border-bottom: 1px solid rgba(167,109,69,0.12);
+}
+.approach-principle::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 24px;
+  height: 1px; width: 0;
+  background: linear-gradient(to right, var(--bronze), transparent);
+  transition: width 0.5s ease;
+}
+.approach-principle:hover::after { width: 100%; }
+
+.ap-num {
+  font-size: 0.7rem;
+  letter-spacing: 2px;
+  color: var(--bronze);
+  font-weight: 500;
+  width: 72px;
+  flex-shrink: 0;
+  padding-top: 3px;
+}
+.ap-title {
+  font-size: clamp(1.4rem, 2.5vw, 2rem);
+  font-weight: 600;
+  letter-spacing: -0.3px;
+  color: #fff;
+  width: 360px;
+  flex-shrink: 0;
+  line-height: 1.2;
+}
+.ap-text {
+  font-size: 0.92rem;
+  font-weight: 300;
+  color: rgba(255,255,255,0.75);
+  line-height: 1.8;
+  flex: 1;
+  padding-left: 48px;
+  border-left: 1px solid rgba(167,109,69,0.25);
+}
+
+.approach-closing {
+  margin-top: 56px;
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+.approach-closing-dash {
+  width: 40px; height: 1px;
+  background: var(--bronze);
+  flex-shrink: 0;
+}
+.approach-closing-text {
+  font-size: 0.88rem;
+  color: #fff;
+  letter-spacing: 0.2px;
+  font-weight: 300;
+  font-style: italic;
+}
+.approach-closing-text em {
+  font-style: italic;
+  font-weight: 300;
+  color: #D59469 !important;
+}
+
+/* ── Footer ── */
+.footer-section {
+  margin-top: 80px; padding: 40px 0 20px;
+  border-top: 1px solid rgba(167,109,69,0.25);
+  background: linear-gradient(180deg, transparent, rgba(10,10,10,0.85));
+}
+.footer-bottom { margin-top: 20px; text-align: center; font-size: 0.8rem; color: rgba(255,255,255,0.4); }
+.footer-inner { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 28px; }
+
+/* ── Modal ── */
+.consult-modal-overlay {
+  position: fixed; inset: 0; display: none;
+  align-items: center; justify-content: center;
+  background: rgba(0,0,0,0.7); z-index: 99999;
+}
+.consult-modal-overlay.active { display: flex; }
+.consult-modal {
+  position: relative; width: 420px;
+  background: var(--card-bg); border: 1px solid rgba(167,109,69,0.25);
+  border-radius: 10px; padding: 24px;
+}
+.consult-modal h3 { color: var(--bronze); margin-bottom: 16px; text-transform: uppercase; font-size: 0.95rem; }
+.consult-modal input,
+.consult-modal textarea,
+.consult-modal select {
+  width: 100%; margin-bottom: 12px; padding: 10px;
+  background: #0e0e10; border: 1px solid rgba(255,255,255,0.08);
+  color: white; border-radius: 6px; transition: border-color 0.25s ease;
+  outline: none; font-size: 14px; font-family: 'Inter', sans-serif;
+}
+.consult-modal input.invalid,
+.consult-modal textarea.invalid {
+  border-color: rgba(180,50,50,0.7);
+  box-shadow: 0 0 0 2px rgba(180,50,50,0.12);
+}
+.consult-modal input:focus,
+.consult-modal textarea:focus { border-color: rgba(167,109,69,0.5); }
+.consult-modal input.invalid:focus,
+.consult-modal textarea.invalid:focus { border-color: rgba(167,109,69,0.5); box-shadow: none; }
+.consult-modal textarea { height: 80px; resize: none; }
+.modal-close {
+  position: absolute; top: 18px; right: 16px;
+  background: transparent; border: none;
+  color: rgba(167,109,69,0.6); font-size: 20px;
+  line-height: 1; cursor: pointer; transition: color 0.2s; padding: 0;
+}
+.modal-close:hover { color: #D59469; }
+.char-counter { text-align: right; font-size: 0.75rem; color: rgba(255,255,255,0.4); margin-top: -8px; margin-bottom: 10px; }
+
+/* ── Custom Fields ── */
+.cf {
+  width: 100%; margin-bottom: 12px;
+  background: #0e0e10; border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 6px; transition: border-color 0.25s ease;
+}
+.cf:focus-within { border-color: rgba(167,109,69,0.5); }
+.cf.invalid { border-color: rgba(180,50,50,0.7); box-shadow: 0 0 0 2px rgba(180,50,50,0.12); }
+.cf.invalid:focus-within { border-color: rgba(167,109,69,0.5); box-shadow: none; }
+.cf-input {
+  display: block; width: 100%; padding: 10px;
+  font-size: 14px; font-family: 'Inter', sans-serif;
+  color: white; outline: none; line-height: 1.5;
+  min-height: 38px; word-break: break-word;
+}
+.cf-input:empty::before {
+  content: attr(data-ph);
+  color: rgba(255,255,255,0.35);
+  pointer-events: none;
+}
+.cf-textarea {
+  min-height: 80px; max-height: 160px;
+  overflow-y: auto; scrollbar-width: thin;
+  scrollbar-color: rgba(167,109,69,0.4) #0e0e10;
+}
+.cf-textarea::-webkit-scrollbar { width: 3px; }
+.cf-textarea::-webkit-scrollbar-track { background: #0e0e10; }
+.cf-textarea::-webkit-scrollbar-thumb { background: rgba(167,109,69,0.4); border-radius: 2px; }
+
+/* ── Custom Select ── */
+.custom-select { position: relative; width: 100%; margin-bottom: 12px; user-select: none; }
+.custom-select-trigger {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 10px; background: #0e0e10;
+  border: 1px solid rgba(255,255,255,0.08); border-radius: 6px;
+  cursor: pointer; transition: border-color 0.25s ease;
+  font-size: 14px; font-family: 'Inter', sans-serif;
+}
+.custom-select-trigger:hover { border-color: rgba(167,109,69,0.3); }
+.custom-select.open .custom-select-trigger { border-color: rgba(167,109,69,0.5); border-radius: 6px 6px 0 0; }
+.custom-select.invalid .custom-select-trigger { border-color: rgba(180,50,50,0.7); box-shadow: 0 0 0 2px rgba(180,50,50,0.12); }
+.custom-select-trigger span { color: rgba(255,255,255,0.35); font-size: 14px; }
+.custom-select.selected .custom-select-trigger span { color: white; }
+.custom-select-arrow { transition: transform 0.25s ease; flex-shrink: 0; }
+.custom-select.open .custom-select-arrow { transform: rotate(180deg); }
+.custom-select-dropdown {
+  position: absolute; top: 100%; left: 24px; right: 0;
+  background: #0e0e10; border: 1px solid rgba(167,109,69,0.5);
+  border-top: none; border-radius: 0 0 6px 6px;
+  overflow: hidden; max-height: 0; opacity: 0;
+  transition: max-height 0.25s ease, opacity 0.2s ease; z-index: 9999;
+}
+.custom-select.open .custom-select-dropdown { max-height: 200px; opacity: 1; }
+.custom-select-option {
+  padding: 10px 12px; font-size: 14px; font-family: 'Inter', sans-serif;
+  color: rgba(255,255,255,0.75); cursor: pointer; transition: color 0.2s ease;
+}
+.custom-select-option:hover { color: #A76D45; }
+.custom-select-option.active { color: #A76D45; }
+
+/* ── Toast ── */
+.toast {
+  position: fixed; bottom: 32px; left: 50%;
+  transform: translateX(-50%) translateY(20px);
+  background: #1a1a1c; border: 1px solid rgba(167,109,69,0.4);
+  color: #fff; padding: 12px 28px; border-radius: 6px;
+  font-size: 0.88rem; letter-spacing: 0.3px; opacity: 0;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  z-index: 999999; pointer-events: none;
+}
+.toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+.toast.error { border-color: rgba(180,50,50,0.5); background: #1a1212; }
+
+/* ── Scroll to top ── */
+.scroll-top-btn {
+  position: fixed;
+  bottom: 36px; right: 32px;
+  width: 52px; height: 52px;
+  background: transparent;
+  border: none; cursor: pointer; padding: 0;
+  display: flex; align-items: center; justify-content: center;
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+  pointer-events: none;
+  z-index: 9000;
+}
+.scroll-top-btn.visible { opacity: 0.55; transform: translateY(0); pointer-events: all; }
+.scroll-top-btn:hover { opacity: 1; }
+.scroll-top-btn svg { width: 40px; height: 40px; }
+
+
+/* ── Nav Dropdown ── */
+.nav-dropdown { position: relative; }
+.nav-dropdown > a { display: flex; align-items: center; }
+.dropdown-arrow { display: none; }
+.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-6px);
+  background: rgba(11,11,12,0.15);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: none;
+  border-radius: 6px;
+  padding: 16px 0 8px;
+  min-width: 130px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  z-index: 9999;
+}
+.nav-dropdown:hover .dropdown-menu {
+  opacity: 1;
+  pointer-events: all;
+  transform: translateX(-50%) translateY(0);
+}
+.dropdown-menu a {
+  display: block;
+  padding: 8px 20px;
+  font-size: 0.95rem;
+  color: #ffffff !important;
+  font-weight: 400;
+  transition: color 0.2s;
+  white-space: nowrap;
+  text-align: center;
+  text-decoration: none;
+}
+.dropdown-menu a:hover { color: #A76D45 !important; }
+@media (max-width: 992px) {
+  .nav-dropdown > a { display: block; }
+  .dropdown-menu { display: none !important; }
+  .nav-dropdown::after { content: ""; }
+  #nav-menu.open li:nth-child(8) { opacity: 1; transform: translateY(0); transition-delay: 0.43s; }
+}
+</style>
 </head>
-<body>
 <body>
 
 <header>
   <div class="container nav-wrapper">
-    <div class="logo">
+    <a href="/" class="logo" style="text-decoration:none;">
       <img src="/logo.webp" alt="B-Stage Bookkeeping Logo" style="height:52px;width:auto;object-fit:contain;display:block;">
       <div style="display:flex;flex-direction:column;justify-content:center;line-height:1.05;text-align:left;">
         <span style="font-size:1.35rem;font-weight:700;letter-spacing:0.3px;color:#A76D45;text-transform:uppercase;font-family:'Inter',sans-serif;">B-STAGE</span>
         <span style="font-size:0.72rem;font-weight:500;letter-spacing:1.8px;color:#D59469;text-transform:uppercase;font-family:'Inter',sans-serif;margin-top:2px;">BOOKKEEPING</span>
       </div>
-    </div>
+    </a>
     <nav aria-label="Main navigation">
       <button class="burger" id="burger" aria-label="Toggle menu">
         <span></span><span></span><span></span>
@@ -94,6 +719,13 @@
         <li><a href="#services" id="nav-services">Services</a></li>
         <li><a href="#approach" id="nav-approach">Approach</a></li>
         <li><a href="/pricing" id="nav-pricing">Pricing</a></li>
+        <li class="nav-dropdown">
+          <a href="/about" id="nav-about">About</a>
+          <div class="dropdown-menu">
+            <a href="/about">About Us</a>
+            <a href="/#reviews">Reviews</a>
+          </div>
+        </li>
         <li><a href="#contacts" id="nav-contacts">Contacts</a></li>
         <li><button class="btn-consult" onclick="openConsultModal()" aria-label="Request a consultation">Request Consult</button></li>
       </ul>
@@ -101,6 +733,7 @@
   </div>
 </header>
 
+<main role="main">
 <section class="hero" role="banner">
   <div class="container hero-grid">
     <div class="hero-content">
@@ -127,7 +760,7 @@
               <filter id="glow-book-lg" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="0.7" result="blur"/><feComposite in="SourceGraphic" in2="blur" operator="over"/></filter>
             </defs>
             <g filter="url(#glow-book-outer)" opacity="0.45" stroke="#C86428" stroke-linecap="round" stroke-linejoin="round">
-              <rect x="9" y="4" width="22" height="28" rx="2" stroke-width="1.5" fill="none"/>
+              <rect x="9" y="4" width="22" height="28" rx="2" stroke-width="2" fill="none"/>
               <line x1="7.5" y1="9.5" x2="10.5" y2="9.5" stroke-width="1.2"/><line x1="7.5" y1="15" x2="10.5" y2="15" stroke-width="1.2"/><line x1="7.5" y1="20.5" x2="10.5" y2="20.5" stroke-width="1.2"/><line x1="7.5" y1="26" x2="10.5" y2="26" stroke-width="1.2"/>
               <path d="M31 9 L33 9 L33 13 L31 13" stroke-width="1.2" fill="none"/><path d="M31 16 L33 16 L33 20 L31 20" stroke-width="1.2" fill="none"/><path d="M31 23 L33 23 L33 27 L31 27" stroke-width="1.2" fill="none"/>
               <rect x="12.5" y="7.5" width="14" height="8" rx="0" stroke-width="1.2" fill="none"/>
@@ -154,7 +787,7 @@
               <filter id="glow-rocket-lg" x="-80%" y="-80%" width="260%" height="260%"><feGaussianBlur stdDeviation="0.7" result="blur"/><feComposite in="SourceGraphic" in2="blur" operator="over"/></filter>
             </defs>
             <g filter="url(#glow-rocket-outer)" opacity="0.45" stroke="#C86428" stroke-linecap="round" stroke-linejoin="round" transform="rotate(45 18 18) translate(0 -4)">
-              <path d="M18 4.5 Q28 17 22 29 Q18 31 14 29 Q8 17 18 4.5 Z" stroke-width="1.5" fill="none"/>
+              <path d="M18 4.5 Q28 17 22 29 Q18 31 14 29 Q8 17 18 4.5 Z" stroke-width="2" fill="none"/>
               <circle cx="18" cy="16" r="2.2" stroke-width="1.2" fill="none"/>
               <path d="M16 33 Q12 38 18 43" stroke-width="1.2" fill="none"/><path d="M20 33 Q24 38 18 43" stroke-width="1.2" fill="none"/>
               <path d="M22 28.5 Q25.3 27 28.8 28.5 Q28.8 24.7 26.9 21.7 Q25.3 20.9 24.7 20.9" stroke-width="1.4" fill="none" stroke-linejoin="miter"/>
@@ -181,8 +814,8 @@
               <filter id="glow-shield-lg" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="0.7" result="blur"/><feComposite in="SourceGraphic" in2="blur" operator="over"/></filter>
             </defs>
             <g filter="url(#glow-shield-outer)" opacity="0.45" stroke="#C86428" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M18 3 Q26 7 30 7 L30 18 Q30 27 18 33 Q6 27 6 18 L6 7 Q10 7 18 3 Z" stroke-width="1.5" fill="none"/>
-              <path d="M12 18 Q14 21 16 22 Q20 17 24 14" stroke-width="1.5" fill="none"/>
+              <path d="M18 3 Q26 7 30 7 L30 18 Q30 27 18 33 Q6 27 6 18 L6 7 Q10 7 18 3 Z" stroke-width="2" fill="none"/>
+              <path d="M12 18 Q14 21 16 22 Q20 17 24 14" stroke-width="2" fill="none"/>
             </g>
             <g filter="url(#glow-shield-lg)" stroke="#E07838" stroke-linecap="round" stroke-linejoin="round">
               <path d="M18 3 Q26 7 30 7 L30 18 Q30 27 18 33 Q6 27 6 18 L6 7 Q10 7 18 3 Z" stroke-width="1.0" fill="none"/>
@@ -343,16 +976,78 @@
   </div>
 </section>
 
+<!-- ── Reviews ── -->
+<section class="reviews-section" id="reviews">
+  <div class="container">
+    <h2 class="section-title">Client Reviews</h2>
+
+    <div class="reviews-carousel-wrap">
+      <button class="carousel-btn carousel-btn-prev" aria-label="Previous review">
+        <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M13 4L7 10L13 16" stroke="#A76D45" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+
+      <div class="reviews-carousel" id="reviewsCarousel">
+
+        <div class="review-card">
+          <div class="review-header">
+            <div class="reviewer-avatar">N</div>
+            <div class="reviewer-info">
+              <div class="reviewer-name">Nadiya Skhab</div>
+              <div class="reviewer-meta">June 10, 2026 · via Google</div>
+            </div>
+            <div class="review-stars">★★★★★</div>
+          </div>
+          <p class="review-text">"Thank you, Yuriy, for your timely and excellent work with our tax filing. Your professionalism, attention to detail, and dedication made the entire process smooth and stress-free. We truly appreciate your expertise, reliability, and willingness to help. It is a pleasure working with someone so knowledgeable and responsible."</p>
+          <a href="https://share.google/P7KBfiIXCggnhpga6" target="_blank" rel="noopener" class="review-link">View on Google →</a>
+        </div>
+
+        <div class="review-card">
+          <div class="review-header">
+            <div class="reviewer-avatar">O</div>
+            <div class="reviewer-info">
+              <div class="reviewer-name">Оксана Нестерук</div>
+              <div class="reviewer-meta">June 8, 2026 · via Google</div>
+            </div>
+            <div class="review-stars">★★★★★</div>
+          </div>
+          <p class="review-text">"Why do I recommend and will recommend this accounting company to everyone? Because I have been a client of this company for a long time. This is an accountant who will ALWAYS make a full and detailed analysis of your activities. He will point out the shortcomings, find the best possible solutions to your issue, and warn about all the possible consequences of your activities."</p>
+          <a href="https://share.google/3W6WtHuxgzjwaa1M0" target="_blank" rel="noopener" class="review-link">View on Google →</a>
+        </div>
+
+      </div>
+
+      <button class="carousel-btn carousel-btn-next" aria-label="Next review">
+        <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M7 4L13 10L7 16" stroke="#A76D45" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+    </div>
+
+    <div class="reviews-dots" id="reviewsDots"></div>
+
+    <div class="reviews-cta">
+      <a href="https://share.google/2QQOuX1PEvF26DStp" target="_blank" rel="noopener" class="reviews-cta-link">
+        <span>5.0 ★★★★★</span> · See all reviews on Google
+      </a>
+    </div>
+
+  </div>
+</section>
+
+</main>
+
 <footer class="footer-section" id="contacts">
   <div class="container">
-    <div style="display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:28px;">
-      <div class="logo">
+    <div class="footer-inner">
+      <a href="/" class="logo" style="text-decoration:none;">
         <img src="/logo.webp" alt="B-Stage Bookkeeping Logo" style="height:42px;">
         <div style="display:flex;flex-direction:column;line-height:1;">
           <span style="color:#A76D45;font-weight:700;">B-STAGE</span>
           <span style="color:#D59469;font-size:0.7rem;letter-spacing:1px;">BOOKKEEPING</span>
         </div>
-      </div>
+      </a>
       <div style="display:flex;gap:64px;align-items:flex-start;">
         <!-- Contacts -->
         <div style="display:flex;flex-direction:column;align-items:flex-end;gap:10px;">
@@ -364,16 +1059,17 @@
         <div class="footer-nav-block" style="flex-direction:column;align-items:flex-end;gap:10px;display:flex;">
           <span style="font-size:0.72rem;text-transform:uppercase;letter-spacing:2px;color:rgba(167,109,69,0.6);font-weight:500;">Navigation</span>
           <nav style="display:flex;gap:32px;">
-            <a href="#" style="color:#fff;text-decoration:none;font-size:0.85rem;transition:color 0.3s;" onmouseover="this.style.color='#A76D45'" onmouseout="this.style.color='#fff'">Home</a>
             <a href="#services" style="color:#fff;text-decoration:none;font-size:0.85rem;transition:color 0.3s;" onmouseover="this.style.color='#A76D45'" onmouseout="this.style.color='#fff'">Services</a>
             <a href="#approach" style="color:#fff;text-decoration:none;font-size:0.85rem;transition:color 0.3s;" onmouseover="this.style.color='#A76D45'" onmouseout="this.style.color='#fff'">Approach</a>
+            <a href="/pricing" style="color:#fff;text-decoration:none;font-size:0.85rem;transition:color 0.3s;" onmouseover="this.style.color='#A76D45'" onmouseout="this.style.color='#fff'">Pricing</a>
+            <a href="/about" style="color:#fff;text-decoration:none;font-size:0.85rem;transition:color 0.3s;" onmouseover="this.style.color='#A76D45'" onmouseout="this.style.color='#fff'">About</a>
             <a href="#contacts" style="color:#fff;text-decoration:none;font-size:0.85rem;transition:color 0.3s;" onmouseover="this.style.color='#A76D45'" onmouseout="this.style.color='#fff'">Contacts</a>
           </nav>
         </div>
       </div>
     </div>
     <div style="border-top:1px solid rgba(167,109,69,0.15);padding-top:20px;">
-      <p style="color:rgba(255,255,255,0.38);font-size:0.82rem;line-height:1.7;text-align:center;max-width:860px;margin:0 auto;">B-Stage provides operational bookkeeping and management support. We are not a CPA firm and do not provide legal or tax advice. We bridge the gap between your daily operations and your accountant's requirements.</p>
+      <p style="color:rgba(255,255,255,0.38);font-size:0.82rem;line-height:1.7;text-align:center;max-width:860px;margin:0 auto;font-style:italic;">B-Stage provides operational bookkeeping and management support. We are not a CPA firm and do not provide legal or tax advice. We bridge the gap between your daily operations and your accountant's requirements — so nothing falls through the cracks.</p>
       <div class="footer-bottom">© 2026 B-Stage Bookkeeping. All rights reserved.</div>
     </div>
   </div>
@@ -419,6 +1115,323 @@
 
 <!-- Toast -->
 <div class="toast" id="toast"></div>
-  <script src="script.js"></script>
+
+<!-- ── Scroll to top ── -->
+<button class="scroll-top-btn" id="scrollTopBtn" aria-label="Scroll to top" onclick="smoothScrollTop()">
+  <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M4 13L10 7L16 13" stroke="#A76D45" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  </svg>
+</button>
+
+<script>
+/* ── Canvas ── */
+const cv=document.getElementById('c'),cx=cv ? cv.getContext('2d') : null,W=800,H=640,OFFSET_Y=80;
+let pauseCanvas = false;
+// Don't run canvas on mobile
+if(cv && window.getComputedStyle(cv).display === 'none') pauseCanvas = true;
+const CL=[213,148,105],CM=[167,109,69],CD=[90,45,15],CB=[12,5,1];
+function r(c,a=1){return `rgba(${c[0]},${c[1]},${c[2]},${a})`;}
+function drawBgGlobal(){cx.clearRect(0,0,W,H);cx.strokeStyle=r(CM,0.04);cx.lineWidth=0.5;for(let x=0;x<W;x+=35){cx.beginPath();cx.moveTo(x,0);cx.lineTo(x,H);cx.stroke();}for(let y=0;y<H;y+=35){cx.beginPath();cx.moveTo(0,y);cx.lineTo(W,y);cx.stroke();}}
+const MC={ox:145,oy:25,scale:0.9,W:500,H:320,bars:[22,42,62,45,55,78,100],BW:44,GAP:14};
+MC.AX=45;MC.AY=20;MC.AW=430;MC.AH=250;MC.BASE=MC.AY+MC.AH;MC.totalW=MC.bars.length*(MC.BW+MC.GAP)-MC.GAP;MC.SX=MC.AX+(MC.AW-MC.totalW)/2;
+function mc_bx(i){return MC.SX+i*(MC.BW+MC.GAP);}function mc_bcx(i){return mc_bx(i)+MC.BW/2;}function mc_topY(i){return MC.BASE-(MC.bars[i]/100)*MC.AH;}
+function mc_getCurveY(pts,x){if(!pts||pts.length<2)return MC.BASE;for(let i=1;i<pts.length;i++){if(pts[i].x>=x){const a=pts[i-1],b=pts[i],t=(x-a.x)/(b.x-a.x+0.001);return a.y+(b.y-a.y)*t;}}return pts[pts.length-1].y;}
+function mc_buildCurve(p){const prog=Math.min(1,p*1.2);const allPts=[{x:MC.SX-40,y:MC.BASE-MC.AH*0.02},{x:MC.SX+MC.totalW*0.28+15,y:MC.BASE-MC.AH*0.30},{x:MC.SX+MC.totalW*0.52+45,y:MC.BASE-MC.AH*0.16},{x:MC.SX+MC.totalW+40,y:MC.BASE-MC.AH*0.72}];const endX=allPts[0].x+(allPts[allPts.length-1].x-allPts[0].x)*prog;const pts=[];for(let i=0;i<allPts.length-1;i++){const p0=allPts[Math.max(0,i-1)],p1=allPts[i],p2=allPts[i+1],p3=allPts[Math.min(allPts.length-1,i+2)];for(let s=(i===0?0:1);s<=80;s++){const t=s/80,t2=t*t,t3=t2*t;const px=0.5*((2*p1.x)+(-p0.x+p2.x)*t+(2*p0.x-5*p1.x+4*p2.x-p3.x)*t2+(-p0.x+3*p1.x-3*p2.x+p3.x)*t3);const py=0.5*((2*p1.y)+(-p0.y+p2.y)*t+(2*p0.y-5*p1.y+4*p2.y-p3.y)*t2+(-p0.y+3*p1.y-3*p2.y+p3.y)*t3);if(px>endX)break;pts.push({x:px,y:py});}}return pts;}
+function mc_drawBar(i,p,curvePts){const bp=Math.max(0,Math.min(1,p*MC.bars.length-i*0.35));const animH=(MC.bars[i]/100)*MC.AH*bp;if(animH<1)return;const x=mc_bx(i),y=MC.BASE-animH;const cyL=mc_getCurveY(curvePts,x),cyR=mc_getCurveY(curvePts,x+MC.BW),curveY=mc_getCurveY(curvePts,x+MC.BW/2);const bp2=new Path2D();bp2.rect(x,y,MC.BW,animH);cx.save();cx.shadowColor=r(CM,0.5);cx.shadowBlur=18;cx.fillStyle=r(CM,0);cx.fill(bp2);cx.shadowBlur=0;cx.save();cx.clip(bp2);let hG=cx.createLinearGradient(x,0,x+MC.BW,0);hG.addColorStop(0,r(CD,0.85));hG.addColorStop(0.15,r(CM,0.55));hG.addColorStop(0.45,r(CL,0.40));hG.addColorStop(0.65,r(CM,0.45));hG.addColorStop(1,r(CD,0.80));cx.fillStyle=hG;cx.fillRect(x,y,MC.BW,animH);let vG=cx.createLinearGradient(x,y,x,MC.BASE);vG.addColorStop(0,'rgba(0,0,0,0.35)');vG.addColorStop(0.4,'rgba(0,0,0,0.1)');vG.addColorStop(0.75,r(CM,0.15));vG.addColorStop(1,r(CL,0.35));cx.fillStyle=vG;cx.fillRect(x,y,MC.BW,animH);cx.restore();cx.save();cx.clip(bp2);cx.beginPath();cx.moveTo(x,Math.max(cyL,y));cx.lineTo(x+MC.BW,Math.max(cyR,y));cx.lineTo(x+MC.BW,MC.BASE);cx.lineTo(x,MC.BASE);cx.closePath();let dk=cx.createLinearGradient(x,curveY,x,MC.BASE);dk.addColorStop(0,'rgba(0,0,0,0.45)');dk.addColorStop(0.6,'rgba(0,0,0,0.72)');dk.addColorStop(1,'rgba(0,0,0,0.88)');cx.fillStyle=dk;cx.fill();cx.restore();cx.save();cx.clip(bp2);let lsh=cx.createLinearGradient(x,y,x,MC.BASE);lsh.addColorStop(0,r(CL,0.9));lsh.addColorStop(0.3,r(CM,0.7));lsh.addColorStop(0.7,r(CD,0.5));lsh.addColorStop(1,r(CL,0.8));cx.fillStyle=lsh;cx.fillRect(x,y,MC.BW*0.04,animH);let tsh=cx.createLinearGradient(0,y,0,y+16);tsh.addColorStop(0,'rgba(255,255,255,0.4)');tsh.addColorStop(1,'rgba(255,255,255,0)');cx.fillStyle=tsh;cx.fillRect(x,y,MC.BW,16);cx.restore();cx.save();cx.shadowColor=r(CL,0.5);cx.shadowBlur=6;cx.strokeStyle=r(CL,0.3);cx.lineWidth=0.7;cx.strokeRect(x,y,MC.BW,animH);cx.restore();cx.restore();}
+function mc_drawCurve(pts){if(!pts||pts.length<2)return;cx.save();cx.beginPath();cx.moveTo(pts[0].x,pts[0].y);for(let i=1;i<pts.length;i++)cx.lineTo(pts[i].x,pts[i].y);cx.shadowColor=r(CM,0.8);cx.shadowBlur=18;cx.strokeStyle=r(CD,0.6);cx.lineWidth=7;cx.stroke();cx.shadowBlur=10;cx.strokeStyle=r(CM,0.85);cx.lineWidth=4;cx.stroke();cx.shadowBlur=6;cx.strokeStyle=r(CL,0.55);cx.lineWidth=1.5;cx.stroke();cx.restore();}
+function mc_drawArrow(p){const x1=mc_bcx(0),y1=mc_topY(0)-30,x2=mc_bcx(6)+10,y2=mc_topY(6)-45;const knots=[{x:x1,y:y1},{x:mc_bcx(2),y:mc_topY(2)-27},{x:mc_bcx(3),y:mc_topY(3)-25},{x:x2,y:y2}];const tot=knots.length-1,maxPt=p*tot,maxI=Math.floor(maxPt),frac=maxPt-maxI;cx.save();cx.shadowColor=r(CL,0.9);cx.shadowBlur=20;cx.strokeStyle=r(CL,0.95);cx.lineWidth=2;cx.lineJoin='round';cx.lineCap='round';cx.beginPath();cx.moveTo(knots[0].x,knots[0].y);for(let i=1;i<=Math.min(maxI,tot);i++)cx.lineTo(knots[i].x,knots[i].y);if(frac>0&&maxI<tot){const a=knots[maxI],b=knots[maxI+1];cx.lineTo(a.x+(b.x-a.x)*frac,a.y+(b.y-a.y)*frac);}cx.stroke();[1,2].forEach(idx=>{if(p*tot>=idx+0.1){const pt=knots[idx];cx.shadowBlur=18;cx.beginPath();cx.arc(pt.x,pt.y,10,0,Math.PI*2);cx.fillStyle=r(CL,0.12);cx.fill();cx.shadowBlur=14;cx.beginPath();cx.arc(pt.x,pt.y,5,0,Math.PI*2);cx.fillStyle=r(CL,0.9);cx.fill();}});if(p>0.95){const last=knots[knots.length-1],prev=knots[knots.length-2];const ang=Math.atan2(last.y-prev.y,last.x-prev.x),al=16;cx.shadowBlur=20;cx.fillStyle=r(CL,1);cx.beginPath();cx.moveTo(last.x,last.y);cx.lineTo(last.x-Math.cos(ang-0.35)*al,last.y-Math.sin(ang-0.35)*al);cx.lineTo(last.x-Math.cos(ang+0.35)*al,last.y-Math.sin(ang+0.35)*al);cx.closePath();cx.fill();}cx.restore();}
+const SC={ox:70,oy:230,scale:0.52,W:340,H:215,PX:15,PY:15,PW:310,PH:180};SC.AX=SC.PX+35;SC.AY=SC.PY+12;SC.AW=SC.PW-48;SC.AH=SC.PH-24;SC.BASE=SC.AY+SC.AH;const SC_bars=[42,58,74,88],SC_BW=28,SC_GAP=14,SC_totalW=SC_bars.length*(SC_BW+SC_GAP)-SC_GAP;
+function sc_drawPanel(){cx.save();cx.beginPath();cx.roundRect(SC.PX,SC.PY,SC.PW,SC.PH,8);let pg=cx.createLinearGradient(SC.PX,SC.PY,SC.PX+SC.PW,SC.PY+SC.PH);pg.addColorStop(0,'rgba(35,20,8,0.75)');pg.addColorStop(0.5,'rgba(20,11,4,0.82)');pg.addColorStop(1,'rgba(12,6,2,0.88)');cx.fillStyle=pg;cx.fill();cx.strokeStyle=r(CL,0.3);cx.lineWidth=1;cx.stroke();cx.beginPath();cx.roundRect(SC.PX+1,SC.PY+1,SC.PW-2,40,[8,8,0,0]);let ts=cx.createLinearGradient(0,SC.PY,0,SC.PY+40);ts.addColorStop(0,'rgba(255,255,255,0.08)');ts.addColorStop(1,'rgba(255,255,255,0)');cx.fillStyle=ts;cx.fill();cx.restore();}
+function sc_drawAxes(){cx.save();cx.setLineDash([2,5]);cx.strokeStyle=r(CM,0.18);cx.lineWidth=0.6;[0.25,0.5,0.75,1].forEach(f=>{const y=SC.BASE-SC.AH*f;cx.beginPath();cx.moveTo(SC.AX,y);cx.lineTo(SC.AX+SC.AW,y);cx.stroke();});cx.setLineDash([]);cx.strokeStyle=r(CM,0.3);cx.lineWidth=1;cx.beginPath();cx.moveTo(SC.AX,SC.BASE);cx.lineTo(SC.AX+SC.AW,SC.BASE);cx.stroke();cx.beginPath();cx.moveTo(SC.AX,SC.AY);cx.lineTo(SC.AX,SC.BASE);cx.stroke();cx.fillStyle=r(CM,0.4);cx.font='9px monospace';cx.textAlign='right';['25','50','75','100'].forEach((l,i)=>cx.fillText(l,SC.AX-5,SC.BASE-SC.AH*(i+1)*0.25+3));cx.restore();}
+function sc_drawBars(p){const startX=SC.AX+(SC.AW-SC_totalW)/2,midX=startX+SC_totalW*0.65;let glow=cx.createRadialGradient(midX,SC.BASE,0,midX,SC.BASE-60,160);glow.addColorStop(0,r(CL,0.35*p));glow.addColorStop(0.4,r(CM,0.12*p));glow.addColorStop(1,'rgba(0,0,0,0)');cx.fillStyle=glow;cx.fillRect(SC.AX,SC.AY,SC.AW,SC.AH+10);SC_bars.forEach((h,i)=>{const bp=Math.max(0,Math.min(1,p*SC_bars.length-i*0.6));const animH=(h/100)*SC.AH*bp;if(animH<1)return;const bx=startX+i*(SC_BW+SC_GAP),by=SC.BASE-animH;cx.save();const bp2=new Path2D();bp2.rect(bx,by,SC_BW,animH);cx.shadowColor=r(CL,0.9);cx.shadowBlur=22;cx.save();cx.clip(bp2);let grad=cx.createRadialGradient(bx+SC_BW/2,SC.BASE,0,bx+SC_BW/2,SC.BASE,animH*1.3);grad.addColorStop(0,r(CM,0.15));grad.addColorStop(0.45,r(CL,0.30));grad.addColorStop(1,r(CL,0.40));cx.fillStyle=grad;cx.fillRect(bx,by,SC_BW,animH);let shine=cx.createLinearGradient(0,by,0,by+animH*0.45);shine.addColorStop(0,r(CL,0.18));shine.addColorStop(1,'rgba(0,0,0,0)');cx.fillStyle=shine;cx.fillRect(bx,by,SC_BW,animH*0.45);let lsh=cx.createLinearGradient(bx,by,bx,SC.BASE);lsh.addColorStop(0,r(CL,0.55));lsh.addColorStop(0.4,r(CM,0.35));lsh.addColorStop(1,r(CD,0.2));cx.fillStyle=lsh;cx.fillRect(bx,by,SC_BW*0.04,animH);cx.restore();cx.shadowColor=r(CL,0.8);cx.shadowBlur=22;cx.strokeStyle=r(CL,0.55);cx.lineWidth=1.2;cx.stroke(bp2);cx.restore();});const ghostH=(90/100)*SC.AH,ghostX=startX+4*(SC_BW+SC_GAP),ghostY=SC.BASE-ghostH,ghostP=Math.max(0,Math.min(1,(p-0.6)*2.5));if(ghostP>0){cx.save();let gf=cx.createLinearGradient(ghostX,ghostY,ghostX,SC.BASE);gf.addColorStop(0,r(CL,0.12*ghostP));gf.addColorStop(0.4,r(CM,0.08*ghostP));gf.addColorStop(1,'rgba(0,0,0,0)');cx.fillStyle=gf;cx.beginPath();cx.roundRect(ghostX,ghostY,SC_BW,ghostH,[3,3,0,0]);cx.fill();cx.shadowColor=r(CL,0.3*ghostP);cx.shadowBlur=6;cx.strokeStyle=r(CL,0.18*ghostP);cx.lineWidth=0.6;cx.beginPath();cx.roundRect(ghostX,ghostY,SC_BW,ghostH,[3,3,0,0]);cx.stroke();cx.restore();}}
+const SB={ox:240,oy:289,scale:0.55,AX:48,AY:18,AW:252,AH:120,BASE:138};const SB_bars=[52,64,78,92],SB_BW=32,SB_GAP=18,SB_totalW=SB_bars.length*(SB_BW+SB_GAP)-SB_GAP,SB_SX=SB.AX+(SB.AW-SB_totalW)/2;
+function sb_drawAxes(){cx.save();cx.setLineDash([2,5]);cx.strokeStyle=r(CM,0.32);cx.lineWidth=0.7;[0.25,0.5,0.75,1].forEach(f=>{const y=SB.BASE-SB.AH*f;cx.beginPath();cx.moveTo(SB.AX,y);cx.lineTo(SB.AX+SB.AW,y);cx.stroke();});cx.setLineDash([]);cx.shadowColor=r(CL,0.9);cx.shadowBlur=10;cx.strokeStyle=r(CL,0.75);cx.lineWidth=1.4;cx.beginPath();cx.moveTo(SB.AX,SB.BASE);cx.lineTo(SB.AX+SB.AW,SB.BASE);cx.stroke();cx.shadowBlur=22;cx.strokeStyle=r(CM,0.35);cx.lineWidth=3.5;cx.beginPath();cx.moveTo(SB.AX,SB.BASE);cx.lineTo(SB.AX+SB.AW,SB.BASE);cx.stroke();cx.shadowBlur=0;cx.shadowColor=r(CL,0.8);cx.shadowBlur=8;cx.strokeStyle=r(CL,0.65);cx.lineWidth=1.2;cx.beginPath();cx.moveTo(SB.AX,SB.AY);cx.lineTo(SB.AX,SB.BASE);cx.stroke();cx.shadowBlur=18;cx.strokeStyle=r(CM,0.28);cx.lineWidth=3;cx.beginPath();cx.moveTo(SB.AX,SB.AY);cx.lineTo(SB.AX,SB.BASE);cx.stroke();cx.restore();}
+function sb_drawBars(p){const LIFT=14;SB_bars.forEach((h,i)=>{const isActive=i===3,bp=Math.max(0,Math.min(1,p*SB_bars.length-i*0.5)),animH=(h/100)*SB.AH*bp;if(animH<1)return;const bx=SB_SX+i*(SB_BW+SB_GAP),by=SB.BASE-animH-LIFT;cx.save();const bp2=new Path2D();bp2.rect(bx,by,SB_BW,animH);if(isActive){cx.shadowColor=r(CL,0.9);cx.shadowBlur=22;cx.save();cx.clip(bp2);let grad=cx.createRadialGradient(bx+SB_BW/2,SB.BASE,0,bx+SB_BW/2,SB.BASE,animH*1.3);grad.addColorStop(0,r(CM,0.15));grad.addColorStop(0.45,r(CL,0.30));grad.addColorStop(1,r(CL,0.40));cx.fillStyle=grad;cx.fillRect(bx,by,SB_BW,animH);let shine=cx.createLinearGradient(0,by,0,by+animH*0.45);shine.addColorStop(0,r(CL,0.18));shine.addColorStop(1,'rgba(0,0,0,0)');cx.fillStyle=shine;cx.fillRect(bx,by,SB_BW,animH*0.45);cx.restore();cx.shadowColor=r(CL,0.8);cx.shadowBlur=22;cx.strokeStyle=r(CL,0.55);cx.lineWidth=1.2;cx.stroke(bp2);}else{cx.save();cx.clip(bp2);let grad=cx.createRadialGradient(bx+SB_BW/2,SB.BASE,0,bx+SB_BW/2,by,animH);grad.addColorStop(0,r(CD,0.2));grad.addColorStop(0.5,r(CM,0.1));grad.addColorStop(1,r(CL,0.06));cx.fillStyle=grad;cx.fillRect(bx,by,SB_BW,animH);cx.restore();cx.shadowColor=r(CL,0.3);cx.shadowBlur=4;cx.strokeStyle=r(CL,0.22);cx.lineWidth=0.8;cx.stroke(bp2);}cx.restore();});const x1=SB_SX+SB_BW/2,y1=SB.BASE-(SB_bars[0]/100)*SB.AH-22-14,x2=SB_SX+2.5*(SB_BW+SB_GAP)+SB_BW/2,y2=SB.BASE-(SB_bars[3]/100)*SB.AH*0.85-32-14,cpx=x1+(x2-x1)*0.5,cpy=y1+(y2-y1)*0.5+22;cx.save();cx.shadowColor=r(CL,0.7);cx.shadowBlur=35;cx.strokeStyle=r(CM,0.25);cx.lineWidth=4;cx.beginPath();const steps=80,maxStep=Math.floor(steps*p);for(let i=0;i<=maxStep;i++){const t=i/steps,mt=1-t;const bx2=mt*mt*x1+2*mt*t*cpx+t*t*x2,by2=mt*mt*y1+2*mt*t*cpy+t*t*y2;if(i===0)cx.moveTo(bx2,by2);else cx.lineTo(bx2,by2);}cx.stroke();cx.shadowBlur=8;cx.strokeStyle=r(CL,0.7);cx.lineWidth=0.8;cx.beginPath();for(let i=0;i<=maxStep;i++){const t=i/steps,mt=1-t;const bx2=mt*mt*x1+2*mt*t*cpx+t*t*x2,by2=mt*mt*y1+2*mt*t*cpy+t*t*y2;if(i===0)cx.moveTo(bx2,by2);else cx.lineTo(bx2,by2);}cx.stroke();if(p>0.92){const t1=0.96,mt1=1-t1,bxa=mt1*mt1*x1+2*mt1*t1*cpx+t1*t1*x2,bya=mt1*mt1*y1+2*mt1*t1*cpy+t1*t1*y2,ang=Math.atan2(y2-bya,x2-bxa),al=10;cx.shadowBlur=15;cx.strokeStyle=r(CL,0.7);cx.lineWidth=1.5;cx.beginPath();cx.moveTo(x2,y2);cx.lineTo(x2-Math.cos(ang-0.42)*al,y2-Math.sin(ang-0.42)*al);cx.moveTo(x2,y2);cx.lineTo(x2-Math.cos(ang+0.42)*al,y2-Math.sin(ang+0.42)*al);cx.stroke();}cx.restore();}
+const PIE={ox:75,oy:30,scale:0.648,CX:100,CY:100,RAD:72,GAP:0.055};const pie_segs=[{pct:25,filled:true},{pct:23},{pct:10},{pct:15},{pct:27}];const pie_activeSweep=(pie_segs[0].pct/100)*Math.PI*2,pie_activeCenter=-Math.PI/4,pie_startAngle=pie_activeCenter-pie_activeSweep/2;
+function pie_draw(p){let angle=pie_startAngle;const segAngles=[];pie_segs.forEach(seg=>{const tot=(seg.pct/100)*Math.PI*2;segAngles.push({start:angle,sweep:tot-PIE.GAP,seg});angle+=tot;});segAngles.forEach(({start,sweep,seg},i)=>{const segP=Math.max(0,Math.min(1,p*pie_segs.length-i*0.4)),animSweep=sweep*segP;if(animSweep<=0)return;cx.save();let ox=0,oy=0;if(seg.filled){const mid=start+sweep/2,off=7;ox=Math.cos(mid)*off;oy=Math.sin(mid)*off;cx.shadowColor=r(CL,0.8);cx.shadowBlur=22;}cx.beginPath();cx.moveTo(PIE.CX+ox,PIE.CY+oy);cx.arc(PIE.CX+ox,PIE.CY+oy,PIE.RAD,start,start+animSweep);cx.closePath();if(seg.filled){let grad=cx.createRadialGradient(PIE.CX+ox,PIE.CY+oy,0,PIE.CX+ox,PIE.CY+oy,PIE.RAD);grad.addColorStop(0,r(CM,0.15));grad.addColorStop(0.5,r(CL,0.25));grad.addColorStop(1,r(CL,0.35));cx.fillStyle=grad;cx.fill();cx.beginPath();cx.moveTo(PIE.CX+ox,PIE.CY+oy);cx.arc(PIE.CX+ox,PIE.CY+oy,PIE.RAD,start,start+animSweep*0.45);cx.closePath();cx.fillStyle=r(CL,0.12);cx.fill();cx.beginPath();cx.moveTo(PIE.CX+ox,PIE.CY+oy);cx.arc(PIE.CX+ox,PIE.CY+oy,PIE.RAD,start,start+animSweep);cx.closePath();cx.strokeStyle=r(CL,0.55);cx.lineWidth=1.2;cx.stroke();}else{let grad=cx.createRadialGradient(PIE.CX,PIE.CY,0,PIE.CX,PIE.CY,PIE.RAD);grad.addColorStop(0,r(CD,0.2));grad.addColorStop(1,r(CM,0.08));cx.fillStyle=grad;cx.fill();cx.beginPath();cx.moveTo(PIE.CX,PIE.CY);cx.arc(PIE.CX,PIE.CY,PIE.RAD,start,start+animSweep);cx.closePath();cx.strokeStyle=r(CL,0.18);cx.lineWidth=0.8;cx.stroke();}cx.restore();});cx.save();angle=pie_startAngle;pie_segs.forEach(seg=>{const tot=(seg.pct/100)*Math.PI*2;cx.strokeStyle='rgb(5,3,2)';cx.lineWidth=4;cx.lineCap='butt';cx.beginPath();cx.moveTo(PIE.CX,PIE.CY);cx.lineTo(PIE.CX+Math.cos(angle)*(PIE.RAD+2),PIE.CY+Math.sin(angle)*(PIE.RAD+2));cx.stroke();angle+=tot;});cx.restore();}
+const LP={ox:40,oy:120,scale:0.765,W:160,H:200,rows:4,PX:14,PY:30,ROW_H:26};LP.PH=LP.rows*LP.ROW_H;LP.VBX=LP.W-22;LP.VBY=LP.PY-4;LP.VBH=LP.PH+8;
+function lp_draw(p){for(let i=0;i<LP.rows;i++){const prog=Math.max(0,Math.min(1,p*LP.rows-i*0.5));if(prog<=0)continue;const ry=LP.PY+i*LP.ROW_H,dotX=LP.PX+6,dotY=ry+LP.ROW_H/2;cx.save();cx.globalAlpha=prog;let dg=cx.createRadialGradient(dotX,dotY,0,dotX,dotY,8);dg.addColorStop(0,r(CL,0.35));dg.addColorStop(1,'rgba(0,0,0,0)');cx.fillStyle=dg;cx.fillRect(dotX-8,dotY-8,16,16);cx.beginPath();cx.arc(dotX,dotY,3,0,Math.PI*2);let dotG=cx.createRadialGradient(dotX-1,dotY-1,0,dotX,dotY,3);dotG.addColorStop(0,r(CL,0.95));dotG.addColorStop(1,r(CM,0.55));cx.fillStyle=dotG;cx.fill();cx.restore();cx.save();cx.globalAlpha=prog;const lx=LP.PX+18,maxW=LP.VBX-lx-10,lw1=maxW*(0.6+i*0.06),lw2=maxW*(0.35+i*0.04);let lg1=cx.createLinearGradient(lx,0,lx+lw1,0);lg1.addColorStop(0,r(CL,0.6));lg1.addColorStop(1,r(CL,0.04));cx.fillStyle=lg1;cx.beginPath();cx.roundRect(lx,dotY-5,lw1,3.5,2);cx.fill();let lg2=cx.createLinearGradient(lx,0,lx+lw2,0);lg2.addColorStop(0,r(CM,0.38));lg2.addColorStop(1,r(CM,0.02));cx.fillStyle=lg2;cx.beginPath();cx.roundRect(lx,dotY+2,lw2,2.5,2);cx.fill();cx.restore();}cx.save();let vg=cx.createLinearGradient(0,LP.VBY,0,LP.VBY+LP.VBH);vg.addColorStop(0,r(CL,0.25));vg.addColorStop(0.5,r(CM,0.18));vg.addColorStop(1,r(CD,0.05));cx.fillStyle=vg;cx.beginPath();cx.roundRect(LP.VBX,LP.VBY,4,LP.VBH*p,2);cx.fill();cx.restore();}
+function drawGearShape(gx,gy,outerR,innerR,holeR,teeth,angle,bearing=false,glass=false,grey=false,brightHole=false){cx.save();cx.translate(gx,gy);cx.rotate(angle);const TAU=Math.PI*2,step=TAU/teeth,half=step*0.5,trap=half*0.1;let og=cx.createRadialGradient(0,0,innerR,0,0,outerR*1.5);og.addColorStop(0,r(CM,0.2));og.addColorStop(1,'rgba(0,0,0,0)');cx.fillStyle=og;cx.beginPath();cx.arc(0,0,outerR*1.5,0,TAU);cx.fill();cx.beginPath();for(let i=0;i<teeth;i++){const a=(i/teeth)*TAU-Math.PI/2;cx.arc(0,0,innerR,a,a+half);cx.lineTo(Math.cos(a+half+trap)*outerR,Math.sin(a+half+trap)*outerR);cx.arc(0,0,outerR,a+half+trap,a+step-trap);cx.lineTo(Math.cos(a+step)*innerR,Math.sin(a+step)*innerR);}cx.closePath();if(glass){let mf;if(grey){mf=cx.createRadialGradient(-outerR*0.15,-outerR*0.2,0,0,0,outerR);mf.addColorStop(0,'rgba(180,180,185,0.13)');mf.addColorStop(0.5,'rgba(130,130,140,0.09)');mf.addColorStop(1,'rgba(80,80,90,0.12)');}else{mf=cx.createRadialGradient(-outerR*0.15,-outerR*0.2,0,0,0,outerR);mf.addColorStop(0,r(CL,0.04));mf.addColorStop(0.5,r(CM,0.06));mf.addColorStop(1,r(CD,0.10));}cx.fillStyle=mf;cx.fill();let hl=cx.createLinearGradient(-outerR*0.6,-outerR*0.7,outerR*0.1,outerR*0.1);hl.addColorStop(0,grey?'rgba(220,220,230,0.16)':'rgba(255,210,160,0.13)');hl.addColorStop(0.4,grey?'rgba(180,180,190,0.07)':'rgba(255,185,110,0.05)');hl.addColorStop(1,'rgba(0,0,0,0)');cx.fillStyle=hl;cx.fill();}else{let mf=cx.createRadialGradient(-outerR*0.2,-outerR*0.25,0,0,0,outerR);mf.addColorStop(0,r(CM,0.92));mf.addColorStop(0.3,r(CD,0.82));mf.addColorStop(0.7,r([50,22,6],0.9));mf.addColorStop(1,r(CB,0.97));cx.fillStyle=mf;cx.fill();let hl=cx.createLinearGradient(-outerR,-outerR,outerR*0.3,outerR*0.3);hl.addColorStop(0,'rgba(255,200,140,0.22)');hl.addColorStop(0.5,'rgba(255,170,90,0.07)');hl.addColorStop(1,'rgba(0,0,0,0)');cx.fillStyle=hl;cx.fill();}cx.strokeStyle=r(CL,0.55);cx.lineWidth=1.8;cx.stroke();cx.save();cx.globalCompositeOperation='destination-out';cx.beginPath();cx.arc(0,0,holeR,0,TAU);cx.fillStyle='rgba(0,0,0,1)';cx.fill();cx.restore();cx.beginPath();cx.arc(0,0,holeR,0,TAU);if(brightHole){cx.shadowColor=r(CL,1);cx.shadowBlur=14;cx.strokeStyle=r(CL,0.85);cx.lineWidth=2.2;}else{cx.strokeStyle=r(CL,0.4);cx.lineWidth=1.5;}cx.stroke();cx.shadowBlur=0;if(bearing){const raceR=holeR*0.6,band=(holeR-raceR)*0.28,ringOuter=raceR+band,ringInner=raceR-band;cx.beginPath();cx.arc(0,0,ringOuter,0,Math.PI*2);cx.arc(0,0,ringInner,0,Math.PI*2,true);cx.closePath();let rf=cx.createRadialGradient(0,0,ringInner,0,0,ringOuter);rf.addColorStop(0,r(CD,0.2));rf.addColorStop(1,r(CM,0.08));cx.fillStyle=rf;cx.fill();cx.beginPath();cx.arc(0,0,ringOuter,0,Math.PI*2);cx.strokeStyle=r(CL,0.5);cx.lineWidth=1.8;cx.stroke();cx.beginPath();cx.arc(0,0,ringInner,0,Math.PI*2);cx.strokeStyle=r(CL,0.35);cx.lineWidth=1.5;cx.stroke();cx.beginPath();cx.arc(0,0,raceR,0,Math.PI*2);cx.strokeStyle=r(CB,0.55);cx.lineWidth=(ringOuter-ringInner)*0.825;cx.stroke();}cx.restore();}
+function drawGearConnectors(p){if(p<0.75)return;const a=Math.min(1,(p-0.75)/0.25);cx.save();cx.lineCap='round';cx.lineJoin='round';const R=8,OY=OFFSET_Y;{const startX=723,startY=165+OY,rightX=731,endY=254+OY,endX=676;cx.shadowColor=`rgba(255,190,110,${0.95*a})`;cx.shadowBlur=12;cx.strokeStyle=`rgba(255,210,140,${0.98*a})`;cx.lineWidth=1.2;cx.beginPath();cx.moveTo(startX,startY);cx.lineTo(rightX-R,startY);cx.arcTo(rightX,startY,rightX,startY+R,R);cx.lineTo(rightX,endY-R);cx.arcTo(rightX,endY,rightX-R,endY,R);cx.lineTo(endX,endY);cx.stroke();const as=7;cx.fillStyle=`rgba(255,210,140,${0.98*a})`;cx.beginPath();cx.moveTo(endX,endY);cx.lineTo(endX+as*1.2,endY-as*0.55);cx.lineTo(endX+as*1.2,endY+as*0.55);cx.closePath();cx.fill();}{const x1=544,y1=254+OY,xc=521,x2=521,y2=272+OY;cx.shadowColor=`rgba(180,110,50,${0.6*a})`;cx.shadowBlur=7;cx.strokeStyle=`rgba(190,130,70,${0.8*a})`;cx.lineWidth=1.2;cx.beginPath();cx.moveTo(x1,y1);cx.lineTo(xc+R,y1);cx.arcTo(xc,y1,xc,y1+R,R);cx.lineTo(x2,y2);cx.stroke();const as=7;cx.fillStyle=`rgba(190,130,70,${0.8*a})`;cx.beginPath();cx.moveTo(x2,y2);cx.lineTo(x2-as*0.55,y2-as*1.2);cx.lineTo(x2+as*0.55,y2-as*1.2);cx.closePath();cx.fill();}{const startX=700,startY=137+OY,midY=63+OY,bigCX=628,bottomY=171+OY,endX=568,fadeZone=38,seg1=startY-midY,seg2=startX-bigCX,seg3=bottomY-midY,seg4=bigCX-endX,total=seg1+seg2+seg3+seg4,drawn=a*total;const pts=[];for(let i=0;i<=60;i++)pts.push({x:startX,y:startY-(startY-midY)*i/60,d:seg1*i/60});for(let i=1;i<=60;i++)pts.push({x:startX-(startX-bigCX)*i/60,y:midY,d:seg1+seg2*i/60});for(let i=1;i<=60;i++)pts.push({x:bigCX,y:midY+(bottomY-midY)*i/60,d:seg1+seg2+seg3*i/60});for(let i=1;i<=60;i++)pts.push({x:bigCX-(bigCX-endX)*i/60,y:bottomY,d:seg1+seg2+seg3+seg4*i/60});const corners=[seg1,seg1+seg2,seg1+seg2+seg3],getFade=d=>{let m=fadeZone;for(const c of corners)m=Math.min(m,Math.abs(d-c));return Math.min(1,m/fadeZone);};cx.lineWidth=1.2;for(let i=1;i<pts.length;i++){if(pts[i].d>drawn)break;const fade=Math.min(getFade(pts[i-1].d),getFade(pts[i].d)),fa=fade*a;cx.save();cx.shadowColor=`rgba(180,110,50,${fa*0.6})`;cx.shadowBlur=7*fa;cx.strokeStyle=`rgba(190,130,70,${fa*0.8})`;cx.beginPath();cx.moveTo(pts[i-1].x,pts[i-1].y);cx.lineTo(pts[i].x,pts[i].y);cx.stroke();cx.restore();}if(drawn>=total-2){const as=7;cx.save();cx.shadowColor=`rgba(180,110,50,${0.6*a})`;cx.shadowBlur=7;cx.fillStyle=`rgba(190,130,70,${0.8*a})`;cx.beginPath();cx.moveTo(endX,bottomY);cx.lineTo(endX+as*1.2,bottomY-as*0.55);cx.lineTo(endX+as*1.2,bottomY+as*0.55);cx.closePath();cx.fill();cx.restore();}}cx.restore();}
+function drawConnectors(p){if(p<0.8)return;const a=(p-0.8)/0.2;cx.save();const scLeft=85,scBottom=230+180*0.52+OFFSET_Y,sbAxisX=240+48*0.55+10-30,cornerY=scBottom+18;cx.globalAlpha=a*0.65;cx.strokeStyle='rgba(190,128,80,0.85)';cx.lineWidth=1.1;cx.lineCap='round';cx.lineJoin='round';const totalLen=(cornerY-scBottom)+(sbAxisX-scLeft),drawLen=totalLen*Math.min(1,(p-0.5)*2.5),seg1=cornerY-scBottom;cx.beginPath();if(drawLen<=seg1){cx.moveTo(scLeft,scBottom);cx.lineTo(scLeft,scBottom+drawLen);}else{const hLen=drawLen-seg1;cx.moveTo(scLeft,scBottom);cx.lineTo(scLeft,cornerY-6);cx.arcTo(scLeft,cornerY,scLeft+6,cornerY,6);cx.lineTo(scLeft+hLen,cornerY);}cx.stroke();if(drawLen>=totalLen-5){cx.shadowColor='rgba(213,148,105,0.5)';cx.shadowBlur=6;cx.beginPath();cx.moveTo(sbAxisX,cornerY);cx.lineTo(sbAxisX-8,cornerY-5);cx.moveTo(sbAxisX,cornerY);cx.lineTo(sbAxisX-8,cornerY+5);cx.stroke();}cx.restore();}
+
+let gearAngle=0,last=null,startT=null;
+const DUR=2600;
+function ease(t){return 1-Math.pow(1-t,3);}
+function withTransform(ox,oy,scale,fn){cx.save();cx.translate(ox,oy);cx.scale(scale,scale);fn();cx.restore();}
+function resizeCanvas(){const dpr=window.devicePixelRatio||1;cv.width=800*dpr;cv.height=640*dpr;cx.setTransform(dpr,0,0,dpr,0,0);}
+window.addEventListener('resize',resizeCanvas);
+resizeCanvas();
+
+function frame(ts){
+  // Pause canvas when not visible or paused
+  if(pauseCanvas || (cv && cv.getBoundingClientRect().bottom < 0)) {
+    requestAnimationFrame(frame);
+    return;
+  }
+  if(!startT)startT=ts;if(!last)last=ts;
+  const dt=(ts-last)/1000;last=ts;gearAngle+=dt*0.35;
+  const t=Math.min(1,(ts-startT)/DUR),p=ease(t);
+  cx.clearRect(0,0,W,H);drawBgGlobal();
+  cx.save();const gx=W*0.52,gy=H*0.54;let wg=cx.createRadialGradient(gx,gy,0,gx,gy,480);wg.addColorStop(0,`rgba(90,42,12,${0.65*p})`);wg.addColorStop(0.3,`rgba(70,32,8,${0.50*p})`);wg.addColorStop(0.55,`rgba(45,18,4,${0.28*p})`);wg.addColorStop(0.8,`rgba(20,8,2,${0.10*p})`);wg.addColorStop(1,'rgba(0,0,0,0)');cx.fillStyle=wg;cx.fillRect(0,0,W,H);cx.restore();
+  withTransform(MC.ox,MC.oy+OFFSET_Y,MC.scale,()=>{cx.save();cx.shadowColor=r(CL,1);cx.shadowBlur=20;cx.strokeStyle=r(CL,0.9*p);cx.lineWidth=1.5;cx.beginPath();cx.moveTo(MC.SX-10,MC.BASE);cx.lineTo(MC.SX+MC.totalW+10,MC.BASE);cx.stroke();cx.shadowBlur=40;cx.strokeStyle=r(CM,0.4*p);cx.lineWidth=4;cx.stroke();cx.shadowBlur=8;cx.strokeStyle=r(CM,0.3*p);cx.lineWidth=1;cx.beginPath();cx.moveTo(MC.SX-10,MC.AY);cx.lineTo(MC.SX-10,MC.BASE);cx.stroke();cx.restore();const curvePts=mc_buildCurve(p);MC.bars.forEach((_,i)=>mc_drawBar(i,p,curvePts));mc_drawCurve(curvePts);mc_drawArrow(p);});
+  withTransform(SC.ox,SC.oy+OFFSET_Y,SC.scale,()=>{sc_drawPanel();sc_drawAxes();sc_drawBars(p);});
+  withTransform(PIE.ox,PIE.oy+OFFSET_Y,PIE.scale,()=>{pie_draw(p);});
+  withTransform(LP.ox,LP.oy+OFFSET_Y,LP.scale,()=>{lp_draw(p);});
+  withTransform(SB.ox,SB.oy+OFFSET_Y,SB.scale,()=>{sb_drawAxes();sb_drawBars(p);});
+  withTransform(568,5+OFFSET_Y,0.60,()=>{drawGearShape(100,100,110,91,63,8,gearAngle,false,true);});
+  withTransform(670,140+OFFSET_Y,0.255,()=>{drawGearShape(100,100,110,91,63,8,-gearAngle*0.8,false,true,true);});
+  const ratio=85/63;
+  withTransform(490,160+OFFSET_Y,0.72,()=>{drawGearShape(160,130,85,70,51,8,gearAngle,false,true,false,true);drawGearShape(43,217,63,52,38,8,-gearAngle*ratio,true,true);});
+  drawConnectors(p);drawGearConnectors(p);
+  requestAnimationFrame(frame);
+}
+// Only run canvas on desktop
+if(window.innerWidth > 992) requestAnimationFrame(frame);
+
+/* ── Burger menu ── */
+const burger = document.getElementById('burger');
+const navMenu = document.getElementById('nav-menu');
+
+function closeMobileMenu() {
+  burger.classList.remove('open');
+  navMenu.classList.remove('open');
+  const scrollY = parseInt(document.body.style.top || '0') * -1;
+  document.body.style.position = '';
+  document.body.style.top = '';
+  document.body.style.width = '';
+  document.body.style.paddingRight = '';
+  document.querySelector('header').style.paddingRight = '';
+  window.scrollTo(0, scrollY);
+}
+
+burger.addEventListener('click', () => {
+  burger.classList.toggle('open');
+  navMenu.classList.toggle('open');
+  if(navMenu.classList.contains('open')) {
+    const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
+    const scrollY = window.scrollY;
+    document.body.style.paddingRight = scrollbarWidth + 'px';
+    document.querySelector('header').style.paddingRight = scrollbarWidth + 'px';
+    document.body.style.position = 'fixed';
+    document.body.style.top = '-' + scrollY + 'px';
+    document.body.style.width = '100%';
+    // Pause canvas
+    if(typeof pauseCanvas !== 'undefined') pauseCanvas = true;
+  } else {
+    closeMobileMenu();
+    // Resume canvas
+    if(typeof pauseCanvas !== 'undefined') pauseCanvas = false;
+  }
+});
+navMenu.querySelectorAll('a').forEach(link => {
+  link.addEventListener('click', closeMobileMenu);
+});
+
+/* ── Reviews Carousel ── */
+(function(){
+  const carousel = document.getElementById('reviewsCarousel');
+  const dotsWrap = document.getElementById('reviewsDots');
+  if(!carousel) return;
+
+  const cards = carousel.querySelectorAll('.review-card');
+  const isMobile = () => window.innerWidth <= 992;
+  const perPage = () => isMobile() ? 1 : 2;
+  let current = 0;
+
+  const total = () => Math.ceil(cards.length / perPage());
+
+  function buildDots() {
+    dotsWrap.innerHTML = '';
+    for(let i = 0; i < total(); i++) {
+      const d = document.createElement('button');
+      d.className = 'reviews-dot' + (i === current ? ' active' : '');
+      d.addEventListener('click', () => goTo(i));
+      dotsWrap.appendChild(d);
+    }
+  }
+
+  function goTo(idx) {
+    current = Math.max(0, Math.min(idx, total() - 1));
+    const offset = current * perPage();
+    cards.forEach((c, i) => {
+      const visible = i >= offset && i < offset + perPage();
+      c.style.display = visible ? '' : 'none';
+      if(visible) c.style.gridColumn = perPage() === 1 ? '1 / -1' : '';
+    });
+    dotsWrap.querySelectorAll('.reviews-dot').forEach((d, i) => {
+      d.classList.toggle('active', i === current);
+    });
+    document.querySelector('.carousel-btn-prev').disabled = current === 0;
+    document.querySelector('.carousel-btn-next').disabled = current >= total() - 1;
+  }
+
+  document.querySelector('.carousel-btn-prev').addEventListener('click', () => goTo(current - 1));
+  document.querySelector('.carousel-btn-next').addEventListener('click', () => goTo(current + 1));
+
+  buildDots();
+  goTo(0);
+
+  window.addEventListener('resize', () => { buildDots(); goTo(0); });
+})();
+window.addEventListener('scroll',()=>{
+  document.querySelector('header').classList.toggle('scrolled', window.scrollY > 20);
+
+  const sections = [
+    { id: 'nav-home',     top: 0 },
+    { id: 'nav-services', top: document.getElementById('services')?.offsetTop || 9999 },
+    { id: 'nav-approach', top: document.getElementById('approach')?.offsetTop || 9999 },
+    { id: 'nav-contacts', top: document.getElementById('contacts')?.offsetTop || 9999 },
+  ];
+  const scrollY = window.scrollY + 120;
+  let current = 'nav-home';
+  sections.forEach(s => { if(scrollY >= s.top) current = s.id; });
+  document.querySelectorAll('nav a').forEach(a => a.classList.remove('active'));
+  const el = document.getElementById(current);
+  if(el) el.classList.add('active');
+});
+
+/* ── Modal ── */
+function openConsultModal(){
+  document.getElementById('consultModal').classList.add('active');
+  const ciMsg=document.getElementById('ci-msg');
+  const counter=document.getElementById('charCount');
+  counter.textContent=ciMsg.innerText.length;
+}
+function closeConsultModal(){
+  document.getElementById('consultModal').classList.remove('active');
+}
+document.getElementById('consultModal').addEventListener('click',function(e){
+  if(e.target===this) closeConsultModal();
+});
+document.addEventListener('keydown',e=>{ if(e.key==='Escape') closeConsultModal(); });
+
+/* ── Custom Fields ── */
+(function(){
+  const MAX=250;
+  const cfName=document.getElementById('cf-name');
+  const cfContact=document.getElementById('cf-contact');
+  const ciName=document.getElementById('ci-name');
+  const ciContact=document.getElementById('ci-contact');
+  const ciMsg=document.getElementById('ci-msg');
+  const counter=document.getElementById('charCount');
+
+  ciName.addEventListener('input',()=>cfName.classList.remove('invalid'));
+  ciContact.addEventListener('input',()=>cfContact.classList.remove('invalid'));
+
+  ciMsg.addEventListener('input',()=>{
+    const text=ciMsg.innerText;
+    if(text.length>MAX){
+      const sel=window.getSelection();
+      ciMsg.innerText=text.slice(0,MAX);
+      const range=document.createRange();
+      range.selectNodeContents(ciMsg);range.collapse(false);
+      sel.removeAllRanges();sel.addRange(range);
+    }
+    counter.textContent=Math.min(ciMsg.innerText.length,MAX);
+  });
+
+  [ciName,ciContact].forEach(el=>{
+    el.addEventListener('keydown',e=>{if(e.key==='Enter')e.preventDefault();});
+  });
+  [ciName,ciContact,ciMsg].forEach(el=>{
+    el.addEventListener('paste',e=>{
+      e.preventDefault();
+      document.execCommand('insertText',false,e.clipboardData.getData('text/plain'));
+    });
+  });
+})();
+
+/* ── Custom Select ── */
+(function(){
+  const cs=document.getElementById('customSelect');
+  const trigger=document.getElementById('customSelectTrigger');
+  const dropdown=document.getElementById('customSelectDropdown');
+  const valSpan=document.getElementById('customSelectValue');
+  const hidden=document.getElementById('consultType');
+  const options=dropdown.querySelectorAll('.custom-select-option');
+  trigger.addEventListener('click',e=>{e.stopPropagation();cs.classList.toggle('open');});
+  options.forEach(opt=>{
+    opt.addEventListener('click',()=>{
+      const val=opt.dataset.value;
+      hidden.value=val;
+      valSpan.textContent=val;
+      cs.classList.add('selected');
+      cs.classList.remove('open','invalid');
+      options.forEach(o=>o.classList.remove('active'));
+      opt.classList.add('active');
+    });
+  });
+  document.addEventListener('click',()=>cs.classList.remove('open'));
+})();
+
+/* ── Toast ── */
+function showToast(msg,type='success'){
+  const t=document.getElementById('toast');
+  t.textContent=msg;
+  t.classList.remove('show','error');
+  if(type==='error') t.classList.add('error');
+  requestAnimationFrame(()=>requestAnimationFrame(()=>{
+    t.classList.add('show');
+    setTimeout(()=>t.classList.remove('show','error'),3500);
+  }));
+}
+
+/* ── Validation ── */
+function isEmail(v){return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);}
+function isCanadianPhone(v){const n=v.replace(/\D/g,'');return n.length===10||(n.length===11&&n.startsWith('1'));}
+
+/* ── Form submit ── */
+function submitConsultForm(){
+  const cfName=document.getElementById('cf-name');
+  const cfContact=document.getElementById('cf-contact');
+  const name=document.getElementById('ci-name').innerText.trim();
+  const contact=document.getElementById('ci-contact').innerText.trim();
+  const type=document.getElementById('consultType').value;
+  const message=document.getElementById('ci-msg').innerText.trim();
+
+  cfName.classList.remove('invalid');
+  cfContact.classList.remove('invalid');
+
+  if(!name){cfName.classList.add('invalid');showToast('Please enter your name.','error');return;}
+  if(!contact){cfContact.classList.add('invalid');showToast('Please enter your email or phone.','error');return;}
+  if(!isEmail(contact)&&!isCanadianPhone(contact)){cfContact.classList.add('invalid');showToast('Invalid email or phone number.','error');return;}
+
+  const btn=document.querySelector('#consultModal .btn-consult');
+  btn.textContent='Sending...';btn.disabled=true;
+
+  const params=new URLSearchParams({name,contact,type,message});
+  const url='https://script.google.com/macros/s/AKfycbxKsKnTR9_AIHq-o0qsvDLNh94VW4gcgnrV8nZFMxNTCWX9Z2lMMEQ3VXWkiWp4sSRf/exec?'+params.toString();
+
+  fetch(url,{method:'GET',mode:'no-cors'})
+    .then(()=>{
+      btn.textContent='Send Request';btn.disabled=false;
+      closeConsultModal();
+      document.getElementById('ci-name').innerText='';
+      document.getElementById('ci-contact').innerText='';
+      document.getElementById('ci-msg').innerText='';
+      document.getElementById('consultType').value='';
+      document.getElementById('customSelectValue').textContent='Type of inquiry (optional)';
+      document.getElementById('customSelect').classList.remove('selected','open');
+      document.querySelectorAll('.custom-select-option').forEach(o=>o.classList.remove('active'));
+      document.getElementById('charCount').textContent='0';
+      showToast('Request sent successfully!');
+    })
+    .catch(()=>{
+      btn.textContent='Send Request';btn.disabled=false;
+      showToast('Something went wrong. Please try again.','error');
+    });
+}
+
+function smoothScrollTop() { document.documentElement.scrollTop = 0; document.body.scrollTop = 0; }
+(function(){
+  const btn = document.getElementById('scrollTopBtn');
+  if(!btn) return;
+  window.addEventListener('scroll', () => {
+    btn.classList.toggle('visible', window.scrollY > 400);
+  });
+})();
+</script>
+
 </body>
 </html>

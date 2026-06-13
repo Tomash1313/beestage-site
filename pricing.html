@@ -106,7 +106,8 @@
       --bronze-gradient: linear-gradient(135deg, #7A4526 0%, #A76D45 35%, #D59469 50%, #A76D45 65%, #7A4526 100%);
       --bronze-hover: linear-gradient(135deg, #A76D45 0%, #D59469 50%, #7A4526 100%);
     }
-    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Inter', sans-serif; }
+    html { scroll-behavior: smooth; }
+* { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Inter', sans-serif; }
     ::-webkit-scrollbar { width: 4px; }
     ::-webkit-scrollbar-track { background: #0b0b0c; }
     ::-webkit-scrollbar-thumb { background: rgba(167,109,69,0.5); border-radius: 2px; }
@@ -386,6 +387,7 @@
       #nav-menu.open li:nth-child(4) { opacity: 1; transform: translateY(0); transition-delay: 0.23s; }
       #nav-menu.open li:nth-child(5) { opacity: 1; transform: translateY(0); transition-delay: 0.28s; }
       #nav-menu.open li:nth-child(6) { opacity: 1; transform: translateY(0); transition-delay: 0.33s; }
+      #nav-menu.open li:nth-child(7) { opacity: 1; transform: translateY(0); transition-delay: 0.38s; }
       #nav-menu a { font-size: 1.5rem; font-weight: 300; color: #fff; text-decoration: none; letter-spacing: 1px; transition: color 0.3s; display: block; }
       #nav-menu a:hover, #nav-menu a.active { color: #A76D45; }
       #nav-menu .btn-consult { margin-top: 8px; padding: 14px 40px; font-size: 1rem; }
@@ -396,19 +398,89 @@
       .hcard-price { font-size: 2.2rem; }
       .footer-nav-block { display: none !important; }
     }
-  </style>
+
+/* ── Scroll to top ── */
+.scroll-top-btn {
+  position: fixed;
+  bottom: 36px;
+  right: 32px;
+  width: 52px; height: 52px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  display: flex; align-items: center; justify-content: center;
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+  pointer-events: none;
+  z-index: 9000;
+}
+.scroll-top-btn.visible {
+  opacity: 0.55;
+  transform: translateY(0);
+  pointer-events: all;
+}
+.scroll-top-btn:hover { opacity: 1; }
+.scroll-top-btn svg { width: 40px; height: 40px; }
+  
+/* ── Nav Dropdown ── */
+.nav-dropdown { position: relative; }
+.nav-dropdown > a { display: flex; align-items: center; }
+.dropdown-arrow { display: none; }
+.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-6px);
+  background: rgba(11,11,12,0.15);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: none;
+  border-radius: 6px;
+  padding: 16px 0 8px;
+  min-width: 130px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  z-index: 9999;
+}
+.nav-dropdown:hover .dropdown-menu {
+  opacity: 1;
+  pointer-events: all;
+  transform: translateX(-50%) translateY(0);
+}
+.dropdown-menu a {
+  display: block;
+  padding: 8px 20px;
+  font-size: 0.95rem;
+  color: #ffffff !important;
+  font-weight: 400;
+  transition: color 0.2s;
+  white-space: nowrap;
+  text-align: center;
+  text-decoration: none;
+}
+.dropdown-menu a:hover { color: #A76D45 !important; }
+@media (max-width: 992px) {
+  .nav-dropdown > a { display: block; }
+  .dropdown-menu { display: none !important; }
+  .nav-dropdown::after { content: ""; }
+  #nav-menu.open li:nth-child(8) { opacity: 1; transform: translateY(0); transition-delay: 0.43s; }
+}
+</style>
 </head>
 <body>
 
 <header>
   <div class="container nav-wrapper">
-    <div class="logo">
+    <a href="/" class="logo" style="text-decoration:none;">
       <img src="/logo.webp" alt="B-Stage Bookkeeping Logo" style="height:52px;width:auto;object-fit:contain;display:block;">
       <div style="display:flex;flex-direction:column;justify-content:center;line-height:1.05;text-align:left;">
         <span style="font-size:1.35rem;font-weight:700;letter-spacing:0.3px;color:#A76D45;text-transform:uppercase;font-family:'Inter',sans-serif;">B-STAGE</span>
         <span style="font-size:0.72rem;font-weight:500;letter-spacing:1.8px;color:#D59469;text-transform:uppercase;font-family:'Inter',sans-serif;margin-top:2px;">BOOKKEEPING</span>
       </div>
-    </div>
+    </a>
     <nav aria-label="Main navigation">
       <button class="burger" id="burger" aria-label="Toggle menu">
         <span></span><span></span><span></span>
@@ -418,6 +490,13 @@
         <li><a href="/#services">Services</a></li>
         <li><a href="/#approach">Approach</a></li>
         <li><a href="/pricing" class="active">Pricing</a></li>
+        <li class="nav-dropdown">
+          <a href="/about">About</a>
+          <div class="dropdown-menu">
+            <a href="/about">About Us</a>
+            <a href="/#reviews">Reviews</a>
+          </div>
+        </li>
         <li><a href="/#contacts">Contacts</a></li>
         <li><button class="btn-consult" onclick="openConsultModal()" aria-label="Request a consultation">Request Consult</button></li>
       </ul>
@@ -509,13 +588,13 @@
 <footer class="footer-section" id="contacts">
   <div class="container">
     <div style="display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:28px;">
-      <div class="logo">
+      <a href="/" class="logo" style="text-decoration:none;">
         <img src="/logo.webp" alt="B-Stage Bookkeeping Logo" style="height:42px;">
         <div style="display:flex;flex-direction:column;line-height:1;">
           <span style="color:#A76D45;font-weight:700;">B-STAGE</span>
           <span style="color:#D59469;font-size:0.7rem;letter-spacing:1px;">BOOKKEEPING</span>
         </div>
-      </div>
+      </a>
       <div style="display:flex;gap:64px;align-items:flex-start;">
         <div style="display:flex;flex-direction:column;align-items:flex-end;gap:10px;">
           <span style="font-size:0.72rem;text-transform:uppercase;letter-spacing:2px;color:rgba(167,109,69,0.6);font-weight:500;">Contacts</span>
@@ -524,10 +603,10 @@
         </div>
         <div class="footer-nav-block" style="display:flex;flex-direction:column;align-items:flex-end;gap:10px;">
           <nav style="display:flex;gap:32px;">
-            <a href="/" style="color:#fff;text-decoration:none;font-size:0.85rem;transition:color 0.3s;" onmouseover="this.style.color='#A76D45'" onmouseout="this.style.color='#fff'">Home</a>
             <a href="/#services" style="color:#fff;text-decoration:none;font-size:0.85rem;transition:color 0.3s;" onmouseover="this.style.color='#A76D45'" onmouseout="this.style.color='#fff'">Services</a>
             <a href="/#approach" style="color:#fff;text-decoration:none;font-size:0.85rem;transition:color 0.3s;" onmouseover="this.style.color='#A76D45'" onmouseout="this.style.color='#fff'">Approach</a>
             <a href="/pricing" style="color:#A76D45;text-decoration:none;font-size:0.85rem;">Pricing</a>
+            <a href="/about" style="color:#fff;text-decoration:none;font-size:0.85rem;transition:color 0.3s;" onmouseover="this.style.color='#A76D45'" onmouseout="this.style.color='#fff'">About</a>
             <a href="/#contacts" style="color:#fff;text-decoration:none;font-size:0.85rem;transition:color 0.3s;" onmouseover="this.style.color='#A76D45'" onmouseout="this.style.color='#fff'">Contacts</a>
           </nav>
         </div>
@@ -585,6 +664,13 @@
 </div>
 
 <div class="toast" id="toast"></div>
+
+<!-- ── Scroll to top ── -->
+<button class="scroll-top-btn" id="scrollTopBtn" aria-label="Scroll to top" onclick="document.documentElement.scrollTop=0;document.body.scrollTop=0;">
+  <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M4 13L10 7L16 13" stroke="#A76D45" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  </svg>
+</button>
 
 <script>
 /* ── Modal ── */
@@ -793,6 +879,17 @@ navMenu.querySelectorAll('a').forEach(link => {
 window.addEventListener('scroll', () => {
   document.querySelector('header').classList.toggle('scrolled', window.scrollY > 20);
 });
+
+/* ── Scroll to top ── */
+function smoothScrollTop() { document.documentElement.scrollTop = 0; document.body.scrollTop = 0; }
+(function(){
+  const btn = document.getElementById('scrollTopBtn');
+  if(!btn) return;
+  window.addEventListener('scroll', () => {
+    btn.classList.toggle('visible', window.scrollY > 400);
+  });
+})();
 </script>
+
 </body>
 </html>

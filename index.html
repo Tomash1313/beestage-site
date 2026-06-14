@@ -1028,6 +1028,19 @@ nav a.active { color: var(--bronze); }
           <a href="https://share.google/3W6WtHuxgzjwaa1M0" target="_blank" rel="noopener" class="review-link">View on Google →</a>
         </div>
 
+        <div class="review-card">
+          <div class="review-header">
+            <div class="reviewer-avatar">M</div>
+            <div class="reviewer-info">
+              <div class="reviewer-name">Michael Karpov</div>
+              <div class="reviewer-meta">June 14, 2026 · via Google</div>
+            </div>
+            <div class="review-stars">★★★★★</div>
+          </div>
+          <p class="review-text">"I have been working with Yurii Tomashevskyi at B-Stage Bookkeeping for the past three years, and I cannot recommend his services highly enough. Yurii is an outstanding, highly professional accountant who brings deep expertise, meticulous attention to detail, and absolute reliability to everything he does. Over the last three years, he has consistently delivered flawless financial management, giving me complete peace of mind to focus on growing my business. His communication is always clear, prompt, and precise. If you are looking for a top-tier bookkeeping and accounting service that truly operates at the highest level of professionalism, Yurii and B-Stage Bookkeeping are the absolute best choice. Five stars well deserved!"</p>
+          <a href="https://share.google/Do1kmNJiXj9ONXK7z" target="_blank" rel="noopener" class="review-link">View on Google →</a>
+        </div>
+
       </div>
 
       <button class="carousel-btn carousel-btn-next" aria-label="Next review">
@@ -1248,10 +1261,11 @@ navMenu.querySelectorAll('a').forEach(link => {
 
   const cards = carousel.querySelectorAll('.review-card');
   const isMobile = () => window.innerWidth <= 992;
-  const perPage = () => isMobile() ? 1 : 2;
   let current = 0;
 
-  const total = () => Math.ceil(cards.length / perPage());
+  // Desktop: sliding window of 2, step by 1. Total steps = cards.length - 1
+  // Mobile: show 1 at a time. Total steps = cards.length - 1
+  const total = () => isMobile() ? cards.length : Math.max(1, cards.length - 1);
 
   function buildDots() {
     dotsWrap.innerHTML = '';
@@ -1266,12 +1280,20 @@ navMenu.querySelectorAll('a').forEach(link => {
 
   function goTo(idx) {
     current = Math.max(0, Math.min(idx, total() - 1));
-    const offset = current * perPage();
-    cards.forEach((c, i) => {
-      const visible = i >= offset && i < offset + perPage();
-      c.style.display = visible ? '' : 'none';
-      if(visible) c.style.gridColumn = perPage() === 1 ? '1 / -1' : '';
-    });
+    if(isMobile()) {
+      // Mobile: show 1 card
+      cards.forEach((c, i) => {
+        c.style.display = i === current ? '' : 'none';
+        c.style.gridColumn = '1 / -1';
+      });
+    } else {
+      // Desktop: sliding window — always show card[current] and card[current+1]
+      cards.forEach((c, i) => {
+        const visible = i === current || i === current + 1;
+        c.style.display = visible ? '' : 'none';
+        c.style.gridColumn = '';
+      });
+    }
     dotsWrap.querySelectorAll('.reviews-dot').forEach((d, i) => {
       d.classList.toggle('active', i === current);
     });
@@ -1281,6 +1303,22 @@ navMenu.querySelectorAll('a').forEach(link => {
 
   document.querySelector('.carousel-btn-prev').addEventListener('click', () => goTo(current - 1));
   document.querySelector('.carousel-btn-next').addEventListener('click', () => goTo(current + 1));
+
+  /* ── Touch / Swipe ── */
+  let touchStartX = 0;
+  let touchStartY = 0;
+  carousel.addEventListener('touchstart', e => {
+    touchStartX = e.touches[0].clientX;
+    touchStartY = e.touches[0].clientY;
+  }, { passive: true });
+  carousel.addEventListener('touchend', e => {
+    const dx = e.changedTouches[0].clientX - touchStartX;
+    const dy = e.changedTouches[0].clientY - touchStartY;
+    if(Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > 40) {
+      if(dx < 0) goTo(current + 1);
+      else goTo(current - 1);
+    }
+  }, { passive: true });
 
   buildDots();
   goTo(0);

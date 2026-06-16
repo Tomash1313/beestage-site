@@ -1253,6 +1253,20 @@ navMenu.querySelectorAll('a').forEach(link => {
   link.addEventListener('click', closeMobileMenu);
 });
 
+/* ── Fix repeat click on #services and #contacts ── */
+(function() {
+  ['#services', '#contacts'].forEach(function(hash) {
+    var link = document.querySelector('a[href="' + hash + '"]');
+    if (!link) return;
+    link.addEventListener('click', function(e) {
+      var target = document.querySelector(hash);
+      if (!target) return;
+      e.preventDefault();
+      var top = target.getBoundingClientRect().top + window.scrollY - 95;
+      window.scrollTo({ top: Math.max(0, top), behavior: 'smooth' });
+    });
+  });
+})();
 /* ── end ── */
 
 /* ── Reviews Carousel ── */

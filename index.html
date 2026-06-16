@@ -728,8 +728,8 @@ nav a.active { color: var(--bronze); }
       </button>
       <ul id="nav-menu">
         <li><a href="/" id="nav-home" class="active">Home</a></li>
-        <li><a href="#services" id="nav-services">Services</a></li>
-        <li><a href="#approach" id="nav-approach">Approach</a></li>
+        <li><a href="/#services" id="nav-services">Services</a></li>
+        <li><a href="/#approach" id="nav-approach">Approach</a></li>
         <li><a href="/pricing" id="nav-pricing">Pricing</a></li>
         <li class="nav-dropdown">
           <a href="/about" id="nav-about">About</a>
@@ -738,7 +738,7 @@ nav a.active { color: var(--bronze); }
             <a href="/#reviews">Reviews</a>
           </div>
         </li>
-        <li><a href="#contacts" id="nav-contacts">Contacts</a></li>
+        <li><a href="/#contacts" id="nav-contacts">Contacts</a></li>
         <li><button class="btn-consult" onclick="openConsultModal()" aria-label="Request a consultation">Request Consult</button></li>
       </ul>
     </nav>
@@ -1084,11 +1084,11 @@ nav a.active { color: var(--bronze); }
         <div class="footer-nav-block" style="flex-direction:column;align-items:flex-end;gap:10px;display:flex;">
           <span style="font-size:0.72rem;text-transform:uppercase;letter-spacing:2px;color:rgba(167,109,69,0.6);font-weight:500;">Navigation</span>
           <nav style="display:flex;gap:32px;">
-            <a href="#services" style="color:#fff;text-decoration:none;font-size:0.85rem;transition:color 0.3s;" onmouseover="this.style.color='#A76D45'" onmouseout="this.style.color='#fff'">Services</a>
-            <a href="#approach" style="color:#fff;text-decoration:none;font-size:0.85rem;transition:color 0.3s;" onmouseover="this.style.color='#A76D45'" onmouseout="this.style.color='#fff'">Approach</a>
+            <a href="/#services" style="color:#fff;text-decoration:none;font-size:0.85rem;transition:color 0.3s;" onmouseover="this.style.color='#A76D45'" onmouseout="this.style.color='#fff'">Services</a>
+            <a href="/#approach" style="color:#fff;text-decoration:none;font-size:0.85rem;transition:color 0.3s;" onmouseover="this.style.color='#A76D45'" onmouseout="this.style.color='#fff'">Approach</a>
             <a href="/pricing" style="color:#fff;text-decoration:none;font-size:0.85rem;transition:color 0.3s;" onmouseover="this.style.color='#A76D45'" onmouseout="this.style.color='#fff'">Pricing</a>
             <a href="/about" style="color:#fff;text-decoration:none;font-size:0.85rem;transition:color 0.3s;" onmouseover="this.style.color='#A76D45'" onmouseout="this.style.color='#fff'">About</a>
-            <a href="#contacts" style="color:#fff;text-decoration:none;font-size:0.85rem;transition:color 0.3s;" onmouseover="this.style.color='#A76D45'" onmouseout="this.style.color='#fff'">Contacts</a>
+            <a href="/#contacts" style="color:#fff;text-decoration:none;font-size:0.85rem;transition:color 0.3s;" onmouseover="this.style.color='#A76D45'" onmouseout="this.style.color='#fff'">Contacts</a>
           </nav>
         </div>
       </div>
@@ -1254,9 +1254,10 @@ navMenu.querySelectorAll('a').forEach(link => {
 });
 
 /* ── Smooth anchor scroll (prevents reload on repeat click) ── */
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+document.querySelectorAll('a[href^="/#"], a[href^="#"]').forEach(anchor => {
   anchor.addEventListener('click', function(e) {
-    const hash = this.getAttribute('href');
+    const href = this.getAttribute('href');
+    const hash = href.startsWith('/') ? href.slice(1) : href;
     if(!hash || hash === '#') return;
     const target = document.querySelector(hash);
     if(!target) return;

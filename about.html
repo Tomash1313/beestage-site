@@ -574,14 +574,15 @@ burger.addEventListener('click', () => {
   burger.classList.toggle('open');
   navMenu.classList.toggle('open');
   if(navMenu.classList.contains('open')) {
-    const sw = window.innerWidth - document.documentElement.clientWidth;
-    document.body.style.paddingRight = sw + 'px';
-    document.querySelector('header').style.paddingRight = sw + 'px';
-    document.body.style.overflow = 'hidden';
+    const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
+    const scrollY = window.scrollY;
+    document.body.style.paddingRight = scrollbarWidth + 'px';
+    document.querySelector('header').style.paddingRight = scrollbarWidth + 'px';
+    document.body.style.position = 'fixed';
+    document.body.style.top = '-' + scrollY + 'px';
+    document.body.style.width = '100%';
   } else {
-    document.body.style.overflow = '';
-    document.body.style.paddingRight = '';
-    document.querySelector('header').style.paddingRight = '';
+    closeMobileMenu();
   }
 });
 navMenu.querySelectorAll('a').forEach(l => l.addEventListener('click', closeMobileMenu));

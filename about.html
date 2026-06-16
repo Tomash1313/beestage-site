@@ -134,8 +134,8 @@
       display: flex;
       flex-direction: column;
       justify-content: flex-start;
-      padding: 20px 60px 60px;
-      max-width: 620px;
+      padding: 60px 24px 60px calc((100vw - 1200px) / 2 + 24px);
+      max-width: 660px;
     }
 
     .section-label {
@@ -187,7 +187,35 @@
       margin-bottom: 32px;
     }
 
-    .about-content p {
+    .about-block {
+      margin-bottom: 40px;
+      padding-bottom: 40px;
+      border-bottom: 1px solid rgba(167,109,69,0.1);
+    }
+    .about-block:last-of-type { border-bottom: none; }
+    .about-chapter {
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 2.5px;
+      color: #A76D45;
+      font-weight: 600;
+      margin-bottom: 18px;
+    }
+    .about-lead {
+      font-size: 1.05rem !important;
+      color: rgba(255,255,255,0.9) !important;
+      font-weight: 400 !important;
+      line-height: 1.8 !important;
+      font-style: normal !important;
+      margin-bottom: 16px;
+    }
+    .about-highlight {
+      border-left: 2px solid #A76D45;
+      padding-left: 16px;
+      color: rgba(255,255,255,0.85) !important;
+      font-style: normal !important;
+    }
+    .about-content p { margin-bottom: 14px; }
       font-size: 0.97rem;
       font-weight: 300;
       color: rgba(255,255,255,0.72);
@@ -276,7 +304,7 @@
       #nav-menu a { font-size: 1.5rem; font-weight: 300; color: #fff; text-decoration: none; letter-spacing: 1px; transition: color 0.3s; display: block; }
       #nav-menu a:hover, #nav-menu a.active { color: #A76D45; }
       #nav-menu .btn-consult { margin-top: 8px; padding: 14px 40px; font-size: 1rem; }
-      .about-content { padding: 48px 24px; max-width: 100%; min-height: auto; }
+      .about-content { padding: 40px 24px; max-width: 100%; min-height: auto; }
       .about-content h1 { font-size: 2rem; }
       .stats { flex-wrap: wrap; gap: 28px; }
       .footer-nav-block { display: none !important; }
@@ -397,8 +425,39 @@
       <h1>The person<br>behind your <strong>numbers.</strong></h1>
       <div class="founder-name">Yurii Tomashevskyi — Founder</div>
       <div class="divider"></div>
-      <p>I built B-Stage because I saw too many ambitious businesses drown in paperwork while their actual growth stalled. Your books should work for you — not against you.</p>
-      <p>With a background in operations and financial systems, I bridge the gap between raw transactions and strategic clarity. Every client gets my direct attention — no junior staff, no handoffs.</p>
+
+      <div class="about-block">
+        <p class="about-lead">I founded B-Stage Bookkeeping with a simple belief: business owners should spend their time growing their companies—not drowning in paperwork, receipts, and financial uncertainty.</p>
+        <p>Too many ambitious businesses don't fail because of lack of effort or ideas. They fail because their financial systems don't support their growth. My goal is to change that by bringing clarity, structure, and real financial control into everyday business operations.</p>
+      </div>
+
+      <div class="about-block">
+        <div class="about-chapter">Ukraine — Where It Started</div>
+        <p>My professional journey began in Ukraine, where I spent over 10 years working across accounting, operations, and economic departments for international companies. I was responsible for building systems, managing complex financial processes, and solving problems under pressure.</p>
+        <p>One of the projects I am most proud of is leading the implementation of a new accounting system that continues to support business operations years later.</p>
+      </div>
+
+      <div class="about-block">
+        <div class="about-chapter">Canada — Starting Over</div>
+        <p>When I moved to Canada, I started over like many newcomers do—not in a boardroom, but in real, hands-on environments.</p>
+        <p>I worked in construction-related roles, drove vehicles across the country—from passenger cars to 5-ton trucks—worked in delivery and taxi services, and took on various operational and service jobs, including washing dishes in a hotel restaurant.</p>
+        <p class="about-highlight">These weren't side experiences. They were a direct introduction to how Canadian businesses actually function at ground level.</p>
+        <p>I learned what it means to work long physical hours, deal with unpredictable schedules, manage tight margins, and still carry full responsibility for your work and income. I saw how small businesses survive—not in theory, but in practice.</p>
+      </div>
+
+      <div class="about-block">
+        <div class="about-chapter">Who I Work For</div>
+        <p>That experience gave me something I deeply value today: a real understanding of the people behind these businesses. Contractors, plumbers, electricians, truck drivers, tradespeople, and service providers.</p>
+        <p class="about-highlight">People who build, fix, move, and keep everything running—but don't have time to deal with financial complexity after a 10-hour workday.</p>
+        <p>Today, B-Stage Bookkeeping connects two worlds: deep financial expertise and real-world business experience. I don't just understand accounting systems—I understand the people who depend on them.</p>
+      </div>
+
+      <div class="about-block">
+        <div class="about-chapter">How I Work</div>
+        <p>My approach is simple: practical systems, clear communication, and no unnecessary complexity.</p>
+        <p>When you work with B-Stage, you work directly with me. No junior staff. No outsourcing. No layers between you and your books—just accurate financials, reliable support, and someone who has actually been on both sides of the desk.</p>
+      </div>
+
       <div class="stats">
         <div>
           <div class="stat-num">100%</div>

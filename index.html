@@ -727,7 +727,7 @@ nav a.active { color: var(--bronze); }
         <span></span><span></span><span></span>
       </button>
       <ul id="nav-menu">
-        <li><a href="/" id="nav-home" class="active">Home</a></li>
+        <li><a href="/#" id="nav-home" class="active">Home</a></li>
         <li><a href="/#services" id="nav-services">Services</a></li>
         <li><a href="/#approach" id="nav-approach">Approach</a></li>
         <li><a href="/pricing" id="nav-pricing">Pricing</a></li>
@@ -1257,12 +1257,18 @@ navMenu.querySelectorAll('a').forEach(link => {
 document.querySelectorAll('a[href^="/#"], a[href^="#"]').forEach(anchor => {
   anchor.addEventListener('click', function(e) {
     const href = this.getAttribute('href');
+    if(href === '/#' || href === '#') {
+      e.preventDefault();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      history.replaceState(null, '', '/');
+      return;
+    }
     const hash = href.startsWith('/') ? href.slice(1) : href;
-    if(!hash || hash === '#') return;
     const target = document.querySelector(hash);
     if(!target) return;
     e.preventDefault();
-    target.scrollIntoView({ behavior: 'smooth' });
+    const top = target.getBoundingClientRect().top + window.scrollY - 95;
+    window.scrollTo({ top, behavior: 'smooth' });
     history.replaceState(null, '', hash);
   });
 });

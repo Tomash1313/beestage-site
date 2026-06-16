@@ -101,7 +101,7 @@
   --bronze-gradient: linear-gradient(135deg, #7A4526 0%, #A76D45 35%, #D59469 50%, #A76D45 65%, #7A4526 100%);
   --bronze-hover: linear-gradient(135deg, #A76D45 0%, #D59469 50%, #7A4526 100%);
 }
-html { scroll-behavior: smooth; }
+html { }
 * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Inter', sans-serif; }
 
 /* ── Custom scrollbar ── */
@@ -1254,24 +1254,44 @@ navMenu.querySelectorAll('a').forEach(link => {
 });
 
 /* ── Smooth anchor scroll (prevents reload on repeat click) ── */
-document.querySelectorAll('a[href^="/#"], a[href^="#"]').forEach(anchor => {
-  anchor.addEventListener('click', function(e) {
-    const href = this.getAttribute('href');
-    if(href === '/#' || href === '#') {
-      e.preventDefault();
+(function() {
+  function scrollToHash(hash) {
+    if (!hash || hash === '#') {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      return;
+    }
+    const target = document.querySelector(hash);
+    if (!target) return;
+    const top = target.getBoundingClientRect().top + window.scrollY - 95;
+    window.scrollTo({ top: Math.max(0, top), behavior: 'smooth' });
+  }
+
+  document.addEventListener('click', function(e) {
+    const anchor = e.target.closest('a[href]');
+    if (!anchor) return;
+    const href = anchor.getAttribute('href');
+    if (!href) return;
+
+    // Handle /#hash or #hash links only
+    const isHashOnly = href.startsWith('#');
+    const isRootHash = href.startsWith('/#');
+    const isRootOnly = href === '/';
+
+    if (!isHashOnly && !isRootHash && !isRootOnly) return;
+
+    e.preventDefault();
+
+    if (isRootOnly || href === '/#') {
       window.scrollTo({ top: 0, behavior: 'smooth' });
       history.replaceState(null, '', '/');
       return;
     }
-    const hash = href.startsWith('/') ? href.slice(1) : href;
-    const target = document.querySelector(hash);
-    if(!target) return;
-    e.preventDefault();
-    const top = target.getBoundingClientRect().top + window.scrollY - 95;
-    window.scrollTo({ top, behavior: 'smooth' });
+
+    const hash = isRootHash ? href.slice(1) : href;
+    scrollToHash(hash);
     history.replaceState(null, '', hash);
   });
-});
+})();
 
 /* ── Reviews Carousel ── */
 (function(){

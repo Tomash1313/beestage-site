@@ -1266,6 +1266,16 @@ navMenu.querySelectorAll('a').forEach(link => {
       window.scrollTo({ top: Math.max(0, top), behavior: 'smooth' });
     });
   });
+
+  /* ── Home — smooth scroll to top ── */
+  var homeLink = document.getElementById('nav-home');
+  if (homeLink) {
+    homeLink.addEventListener('click', function(e) {
+      e.preventDefault();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      history.replaceState(null, '', '/');
+    });
+  }
 })();
 /* ── end ── */
 

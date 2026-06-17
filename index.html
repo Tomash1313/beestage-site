@@ -179,7 +179,7 @@ nav a.active { color: var(--bronze); }
   padding: 16px 36px; border-radius: 6px; font-weight: 600;
   font-size: 1rem; text-transform: uppercase; letter-spacing: 1px;
   border: none; cursor: pointer; transition: transform 0.2s, box-shadow 0.2s;
-  max-width: fit-content;
+  max-width: fit-content; text-decoration: none;
 }
 .btn-hero:hover { background: var(--bronze-hover); transform: translateY(-2px); box-shadow: 0 6px 20px rgba(167,109,69,0.5); }
 
@@ -739,7 +739,7 @@ nav a.active { color: var(--bronze); }
           </div>
         </li>
         <li><a href="#contacts" id="nav-contacts">Contacts</a></li>
-        <li><button class="btn-consult" onclick="openConsultModal()" aria-label="Request a consultation">Request Consult</button></li>
+        <li><button class="btn-consult" onclick="openConsultModal()" aria-label="Request a consultation">Book a Free Consultation</button></li>
       </ul>
     </nav>
   </div>
@@ -751,7 +751,7 @@ nav a.active { color: var(--bronze); }
     <div class="hero-content">
       <h1>Precision in every figure.<br>Clarity for your growth.</h1>
       <p>Dedicated bookkeeping &amp; financial analysis for ambitious Canadian ventures. Your numbers, mastered.</p>
-      <button class="btn-hero" onclick="openConsultModal()" aria-label="Start securing your profits - request a consultation">Start Securing Your Profits</button>
+      <a class="btn-hero" href="/pricing" aria-label="See pricing plans">See Pricing Plans</a>
     </div>
     <div class="hero-graphics">
       <canvas id="c" width="800" height="640" aria-hidden="true" role="presentation"></canvas>

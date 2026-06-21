@@ -820,7 +820,7 @@ function submitConsultForm() {
   btn.textContent = 'Sending...'; btn.disabled = true;
 
   const params = new URLSearchParams({name, contact, type, message});
-  const url = 'https://script.google.com/macros/s/AKfycbxKsKnTR9_AIHq-o0qsvDLNh94VW4gcgnrV8nZFMxNTCWX9Z2lMMEQ3VXWkiWp4sSRf/exec?' + params.toString();
+  const url = 'https://script.google.com/macros/s/AKfycby2P2VZIChjczJTtGngPgV9FnECTvQAR1r76exiNK0I2AgUsuC7bVGf4FKdiRni8l-f/exec?' + params.toString();
 
   fetch(url, {method:'GET', mode:'no-cors'})
     .then(() => {

@@ -340,24 +340,31 @@ nav a.active { color: var(--bronze); }
 
   /* Hero */
   .hero { padding: 48px 0 32px; }
-  .hero-grid { display: block; min-height: unset; }
+  .hero-grid { display: flex; flex-direction: column; min-height: unset; padding: 0 20px; text-align: center; }
   .hero-content {
     position: static;
     transform: none;
-    padding: 0 20px;
+    padding: 0;
     text-align: center;
     max-width: 100%;
+    display: contents;
   }
   .hero-content h1 {
+    order: 1;
     font-size: 2rem;
     white-space: normal;
     margin-top: 0;
     margin-bottom: 16px;
   }
   .hero-content > * { max-width: 100%; }
-  .hero-content p { margin: 0 auto 24px; max-width: 480px; font-size: 1rem; }
-  .btn-hero { width: auto; max-width: 380px; padding: 16px 36px; font-size: 0.9rem; white-space: nowrap; display: block; margin: 0 auto; }
-  .hero-graphics { display: none; }
+  .hero-content p { order: 2; margin: 0 auto -50px; max-width: 480px; font-size: 1rem; }
+  .btn-hero { order: 4; width: auto; max-width: 380px; padding: 16px 36px; font-size: 0.9rem; white-space: nowrap; display: block; margin: -70px auto 0; position: relative; z-index: 2; }
+  .hero-graphics {
+    order: 3;
+    display: flex; justify-content: center; margin: 0;
+    min-height: unset; margin-left: 0; margin-right: 0;
+  }
+  .hero-graphics canvas { width: 100%; max-width: 420px; height: auto; }
 
   /* Services */
   .services-grid { grid-template-columns: 1fr; gap: 24px; }
@@ -1304,8 +1311,6 @@ nav a.active { color: var(--bronze); }
 /* ── Canvas ── */
 const cv=document.getElementById('c'),cx=cv ? cv.getContext('2d') : null,W=800,H=640,OFFSET_Y=80;
 let pauseCanvas = false;
-// Don't run canvas on mobile
-if(cv && window.getComputedStyle(cv).display === 'none') pauseCanvas = true;
 const CL=[213,148,105],CM=[167,109,69],CD=[90,45,15],CB=[12,5,1];
 function r(c,a=1){return `rgba(${c[0]},${c[1]},${c[2]},${a})`;}
 function drawBgGlobal(){cx.clearRect(0,0,W,H);cx.strokeStyle=r(CM,0.04);cx.lineWidth=0.5;for(let x=0;x<W;x+=35){cx.beginPath();cx.moveTo(x,0);cx.lineTo(x,H);cx.stroke();}for(let y=0;y<H;y+=35){cx.beginPath();cx.moveTo(0,y);cx.lineTo(W,y);cx.stroke();}}
@@ -1363,8 +1368,8 @@ function frame(ts){
   drawConnectors(p);drawGearConnectors(p);
   requestAnimationFrame(frame);
 }
-// Only run canvas on desktop
-if(window.innerWidth > 992) requestAnimationFrame(frame);
+// Run canvas on all screens
+requestAnimationFrame(frame);
 
 /* ── Burger menu ── */
 const burger = document.getElementById('burger');

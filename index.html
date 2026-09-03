@@ -225,11 +225,13 @@ nav a.active { color: var(--bronze); }
     letter-spacing: 0.3px;
     white-space: nowrap;
   }
-  nav { display: flex; align-items: center; gap: 10px; }
-}
+  nav > .btn-consult-mobile + .burger { margin-left: 0; }
+  .nav-wrapper nav { display: flex; align-items: center; gap: 20px; }
   .logo img { height: 36px !important; }
   .logo span:first-child { font-size: 1.1rem !important; }
   .logo span:last-child { font-size: 0.6rem !important; letter-spacing: 1.5px !important; }
+}
+@media (max-width: 992px) {
   .burger {
     display: flex;
     flex-direction: column;
@@ -757,17 +759,17 @@ nav a.active { color: var(--bronze); }
       </button>
       <ul id="nav-menu">
         <li><a href="/" id="nav-home" class="active">Home</a></li>
-        <li><a href="#services" id="nav-services">Services</a></li>
-        <li><a href="#approach" id="nav-approach">Approach</a></li>
+        <li><a href="/#services" id="nav-services">Services</a></li>
+        <li><a href="/#approach" id="nav-approach">Approach</a></li>
         <li><a href="/pricing" id="nav-pricing">Pricing</a></li>
         <li class="nav-dropdown">
           <a href="/about" id="nav-about">About</a>
           <div class="dropdown-menu">
             <a href="/about">About Us</a>
-            <a href="#reviews">Reviews</a>
+            <a href="/#reviews">Reviews</a>
           </div>
         </li>
-        <li><a href="#contacts" id="nav-contacts">Contacts</a></li>
+        <li><a href="/#contacts" id="nav-contacts">Contacts</a></li>
         <li><button class="btn-consult" onclick="openConsultModal()" aria-label="Request a consultation">Book a Free Consultation</button></li>
       </ul>
     </nav>

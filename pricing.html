@@ -477,6 +477,20 @@
   .nav-dropdown::after { content: ""; }
   #nav-menu.open li:nth-child(8) { opacity: 1; transform: translateY(0); transition-delay: 0.43s; }
 }
+.btn-consult-mobile { display: none; }
+@media (max-width: 992px) {
+  .btn-consult-mobile {
+    display: inline-block;
+    padding: 8px 14px;
+    font-size: 0.72rem;
+    letter-spacing: 0.3px;
+    white-space: nowrap;
+  }
+  .nav-wrapper nav { display: flex; align-items: center; gap: 20px; }
+  .logo img { height: 36px !important; }
+  .logo span:first-child { font-size: 1.1rem !important; }
+  .logo span:last-child { font-size: 0.6rem !important; letter-spacing: 1.5px !important; }
+}
 </style>
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-032Q2C6K6S"></script>
@@ -503,6 +517,7 @@
       </div>
     </a>
     <nav aria-label="Main navigation">
+      <button class="btn-consult btn-consult-mobile" onclick="openConsultModal()" aria-label="Free consultation">Free Consultation</button>
       <button class="burger" id="burger" aria-label="Toggle menu">
         <span></span><span></span><span></span>
       </button>

@@ -216,11 +216,22 @@ nav a.active { color: var(--bronze); }
 .service-card h3 { font-size: 1.15rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 12px; }
 .service-card p { color: var(--text-main); font-size: 0.95rem; font-weight: 300; }
 
+.btn-consult-mobile { display: none; }
 @media (max-width: 992px) {
-  /* Logo */
-  .logo img { height: 78px !important; }
-  .logo span:first-child { font-size: 2rem !important; }
-  .logo span:last-child { font-size: 1rem !important; letter-spacing: 2px !important; }
+  .btn-consult-mobile {
+    display: inline-block;
+    padding: 8px 14px;
+    font-size: 0.72rem;
+    letter-spacing: 0.3px;
+    white-space: nowrap;
+  }
+  nav > .btn-consult-mobile + .burger { margin-left: 0; }
+  .nav-wrapper nav { display: flex; align-items: center; gap: 20px; }
+  .logo img { height: 36px !important; }
+  .logo span:first-child { font-size: 1.1rem !important; }
+  .logo span:last-child { font-size: 0.6rem !important; letter-spacing: 1.5px !important; }
+}
+@media (max-width: 992px) {
   .burger {
     display: flex;
     flex-direction: column;
@@ -742,22 +753,23 @@ nav a.active { color: var(--bronze); }
       </div>
     </a>
     <nav aria-label="Main navigation">
+      <button class="btn-consult btn-consult-mobile" onclick="openConsultModal()" aria-label="Free consultation">Free Consultation</button>
       <button class="burger" id="burger" aria-label="Toggle menu">
         <span></span><span></span><span></span>
       </button>
       <ul id="nav-menu">
         <li><a href="/" id="nav-home" class="active">Home</a></li>
-        <li><a href="#services" id="nav-services">Services</a></li>
-        <li><a href="#approach" id="nav-approach">Approach</a></li>
+        <li><a href="/#services" id="nav-services">Services</a></li>
+        <li><a href="/#approach" id="nav-approach">Approach</a></li>
         <li><a href="/pricing" id="nav-pricing">Pricing</a></li>
         <li class="nav-dropdown">
           <a href="/about" id="nav-about">About</a>
           <div class="dropdown-menu">
             <a href="/about">About Us</a>
-            <a href="#reviews">Reviews</a>
+            <a href="/#reviews">Reviews</a>
           </div>
         </li>
-        <li><a href="#contacts" id="nav-contacts">Contacts</a></li>
+        <li><a href="/#contacts" id="nav-contacts">Contacts</a></li>
         <li><button class="btn-consult" onclick="openConsultModal()" aria-label="Request a consultation">Book a Free Consultation</button></li>
       </ul>
     </nav>
@@ -1058,6 +1070,32 @@ nav a.active { color: var(--bronze); }
           </div>
           <p class="review-text">"I have been working with Yurii Tomashevskyi at B-Stage Bookkeeping for the past three years, and I cannot recommend his services highly enough. Yurii is an outstanding, highly professional accountant who brings deep expertise, meticulous attention to detail, and absolute reliability to everything he does. Over the last three years, he has consistently delivered flawless financial management, giving me complete peace of mind to focus on growing my business. His communication is always clear, prompt, and precise. If you are looking for a top-tier bookkeeping and accounting service that truly operates at the highest level of professionalism, Yurii and B-Stage Bookkeeping are the absolute best choice. Five stars well deserved!"</p>
           <a href="https://share.google/Do1kmNJiXj9ONXK7z" target="_blank" rel="noopener" class="review-link">View on Google →</a>
+        </div>
+
+        <div class="review-card">
+          <div class="review-header">
+            <div class="reviewer-avatar">O</div>
+            <div class="reviewer-info">
+              <div class="reviewer-name">Olena Sokyrko</div>
+              <div class="reviewer-meta">June 19, 2026 · via Google</div>
+            </div>
+            <div class="review-stars">★★★★★</div>
+          </div>
+          <p class="review-text">"I really enjoyed working with Yurii. Everything was calculated accurately and completed very quickly. He was professional, responsive, and made the whole process easy. My T4 was handled without any issues, and everything went smoothly. I am very satisfied with the service and will definitely continue working with him in the future. Highly recommended!"</p>
+          <a href="https://maps.app.goo.gl/GvybKdMVky1f77Xg9" target="_blank" rel="noopener" class="review-link">View on Google →</a>
+        </div>
+
+        <div class="review-card">
+          <div class="review-header">
+            <div class="reviewer-avatar">V</div>
+            <div class="reviewer-info">
+              <div class="reviewer-name">Viktoriia Pashchenko</div>
+              <div class="reviewer-meta">June 22, 2026 · via Google</div>
+            </div>
+            <div class="review-stars">★★★★★</div>
+          </div>
+          <p class="review-text">"I asked Yurii to help to file my taxes in 2024 first time. It was one of the best experiences I have ever had with accounting in Canada. He not just filled my taxes, he really tried his best to optimize them. He gave to me a lot of good advices and recommendations I am using even now. I constantly keeping them in my mind during year because, as I found out thanks to him, all you expenses during year are important and it's better to keep all invoices, all receipts and to have more then less documentation in the end of the year. And now I am so happy that Yurii decided to move on and grow his business and open company what, I believe, will help to many people and companies with accounting. Good luck!"</p>
+          <a href="https://maps.app.goo.gl/qKef8nwpxSPvqzfRA" target="_blank" rel="noopener" class="review-link">View on Google →</a>
         </div>
 
       </div>

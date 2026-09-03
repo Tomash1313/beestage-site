@@ -216,6 +216,51 @@ nav a.active { color: var(--bronze); }
 .service-card h3 { font-size: 1.15rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 12px; }
 .service-card p { color: var(--text-main); font-size: 0.95rem; font-weight: 300; }
 
+/* Flexible Plan Block */
+.flex-plan-section { padding: 20px 0 60px; }
+.flex-plan-top { text-align: center; max-width: 640px; margin: 0 auto 48px; }
+.flex-plan-top p { font-size: 1.02rem; color: rgba(255,255,255,0.75); font-weight: 300; }
+.flex-plan-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom: 56px; }
+.flex-plan-card {
+  background: var(--card-bg); border: 1px solid rgba(167,109,69,0.2); border-radius: 10px;
+  padding: 28px; display: flex; align-items: center; gap: 18px; transition: border-color 0.3s;
+}
+.flex-plan-card:hover { border-color: rgba(167,109,69,0.5); }
+.flex-plan-card-icon {
+  width: 48px; height: 48px; border-radius: 10px; background: rgba(167,109,69,0.12);
+  display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+}
+.flex-plan-card-icon svg { width: 24px; height: 24px; stroke: var(--bronze); }
+.flex-plan-card h4 { font-size: 1rem; font-weight: 600; margin-bottom: 4px; }
+.flex-plan-card p { font-size: 0.85rem; color: rgba(255,255,255,0.65); font-weight: 300; }
+.flex-plan-flow { display: flex; gap: 0; margin-bottom: 48px; }
+.flex-plan-flow-step { flex: 1; text-align: center; padding: 0 20px; position: relative; }
+.flex-plan-flow-step:not(:last-child)::after {
+  content: '→'; position: absolute; right: -2px; top: 16px; color: var(--bronze); font-size: 1.1rem; opacity: 0.4;
+}
+.flex-plan-flow-num {
+  width: 40px; height: 40px; border-radius: 50%; border: 2px solid var(--bronze);
+  display: flex; align-items: center; justify-content: center; margin: 0 auto 14px;
+  font-weight: 700; color: var(--bronze); font-size: 1rem;
+}
+.flex-plan-flow-step h4 { font-size: 0.92rem; font-weight: 600; margin-bottom: 6px; }
+.flex-plan-flow-step p { font-size: 0.82rem; color: rgba(255,255,255,0.6); font-weight: 300; }
+.flex-plan-cta { text-align: center; }
+.flex-plan-cta p { font-size: 1rem; font-weight: 300; margin-bottom: 22px; }
+.flex-plan-cta strong { color: var(--bronze); font-weight: 600; }
+.btn-outline-cta {
+  display: inline-block; background: transparent; border: 1px solid rgba(167,109,69,0.25);
+  color: rgba(255,255,255,0.5); padding: 13px 32px; border-radius: 6px; font-weight: 600;
+  font-size: 0.78rem; text-transform: uppercase; letter-spacing: 1px; cursor: pointer;
+  transition: all 0.2s; text-decoration: none;
+}
+.btn-outline-cta:hover { border-color: #A76D45; color: #A76D45; }
+@media (max-width: 768px) {
+  .flex-plan-cards { grid-template-columns: 1fr; }
+  .flex-plan-flow { flex-direction: column; gap: 28px; }
+  .flex-plan-flow-step:not(:last-child)::after { display: none; }
+}
+
 .btn-consult-mobile { display: none; }
 @media (max-width: 992px) {
   .btn-consult-mobile {
@@ -955,6 +1000,56 @@ nav a.active { color: var(--bronze); }
         <p>We act as the vital link between your operations and your CPA. We handle the invoices, bills, and communication, so you can focus on strategy, not paperwork.</p>
       </div>
 
+    </div>
+  </div>
+</section>
+
+<!-- Flexible Plan -->
+<section class="flex-plan-section">
+  <div class="container">
+    <div class="flex-plan-top">
+      <p>B-Stage Bookkeeping provides flexible solutions designed around the way your business operates — from day-to-day bookkeeping to financial reporting and tax preparation support.</p>
+    </div>
+    <div class="flex-plan-cards">
+      <div class="flex-plan-card">
+        <div class="flex-plan-card-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+        </div>
+        <div>
+          <h4>Pay Only for What You Need</h4>
+          <p>No unnecessary services. Your plan is built around your actual business needs.</p>
+        </div>
+      </div>
+      <div class="flex-plan-card">
+        <div class="flex-plan-card-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 21V9a2 2 0 0 1 2-2h4V5a2 2 0 0 1 2-2h0a2 2 0 0 1 2 2v2h4a2 2 0 0 1 2 2v12"/><path d="M9 21v-4a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v4"/></svg>
+        </div>
+        <div>
+          <h4>Flexible Service Packages</h4>
+          <p>Add, remove, or adjust services as your business grows.</p>
+        </div>
+      </div>
+    </div>
+    <div class="flex-plan-flow">
+      <div class="flex-plan-flow-step">
+        <div class="flex-plan-flow-num">1</div>
+        <h4>Tell Us What You Need</h4>
+        <p>Share your current setup, needs, and goals.</p>
+      </div>
+      <div class="flex-plan-flow-step">
+        <div class="flex-plan-flow-num">2</div>
+        <h4>We Build the Right Plan</h4>
+        <p>We recommend only what makes sense — no extras.</p>
+      </div>
+      <div class="flex-plan-flow-step">
+        <div class="flex-plan-flow-num">3</div>
+        <h4>We Handle the Numbers</h4>
+        <p>Our team takes care of your books going forward.</p>
+      </div>
+    </div>
+    <div class="flex-plan-cta">
+      <p>Not sure which services are right for you? <strong>Let's build the right plan together.</strong></p>
+      <button class="btn-outline-cta" onclick="openConsultModal()" aria-label="Book a free consultation">Book a Free Consultation</button>
     </div>
   </div>
 </section>

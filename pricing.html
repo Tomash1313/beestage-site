@@ -491,6 +491,32 @@
   .logo span:first-child { font-size: 1.1rem !important; }
   .logo span:last-child { font-size: 0.6rem !important; letter-spacing: 1.5px !important; }
 }
+
+/* Flexible Plan Editorial Block */
+.v3-section { padding: 56px 0; }
+.v3-grid { display: grid; grid-template-columns: 0.9fr 1.1fr; gap: 64px; align-items: start; margin-bottom: 48px; }
+.v3-left h3 { font-size: clamp(1.4rem, 2.5vw, 1.9rem); font-weight: 300; line-height: 1.3; margin-bottom: 18px; color: #fff; }
+.v3-left h3 strong { font-weight: 700; color: #A76D45; }
+.v3-left p { font-size: 0.92rem; color: rgba(255,255,255,0.7); font-weight: 300; margin-bottom: 24px; }
+.v3-badges { display: flex; flex-direction: column; gap: 12px; }
+.v3-badge { display: flex; align-items: center; gap: 10px; font-size: 0.86rem; color: rgba(255,255,255,0.85); }
+.v3-badge svg { width: 16px; height: 16px; stroke: #A76D45; flex-shrink: 0; }
+.v3-steps-list { display: flex; flex-direction: column; }
+.v3-step-row { display: flex; gap: 20px; padding: 20px 0; border-bottom: 1px solid rgba(167,109,69,0.15); }
+.v3-step-row:first-child { padding-top: 0; }
+.v3-step-num { font-size: 1.4rem; font-weight: 700; color: rgba(167,109,69,0.35); flex-shrink: 0; width: 44px; }
+.v3-step-row h4 { font-size: 0.92rem; font-weight: 600; margin-bottom: 5px; text-transform: uppercase; letter-spacing: 0.5px; color: #fff; }
+.v3-step-row p { font-size: 0.84rem; color: rgba(255,255,255,0.65); font-weight: 300; }
+.v3-cta-bar {
+  display: flex; align-items: center; justify-content: space-between; gap: 24px;
+  padding: 28px 36px; background: #121214; border-radius: 10px; border-left: 3px solid #A76D45;
+}
+.v3-cta-bar p { font-size: 1rem; font-weight: 400; color: #fff; }
+.v3-cta-bar span { display: block; font-size: 0.78rem; color: rgba(255,255,255,0.5); margin-top: 4px; font-weight: 300; }
+@media (max-width: 768px) {
+  .v3-grid { grid-template-columns: 1fr; gap: 32px; }
+  .v3-cta-bar { flex-direction: column; text-align: center; }
+}
 </style>
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-032Q2C6K6S"></script>
@@ -611,6 +637,56 @@
       </div>
 
     </div>
+
+    <!-- Flexible Plan -->
+    <section class="v3-section">
+      <div class="v3-grid">
+        <div class="v3-left">
+          <h3>Bookkeeping that works <strong>around your business.</strong></h3>
+          <p>B-Stage Bookkeeping provides flexible solutions designed around the way your business operates — from day-to-day bookkeeping to financial reporting and tax preparation support.</p>
+          <div class="v3-badges">
+            <div class="v3-badge">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+              Pay only for the services you actually use
+            </div>
+            <div class="v3-badge">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+              Add, remove, or adjust as your business grows
+            </div>
+          </div>
+        </div>
+        <div class="v3-steps-list">
+          <div class="v3-step-row">
+            <div class="v3-step-num">01</div>
+            <div>
+              <h4>Tell Us What You Need</h4>
+              <p>Share your current bookkeeping setup, business needs, and goals.</p>
+            </div>
+          </div>
+          <div class="v3-step-row">
+            <div class="v3-step-num">02</div>
+            <div>
+              <h4>We Build the Right Plan</h4>
+              <p>We recommend the services that actually make sense for your business — no unnecessary extras.</p>
+            </div>
+          </div>
+          <div class="v3-step-row">
+            <div class="v3-step-num">03</div>
+            <div>
+              <h4>We Take Care of the Numbers</h4>
+              <p>Once everything is set up, our team handles your bookkeeping so you can focus on running your business.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="v3-cta-bar">
+        <div>
+          <p>Not sure what your business needs?</p>
+          <span>Let's build the right bookkeeping plan for you.</span>
+        </div>
+        <button class="btn-consult" onclick="openConsultModal()" aria-label="Book a free consultation">Book a Free Consultation</button>
+      </div>
+    </section>
 
     <div style="padding: 24px 0 0; border-top: 1px solid rgba(167,109,69,0.12); margin-top: 1px;">
       <h2 style="font-size:clamp(1.6rem,3vw,2.4rem);font-weight:300;color:#fff;line-height:1.2;margin-bottom:16px;">Transparent pricing. <strong style="font-weight:700;color:#A76D45;">No surprises, ever.</strong></h2>

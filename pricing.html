@@ -387,8 +387,8 @@
       .burger.open span:nth-child(1) { top: 9px; transform: rotate(45deg); }
       .burger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
       .burger.open span:nth-child(3) { top: 9px; transform: rotate(-45deg); }
-      #nav-menu { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(11,11,12,0.97); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); flex-direction: column; align-items: center; justify-content: center; gap: 36px; z-index: 10000; display: flex; opacity: 0; transition: opacity 0.4s ease; pointer-events: none; }
-      #nav-menu.open { opacity: 1; pointer-events: all; }
+      #nav-menu { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(11,11,12,0.99); flex-direction: column; align-items: center; justify-content: center; gap: 36px; z-index: 10000; display: flex; opacity: 0; visibility: hidden; transition: opacity 0.4s ease, visibility 0s linear 0.4s; pointer-events: none; }
+      #nav-menu.open { opacity: 1; visibility: visible; transition: opacity 0.4s ease, visibility 0s linear 0s; pointer-events: all; }
       #nav-menu li { list-style: none; opacity: 0; transform: translateY(16px); transition: opacity 0.35s ease, transform 0.35s ease; }
       #nav-menu.open li:nth-child(1) { opacity: 1; transform: translateY(0); transition-delay: 0.08s; }
       #nav-menu.open li:nth-child(2) { opacity: 1; transform: translateY(0); transition-delay: 0.13s; }
@@ -397,6 +397,7 @@
       #nav-menu.open li:nth-child(5) { opacity: 1; transform: translateY(0); transition-delay: 0.28s; }
       #nav-menu.open li:nth-child(6) { opacity: 1; transform: translateY(0); transition-delay: 0.33s; }
       #nav-menu.open li:nth-child(7) { opacity: 1; transform: translateY(0); transition-delay: 0.38s; }
+      #nav-menu.open li:nth-child(8) { opacity: 1; transform: translateY(0); transition-delay: 0.43s; }
       #nav-menu a { font-size: 1.5rem; font-weight: 300; color: #fff; text-decoration: none; letter-spacing: 1px; transition: color 0.3s; display: block; }
       #nav-menu a:hover, #nav-menu a.active { color: #A76D45; }
       #nav-menu .btn-consult { margin-top: 8px; padding: 14px 40px; font-size: 1rem; }
@@ -475,7 +476,6 @@
   .nav-dropdown > a { display: block; }
   .dropdown-menu { display: none !important; }
   .nav-dropdown::after { content: ""; }
-  #nav-menu.open li:nth-child(8) { opacity: 1; transform: translateY(0); transition-delay: 0.43s; }
 }
 .btn-consult-mobile { display: none; }
 @media (max-width: 992px) {
@@ -960,30 +960,17 @@ function closeMobileMenu() {
   burger.classList.remove('open');
   navMenu.classList.remove('open');
   const scrollY = parseInt(document.body.style.top || '0') * -1;
-  let restored = false;
-  const restore = () => {
-    if(restored) return;
-    restored = true;
-    document.body.style.position = '';
-    document.body.style.top = '';
-    document.body.style.width = '';
-    document.body.style.paddingRight = '';
-    document.querySelector('header').style.paddingRight = '';
-    window.scrollTo({ top: scrollY, left: 0, behavior: 'instant' });
-  };
-  navMenu.addEventListener('transitionend', function handler(e){
-    if(e.target === navMenu && e.propertyName === 'opacity'){
-      navMenu.removeEventListener('transitionend', handler);
-      restore();
-    }
-  });
-  setTimeout(restore, 450);
+  document.body.style.position = '';
+  document.body.style.top = '';
+  document.body.style.width = '';
+  document.body.style.paddingRight = '';
+  document.querySelector('header').style.paddingRight = '';
+  window.scrollTo({ top: scrollY, left: 0, behavior: 'instant' });
 }
 
 burger.addEventListener('click', () => {
-  burger.classList.toggle('open');
-  navMenu.classList.toggle('open');
-  if(navMenu.classList.contains('open')) {
+  const willOpen = !navMenu.classList.contains('open');
+  if(willOpen) {
     const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
     const scrollY = window.scrollY;
     document.body.style.paddingRight = scrollbarWidth + 'px';
@@ -991,7 +978,14 @@ burger.addEventListener('click', () => {
     document.body.style.position = 'fixed';
     document.body.style.top = '-' + scrollY + 'px';
     document.body.style.width = '100%';
+    void navMenu.offsetHeight;
+    requestAnimationFrame(() => {
+      burger.classList.add('open');
+      navMenu.classList.add('open');
+    });
   } else {
+    burger.classList.remove('open');
+    navMenu.classList.remove('open');
     closeMobileMenu();
   }
 });

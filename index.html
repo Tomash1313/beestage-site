@@ -1551,6 +1551,8 @@ window.addEventListener('scroll',()=>{
   const scrollY = window.scrollY + 120;
   let current = 'nav-home';
   sections.forEach(s => { if(scrollY >= s.top) current = s.id; });
+  const nearBottom = window.scrollY + window.innerHeight >= document.body.scrollHeight - 40;
+  if(nearBottom) current = 'nav-contacts';
   document.querySelectorAll('nav a').forEach(a => a.classList.remove('active'));
   const el = document.getElementById(current);
   if(el) el.classList.add('active');

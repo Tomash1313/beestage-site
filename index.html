@@ -210,11 +210,21 @@ nav a.active { color: var(--bronze); }
   background: linear-gradient(to right, rgba(167,109,69,0.7), rgba(167,109,69,0.1));
 }
 .services-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 32px; }
-.service-card { padding: 32px; }
+.service-card { padding: 32px; display: flex; flex-direction: column; }
 .service-icon { font-size: 2rem; color: var(--bronze); margin-bottom: 20px; }
 .service-icon svg { width: 58px; height: 58px; }
 .service-card h3 { font-size: 1.15rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 12px; }
-.service-card p { color: var(--text-main); font-size: 0.95rem; font-weight: 300; }
+.service-card p { color: var(--text-main); font-size: 0.95rem; font-weight: 300; margin-bottom: 20px; }
+.service-tags {
+  margin-top: auto; padding-top: 16px; border-top: 1px dashed rgba(167,109,69,0.3);
+  display: flex; flex-wrap: wrap; gap: 8px;
+}
+.service-tag {
+  font-size: 0.7rem; color: rgba(255,255,255,0.55); text-decoration: none;
+  padding: 5px 10px; border: 1px dashed rgba(167,109,69,0.35); border-radius: 20px;
+  transition: all 0.25s; white-space: nowrap; display: inline-block;
+}
+.service-tag:hover { color: var(--bronze); border-color: var(--bronze); border-style: solid; background: rgba(167,109,69,0.08); }
 
 /* Flexible Plan Block */
 .flex-plan-section { padding: 20px 0 60px; }
@@ -811,7 +821,7 @@ nav a.active { color: var(--bronze); }
       </button>
       <ul id="nav-menu">
         <li><a href="/" id="nav-home" class="active">Home</a></li>
-        <li><a href="/#services" id="nav-services">Services</a></li>
+        <li><a href="/services" id="nav-services">Services</a></li>
         <li><a href="/#approach" id="nav-approach">Approach</a></li>
         <li><a href="/pricing" id="nav-pricing">Pricing</a></li>
         <li class="nav-dropdown">
@@ -872,6 +882,12 @@ nav a.active { color: var(--bronze); }
         </div>
         <h3>Automated Bookkeeping</h3>
         <p>We turn your financial chaos into a streamlined system. Your data flows automatically into the cloud, freeing you from manual routine.</p>
+        <div class="service-tags">
+          <a class="service-tag" href="/services#monthly-bookkeeping">Monthly Bookkeeping</a>
+          <a class="service-tag" href="/services#transaction-categorization">Categorization</a>
+          <a class="service-tag" href="/services#quickbooks-xero">QuickBooks & Xero</a>
+          <a class="service-tag" href="/services#catchup-cleanup">Cleanup Bookkeeping</a>
+        </div>
       </div>
 
       <div class="service-card">
@@ -899,6 +915,9 @@ nav a.active { color: var(--bronze); }
         </div>
         <h3>Growth Intelligence</h3>
         <p>We analyze numbers not as historians, but as partners. Real-time, clear reporting helps you identify exactly where your business gains momentum.</p>
+        <div class="service-tags">
+          <a class="service-tag" href="/services#financial-reporting">Financial Reporting</a>
+        </div>
       </div>
 
       <div class="service-card">
@@ -920,6 +939,9 @@ nav a.active { color: var(--bronze); }
         </div>
         <h3>Compliance Assurance</h3>
         <p>Ironclad discipline in reporting. We prepare your books so the tax authorities see total transparency, and you see absolute peace of mind.</p>
+        <div class="service-tags">
+          <a class="service-tag" href="/services#gst-hst-pst-filing">GST/HST & PST Filing</a>
+        </div>
       </div>
 
       <div class="service-card">
@@ -945,6 +967,9 @@ nav a.active { color: var(--bronze); }
         </div>
         <h3>Cash Flow Rhythm</h3>
         <p>Finances have a rhythm. We monitor your inflows and outflows, ensuring your cash flow never stalls due to overlooked details.</p>
+        <div class="service-tags">
+          <a class="service-tag" href="/services#bank-reconciliation">Bank & Credit Card Reconciliation</a>
+        </div>
       </div>
 
       <div class="service-card">
@@ -976,6 +1001,9 @@ nav a.active { color: var(--bronze); }
         </div>
         <h3>Strategic Payroll</h3>
         <p>Payroll is more than a calculation; it's about team loyalty. We guarantee precision and punctuality, balancing strict reporting with simplicity for you.</p>
+        <div class="service-tags">
+          <a class="service-tag" href="/services#payroll-support">Payroll Support</a>
+        </div>
       </div>
 
       <div class="service-card">
@@ -1005,6 +1033,9 @@ nav a.active { color: var(--bronze); }
         </div>
         <h3>Operational Bridge</h3>
         <p>We act as the vital link between your operations and your CPA. We handle the invoices, bills, and communication, so you can focus on strategy, not paperwork.</p>
+        <div class="service-tags">
+          <a class="service-tag" href="/services#accounts-payable-receivable">Accounts Payable & Receivable</a>
+        </div>
       </div>
 
     </div>

@@ -10,8 +10,8 @@
   <!-- End Google Tag Manager -->
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Pricing — B-Stage Bookkeeping</title>
-  <meta name="description" content="Transparent bookkeeping packages for Canadian businesses. Core, Growth, and Scale plans starting at C$250/month.">
+  <title>Services — B-Stage Bookkeeping</title>
+  <meta name="description" content="Full-service bookkeeping for Canadian businesses — monthly bookkeeping, reconciliation, financial reporting, payroll, GST/HST filing, QuickBooks & Xero, and catch-up cleanup.">
 
   <!-- Favicon -->
   <link rel="icon" type="image/x-icon" href="/favicon.ico">
@@ -25,8 +25,8 @@
   <!-- SEO -->
   <meta name="robots" content="index, follow">
   <meta name="author" content="B-Stage Bookkeeping">
-  <meta name="keywords" content="bookkeeping pricing Canada, bookkeeping packages Winnipeg, CRA compliance pricing, small business bookkeeping cost Canada">
-  <link rel="canonical" href="https://beestage.ca/pricing">
+  <meta name="keywords" content="bookkeeping services Canada, monthly bookkeeping Winnipeg, bank reconciliation, financial reporting, payroll support, GST HST PST filing, QuickBooks Xero bookkeeping, catch-up bookkeeping">
+  <link rel="canonical" href="https://beestage.ca/services">
 
   <!-- Schema Markup -->
   <script type="application/ld+json">
@@ -57,29 +57,18 @@
     ],
     "hasOfferCatalog": {
       "@type": "OfferCatalog",
-      "name": "Bookkeeping Packages",
+      "name": "Bookkeeping Services",
       "itemListElement": [
-        {
-          "@type": "Offer",
-          "name": "Core — Essential",
-          "price": "250",
-          "priceCurrency": "CAD",
-          "description": "Essential monthly bookkeeping and tax readiness."
-        },
-        {
-          "@type": "Offer",
-          "name": "Growth — Operational",
-          "price": "450",
-          "priceCurrency": "CAD",
-          "description": "Full operational bookkeeping plus payroll."
-        },
-        {
-          "@type": "Offer",
-          "name": "Scale — Full Back-Office",
-          "price": "800",
-          "priceCurrency": "CAD",
-          "description": "Complete back-office outsourcing with CPA coordination."
-        }
+        { "@type": "Offer", "name": "Monthly Bookkeeping", "description": "Ongoing monthly bookkeeping to keep your books accurate and current." },
+        { "@type": "Offer", "name": "Bank & Credit Card Reconciliation", "description": "Reconciling your books against bank and credit card statements." },
+        { "@type": "Offer", "name": "Transaction Categorization", "description": "Consistent categorization of business income and expenses." },
+        { "@type": "Offer", "name": "Financial Reporting", "description": "Profit & Loss, Balance Sheet, and custom financial reports." },
+        { "@type": "Offer", "name": "Accounts Payable & Receivable", "description": "Managing invoices, bills, and outstanding balances." },
+        { "@type": "Offer", "name": "Payroll Support", "description": "Bookkeeping and administrative support around payroll." },
+        { "@type": "Offer", "name": "GST/HST & PST Filing", "description": "Sales tax calculation, review, and filing preparation." },
+        { "@type": "Offer", "name": "QuickBooks & Xero Bookkeeping", "description": "Bookkeeping and setup support for QuickBooks Online and Xero." },
+        { "@type": "Offer", "name": "Catch-Up / Cleanup Bookkeeping", "description": "Bringing overdue or disorganized books up to date." },
+        { "@type": "Offer", "name": "Year-End Bookkeeping Support", "description": "Preparing accountant-ready records for year-end." }
       ]
     }
   }
@@ -87,18 +76,18 @@
 
   <!-- Open Graph -->
   <meta property="og:type" content="website">
-  <meta property="og:url" content="https://beestage.ca/pricing">
-  <meta property="og:title" content="Pricing — B-Stage Bookkeeping">
-  <meta property="og:description" content="Transparent bookkeeping packages for Canadian businesses. Starting at C$250/month.">
+  <meta property="og:url" content="https://beestage.ca/services">
+  <meta property="og:title" content="Services — B-Stage Bookkeeping">
+  <meta property="og:description" content="Full-service bookkeeping for Canadian businesses — from monthly bookkeeping to year-end support.">
   <meta property="og:image" content="https://beestage.ca/og-image.jpg">
   <meta property="og:locale" content="en_CA">
   <meta property="og:site_name" content="B-Stage Bookkeeping">
 
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:url" content="https://beestage.ca/pricing">
-  <meta name="twitter:title" content="Pricing — B-Stage Bookkeeping">
-  <meta name="twitter:description" content="Transparent bookkeeping packages for Canadian businesses. Starting at C$250/month.">
+  <meta name="twitter:url" content="https://beestage.ca/services">
+  <meta name="twitter:title" content="Services — B-Stage Bookkeeping">
+  <meta name="twitter:description" content="Full-service bookkeeping for Canadian businesses — from monthly bookkeeping to year-end support.">
   <meta name="twitter:image" content="https://beestage.ca/og-image.jpg">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -517,6 +506,36 @@
   .v3-grid { grid-template-columns: 1fr; gap: 32px; }
   .v3-cta-bar { flex-direction: column; text-align: center; }
 }
+    /* ── Services page (accordion) ── */
+    .services-page { padding-top: 20px; padding-bottom: 40px; }
+    .sv-hero { max-width: 720px; margin-bottom: 48px; }
+    .sv-hero p.page-sub { margin-top: 4px; }
+    .sv-item { border-top: 1px solid rgba(167,109,69,0.18); scroll-margin-top: 110px; }
+    .sv-item:last-child { border-bottom: 1px solid rgba(167,109,69,0.18); }
+    .sv-head { display: flex; align-items: center; justify-content: space-between; gap: 20px; padding: 24px 4px; cursor: pointer; }
+    .sv-head-left { display: flex; align-items: baseline; gap: 16px; }
+    .sv-num { font-size: 0.78rem; color: rgba(167,109,69,0.5); font-weight: 600; width: 26px; flex-shrink: 0; }
+    .sv-title-wrap h3 { font-size: 1.08rem; font-weight: 600; margin-bottom: 4px; }
+    .sv-title-wrap span { font-size: 0.86rem; color: rgba(255,255,255,0.5); font-weight: 300; }
+    .sv-chevron { width: 20px; height: 20px; flex-shrink: 0; stroke: var(--bronze); transition: transform 0.25s; }
+    .sv-item.open .sv-chevron { transform: rotate(180deg); }
+    .sv-body { max-height: 0; overflow: hidden; transition: max-height 0.35s ease; }
+    .sv-item.open .sv-body { max-height: 900px; }
+    .sv-body-inner { padding: 0 4px 32px 42px; }
+    .sv-body-inner p { font-size: 0.92rem; color: rgba(255,255,255,0.72); font-weight: 300; margin-bottom: 18px; max-width: 680px; }
+    .sv-included { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 1.2px; color: var(--bronze); font-weight: 600; margin-bottom: 12px; }
+    .sv-list { display: grid; grid-template-columns: 1fr 1fr; gap: 8px 24px; margin-bottom: 18px; max-width: 680px; list-style: none; }
+    .sv-list li { display: flex; gap: 8px; font-size: 0.86rem; color: rgba(255,255,255,0.75); font-weight: 300; }
+    .sv-list li::before { content: '—'; color: var(--bronze); flex-shrink: 0; }
+    .sv-closing { font-size: 0.86rem; color: rgba(255,255,255,0.65); font-weight: 300; }
+    .sv-closing strong { color: var(--bronze); font-weight: 600; }
+    .sv-cta { text-align: center; margin-top: 56px; padding: 40px; background: var(--card-bg); border-radius: 10px; }
+    .sv-cta p { font-size: 1.05rem; font-weight: 300; margin-bottom: 22px; }
+    @media (max-width: 600px) {
+      .sv-list { grid-template-columns: 1fr; }
+      .sv-body-inner { padding-left: 26px; }
+      .sv-head { padding: 20px 0; }
+    }
 </style>
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-032Q2C6K6S"></script>
@@ -551,7 +570,7 @@
         <li><a href="/">Home</a></li>
         <li><a href="/services">Services</a></li>
         <li><a href="/#approach">Approach</a></li>
-        <li><a href="/pricing" class="active">Pricing</a></li>
+        <li><a href="/pricing">Pricing</a></li>
         <li class="nav-dropdown">
           <a href="/about">About</a>
           <div class="dropdown-menu">
@@ -566,132 +585,321 @@
   </div>
 </header>
 
-<main class="pricing-page" role="main">
+<main class="services-page" role="main">
   <div class="container">
 
-    <div class="page-label">Pricing</div>
+    <div class="page-label">Services</div>
 
-    <div class="hybrid-intro">
-      <div class="hybrid-quote">
-        You pay for <strong>results and reliability</strong> — not for hours spent figuring out your books.
+    <div class="sv-hero">
+      <h1 class="page-title">Bookkeeping services built <strong>around your business.</strong></h1>
+      <p class="page-sub">From day-to-day bookkeeping to year-end support — here's everything we handle, and what's included in each service.</p>
+    </div>
+
+    <div class="sv-item open" id="monthly-bookkeeping">
+      <div class="sv-head" onclick="this.parentElement.classList.toggle('open')">
+        <div class="sv-head-left">
+          <div class="sv-num">01</div>
+          <div class="sv-title-wrap">
+            <h3>Monthly Bookkeeping</h3>
+            <span>Keep your books accurate, current, and ready when you need them.</span>
+          </div>
+        </div>
+        <svg class="sv-chevron" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
       </div>
-      <div class="hybrid-note" style="font-size:0.95rem;font-weight:300;color:#fff;line-height:1.7;">
-        Every plan includes CRA-compliant bookkeeping, cloud access, and a dedicated point of contact. No hidden fees. No surprise invoices at year-end. Just clean books and peace of mind.
+      <div class="sv-body">
+        <div class="sv-body-inner">
+          <p>Our monthly bookkeeping service keeps your financial records organized throughout the year — not just when tax season arrives. We record and categorize transactions, reconcile accounts, maintain your books, and keep your financial information up to date. With your books properly maintained each month, you have a clear picture of your revenue, expenses, profitability, and cash position without having to sort through months of financial records yourself.</p>
+          <div class="sv-included">What's Included</div>
+          <ul class="sv-list">
+            <li>Recording and categorizing business transactions</li>
+            <li>Bank and credit card reconciliation</li>
+            <li>Reviewing income and expenses</li>
+            <li>Maintaining your chart of accounts</li>
+            <li>Organizing financial records</li>
+            <li>Monthly financial statements</li>
+            <li>Ongoing bookkeeping support</li>
+          </ul>
+          <div class="sv-closing"><strong>Best for:</strong> Businesses that want reliable bookkeeping handled consistently every month.</div>
+        </div>
       </div>
     </div>
 
-    <div class="hybrid-cards">
-
-      <div class="hcard">
-        <div class="hcard-accent"></div>
-        <div class="hcard-tag"><span class="hcard-tag-dot"></span>Core</div>
-        <div class="hcard-name">Essential</div>
-        <div class="hcard-desc">Essential monthly bookkeeping and tax readiness. Your books stay clean so your CPA can focus on strategy, not cleanup.</div>
-        <div class="hcard-price">C$250</div>
-        <div class="hcard-per">per month</div>
-        <div class="hcard-divider"></div>
-        <ul class="hcard-list">
-          <li>Monthly cloud bookkeeping (QuickBooks/Xero)</li>
-          <li>Bank & credit card reconciliation</li>
-          <li>GST/HST & PST filing</li>
-          <li>Tax-ready year-end books</li>
-          <li>Email & chat support</li>
-        </ul>
-        <button class="hcard-btn hcard-btn-outline" onclick="openConsultModal('Core — C$250/mo')" aria-label="Get started with Core package at C$250 per month">Get Started</button>
+    <div class="sv-item" id="bank-reconciliation">
+      <div class="sv-head" onclick="this.parentElement.classList.toggle('open')">
+        <div class="sv-head-left">
+          <div class="sv-num">02</div>
+          <div class="sv-title-wrap">
+            <h3>Bank &amp; Credit Card Reconciliation</h3>
+            <span>Know that your books actually match your bank accounts.</span>
+          </div>
+        </div>
+        <svg class="sv-chevron" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
       </div>
-
-      <div class="hcard hfeatured">
-        <div class="hcard-accent"></div>
-        <div class="hcard-tag"><span class="hcard-tag-dot"></span>Growth — Most Popular</div>
-        <div class="hcard-name">Operational</div>
-        <div class="hcard-desc">Full operational bookkeeping plus payroll. You see real numbers every month — not just a bank balance.</div>
-        <div class="hcard-price">C$450</div>
-        <div class="hcard-per">per month</div>
-        <div class="hcard-divider"></div>
-        <ul class="hcard-list">
-          <li>Everything in Essential</li>
-          <li>Payroll management (up to 5 people)</li>
-          <li>Monthly P&L & Balance Sheet reports</li>
-          <li>Subcontractor reporting (T5018)</li>
-          <li>Priority support + quick calls</li>
-        </ul>
-        <button class="hcard-btn hcard-btn-filled" onclick="openConsultModal('Growth — C$450/mo')" aria-label="Get started with Growth package at C$450 per month">Get Started</button>
+      <div class="sv-body">
+        <div class="sv-body-inner">
+          <p>Reconciliation is more than simply checking that numbers look right. We compare your accounting records against bank and credit card statements to identify missing transactions, duplicates, incorrect entries, and discrepancies. Regular reconciliation helps ensure that your financial reports are based on complete and accurate information.</p>
+          <div class="sv-included">What's Included</div>
+          <ul class="sv-list">
+            <li>Bank account reconciliation</li>
+            <li>Credit card reconciliation</li>
+            <li>Transaction matching</li>
+            <li>Identification of missing or duplicate transactions</li>
+            <li>Investigation of discrepancies</li>
+            <li>Reconciliation of outstanding items</li>
+            <li>Accurate month-end balances</li>
+          </ul>
+          <div class="sv-closing"><strong>Why it matters:</strong> Small errors can accumulate over time. Regular reconciliation helps catch them before they become bigger problems.</div>
+        </div>
       </div>
-
-      <div class="hcard">
-        <div class="hcard-accent"></div>
-        <div class="hcard-tag"><span class="hcard-tag-dot"></span>Scale</div>
-        <div class="hcard-name">Full Back-Office</div>
-        <div class="hcard-desc">We handle everything — invoices, bills, payroll, and CPA coordination. You focus on running your business.</div>
-        <div class="hcard-price">C$800</div>
-        <div class="hcard-per">per month</div>
-        <div class="hcard-divider"></div>
-        <ul class="hcard-list">
-          <li>Everything in Operational</li>
-          <li>Accounts Receivable & Payable</li>
-          <li>Extended payroll (up to 15) + T4/T4A</li>
-          <li>Direct CPA coordination at year-end</li>
-          <li>VIP support + monthly Zoom review</li>
-        </ul>
-        <button class="hcard-btn hcard-btn-outline" onclick="openConsultModal('Scale — C$800/mo')" aria-label="Get started with Scale package at C$800 per month">Get Started</button>
-      </div>
-
     </div>
 
-    <!-- Flexible Plan -->
-    <section class="v3-section">
-      <div class="v3-grid">
-        <div class="v3-left">
-          <h3>Bookkeeping that works <strong>around your business.</strong></h3>
-          <p>B-Stage Bookkeeping provides flexible solutions designed around the way your business operates — from day-to-day bookkeeping to financial reporting and tax preparation support.</p>
-          <div class="v3-badges">
-            <div class="v3-badge">
-              <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
-              Pay only for the services you actually use
-            </div>
-            <div class="v3-badge">
-              <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
-              Add, remove, or adjust as your business grows
-            </div>
+    <div class="sv-item" id="transaction-categorization">
+      <div class="sv-head" onclick="this.parentElement.classList.toggle('open')">
+        <div class="sv-head-left">
+          <div class="sv-num">03</div>
+          <div class="sv-title-wrap">
+            <h3>Transaction Categorization</h3>
+            <span>Turn a list of transactions into meaningful financial information.</span>
           </div>
         </div>
-        <div class="v3-steps-list">
-          <div class="v3-step-row">
-            <div class="v3-step-num">01</div>
-            <div>
-              <h4>Tell Us What You Need</h4>
-              <p>Share your current bookkeeping setup, business needs, and goals.</p>
-            </div>
-          </div>
-          <div class="v3-step-row">
-            <div class="v3-step-num">02</div>
-            <div>
-              <h4>We Build the Right Plan</h4>
-              <p>We recommend the services that actually make sense for your business — no unnecessary extras.</p>
-            </div>
-          </div>
-          <div class="v3-step-row">
-            <div class="v3-step-num">03</div>
-            <div>
-              <h4>We Take Care of the Numbers</h4>
-              <p>Once everything is set up, our team handles your bookkeeping so you can focus on running your business.</p>
-            </div>
-          </div>
+        <svg class="sv-chevron" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+      </div>
+      <div class="sv-body">
+        <div class="sv-body-inner">
+          <p>Every transaction in your books needs to be recorded in the right place. We categorize your business income and expenses consistently according to the nature of each transaction and your accounting structure. When transactions are properly categorized, your financial statements become much more useful — helping you understand where your money is going and how your business is performing.</p>
+          <div class="sv-included">What's Included</div>
+          <ul class="sv-list">
+            <li>Income and expense categorization</li>
+            <li>Review of unclear transactions</li>
+            <li>Proper account assignment</li>
+            <li>Business vs. personal transaction identification</li>
+            <li>Consistent categorization across periods</li>
+            <li>Receipt and supporting-document organization</li>
+            <li>Review of unusual or potentially misclassified transactions</li>
+          </ul>
+          <div class="sv-closing"><strong>The result:</strong> Cleaner books, more reliable reports, and less work at year-end.</div>
         </div>
       </div>
-      <div class="v3-cta-bar">
-        <div>
-          <p>Not sure what your business needs?</p>
-          <span>Let's build the right bookkeeping plan for you.</span>
-        </div>
-        <button class="btn-consult" onclick="openConsultModal()" aria-label="Book a free consultation">Book a Free Consultation</button>
-      </div>
-    </section>
+    </div>
 
-    <div style="padding: 24px 0 0; border-top: 1px solid rgba(167,109,69,0.12); margin-top: 1px;">
-      <h2 style="font-size:clamp(1.6rem,3vw,2.4rem);font-weight:300;color:#fff;line-height:1.2;margin-bottom:16px;">Transparent pricing. <strong style="font-weight:700;color:#A76D45;">No surprises, ever.</strong></h2>
-      <p style="font-size:0.95rem;font-weight:300;color:#fff;line-height:1.7;margin-bottom:8px;">Choose the level of support your business needs. All plans include cloud bookkeeping and CRA compliance — we grow with you.</p>
-      <p style="font-size:0.95rem;font-weight:300;color:#fff;line-height:1.7;">All prices are in CAD and exclude applicable GST/HST and PST.</p>
+    <div class="sv-item" id="financial-reporting">
+      <div class="sv-head" onclick="this.parentElement.classList.toggle('open')">
+        <div class="sv-head-left">
+          <div class="sv-num">04</div>
+          <div class="sv-title-wrap">
+            <h3>Financial Reporting</h3>
+            <span>Know what your numbers are actually telling you.</span>
+          </div>
+        </div>
+        <svg class="sv-chevron" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+      </div>
+      <div class="sv-body">
+        <div class="sv-body-inner">
+          <p>Bookkeeping shouldn't end with entering transactions. Your financial records should help you understand the business. We prepare clear financial reports that give you a practical view of your revenue, expenses, profitability, and financial position. Instead of digging through individual transactions, you can use organized financial information to make better business decisions. We can also work with your accountant or tax professional by providing organized year-end financial information.</p>
+          <div class="sv-included">Reports May Include</div>
+          <ul class="sv-list">
+            <li>Profit &amp; Loss Statement</li>
+            <li>Balance Sheet</li>
+            <li>Income and expense summaries</li>
+            <li>Account activity</li>
+            <li>Monthly and year-to-date comparisons</li>
+            <li>Customized reports based on your business needs</li>
+          </ul>
+          <div class="sv-closing"><strong>The goal:</strong> Give you numbers you can actually use — not just numbers that have been entered into software.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sv-item" id="accounts-payable-receivable">
+      <div class="sv-head" onclick="this.parentElement.classList.toggle('open')">
+        <div class="sv-head-left">
+          <div class="sv-num">05</div>
+          <div class="sv-title-wrap">
+            <h3>Accounts Payable &amp; Receivable</h3>
+            <span>Keep money moving in — and bills under control.</span>
+          </div>
+        </div>
+        <svg class="sv-chevron" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+      </div>
+      <div class="sv-body">
+        <div class="sv-body-inner">
+          <p>Managing invoices and bills can quickly become a distraction when you're focused on running your business. We help keep your accounts payable and receivable organized so you can keep track of what you owe and what you're owed. For accounts receivable, we can help maintain customer invoices, track outstanding balances, and keep your records organized. For accounts payable, we organize vendor bills, track amounts due, and help ensure expenses are recorded accurately and on time.</p>
+          <div class="sv-included">Accounts Receivable</div>
+          <ul class="sv-list">
+            <li>Customer invoicing support</li>
+            <li>Recording incoming payments</li>
+            <li>Tracking outstanding invoices</li>
+            <li>Accounts receivable aging</li>
+            <li>Payment status tracking</li>
+          </ul>
+          <div class="sv-included" style="margin-top:6px;">Accounts Payable</div>
+          <ul class="sv-list">
+            <li>Recording vendor bills</li>
+            <li>Tracking amounts due</li>
+            <li>Accounts payable aging</li>
+            <li>Expense documentation</li>
+            <li>Payment tracking and organization</li>
+          </ul>
+          <div class="sv-closing"><strong>The result:</strong> Better visibility over your outstanding money and fewer forgotten bills.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sv-item" id="payroll-support">
+      <div class="sv-head" onclick="this.parentElement.classList.toggle('open')">
+        <div class="sv-head-left">
+          <div class="sv-num">06</div>
+          <div class="sv-title-wrap">
+            <h3>Payroll Support</h3>
+            <span>Accurate payroll without adding another administrative burden.</span>
+          </div>
+        </div>
+        <svg class="sv-chevron" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+      </div>
+      <div class="sv-body">
+        <div class="sv-body-inner">
+          <p>Payroll needs to be accurate, consistent, and handled on schedule. We provide bookkeeping and administrative support around your payroll process, helping ensure payroll records are properly maintained and reflected in your books. Depending on your setup, we can support payroll processing, payroll-related bookkeeping, employee and contractor records, and payroll reconciliations.</p>
+          <div class="sv-included">Payroll Support Can Include</div>
+          <ul class="sv-list">
+            <li>Payroll setup and organization</li>
+            <li>Recording payroll transactions</li>
+            <li>Payroll reconciliation</li>
+            <li>Employee and contractor payment records</li>
+            <li>Payroll expense tracking</li>
+            <li>Remittance support</li>
+            <li>Year-end payroll information</li>
+            <li>Coordination with your payroll provider</li>
+          </ul>
+          <div class="sv-closing">We help keep payroll information organized so your books remain accurate and your payroll records are ready when needed.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sv-item" id="gst-hst-pst-filing">
+      <div class="sv-head" onclick="this.parentElement.classList.toggle('open')">
+        <div class="sv-head-left">
+          <div class="sv-num">07</div>
+          <div class="sv-title-wrap">
+            <h3>GST/HST &amp; PST Filing</h3>
+            <span>Stay on top of your sales tax obligations.</span>
+          </div>
+        </div>
+        <svg class="sv-chevron" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+      </div>
+      <div class="sv-body">
+        <div class="sv-body-inner">
+          <p>Sales tax reporting becomes much easier when your books are maintained correctly throughout the year. We organize and review the financial information needed to prepare your GST/HST and PST filings and help ensure your sales tax records are properly maintained.</p>
+          <div class="sv-included">Our Support Can Include</div>
+          <ul class="sv-list">
+            <li>GST/HST calculation and filing</li>
+            <li>PST calculation and filing</li>
+            <li>Review of taxable sales</li>
+            <li>Review of tax collected</li>
+            <li>Review of eligible input tax credits</li>
+            <li>Sales tax account reconciliation</li>
+            <li>Filing preparation</li>
+            <li>Supporting documentation organization</li>
+          </ul>
+          <div class="sv-closing">We help make sure your sales tax reporting is based on clean, up-to-date bookkeeping — rather than a last-minute scramble through receipts and transactions.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sv-item" id="quickbooks-xero">
+      <div class="sv-head" onclick="this.parentElement.classList.toggle('open')">
+        <div class="sv-head-left">
+          <div class="sv-num">08</div>
+          <div class="sv-title-wrap">
+            <h3>QuickBooks &amp; Xero Bookkeeping</h3>
+            <span>Your accounting software should make your business easier to manage — not harder.</span>
+          </div>
+        </div>
+        <svg class="sv-chevron" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+      </div>
+      <div class="sv-body">
+        <div class="sv-body-inner">
+          <p>We work with leading cloud accounting platforms to keep your bookkeeping organized, accurate, and accessible. Whether you're already using QuickBooks Online or Xero, or you're setting up your accounting system for the first time, we can help structure your books around the way your business operates.</p>
+          <div class="sv-included">We Can Help With</div>
+          <ul class="sv-list">
+            <li>QuickBooks Online bookkeeping</li>
+            <li>Xero bookkeeping</li>
+            <li>Chart of accounts setup</li>
+            <li>Bank and credit card connections</li>
+            <li>Transaction categorization</li>
+            <li>Account reconciliation</li>
+            <li>Financial reporting</li>
+            <li>Bookkeeping system organization</li>
+            <li>Ongoing maintenance</li>
+            <li>Cleanup and optimization</li>
+          </ul>
+          <div class="sv-closing">Already using QuickBooks or Xero? We can work with your existing setup rather than forcing you to start over.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sv-item" id="catchup-cleanup">
+      <div class="sv-head" onclick="this.parentElement.classList.toggle('open')">
+        <div class="sv-head-left">
+          <div class="sv-num">09</div>
+          <div class="sv-title-wrap">
+            <h3>Catch-Up / Cleanup Bookkeeping</h3>
+            <span>Behind on your bookkeeping? We'll help you get back on track.</span>
+          </div>
+        </div>
+        <svg class="sv-chevron" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+      </div>
+      <div class="sv-body">
+        <div class="sv-body-inner">
+          <p>Falling behind on bookkeeping is easy. Fixing it doesn't have to become a full-time project. Our catch-up and cleanup bookkeeping service helps bring overdue or disorganized books up to date. We work through historical transactions, reconcile accounts, correct categorization issues, and organize your records so you can move forward with accurate books. Whether you're a few months behind or your books haven't been properly maintained for years, we'll assess what needs to be done and create a clear path to get everything back in order.</p>
+          <div class="sv-included">Cleanup May Include</div>
+          <ul class="sv-list">
+            <li>Catching up overdue months</li>
+            <li>Historical transaction entry</li>
+            <li>Bank and credit card reconciliation</li>
+            <li>Transaction re-categorization</li>
+            <li>Duplicate transaction removal</li>
+            <li>Correction of bookkeeping errors</li>
+            <li>Cleanup of uncategorized transactions</li>
+            <li>Review of opening balances</li>
+            <li>Financial statement review</li>
+            <li>Preparation of organized books for ongoing bookkeeping</li>
+          </ul>
+          <div class="sv-closing">Once your books are clean, we can keep them that way with ongoing monthly bookkeeping.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sv-item" id="year-end-support">
+      <div class="sv-head" onclick="this.parentElement.classList.toggle('open')">
+        <div class="sv-head-left">
+          <div class="sv-num">10</div>
+          <div class="sv-title-wrap">
+            <h3>Year-End Bookkeeping Support</h3>
+            <span>Make year-end easier for you and your accountant.</span>
+          </div>
+        </div>
+        <svg class="sv-chevron" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+      </div>
+      <div class="sv-body">
+        <div class="sv-body-inner">
+          <p>Year-end doesn't have to mean rebuilding your books from scratch. We prepare your bookkeeping records so your accountant has the information needed to complete the year-end process efficiently. We can reconcile accounts, review outstanding transactions, organize supporting documents, and prepare your financial records for your accountant or tax professional.</p>
+          <div class="sv-included">Includes</div>
+          <ul class="sv-list">
+            <li>Year-end account reconciliation</li>
+            <li>Review of outstanding transactions</li>
+            <li>Financial statement preparation</li>
+            <li>Account balance review</li>
+            <li>Supporting document organization</li>
+            <li>Accountant-ready bookkeeping records</li>
+          </ul>
+          <div class="sv-closing">We help position your books as part of your financial infrastructure — not just data entry.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sv-cta">
+      <p>Not sure which services your business needs?</p>
+      <button class="btn-consult" onclick="openConsultModal()" aria-label="Book a free consultation">Book a Free Consultation</button>
     </div>
 
   </div>
@@ -1000,6 +1208,21 @@ function smoothScrollTop() { document.documentElement.scrollTop = 0; document.bo
   window.addEventListener('scroll', () => {
     btn.classList.toggle('visible', window.scrollY > 400);
   });
+})();
+
+/* ── Open service from URL hash ── */
+(function(){
+  function openFromHash(){
+    const id = window.location.hash.replace('#', '');
+    if(!id) return;
+    const target = document.getElementById(id);
+    if(!target || !target.classList.contains('sv-item')) return;
+    document.querySelectorAll('.sv-item').forEach(item => item.classList.remove('open'));
+    target.classList.add('open');
+    setTimeout(() => target.scrollIntoView({ behavior: 'smooth', block: 'start' }), 150);
+  }
+  window.addEventListener('DOMContentLoaded', openFromHash);
+  window.addEventListener('hashchange', openFromHash);
 })();
 </script>
 

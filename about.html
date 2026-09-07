@@ -596,12 +596,24 @@ function closeMobileMenu() {
   burger.classList.remove('open');
   navMenu.classList.remove('open');
   const scrollY = parseInt(document.body.style.top || '0') * -1;
-  document.body.style.position = '';
-  document.body.style.top = '';
-  document.body.style.width = '';
-  document.body.style.paddingRight = '';
-  document.querySelector('header').style.paddingRight = '';
-  window.scrollTo(0, scrollY);
+  let restored = false;
+  const restore = () => {
+    if(restored) return;
+    restored = true;
+    document.body.style.position = '';
+    document.body.style.top = '';
+    document.body.style.width = '';
+    document.body.style.paddingRight = '';
+    document.querySelector('header').style.paddingRight = '';
+    window.scrollTo({ top: scrollY, left: 0, behavior: 'instant' });
+  };
+  navMenu.addEventListener('transitionend', function handler(e){
+    if(e.target === navMenu && e.propertyName === 'opacity'){
+      navMenu.removeEventListener('transitionend', handler);
+      restore();
+    }
+  });
+  setTimeout(restore, 450);
 }
 
 burger.addEventListener('click', () => {

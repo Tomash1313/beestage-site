@@ -737,14 +737,19 @@ function smoothScrollTop() { document.documentElement.scrollTop = 0; document.bo
       return;
     }
 
+    var hashPart = null;
     if (href.indexOf('/#') === 0) {
-      var hash = href.slice(1);
-      var target = document.querySelector(hash);
+      hashPart = href.slice(1);
+    } else if (href.indexOf('#') === 0) {
+      hashPart = href;
+    }
+    if (hashPart) {
+      var target = document.querySelector(hashPart);
       if (target) {
         e.preventDefault();
         var top = target.getBoundingClientRect().top + window.scrollY - 95;
         window.scrollTo({ top: Math.max(0, top), behavior: 'smooth' });
-        history.replaceState(null, '', hash);
+        history.replaceState(null, '', hashPart);
       }
     }
   });

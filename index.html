@@ -1462,15 +1462,20 @@ navMenu.querySelectorAll('a').forEach(link => {
       return;
     }
 
-    // "/#hash" links — scroll locally if target exists on this page, otherwise let normal navigation happen
+    // "/#hash" or "#hash" links — scroll locally if target exists on this page, otherwise let normal navigation happen
+    var hashPart = null;
     if (href.indexOf('/#') === 0) {
-      var hash = href.slice(1);
-      var target = document.querySelector(hash);
+      hashPart = href.slice(1);
+    } else if (href.indexOf('#') === 0) {
+      hashPart = href;
+    }
+    if (hashPart) {
+      var target = document.querySelector(hashPart);
       if (target) {
         e.preventDefault();
         var top = target.getBoundingClientRect().top + window.scrollY - 95;
         window.scrollTo({ top: Math.max(0, top), behavior: 'smooth' });
-        history.replaceState(null, '', hash);
+        history.replaceState(null, '', hashPart);
       }
       // else: target not on this page — allow default navigation to index.html#hash (lands instantly, no smooth top-jump)
     }

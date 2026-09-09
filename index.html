@@ -1458,7 +1458,7 @@ navMenu.querySelectorAll('a').forEach(link => {
     if (href === '/') {
       if (window.location.pathname === '/' || window.location.pathname === '/index.html') {
         e.preventDefault();
-        window.scrollTo({ top: 0, behavior: 'smooth' });
+        smoothScrollToY(0);
         history.replaceState(null, '', '/');
       }
       return;
@@ -1476,7 +1476,7 @@ navMenu.querySelectorAll('a').forEach(link => {
       if (target) {
         e.preventDefault();
         var top = target.getBoundingClientRect().top + window.scrollY - 95;
-        window.scrollTo({ top: Math.max(0, top), behavior: 'smooth' });
+        smoothScrollToY(Math.max(0, top));
         history.replaceState(null, '', hashPart);
       }
       // else: target not on this page — allow default navigation to index.html#hash (lands instantly, no smooth top-jump)
@@ -1709,6 +1709,25 @@ function submitConsultForm(){
     });
 }
 
+function smoothScrollToY(targetY, duration) {
+  duration = duration || 600;
+  const start = window.scrollY;
+  const distance = targetY - start;
+  if (Math.abs(distance) < 1) return;
+  const els = document.querySelectorAll('.services-section,.approach-section,.reviews-section,.footer-section');
+  els.forEach(el => el.style.scrollMarginTop = '0px');
+  const startTime = performance.now();
+  function step(now) {
+    const elapsed = now - startTime;
+    const progress = Math.min(elapsed / duration, 1);
+    const ease = 1 - Math.pow(1 - progress, 4);
+    window.scrollTo(0, Math.round(start + distance * ease));
+    if (progress < 1) { requestAnimationFrame(step); }
+    else { els.forEach(el => el.style.scrollMarginTop = ''); }
+  }
+  requestAnimationFrame(step);
+}
+
 function smoothScrollTop() {
   if(document.body.style.position === 'fixed') {
     const scrollY = parseInt(document.body.style.top || '0') * -1;
@@ -1719,21 +1738,7 @@ function smoothScrollTop() {
     document.querySelector('header').style.paddingRight = '';
     window.scrollTo({ top: scrollY, left: 0, behavior: 'instant' });
   }
-  const start = window.scrollY;
-  if(start === 0) return;
-  const els = document.querySelectorAll('.services-section,.approach-section,.reviews-section,.footer-section');
-  els.forEach(el => el.style.scrollMarginTop = '0px');
-  const duration = 700;
-  const startTime = performance.now();
-  function step(now) {
-    const elapsed = now - startTime;
-    const progress = Math.min(elapsed / duration, 1);
-    const ease = 1 - Math.pow(1 - progress, 4);
-    window.scrollTo(0, Math.round(start * (1 - ease)));
-    if(progress < 1) { requestAnimationFrame(step); }
-    else { els.forEach(el => el.style.scrollMarginTop = ''); }
-  }
-  requestAnimationFrame(step);
+  smoothScrollToY(0, 700);
 }
 (function(){
   const btn = document.getElementById('scrollTopBtn');

@@ -101,7 +101,7 @@
   --bronze-gradient: linear-gradient(135deg, #7A4526 0%, #A76D45 35%, #D59469 50%, #A76D45 65%, #7A4526 100%);
   --bronze-hover: linear-gradient(135deg, #A76D45 0%, #D59469 50%, #7A4526 100%);
 }
-html { scroll-behavior: smooth; }
+html { scroll-behavior: auto; }
 * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Inter', sans-serif; }
 
 /* ── Custom scrollbar ── */
@@ -1444,29 +1444,37 @@ navMenu.querySelectorAll('a').forEach(link => {
   link.addEventListener('click', closeMobileMenu);
 });
 
-/* ── Fix repeat click on #services and #contacts ── */
+/* ── Smart internal anchor navigation ── */
 (function() {
-  ['#services', '#contacts'].forEach(function(hash) {
-    var link = document.querySelector('a[href="' + hash + '"]');
+  document.addEventListener('click', function(e) {
+    var link = e.target.closest('a[href]');
     if (!link) return;
-    link.addEventListener('click', function(e) {
-      var target = document.querySelector(hash);
-      if (!target) return;
-      e.preventDefault();
-      var top = target.getBoundingClientRect().top + window.scrollY - 95;
-      window.scrollTo({ top: Math.max(0, top), behavior: 'smooth' });
-    });
-  });
+    var href = link.getAttribute('href');
+    if (!href) return;
 
-  /* ── Home — smooth scroll to top ── */
-  var homeLink = document.getElementById('nav-home');
-  if (homeLink) {
-    homeLink.addEventListener('click', function(e) {
-      e.preventDefault();
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-      history.replaceState(null, '', '/');
-    });
-  }
+    // Plain "/" (Home / logo) — smooth scroll to top if already on homepage
+    if (href === '/') {
+      if (window.location.pathname === '/' || window.location.pathname === '/index.html') {
+        e.preventDefault();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        history.replaceState(null, '', '/');
+      }
+      return;
+    }
+
+    // "/#hash" links — scroll locally if target exists on this page, otherwise let normal navigation happen
+    if (href.indexOf('/#') === 0) {
+      var hash = href.slice(1);
+      var target = document.querySelector(hash);
+      if (target) {
+        e.preventDefault();
+        var top = target.getBoundingClientRect().top + window.scrollY - 95;
+        window.scrollTo({ top: Math.max(0, top), behavior: 'smooth' });
+        history.replaceState(null, '', hash);
+      }
+      // else: target not on this page — allow default navigation to index.html#hash (lands instantly, no smooth top-jump)
+    }
+  });
 })();
 /* ── end ── */
 
@@ -1547,7 +1555,7 @@ window.addEventListener('scroll',()=>{
 
   const sections = [
     { id: 'nav-home',     top: 0 },
-    { id: 'nav-services', top: document.getElementById('services')?.offsetTop || 9999 },
+    { id: null,           top: document.getElementById('services')?.offsetTop || 9999 },
     { id: 'nav-approach', top: document.getElementById('approach')?.offsetTop || 9999 },
     { id: null,           top: document.getElementById('reviews')?.offsetTop || 9999 },
     { id: 'nav-contacts', top: document.getElementById('contacts')?.offsetTop || 9999 },

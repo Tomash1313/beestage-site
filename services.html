@@ -104,7 +104,7 @@
       --bronze-gradient: linear-gradient(135deg, #7A4526 0%, #A76D45 35%, #D59469 50%, #A76D45 65%, #7A4526 100%);
       --bronze-hover: linear-gradient(135deg, #A76D45 0%, #D59469 50%, #7A4526 100%);
     }
-    html { scroll-behavior: smooth; }
+    html { scroll-behavior: auto; }
 * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Inter', sans-serif; }
     ::-webkit-scrollbar { width: 4px; }
     ::-webkit-scrollbar-track { background: #0b0b0c; }
@@ -1225,6 +1225,37 @@ function smoothScrollTop() { document.documentElement.scrollTop = 0; document.bo
   window.addEventListener('DOMContentLoaded', openFromHash);
   window.addEventListener('hashchange', openFromHash);
 })();
+
+/* ── Smart internal anchor navigation ── */
+(function() {
+  document.addEventListener('click', function(e) {
+    var link = e.target.closest('a[href]');
+    if (!link) return;
+    var href = link.getAttribute('href');
+    if (!href) return;
+
+    if (href === '/') {
+      if (window.location.pathname === '/' || window.location.pathname === '/index.html') {
+        e.preventDefault();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        history.replaceState(null, '', '/');
+      }
+      return;
+    }
+
+    if (href.indexOf('/#') === 0) {
+      var hash = href.slice(1);
+      var target = document.querySelector(hash);
+      if (target) {
+        e.preventDefault();
+        var top = target.getBoundingClientRect().top + window.scrollY - 95;
+        window.scrollTo({ top: Math.max(0, top), behavior: 'smooth' });
+        history.replaceState(null, '', hash);
+      }
+    }
+  });
+})();
+/* ── end ── */
 </script>
 
 </body>

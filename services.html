@@ -1165,8 +1165,10 @@ const burger = document.getElementById('burger');
 const navMenu = document.getElementById('nav-menu');
 
 function closeMobileMenu() {
+  const wasOpen = document.body.style.position === 'fixed';
   burger.classList.remove('open');
   navMenu.classList.remove('open');
+  if (!wasOpen) return;
   const scrollY = parseInt(document.body.style.top || '0') * -1;
   document.body.style.position = '';
   document.body.style.top = '';

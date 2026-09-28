@@ -610,6 +610,36 @@ nav a.active { color: var(--bronze); }
 .footer-bottom { margin-top: 20px; display: flex; justify-content: center; align-items: center; flex-wrap: wrap; gap: 6px 24px; text-align: center; font-size: 0.8rem; color: rgba(255,255,255,0.4); }
     .footer-bottom a { color: rgba(255,255,255,0.4); text-decoration: none; transition: color 0.3s; }
     .footer-bottom a:hover, .footer-bottom a.active { color: #A76D45; }
+
+    /* ── Footer social icons ── */
+    .footer-social { display: flex; gap: 10px; margin-top: 4px; }
+    .footer-social a {
+      display: flex; align-items: center; justify-content: center;
+      width: 40px; height: 40px; border-radius: 50%;
+      border: 1px solid rgba(167,109,69,0.4);
+      color: #A76D45; text-decoration: none;
+      transition: color 0.3s, border-color 0.3s, background 0.3s, transform 0.2s;
+    }
+    .footer-social a:hover { color: #D59469; border-color: #D59469; background: rgba(167,109,69,0.12); transform: translateY(-2px); }
+    .footer-social a:focus-visible { outline: 2px solid #D59469; outline-offset: 3px; }
+    .footer-social svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
+    @media (max-width: 992px) { .footer-social { flex-wrap: wrap; justify-content: flex-end; max-width: 92px; } }
+
+    /* ── Social icons inside the mobile burger menu (hidden on desktop header) ── */
+    .nav-social { display: none; }
+    @media (max-width: 992px) {
+      #nav-menu .nav-social { display: flex; gap: 16px; justify-content: center; }
+      #nav-menu .nav-social a {
+        display: flex; align-items: center; justify-content: center;
+        width: 48px; height: 48px; border-radius: 50%;
+        border: 1px solid rgba(167,109,69,0.45);
+        color: #A76D45; font-size: 0; letter-spacing: 0;
+        transition: color 0.3s, border-color 0.3s, background 0.3s;
+      }
+      #nav-menu .nav-social a:hover, #nav-menu .nav-social a:active { color: #D59469; border-color: #D59469; background: rgba(167,109,69,0.12); }
+      #nav-menu .nav-social svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
+    }
+    @media (max-width: 992px) and (max-height: 720px) { #nav-menu { gap: 22px; } }
 .footer-inner { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 28px; }
 
 /* ── Modal ── */
@@ -839,6 +869,20 @@ nav a.active { color: var(--bronze); }
         </li>
         <li><a href="/#contacts" id="nav-contacts">Contacts</a></li>
         <li><button class="btn-consult" onclick="openConsultModal()" aria-label="Request a consultation">Book a Free Consultation</button></li>
+        <li class="nav-social">
+          <a href="https://www.linkedin.com/company/143903857/" target="_blank" rel="noopener noreferrer" aria-label="B-Stage Bookkeeping on LinkedIn" title="LinkedIn">
+            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+          </a>
+          <a href="https://www.instagram.com/bstagebookkeeping/" target="_blank" rel="noopener noreferrer" aria-label="B-Stage Bookkeeping on Instagram" title="Instagram">
+            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+          </a>
+          <a href="https://www.facebook.com/bstagebookkeeping/" target="_blank" rel="noopener noreferrer" aria-label="B-Stage Bookkeeping on Facebook" title="Facebook">
+            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+          </a>
+          <a href="mailto:hello@beestage.ca" aria-label="Email B-Stage Bookkeeping" title="hello@beestage.ca">
+            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          </a>
+        </li>
       </ul>
     </nav>
   </div>
@@ -1275,6 +1319,20 @@ nav a.active { color: var(--bronze); }
           <span style="font-size:0.72rem;text-transform:uppercase;letter-spacing:2px;color:rgba(167,109,69,0.6);font-weight:500;">Contacts</span>
           <a href="mailto:hello@beestage.ca" style="color:#fff;text-decoration:none;font-size:0.85rem;font-weight:300;transition:color 0.3s;" onmouseover="this.style.color='#A76D45'" onmouseout="this.style.color='#fff'">hello@beestage.ca</a>
           <a href="tel:2048921309" style="color:#fff;text-decoration:none;font-size:0.85rem;font-weight:300;transition:color 0.3s;" onmouseover="this.style.color='#A76D45'" onmouseout="this.style.color='#fff'">(204) 892-1309</a>
+          <div class="footer-social">
+            <a href="https://www.linkedin.com/company/143903857/" target="_blank" rel="noopener noreferrer" aria-label="B-Stage Bookkeeping on LinkedIn" title="LinkedIn">
+              <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+            </a>
+            <a href="https://www.instagram.com/bstagebookkeeping/" target="_blank" rel="noopener noreferrer" aria-label="B-Stage Bookkeeping on Instagram" title="Instagram">
+              <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+            </a>
+            <a href="https://www.facebook.com/bstagebookkeeping/" target="_blank" rel="noopener noreferrer" aria-label="B-Stage Bookkeeping on Facebook" title="Facebook">
+              <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+            </a>
+            <a href="mailto:hello@beestage.ca" aria-label="Email B-Stage Bookkeeping" title="hello@beestage.ca">
+              <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            </a>
+          </div>
         </div>
         <!-- Navigation -->
         <div class="footer-nav-block" style="flex-direction:column;align-items:flex-end;gap:10px;display:flex;">
@@ -1444,7 +1502,7 @@ burger.addEventListener('click', () => {
     if(typeof pauseCanvas !== 'undefined') pauseCanvas = false;
   }
 });
-navMenu.querySelectorAll('a').forEach(link => {
+navMenu.querySelectorAll('li:not(.nav-social) a').forEach(link => {
   link.addEventListener('click', closeMobileMenu);
 });
 

@@ -1,0 +1,1060 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tax Return Questionnaire — B-Stage Bookkeeping</title>
+  <meta name="description" content="Private client questionnaire for personal tax return preparation.">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="/android-chrome-192x192.png">
+  <link rel="icon" type="image/png" sizes="512x512" href="/android-chrome-512x512.png">
+  <link rel="manifest" href="/site.webmanifest">
+
+  <!-- SEO -->
+  <meta name="robots" content="noindex, nofollow, noarchive">
+  <meta name="author" content="B-Stage Bookkeeping">
+    <link rel="canonical" href="https://beestage.ca/tax-intake">
+
+  <!-- Schema Markup -->
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://beestage.ca/tax-intake">
+  <meta property="og:title" content="Tax Return Questionnaire — B-Stage Bookkeeping">
+  <meta property="og:description" content="Private client questionnaire.">
+  <meta property="og:image" content="https://beestage.ca/og-image.jpg">
+  <meta property="og:locale" content="en_CA">
+  <meta property="og:site_name" content="B-Stage Bookkeeping">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:url" content="https://beestage.ca/tax-intake">
+  <meta name="twitter:title" content="Tax Return Questionnaire — B-Stage Bookkeeping">
+  <meta name="twitter:description" content="Private client questionnaire.">
+  <meta name="twitter:image" content="https://beestage.ca/og-image.jpg">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg-color: #0b0b0c;
+      --card-bg: #121214;
+      --text-main: #ffffff;
+      --bronze: #A76D45;
+      --bronze-light: #D59469;
+      --bronze-dark: #7A4526;
+      --bronze-gradient: linear-gradient(135deg, #7A4526 0%, #A76D45 35%, #D59469 50%, #A76D45 65%, #7A4526 100%);
+      --bronze-hover: linear-gradient(135deg, #A76D45 0%, #D59469 50%, #7A4526 100%);
+    }
+    html { scroll-behavior: auto; }
+* { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Inter', sans-serif; }
+    ::-webkit-scrollbar { width: 4px; }
+    ::-webkit-scrollbar-track { background: #0b0b0c; }
+    ::-webkit-scrollbar-thumb { background: rgba(167,109,69,0.5); border-radius: 2px; }
+    body { background-color: var(--bg-color); color: var(--text-main); line-height: 1.6; overflow-x: hidden; padding-top: 95px; }
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+
+    /* ── Header ── */
+    header { position: fixed; top: 0; left: 0; width: 100%; z-index: 9999; padding: 20px 0; border-bottom: 2px solid rgba(167,109,69,0.35); background: rgba(11,11,12,0.97); transition: box-shadow 0.3s ease; }
+    header.scrolled { box-shadow: 0 6px 20px rgba(0,0,0,0.35); backdrop-filter: blur(10px); }
+    .nav-wrapper { display: flex; justify-content: space-between; align-items: center; }
+    .logo { display: flex; align-items: center; gap: 8px; user-select: none; text-decoration: none; }
+    nav ul { display: flex; list-style: none; gap: 32px; align-items: center; }
+    nav a { color: var(--text-main); text-decoration: none; font-size: 0.95rem; font-weight: 400; transition: color 0.3s; }
+    nav a:hover { color: var(--bronze); }
+    nav a.active { color: var(--bronze); }
+    .btn-consult { background: var(--bronze-gradient); color: var(--text-main); padding: 10px 22px; border-radius: 6px; font-weight: 600; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.5px; border: none; cursor: pointer; transition: transform 0.2s, box-shadow 0.2s; }
+    .btn-consult:hover { background: var(--bronze-hover); transform: translateY(-1px); box-shadow: 0 4px 15px rgba(167,109,69,0.4); }
+    .burger { display: none; }
+
+    /* ── Tax intake wizard ── */
+    .ti-wrap { max-width: 780px; padding: 20px 0 90px; }
+    .ti-wrap [hidden] { display: none !important; }
+    .section-label { font-size: 0.9rem; text-transform: uppercase; letter-spacing: 2px; color: #ffffff; font-weight: 600; display: flex; align-items: center; gap: 16px; margin-bottom: 28px; }
+    .section-label::after { content: ''; width: 80px; height: 1px; background: linear-gradient(to right, rgba(167,109,69,0.7), transparent); }
+    .ti-title { font-size: clamp(2.2rem, 4vw, 3.4rem); font-weight: 300; line-height: 1.12; margin-bottom: 28px; color: #fff; letter-spacing: -0.5px; }
+    .ti-title strong { font-weight: 700; background: linear-gradient(135deg, var(--bronze-dark), var(--bronze), var(--bronze-light)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+
+    .ti-top { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin-bottom: 14px; }
+    .ti-step-label { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 2.2px; color: #A76D45; font-weight: 600; }
+    .ti-lang { display: flex; gap: 6px; }
+    .ti-lang button { background: transparent; border: 1px solid rgba(167,109,69,0.35); color: rgba(255,255,255,0.7); font-size: 0.75rem; font-weight: 600; letter-spacing: 1px; padding: 6px 12px; border-radius: 6px; cursor: pointer; transition: all 0.25s; min-height: 32px; }
+    .ti-lang button:hover { color: #fff; border-color: #D59469; }
+    .ti-lang button.on { background: rgba(167,109,69,0.2); color: #D59469; border-color: #A76D45; }
+    .ti-bar { height: 3px; background: rgba(255,255,255,0.07); border-radius: 2px; overflow: hidden; margin-bottom: 28px; }
+    .ti-bar > i { display: block; height: 100%; width: 0; background: var(--bronze-gradient); transition: width 0.4s ease; }
+
+    .ti-card { background: var(--card-bg); border: 1px solid rgba(167,109,69,0.22); border-radius: 10px; padding: 36px 36px 30px; }
+    .ti-card h2 { font-size: 1.35rem; font-weight: 600; color: #fff; margin-bottom: 8px; letter-spacing: -0.2px; }
+    .ti-intro { font-size: 0.92rem; font-weight: 300; color: rgba(255,255,255,0.65); line-height: 1.7; margin-bottom: 26px; }
+    .ti-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0 20px; }
+    .ti-full { grid-column: 1 / -1; }
+
+    .ti-field { margin-bottom: 22px; }
+    .ti-field > label, .ti-field > .ti-q { display: block; font-size: 0.88rem; font-weight: 500; color: #fff; margin-bottom: 7px; line-height: 1.45; }
+    .ti-req { color: #D59469; margin-left: 3px; }
+    .ti-hint { display: block; font-size: 0.78rem; font-weight: 300; color: rgba(255,255,255,0.5); margin: -3px 0 8px; line-height: 1.5; }
+    .ti-field input[type=text], .ti-field input[type=email], .ti-field input[type=tel], .ti-field input[type=date], .ti-field select, .ti-field textarea {
+      width: 100%; padding: 12px 12px; background: #0e0e10; border: 1px solid rgba(255,255,255,0.1); color: #fff;
+      border-radius: 6px; font-size: 15px; font-family: 'Inter', sans-serif; outline: none; transition: border-color 0.25s, box-shadow 0.25s; color-scheme: dark; min-height: 46px;
+    }
+    .ti-field textarea { min-height: 120px; resize: vertical; line-height: 1.55; }
+    .ti-field select { appearance: none; -webkit-appearance: none; padding-right: 38px; cursor: pointer;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12' fill='none'%3E%3Cpath d='M2 4l4 4 4-4' stroke='%23A76D45' stroke-width='1.3' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+      background-repeat: no-repeat; background-position: right 14px center; }
+    .ti-field input:focus, .ti-field select:focus, .ti-field textarea:focus { border-color: rgba(167,109,69,0.7); box-shadow: 0 0 0 3px rgba(167,109,69,0.12); }
+    .ti-field input::placeholder, .ti-field textarea::placeholder { color: rgba(255,255,255,0.28); }
+    .ti-field.bad input, .ti-field.bad select, .ti-field.bad textarea, .ti-field.bad .ti-drop { border-color: rgba(200,70,70,0.75); box-shadow: 0 0 0 3px rgba(180,50,50,0.12); }
+    .ti-err { display: none; font-size: 0.78rem; color: #e08585; margin-top: 6px; line-height: 1.4; }
+    .ti-field.bad .ti-err { display: block; }
+
+    .ti-yn { display: inline-flex; border: 1px solid rgba(167,109,69,0.4); border-radius: 6px; overflow: hidden; }
+    .ti-yn label { margin: 0; display: block; cursor: pointer; }
+    .ti-yn input { position: absolute; opacity: 0; pointer-events: none; }
+    .ti-yn span { display: block; padding: 11px 26px; min-width: 84px; text-align: center; font-size: 0.88rem; font-weight: 500; color: rgba(255,255,255,0.7); transition: background 0.25s, color 0.25s; user-select: none; }
+    .ti-yn label + label span { border-left: 1px solid rgba(167,109,69,0.4); }
+    .ti-yn label:hover span { color: #fff; }
+    .ti-yn input:checked + span { background: var(--bronze-gradient); color: #fff; }
+    .ti-yn input:focus-visible + span { outline: 2px solid #D59469; outline-offset: -2px; }
+    .ti-field.bad .ti-yn { border-color: rgba(200,70,70,0.75); }
+
+    .ti-dep { border: 1px solid rgba(167,109,69,0.25); border-radius: 8px; padding: 24px 24px 4px; margin-bottom: 20px; background: rgba(255,255,255,0.015); }
+    .ti-dep-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 18px; }
+    .ti-dep-head b { font-size: 0.72rem; letter-spacing: 2px; text-transform: uppercase; color: #A76D45; font-weight: 600; }
+    .ti-link { background: none; border: none; color: rgba(255,255,255,0.55); font-size: 0.8rem; cursor: pointer; padding: 6px 0; transition: color 0.25s; font-family: inherit; }
+    .ti-link:hover { color: #e08585; }
+    .ti-add { background: transparent; border: 1px dashed rgba(167,109,69,0.55); color: #D59469; padding: 13px 22px; border-radius: 6px; font-size: 0.85rem; font-weight: 600; letter-spacing: 0.5px; cursor: pointer; transition: all 0.25s; font-family: inherit; margin-bottom: 8px; }
+    .ti-add:hover { background: rgba(167,109,69,0.1); border-style: solid; }
+
+    .ti-drop { border: 1px dashed rgba(167,109,69,0.5); border-radius: 8px; padding: 30px 20px; text-align: center; cursor: pointer; transition: all 0.25s; background: #0e0e10; }
+    .ti-drop:hover, .ti-drop.over { border-color: #D59469; background: rgba(167,109,69,0.07); }
+    .ti-drop strong { display: block; color: #fff; font-size: 0.92rem; font-weight: 500; margin-bottom: 4px; }
+    .ti-drop small { color: rgba(255,255,255,0.5); font-size: 0.78rem; }
+    .ti-drop input { display: none; }
+    .ti-files { list-style: none; margin-top: 12px; }
+    .ti-files li { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 10px 14px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.07); border-radius: 6px; margin-bottom: 6px; font-size: 0.85rem; color: rgba(255,255,255,0.85); }
+    .ti-files li span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .ti-files li em { font-style: normal; color: rgba(255,255,255,0.4); font-size: 0.75rem; margin-left: 8px; }
+
+    .ti-nav { display: flex; justify-content: space-between; align-items: center; gap: 14px; margin-top: 10px; padding-top: 24px; border-top: 1px solid rgba(167,109,69,0.12); }
+    .ti-back { background: transparent; border: 1px solid rgba(255,255,255,0.18); color: rgba(255,255,255,0.8); padding: 12px 26px; border-radius: 6px; font-size: 0.85rem; font-weight: 600; letter-spacing: 0.5px; text-transform: uppercase; cursor: pointer; transition: all 0.25s; font-family: inherit; }
+    .ti-back:hover { border-color: #D59469; color: #fff; }
+    .ti-nav .btn-consult { padding: 13px 34px; }
+    .ti-nav .btn-consult:disabled { opacity: 0.6; cursor: wait; transform: none; }
+    .ti-note { font-size: 0.78rem; color: rgba(255,255,255,0.45); line-height: 1.6; margin-top: 18px; }
+    .ti-note a { color: #D59469; text-decoration: none; border-bottom: 1px solid rgba(213,148,105,0.35); }
+    .ti-submit-err { display: none; margin-top: 16px; padding: 12px 14px; border: 1px solid rgba(200,70,70,0.5); background: rgba(180,50,50,0.08); border-radius: 6px; font-size: 0.85rem; color: #e8a0a0; line-height: 1.5; }
+
+    .ti-langpick { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 8px; }
+    .ti-langpick button { background: #0e0e10; border: 1px solid rgba(167,109,69,0.4); color: #fff; padding: 30px 20px; border-radius: 8px; font-size: 1.15rem; font-weight: 500; cursor: pointer; transition: all 0.25s; font-family: inherit; }
+    .ti-langpick button:hover { border-color: #D59469; background: rgba(167,109,69,0.1); transform: translateY(-2px); }
+    .ti-hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+
+    .ti-done { text-align: center; padding: 60px 30px; }
+    .ti-done .tick { width: 64px; height: 64px; border-radius: 50%; border: 1.5px solid #A76D45; color: #D59469; display: inline-flex; align-items: center; justify-content: center; margin-bottom: 22px; }
+    .ti-done .tick svg { width: 30px; height: 30px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+    .ti-done h2 { font-size: 1.6rem; font-weight: 600; margin-bottom: 12px; color: #fff; }
+    .ti-done p { color: rgba(255,255,255,0.65); font-weight: 300; line-height: 1.75; max-width: 460px; margin: 0 auto; }
+
+    @media (max-width: 640px) {
+      .ti-wrap { padding: 8px 0 70px; }
+      .ti-card { padding: 26px 20px 22px; }
+      .ti-grid { grid-template-columns: 1fr; }
+      .ti-dep { padding: 20px 16px 2px; }
+      .ti-langpick { grid-template-columns: 1fr; }
+      .ti-nav { flex-direction: column-reverse; align-items: stretch; }
+      .ti-nav .btn-consult, .ti-back { width: 100%; }
+      .ti-top { flex-wrap: wrap; }
+    }
+    
+/* ── Footer ── */
+    .footer-section { padding: 40px 0 20px; border-top: 1px solid rgba(167,109,69,0.25); background: linear-gradient(180deg, transparent, rgba(10,10,10,0.85)); }
+    .footer-bottom { margin-top: 20px; display: flex; justify-content: center; align-items: center; flex-wrap: wrap; gap: 6px 24px; text-align: center; font-size: 0.8rem; color: rgba(255,255,255,0.4); }
+    .footer-bottom a { color: rgba(255,255,255,0.4); text-decoration: none; transition: color 0.3s; }
+    .footer-bottom a:hover, .footer-bottom a.active { color: #A76D45; }
+
+    /* ── Footer social icons ── */
+    .footer-social { display: flex; gap: 10px; margin-top: 4px; }
+    .footer-social a {
+      display: flex; align-items: center; justify-content: center;
+      width: 40px; height: 40px; border-radius: 50%;
+      border: 1px solid rgba(167,109,69,0.4);
+      color: #A76D45; text-decoration: none;
+      transition: color 0.3s, border-color 0.3s, background 0.3s, transform 0.2s;
+    }
+    .footer-social a:hover { color: #D59469; border-color: #D59469; background: rgba(167,109,69,0.12); transform: translateY(-2px); }
+    .footer-social a:focus-visible { outline: 2px solid #D59469; outline-offset: 3px; }
+    .footer-social svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
+    @media (max-width: 992px) { .footer-social { flex-wrap: wrap; justify-content: flex-end; max-width: 92px; } }
+
+    /* ── Social icons inside the mobile burger menu (hidden on desktop header) ── */
+    .nav-social { display: none; }
+    @media (max-width: 992px) {
+      #nav-menu .nav-social { display: flex; gap: 16px; justify-content: center; }
+      #nav-menu .nav-social a {
+        display: flex; align-items: center; justify-content: center;
+        width: 48px; height: 48px; border-radius: 50%;
+        border: 1px solid rgba(167,109,69,0.45);
+        color: #A76D45; font-size: 0; letter-spacing: 0;
+        transition: color 0.3s, border-color 0.3s, background 0.3s;
+      }
+      #nav-menu .nav-social a:hover, #nav-menu .nav-social a:active { color: #D59469; border-color: #D59469; background: rgba(167,109,69,0.12); }
+      #nav-menu .nav-social svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
+    }
+    @media (max-width: 992px) and (max-height: 720px) { #nav-menu { gap: 22px; } }
+
+    /* ── Modal ── */
+    .consult-modal-overlay { position: fixed; inset: 0; display: none; align-items: center; justify-content: center; background: rgba(0,0,0,0.7); z-index: 99999; }
+    .consult-modal-overlay.active { display: flex; }
+    .consult-modal { position: relative; width: 420px; background: var(--card-bg); border: 1px solid rgba(167,109,69,0.25); border-radius: 10px; padding: 24px; }
+    .consult-modal h3 { color: var(--bronze); margin-bottom: 16px; text-transform: uppercase; font-size: 0.95rem; }
+    .modal-close { position: absolute; top: 18px; right: 16px; background: transparent; border: none; color: rgba(167,109,69,0.6); font-size: 20px; cursor: pointer; transition: color 0.2s; padding: 0; }
+    .modal-close:hover { color: #D59469; }
+    .char-counter { text-align: right; font-size: 0.75rem; color: rgba(255,255,255,0.4); margin-top: -8px; margin-bottom: 10px; }
+    .cf { width: 100%; margin-bottom: 12px; background: #0e0e10; border: 1px solid rgba(255,255,255,0.08); border-radius: 6px; transition: border-color 0.25s; }
+    .cf:focus-within { border-color: rgba(167,109,69,0.5); }
+    .cf.invalid { border-color: rgba(180,50,50,0.7); }
+    .cf-input { display: block; width: 100%; padding: 10px; font-size: 14px; color: white; outline: none; min-height: 38px; }
+    .cf-input:empty::before { content: attr(data-ph); color: rgba(255,255,255,0.35); }
+    .cf-textarea { min-height: 80px; max-height: 160px; overflow-y: auto; }
+    .custom-select { position: relative; width: 100%; margin-bottom: 12px; user-select: none; }
+    .custom-select-trigger { display: flex; align-items: center; justify-content: space-between; padding: 10px; background: #0e0e10; border: 1px solid rgba(255,255,255,0.08); border-radius: 6px; cursor: pointer; font-size: 14px; }
+    .custom-select-trigger span { color: rgba(255,255,255,0.35); }
+    .custom-select.selected .custom-select-trigger span { color: white; }
+    .custom-select-dropdown { position: absolute; top: 100%; left: 0; right: 0; background: #0e0e10; border: 1px solid rgba(167,109,69,0.5); border-top: none; border-radius: 0 0 6px 6px; max-height: 0; opacity: 0; transition: max-height 0.25s, opacity 0.2s; z-index: 9999; overflow: hidden; }
+    .custom-select.open .custom-select-dropdown { max-height: 200px; opacity: 1; }
+    .custom-select-option { padding: 10px 12px; font-size: 14px; color: rgba(255,255,255,0.75); cursor: pointer; }
+    .custom-select-option:hover { color: #A76D45; }
+    .toast { position: fixed; bottom: 32px; left: 50%; transform: translateX(-50%) translateY(20px); background: #1a1a1c; border: 1px solid rgba(167,109,69,0.4); color: #fff; padding: 12px 28px; border-radius: 6px; font-size: 0.88rem; opacity: 0; transition: opacity 0.3s, transform 0.3s; z-index: 999999; pointer-events: none; }
+    .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+    /* ── Mobile ── */
+    @media (max-width: 992px) {
+      .logo img { height: 78px !important; }
+      .logo span:first-child { font-size: 2rem !important; }
+      .logo span:last-child { font-size: 1rem !important; }
+      .burger { display: flex; flex-direction: column; width: 28px; height: 20px; background: transparent; border: none; cursor: pointer; padding: 0; z-index: 10001; position: relative; }
+      .burger span { display: block; width: 100%; height: 2px; background: #fff; border-radius: 2px; position: absolute; left: 0; transition: transform 0.4s cubic-bezier(0.23,1,0.32,1), opacity 0.3s ease, top 0.4s cubic-bezier(0.23,1,0.32,1); }
+      .burger span:nth-child(1) { top: 0; }
+      .burger span:nth-child(2) { top: 9px; }
+      .burger span:nth-child(3) { top: 18px; }
+      .burger.open span:nth-child(1) { top: 9px; transform: rotate(45deg); }
+      .burger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+      .burger.open span:nth-child(3) { top: 9px; transform: rotate(-45deg); }
+      #nav-menu { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(11,11,12,0.99); flex-direction: column; align-items: center; justify-content: center; gap: 36px; z-index: 10000; display: flex; opacity: 0; visibility: hidden; transition: opacity 0.4s ease, visibility 0s linear 0.4s; pointer-events: none; }
+      #nav-menu.open { opacity: 1; visibility: visible; transition: opacity 0.4s ease, visibility 0s linear 0s; pointer-events: all; }
+      #nav-menu li { list-style: none; opacity: 0; transform: translateY(16px); }
+      #nav-menu.open li:nth-child(1) { opacity: 1; transform: translateY(0); transition: opacity 0.35s ease, transform 0.35s ease; transition-delay: 0.08s; }
+      #nav-menu.open li:nth-child(2) { opacity: 1; transform: translateY(0); transition: opacity 0.35s ease, transform 0.35s ease; transition-delay: 0.13s; }
+      #nav-menu.open li:nth-child(3) { opacity: 1; transform: translateY(0); transition: opacity 0.35s ease, transform 0.35s ease; transition-delay: 0.18s; }
+      #nav-menu.open li:nth-child(4) { opacity: 1; transform: translateY(0); transition: opacity 0.35s ease, transform 0.35s ease; transition-delay: 0.23s; }
+      #nav-menu.open li:nth-child(5) { opacity: 1; transform: translateY(0); transition: opacity 0.35s ease, transform 0.35s ease; transition-delay: 0.28s; }
+      #nav-menu.open li:nth-child(6) { opacity: 1; transform: translateY(0); transition: opacity 0.35s ease, transform 0.35s ease; transition-delay: 0.33s; }
+      #nav-menu.open li:nth-child(7) { opacity: 1; transform: translateY(0); transition: opacity 0.35s ease, transform 0.35s ease; transition-delay: 0.38s; }
+      #nav-menu.open li:nth-child(8) { opacity: 1; transform: translateY(0); transition: opacity 0.35s ease, transform 0.35s ease; transition-delay: 0.43s; }
+      #nav-menu a { font-size: 1.5rem; font-weight: 300; color: #fff; text-decoration: none; letter-spacing: 1px; transition: color 0.3s; display: block; }
+      #nav-menu a:hover, #nav-menu a.active { color: #A76D45; }
+      #nav-menu .btn-consult { margin-top: 8px; padding: 14px 40px; font-size: 1rem; }
+      .footer-nav-block { display: none !important; }
+    }
+
+/* ── Scroll to top ── */
+.scroll-top-btn {
+  position: fixed;
+  bottom: 36px;
+  right: 32px;
+  width: 52px; height: 52px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  display: flex; align-items: center; justify-content: center;
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+  pointer-events: none;
+  z-index: 9000;
+}
+.scroll-top-btn.visible {
+  opacity: 0.55;
+  transform: translateY(0);
+  pointer-events: all;
+}
+.scroll-top-btn:hover { opacity: 1; }
+.scroll-top-btn svg { width: 40px; height: 40px; }
+  
+/* ── Nav Dropdown ── */
+.nav-dropdown { position: relative; }
+.nav-dropdown > a { display: flex; align-items: center; }
+.dropdown-arrow { display: none; }
+.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-6px);
+  background: rgba(11,11,12,0.55);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: none;
+  border-radius: 6px;
+  padding: 16px 0 8px;
+  min-width: 130px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  z-index: 9999;
+}
+.nav-dropdown:hover .dropdown-menu {
+  opacity: 1;
+  pointer-events: all;
+  transform: translateX(-50%) translateY(0);
+}
+.dropdown-menu a {
+  display: block;
+  padding: 8px 20px;
+  font-size: 0.95rem;
+  color: #ffffff !important;
+  font-weight: 400;
+  transition: color 0.2s;
+  white-space: nowrap;
+  text-align: center;
+  text-decoration: none;
+}
+.dropdown-menu a:hover { color: #A76D45 !important; }
+@media (max-width: 992px) {
+  .nav-dropdown > a { display: block; }
+  .dropdown-menu { display: none !important; }
+  .nav-dropdown::after { content: ""; }
+}
+.btn-consult-mobile { display: none; }
+@media (max-width: 992px) {
+  .btn-consult-mobile {
+    display: inline-block;
+    padding: 8px 14px;
+    font-size: 0.72rem;
+    letter-spacing: 0.3px;
+    white-space: nowrap;
+  }
+  .nav-wrapper nav { display: flex; align-items: center; gap: 20px; }
+  .logo img { height: 36px !important; }
+  .logo span:first-child { font-size: 1.1rem !important; }
+  .logo span:last-child { font-size: 0.6rem !important; letter-spacing: 1.5px !important; }
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="container nav-wrapper">
+    <a href="/" class="logo">
+      <img src="/logo.webp" alt="B-Stage Bookkeeping Logo" style="height:52px;width:auto;object-fit:contain;display:block;">
+      <div style="display:flex;flex-direction:column;justify-content:center;line-height:1.05;">
+        <span style="font-size:1.35rem;font-weight:700;letter-spacing:0.3px;color:#A76D45;text-transform:uppercase;">B-STAGE</span>
+        <span style="font-size:0.72rem;font-weight:500;letter-spacing:1.8px;color:#D59469;text-transform:uppercase;margin-top:2px;">BOOKKEEPING</span>
+      </div>
+    </a>
+    <nav aria-label="Main navigation">
+      <button class="btn-consult btn-consult-mobile" onclick="openConsultModal()" aria-label="Free consultation">Free Consultation</button>
+      <button class="burger" id="burger" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+      <ul id="nav-menu">
+        <li><a href="/">Home</a></li>
+        <li><a href="/services">Services</a></li>
+        <li><a href="/#approach">Approach</a></li>
+        <li><a href="/pricing">Pricing</a></li>
+        <li class="nav-dropdown">
+          <a href="/about">About</a>
+          <div class="dropdown-menu">
+            <a href="/about">About Us</a>
+            <a href="/#reviews">Reviews</a>
+          </div>
+        </li>
+        <li><a href="/#contacts">Contacts</a></li>
+        <li><button class="btn-consult" onclick="openConsultModal()" aria-label="Request a consultation">Book a Free Consultation</button></li>
+        <li class="nav-social">
+          <a href="https://www.linkedin.com/company/143903857/" target="_blank" rel="noopener noreferrer" aria-label="B-Stage Bookkeeping on LinkedIn" title="LinkedIn">
+            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+          </a>
+          <a href="https://www.instagram.com/bstagebookkeeping/" target="_blank" rel="noopener noreferrer" aria-label="B-Stage Bookkeeping on Instagram" title="Instagram">
+            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+          </a>
+          <a href="https://www.facebook.com/bstagebookkeeping/" target="_blank" rel="noopener noreferrer" aria-label="B-Stage Bookkeeping on Facebook" title="Facebook">
+            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+          </a>
+          <a href="mailto:hello@beestage.ca" aria-label="Email B-Stage Bookkeeping" title="hello@beestage.ca">
+            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main role="main">
+  <div class="container">
+    <div class="ti-wrap">
+      <div class="section-label">Client Intake</div>
+      <h1 class="ti-title">Tax <strong>Return</strong></h1>
+
+      <div id="tiProgress" hidden>
+        <div class="ti-top">
+          <span class="ti-step-label" id="tiStepLabel"></span>
+          <div class="ti-lang" role="group" aria-label="Language">
+            <button type="button" data-lang="en">EN</button>
+            <button type="button" data-lang="uk">УК</button>
+          </div>
+        </div>
+        <div class="ti-bar" aria-hidden="true"><i id="tiBar"></i></div>
+      </div>
+
+      <form id="tiForm" novalidate autocomplete="on">
+        <div class="ti-hp" aria-hidden="true"><label>Website<input type="text" id="tiHp" tabindex="-1" autocomplete="off"></label></div>
+        <div id="tiStep"></div>
+        <div class="ti-submit-err" id="tiSubmitErr" role="alert"></div>
+        <div class="ti-nav" id="tiNav" hidden>
+          <button type="button" class="ti-back" id="tiBack">Back</button>
+          <button type="button" class="btn-consult" id="tiNext">Next</button>
+        </div>
+        <p class="ti-note" id="tiNote" hidden></p>
+      </form>
+
+      <div class="ti-card ti-done" id="tiDone" hidden>
+        <div class="tick"><svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></div>
+        <h2></h2><p></p>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer class="footer-section" id="contacts">
+  <div class="container">
+    <div style="display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:28px;">
+      <a href="/" class="logo">
+        <img src="/logo.webp" alt="B-Stage Bookkeeping Logo" style="height:42px;">
+        <div style="display:flex;flex-direction:column;line-height:1;">
+          <span style="color:#A76D45;font-weight:700;">B-STAGE</span>
+          <span style="color:#D59469;font-size:0.7rem;letter-spacing:1px;">BOOKKEEPING</span>
+        </div>
+      </a>
+      <div style="display:flex;gap:64px;align-items:flex-start;">
+        <div style="display:flex;flex-direction:column;align-items:flex-end;gap:10px;">
+          <span style="font-size:0.72rem;text-transform:uppercase;letter-spacing:2px;color:rgba(167,109,69,0.6);font-weight:500;">Contacts</span>
+          <a href="mailto:hello@beestage.ca" style="color:#fff;text-decoration:none;font-size:0.85rem;font-weight:300;transition:color 0.3s;" onmouseover="this.style.color='#A76D45'" onmouseout="this.style.color='#fff'">hello@beestage.ca</a>
+          <a href="tel:2048921309" style="color:#fff;text-decoration:none;font-size:0.85rem;font-weight:300;transition:color 0.3s;" onmouseover="this.style.color='#A76D45'" onmouseout="this.style.color='#fff'">(204) 892-1309</a>
+          <div class="footer-social">
+            <a href="https://www.linkedin.com/company/143903857/" target="_blank" rel="noopener noreferrer" aria-label="B-Stage Bookkeeping on LinkedIn" title="LinkedIn">
+              <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+            </a>
+            <a href="https://www.instagram.com/bstagebookkeeping/" target="_blank" rel="noopener noreferrer" aria-label="B-Stage Bookkeeping on Instagram" title="Instagram">
+              <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+            </a>
+            <a href="https://www.facebook.com/bstagebookkeeping/" target="_blank" rel="noopener noreferrer" aria-label="B-Stage Bookkeeping on Facebook" title="Facebook">
+              <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+            </a>
+            <a href="mailto:hello@beestage.ca" aria-label="Email B-Stage Bookkeeping" title="hello@beestage.ca">
+              <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            </a>
+          </div>
+        </div>
+        <div class="footer-nav-block" style="display:flex;flex-direction:column;align-items:flex-end;gap:10px;">
+          <span style="font-size:0.72rem;text-transform:uppercase;letter-spacing:2px;color:rgba(167,109,69,0.6);font-weight:500;">Navigation</span>
+          <nav style="display:flex;gap:32px;">
+            <a href="/services" style="color:#fff;text-decoration:none;font-size:0.85rem;transition:color 0.3s;" onmouseover="this.style.color='#A76D45'" onmouseout="this.style.color='#fff'">Services</a>
+            <a href="/#approach" style="color:#fff;text-decoration:none;font-size:0.85rem;transition:color 0.3s;" onmouseover="this.style.color='#A76D45'" onmouseout="this.style.color='#fff'">Approach</a>
+            <a href="/pricing" style="color:#fff;text-decoration:none;font-size:0.85rem;transition:color 0.3s;" onmouseover="this.style.color='#A76D45'" onmouseout="this.style.color='#fff'">Pricing</a>
+            <a href="/about" style="color:#fff;text-decoration:none;font-size:0.85rem;transition:color 0.3s;" onmouseover="this.style.color='#A76D45'" onmouseout="this.style.color='#fff'">About</a>
+            <a href="/#contacts" style="color:#fff;text-decoration:none;font-size:0.85rem;transition:color 0.3s;" onmouseover="this.style.color='#A76D45'" onmouseout="this.style.color='#fff'">Contacts</a>
+          </nav>
+        </div>
+      </div>
+    </div>
+    <div style="border-top:1px solid rgba(167,109,69,0.15);padding-top:20px;">
+      <p style="color:rgba(255,255,255,0.38);font-size:0.82rem;line-height:1.7;text-align:center;max-width:860px;margin:0 auto;font-style:italic;">B-Stage provides operational bookkeeping and management support. We are not a CPA firm and do not provide legal or tax advice. We bridge the gap between your daily operations and your accountant's requirements — so nothing falls through the cracks.</p>
+      <div class="footer-bottom"><span>© 2026 B-Stage Bookkeeping. All rights reserved.</span><a href="/privacy-policy">Privacy Policy</a></div>
+    </div>
+  </div>
+</footer>
+
+<!-- Modal -->
+<div class="consult-modal-overlay" id="consultModal">
+  <div class="consult-modal">
+    <h3 id="modal-title">Request Consultation</h3>
+    <button class="modal-close" onclick="closeConsultModal()" aria-label="Close">×</button>
+    <div class="cf" id="cf-name">
+      <div class="cf-input" id="ci-name" contenteditable="true" data-ph="Your Name" spellcheck="false"></div>
+    </div>
+    <div class="cf" id="cf-contact">
+      <div class="cf-input" id="ci-contact" contenteditable="true" data-ph="Email or Phone" spellcheck="false"></div>
+    </div>
+    <input id="consultType" type="hidden">
+    <div class="custom-select" id="customSelect">
+      <div class="custom-select-trigger" id="customSelectTrigger">
+        <span id="customSelectValue">Type of inquiry (optional)</span>
+        <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 4 L6 8 L10 4" stroke="#A76D45" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+      <div class="custom-select-dropdown" id="customSelectDropdown">
+        <div class="custom-select-option" data-value="Personal Taxes">Personal Taxes</div>
+        <div class="custom-select-option" data-value="Business Bookkeeping">Business Bookkeeping</div>
+        <div class="custom-select-option" data-value="Not Sure">Not Sure</div>
+      </div>
+    </div>
+    <div class="cf" id="cf-msg">
+      <div class="cf-input cf-textarea" id="ci-msg" contenteditable="true" data-ph="Message (optional)" spellcheck="false"></div>
+    </div>
+    <input id="consultMessage" type="hidden">
+    <div class="char-counter"><span id="charCount">0</span>/250</div>
+    <button class="btn-consult" id="modal-submit-btn" onclick="submitConsultForm()">Send Request</button>
+  </div>
+</div>
+<div class="toast" id="toast"></div>
+
+<!-- ── Scroll to top ── -->
+<button class="scroll-top-btn" id="scrollTopBtn" aria-label="Scroll to top" onclick="document.documentElement.scrollTop=0;document.body.scrollTop=0;">
+  <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M4 13L10 7L16 13" stroke="#A76D45" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  </svg>
+</button>
+
+<script>
+/* ── Burger ── */
+const burger = document.getElementById('burger');
+const navMenu = document.getElementById('nav-menu');
+
+function closeMobileMenu() {
+  const wasOpen = document.body.style.position === 'fixed';
+  burger.classList.remove('open');
+  navMenu.classList.remove('open');
+  if (!wasOpen) return;
+  const scrollY = parseInt(document.body.style.top || '0') * -1;
+  document.body.style.position = '';
+  document.body.style.top = '';
+  document.body.style.width = '';
+  document.body.style.paddingRight = '';
+  document.querySelector('header').style.paddingRight = '';
+  window.scrollTo({ top: scrollY, left: 0, behavior: 'instant' });
+}
+
+burger.addEventListener('click', () => {
+  const willOpen = !navMenu.classList.contains('open');
+  burger.classList.toggle('open');
+  navMenu.classList.toggle('open');
+  if(willOpen) {
+    const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
+    const scrollY = window.scrollY;
+    document.body.style.paddingRight = scrollbarWidth + 'px';
+    document.querySelector('header').style.paddingRight = scrollbarWidth + 'px';
+    document.body.style.position = 'fixed';
+    document.body.style.top = '-' + scrollY + 'px';
+    document.body.style.width = '100%';
+  } else {
+    closeMobileMenu();
+  }
+});
+navMenu.querySelectorAll('li:not(.nav-social) a').forEach(l => l.addEventListener('click', closeMobileMenu));
+
+/* ── Scroll header ── */
+window.addEventListener('scroll', () => {
+  document.querySelector('header').classList.toggle('scrolled', window.scrollY > 20);
+});
+
+/* ── Modal ── */
+function openConsultModal() {
+  document.getElementById('consultModal').classList.add('active');
+}
+function closeConsultModal() {
+  document.getElementById('consultModal').classList.remove('active');
+  document.getElementById('ci-name').innerText = '';
+  document.getElementById('ci-contact').innerText = '';
+  document.getElementById('ci-msg').innerText = '';
+  document.getElementById('charCount').textContent = '0';
+  document.getElementById('cf-name').classList.remove('invalid');
+  document.getElementById('cf-contact').classList.remove('invalid');
+}
+document.getElementById('consultModal').addEventListener('click', function(e) {
+  if(e.target === this) closeConsultModal();
+});
+document.addEventListener('keydown', e => { if(e.key === 'Escape') closeConsultModal(); });
+
+/* ── Custom Fields ── */
+const MAX = 250;
+document.getElementById('ci-name').addEventListener('input', () => document.getElementById('cf-name').classList.remove('invalid'));
+document.getElementById('ci-contact').addEventListener('input', () => document.getElementById('cf-contact').classList.remove('invalid'));
+document.getElementById('ci-msg').addEventListener('input', function() {
+  if(this.innerText.length > MAX) {
+    this.innerText = this.innerText.slice(0, MAX);
+    const r = document.createRange(); r.selectNodeContents(this); r.collapse(false);
+    window.getSelection().removeAllRanges(); window.getSelection().addRange(r);
+  }
+  document.getElementById('charCount').textContent = Math.min(this.innerText.length, MAX);
+});
+[document.getElementById('ci-name'), document.getElementById('ci-contact')].forEach(el => {
+  el.addEventListener('keydown', e => { if(e.key === 'Enter') e.preventDefault(); });
+  el.addEventListener('paste', e => { e.preventDefault(); document.execCommand('insertText', false, e.clipboardData.getData('text/plain')); });
+});
+
+/* ── Custom Select ── */
+const cs = document.getElementById('customSelect');
+document.getElementById('customSelectTrigger').addEventListener('click', e => { e.stopPropagation(); cs.classList.toggle('open'); });
+document.querySelectorAll('.custom-select-option').forEach(opt => {
+  opt.addEventListener('click', () => {
+    document.getElementById('consultType').value = opt.dataset.value;
+    document.getElementById('customSelectValue').textContent = opt.dataset.value;
+    cs.classList.add('selected'); cs.classList.remove('open');
+  });
+});
+document.addEventListener('click', () => cs.classList.remove('open'));
+
+/* ── Toast ── */
+function showToast(msg, type='success') {
+  const t = document.getElementById('toast');
+  t.textContent = msg; t.classList.remove('show','error');
+  if(type==='error') t.classList.add('error');
+  requestAnimationFrame(() => requestAnimationFrame(() => {
+    t.classList.add('show');
+    setTimeout(() => t.classList.remove('show','error'), 3500);
+  }));
+}
+
+/* ── Submit ── */
+function isEmail(v) { return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v); }
+function isPhone(v) { const n = v.replace(/\D/g,''); return n.length===10||(n.length===11&&n.startsWith('1')); }
+
+function submitConsultForm() {
+  const name = document.getElementById('ci-name').innerText.trim();
+  const contact = document.getElementById('ci-contact').innerText.trim();
+  const type = document.getElementById('consultType').value;
+  const message = document.getElementById('ci-msg').innerText.trim();
+  document.getElementById('cf-name').classList.remove('invalid');
+  document.getElementById('cf-contact').classList.remove('invalid');
+  if(!name) { document.getElementById('cf-name').classList.add('invalid'); showToast('Please enter your name.','error'); return; }
+  if(!contact) { document.getElementById('cf-contact').classList.add('invalid'); showToast('Please enter your email or phone.','error'); return; }
+  if(!isEmail(contact) && !isPhone(contact)) { document.getElementById('cf-contact').classList.add('invalid'); showToast('Invalid email or phone number.','error'); return; }
+  const btn = document.getElementById('modal-submit-btn');
+  btn.textContent = 'Sending...'; btn.disabled = true;
+  const params = new URLSearchParams({name, contact, type, message});
+  fetch('https://script.google.com/macros/s/AKfycbw2YujraMFJM9oeirw_VqFbxHiqKupEXlI6Sph5U-Bm1_O5p3dlzlMJEbfxx3GSl0d9xw/exec?' + params.toString(), {method:'GET', mode:'no-cors'})
+    .then(() => {
+      btn.textContent = 'Send Request'; btn.disabled = false;
+      closeConsultModal();
+      showToast('Request sent successfully!');
+    })
+    .catch(() => { btn.textContent = 'Send Request'; btn.disabled = false; showToast('Something went wrong.','error'); });
+}
+
+/* ── Scroll to top ── */
+function smoothScrollToY(targetY, duration) {
+  duration = duration || 600;
+  const start = window.scrollY;
+  const distance = targetY - start;
+  if (Math.abs(distance) < 1) return;
+  const startTime = performance.now();
+  function step(now) {
+    const elapsed = now - startTime;
+    const progress = Math.min(elapsed / duration, 1);
+    const ease = 1 - Math.pow(1 - progress, 4);
+    window.scrollTo(0, Math.round(start + distance * ease));
+    if (progress < 1) { requestAnimationFrame(step); }
+  }
+  requestAnimationFrame(step);
+}
+function smoothScrollTop() { smoothScrollToY(0, 700); }
+(function(){
+  const btn = document.getElementById('scrollTopBtn');
+  if(!btn) return;
+  window.addEventListener('scroll', () => {
+    btn.classList.toggle('visible', window.scrollY > 400);
+  });
+})();
+
+/* ── Smart internal anchor navigation ── */
+(function() {
+  document.addEventListener('click', function(e) {
+    var link = e.target.closest('a[href]');
+    if (!link) return;
+    var href = link.getAttribute('href');
+    if (!href) return;
+
+    if (href === '/') {
+      if (window.location.pathname === '/' || window.location.pathname === '/index.html') {
+        e.preventDefault();
+        smoothScrollToY(0);
+        history.replaceState(null, '', '/');
+      }
+      return;
+    }
+
+    var hashPart = null;
+    if (href.indexOf('/#') === 0) {
+      hashPart = href.slice(1);
+    } else if (href.indexOf('#') === 0) {
+      hashPart = href;
+    }
+    if (hashPart) {
+      var target = document.querySelector(hashPart);
+      if (target) {
+        e.preventDefault();
+        var top = target.getBoundingClientRect().top + window.scrollY - 95;
+        smoothScrollToY(Math.max(0, top));
+        history.replaceState(null, '', hashPart);
+      }
+    }
+  });
+})();
+/* ── end ── */
+</script>
+<script>
+/* ══════════ Tax intake wizard ══════════ */
+(function () {
+  // Paste the Apps Script Web App URL (ends with /exec) here after deploying taxIntake.gs
+  var INTAKE_ENDPOINT = 'PASTE_APPS_SCRIPT_EXEC_URL_HERE';
+
+  var MAX_FILES = 10, MAX_TOTAL = 20 * 1024 * 1024, MAX_DEPS = 5;
+  var ALLOWED = /\.(pdf|jpe?g|png|heic|heif|webp|docx?|xlsx?|csv|txt)$/i;
+
+  var PROV = [['Alberta','Альберта'],['British Columbia','Британська Колумбія'],['Manitoba','Манітоба'],['New Brunswick','Нью-Брансвік'],['Newfoundland and Labrador','Ньюфаундленд і Лабрадор'],['Northwest Territories','Північно-Західні території'],['Nova Scotia','Нова Шотландія'],['Nunavut','Нунавут'],['Ontario','Онтаріо'],['Prince Edward Island','Острів Принца Едуарда'],['Quebec','Квебек'],['Saskatchewan','Саскачеван'],['Yukon','Юкон']];
+  var MARITAL = [['Married','Одружений(а)'],['Living common-law','Громадянський шлюб'],['Widowed','Овдовілий(а)'],['Divorced','Розлучений(а)'],['Separated','Не проживаєте разом'],['Single','Неодружений(а)']];
+  var REL = [['Child','Дитина'],['Parent','Батько'],['Grandchild','Онук(а)'],['Grandparent','Дідусь/Бабуся'],['Sibling','Брат/Сестра'],['Aunt/Uncle','Тітка/Дядько'],['Niece/Nephew','Племінник/Племінниця'],['Great-grandparent','Двоюрідні Дідусь/Бабуся'],['Great-aunt/Great-uncle','Двоюрідні Тітка/Дядько']];
+
+  function L(en, uk) { return { en: en, uk: uk }; }
+
+  // ---- step definitions -------------------------------------------------
+  var STEPS = [
+    { id: 'personal', title: L('Personal information', 'Особисті дані'),
+      intro: L('Simply provide your information, read the questions carefully, and answer without making any mistakes. This is important for accurately completing your tax returns.',
+               'Просто внесіть свої дані, уважно читайте запитання, давайте відповіді не допускаючи помилок, це важливо для правильного заповнення ваших податкових декларацій.'),
+      fields: [
+        { k: 'lastName', col: 'Last Name', t: 'text', req: 1, ac: 'family-name', label: L('Last name', 'Прізвище'), hint: L('', 'Транслітерацією!') },
+        { k: 'firstName', col: 'First Name', t: 'text', req: 1, ac: 'given-name', label: L('First name', 'Ім\'я'), hint: L('', 'Транслітерацією!') },
+        { k: 'middleName', col: 'Middle Name', t: 'text', ac: 'additional-name', label: L('Middle name', 'По батькові / друге ім\'я'), hint: L('Optional', 'Необов\'язково') },
+        { k: 'sin', col: 'SIN', t: 'text', req: 1, v: 'sin', im: 'numeric', label: L('SIN number', 'SIN-номер'), hint: L('9 digits', '9 цифр') },
+        { k: 'dob', col: 'Date of Birth', t: 'date', req: 1, v: 'pastDate', ac: 'bday', label: L('Date of birth', 'Дата народження') },
+        { k: 'email', col: 'Email', t: 'email', req: 1, v: 'email', ac: 'email', label: L('E-mail', 'E-mail') }
+      ] },
+    { id: 'mailing', title: L('Mailing address', 'Поштова адреса'),
+      fields: [
+        { k: 'unit', col: 'Unit', t: 'text', label: L('Unit', 'Номер квартири'), hint: L('Optional', 'Необов\'язково') },
+        { k: 'streetNumber', col: 'Street Number', t: 'text', req: 1, label: L('Street number', 'Номер будинку') },
+        { k: 'streetName', col: 'Street Name', t: 'text', req: 1, full: 1, ac: 'address-line1', label: L('Street name', 'Назва вулиці') },
+        { k: 'city', col: 'City', t: 'text', req: 1, ac: 'address-level2', label: L('City', 'Місто') },
+        { k: 'province', col: 'Province', t: 'select', opts: PROV, req: 1, label: L('Province', 'Провінція') },
+        { k: 'postal', col: 'Postal Code', t: 'text', req: 1, v: 'postal', ac: 'postal-code', label: L('Postal code', 'Поштовий індекс'), hint: L('Example: R3L 2O3', 'Приклад: R3L 2O3') },
+        { k: 'phone', col: 'Phone', t: 'tel', req: 1, v: 'phone', ac: 'tel', label: L('Phone number', 'Номер телефону'), hint: L('Format: +12041239876', 'Формат: +12041239876') }
+      ] },
+    { id: 'residency', title: L('Residency', 'Податкове резиденство'),
+      fields: [
+        { k: 'resident', col: 'Canadian Resident All Year', t: 'yn', req: 1, full: 1, label: L('Were you a Canadian resident for all of 2024?', 'Ви проживали в Канаді весь 2024 рік?') },
+        { k: 'entry', col: 'Date of Entry', t: 'date', full: 1, reqIf: function (v) { return v.resident === 'No'; }, label: L('Date of entry in Canada', 'Дата прибуття до Канади'), hint: L('Please indicate the date you arrived in Canada!', 'Вкажіть дату коли ви прибули до Канади!') }
+      ] },
+    { id: 'province', title: L('About your province or territory', 'Про вашу провінцію чи територію'),
+      intro: L('It is required to provide information about changes in residence during the year 2024.', 'Потрібно вказати зміни проживання протягом 2024 року.'),
+      fields: [
+        { k: 'prov31', col: 'Province Dec 31', t: 'select', opts: PROV, req: 1, label: L('Name of province', 'Назва провінції'), hint: L('In which province or territory did you live on December 31, 2024?', 'У якій провінції чи території ви проживали 31 грудня 2024 року?') },
+        { k: 'moving', col: 'Date of Moving', t: 'date', label: L('Date of moving', 'Дата переїзду'), hint: L('If your province or territory of residence changed in 2024, enter the date of your move', 'Якщо ваша провінція чи територія проживання змінилися у 2024 році, введіть дату вашого переїзду') },
+        { k: 'homeSame', col: 'Home Address Same as Mailing', t: 'yn', req: 1, full: 1, label: L('Is your home address the same as your mailing address?', 'Чи збігається ваша домашня адреса з вашою поштовою адресою?') },
+        { k: 'provNow', col: 'Province Now', t: 'select', opts: PROV, req: 1, label: L('Province of living', 'Провінція проживання'), hint: L('In which province or territory do you currently live?', 'У якій провінції чи території ви зараз проживаєте?') }
+      ] },
+    { id: 'family', title: L('You and your family', 'Ви і Ваша сім\'я'),
+      fields: [
+        { k: 'marital', col: 'Marital Status', t: 'select', opts: MARITAL, req: 1, full: 1, label: L('Marital status', 'Сімейний стан'), hint: L('On December 31, 2024', 'Станом на 31.12.2024р') },
+        { k: 'statusChanged', col: 'Status Changed 2024', t: 'yn', req: 1, full: 1, label: L('Did your marital status change in 2024?', 'Чи змінився ваш сімейний стан у 2024 році?') },
+        { k: 'statusDate', col: 'Status Change Date', t: 'date', req: 1, show: function (v) { return v.statusChanged === 'Yes'; }, label: L('Date of change', 'Дата зміни'), hint: L('Date of change of marital status', 'Дата зміни сімейного стану') },
+        { k: 'statusBefore', col: 'Status Before', t: 'select', opts: MARITAL, req: 1, show: function (v) { return v.statusChanged === 'Yes'; }, label: L('Status before', 'Статус до'), hint: L('What was your marital status before the change?', 'Яким був ваш сімейний стан до зміни?') }
+      ] },
+    { id: 'deps', title: L('Dependants', 'Утриманці'), special: 'deps' },
+    { id: 'cra', title: L('Additional questions from CRA', 'Додаткові запитання податкової'),
+      fields: [
+        { k: 'firstTime', col: 'First-Time Filer', t: 'yn', req: 1, full: 1, label: L('Are you filing an income tax return for the first time?', 'Ви вперше подаєте декларацію про доходи?') },
+        { k: 'citizen', col: 'Canadian Citizen', t: 'yn', req: 1, full: 1, label: L('Are you a Canadian citizen?', 'Ви є громадянином Канади?') },
+        { k: 'indian', col: 'Indian Act Registered', t: 'yn', req: 1, full: 1, label: L('Are you registered under the Indian Act?', 'Ви зареєстровані відповідно до Закону про індіанців?') },
+        { k: 'foreignProp', col: 'Foreign Property Over $100k', t: 'yn', req: 1, full: 1, label: L('Did you own or hold foreign property with a total cost of more than CAD $100,000 at any time in 2024?', 'Ви володіли або тримали певну іноземну власність, загальна вартість якої в будь-який час року перевищувала 100 000 канадських доларів у 2024 році?') },
+        { k: 'disposedRes', col: 'Disposed Principal Residence', t: 'yn', req: 1, full: 1, label: L('Did you dispose of your principal residence in 2024?', 'Ви позбувалися свого основного помешкання у 2024 році?') },
+        { k: 'flip', col: 'Changed Real Estate', t: 'yn', req: 1, full: 1, label: L('Did you flip a property (buy and resell real estate) in 2024?', 'Ви змінювали нерухомість у 2024 році?') },
+        { k: 'fhsa', col: 'FHSA Opened 2024', t: 'yn', req: 1, full: 1, label: L('Did you open a First Home Savings Account (FHSA) in 2024?', 'Чи відкривали ви ощадний рахунок першого будинку (FHSA) у 2024 році?') },
+        { k: 'prison', col: 'Incarcerated 90+ Days', t: 'yn', req: 1, full: 1, label: L('Were you in prison for 90 days or more in 2024?', 'Чи перебували ви у в\'язниці протягом 90 днів або більше у 2024 році?') }
+      ] },
+    { id: 'docs', title: L('Upload documents', 'Завантаження документів'), special: 'docs',
+      intro: L('The T4 form is mandatory; you must upload this document. The rest of the files are at your discretion, and each additional document can help increase your tax refund.',
+               'Обов\'язковою є форма Т4, ви обов\'язково маєте завантажити даний документ, решта файлів на ваш розсуд, кожен додатковий документ може слугувати для збільшення вашого податкового повернення.') }
+  ];
+
+  var DEP_FIELDS = [
+    { k: 'lastName', col: 'Last Name', t: 'text', req: 1, label: L('Last name', 'Прізвище'), hint: L('', 'Транслітерацією!') },
+    { k: 'firstName', col: 'First Name', t: 'text', req: 1, label: L('First name', 'Ім\'я'), hint: L('', 'Транслітерацією!') },
+    { k: 'relationship', col: 'Relationship', t: 'select', opts: REL, req: 1, label: L('Relationship to you', 'Відношення до вас') },
+    { k: 'dob', col: 'DOB', t: 'date', req: 1, v: 'pastDate', label: L('Date of birth', 'Дата народження') },
+    { k: 'sin', col: 'SIN', t: 'text', v: 'sinOpt', im: 'numeric', label: L('SIN number', 'SIN-номер'), hint: L('If has', 'За наявності') },
+    { k: 'netIncome', col: 'Net Income', t: 'text', v: 'money', im: 'decimal', label: L('Net income', 'Дохід'), hint: L('If they didn\'t earn any income, enter 0. If they did earn income, enter the amount.', 'Якщо вони не отримали жодного доходу, введіть 0. Якщо вони дійсно отримували дохід, введіть суму.') },
+    { k: 'health', col: 'Health Status', t: 'yn', req: 1, full: 1, label: L('Health status', 'Стан здоров\'я'), hint: L('Did this dependant have an infirmity or disability?', 'Чи мав цей утриманець хворобу чи інвалідність?') },
+    { k: 'coRes', col: 'Co-Residency', t: 'yn', req: 1, full: 1, label: L('Co-residency', 'Спільне проживання'), hint: L('Did your dependant reside with you during 2024?', 'Чи проживав ваш утриманець у 2024 році з вами?') }
+  ];
+
+  var UI = {
+    step: L('Step {n} of {m}', 'Крок {n} з {m}'), next: L('Next', 'Далі'), back: L('Back', 'Назад'), submit: L('Submit', 'Надіслати'), sending: L('Sending…', 'Надсилання…'),
+    yes: L('Yes', 'Так'), no: L('No', 'Ні'), choose: L('Select…', 'Вибрати…'),
+    hasDeps: L('Do you have any dependants?', 'У вас є утриманці?'), dependant: L('Dependant', 'Утриманець'), remove: L('Remove', 'Видалити'), addDep: L('+ Add another dependant', '+ Додати ще утриманця'),
+    commentsL: L('Comments', 'Коментарі'), commentsH: L('In this field, you can provide additional comments regarding your documents or describe important facts that you believe may affect the calculation of your tax refund.', 'В даному полі ви можете внести додаткові зауваження до ваших документів, або описати важливі, на вашу думку, факти, що можуть вплинути на підрахунок податкового повернення.'),
+    filesL: L('Attachments', 'Додатки'), filesH: L('Please upload all available files you have.', 'Завантажте усі наявні у вас файли.'),
+    drop1: L('Click to choose files or drop them here', 'Натисніть, щоб обрати файли, або перетягніть їх сюди'), drop2: L('PDF, photos, Word or Excel · up to 10 files · 20 MB total', 'PDF, фото, Word або Excel · до 10 файлів · 20 МБ разом'),
+    note: L('Your information is used only to prepare your tax return. See our', 'Ваші дані використовуються лише для підготовки вашої податкової декларації. Дивіться нашу'), noteLink: L('Privacy Policy', 'Політику конфіденційності'),
+    eReq: L('This field is required.', 'Це поле обов\'язкове.'), eEmail: L('Enter a valid e-mail address.', 'Введіть дійсну електронну адресу.'),
+    eSin: L('SIN must be 9 digits.', 'SIN має містити 9 цифр.'), ePostal: L('Use the format R3L 2O3.', 'Використовуйте формат R3L 2O3.'),
+    ePhone: L('Use the format +12041239876.', 'Використовуйте формат +12041239876.'), eDate: L('Enter a valid date.', 'Введіть дійсну дату.'), eMoney: L('Enter a number, for example 0 or 12500.', 'Введіть число, наприклад 0 або 12500.'),
+    eFiles: L('Please upload at least one file (your T4).', 'Завантажте принаймні один файл (ваш T4).'), eFileType: L('This file type is not supported:', 'Цей тип файлу не підтримується:'),
+    eFileSize: L('Files are too large (20 MB total).', 'Файли завеликі (20 МБ разом).'), eFileCount: L('Maximum 10 files.', 'Максимум 10 файлів.'),
+    eSend: L('Something went wrong and your form was not sent. Please try again, or email hello@beestage.ca.', 'Щось пішло не так, форму не надіслано. Спробуйте ще раз або напишіть на hello@beestage.ca.'),
+    eNoEndpoint: L('The form is not connected yet. Please contact B-Stage.', 'Форму ще не підключено. Зверніться до B-Stage.'),
+    doneT: L('Thank you!', 'Дякуємо!'), doneP: L('Your information has been received. We will review it and contact you if anything else is needed.', 'Ваші дані отримано. Ми перевіримо їх і зв\'яжемося з вами, якщо знадобиться щось ще.')
+  };
+
+  // ---- state ------------------------------------------------------------
+  var S = { lang: null, step: 0, v: {}, deps: [{}], files: [], started: false, sending: false };
+  var $stepBox = document.getElementById('tiStep'), $form = document.getElementById('tiForm');
+  var $nav = document.getElementById('tiNav'), $back = document.getElementById('tiBack'), $next = document.getElementById('tiNext');
+  var $prog = document.getElementById('tiProgress'), $label = document.getElementById('tiStepLabel'), $bar = document.getElementById('tiBar');
+  var $err = document.getElementById('tiSubmitErr'), $done = document.getElementById('tiDone'), $note = document.getElementById('tiNote');
+
+  function t(o) { return (o && (o[S.lang] || o.en)) || ''; }
+  function esc(s) { return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); }
+  function today() { var d = new Date(); return d.getFullYear() + '-' + ('0' + (d.getMonth() + 1)).slice(-2) + '-' + ('0' + d.getDate()).slice(-2); }
+  function fmtSize(b) { return b > 1048576 ? (b / 1048576).toFixed(1) + ' MB' : Math.max(1, Math.round(b / 1024)) + ' KB'; }
+
+  // ---- rendering --------------------------------------------------------
+  function fieldHTML(f, store, id) {
+    var val = store[f.k] || '', req = f.req || f.reqIf;
+    var star = f.req ? '<span class="ti-req" aria-hidden="true">*</span>' : '';
+    var hint = t(f.hint) ? '<span class="ti-hint" id="' + id + '-h">' + esc(t(f.hint)) + '</span>' : '';
+    var desc = hint ? ' aria-describedby="' + id + '-h"' : '';
+    var cls = 'ti-field' + (f.full ? ' ti-full' : ''), body = '';
+    if (f.t === 'yn') {
+      body = '<span class="ti-q" id="' + id + '-l">' + esc(t(f.label)) + star + '</span>' + hint +
+        '<div class="ti-yn" role="radiogroup" aria-labelledby="' + id + '-l">' +
+        ['Yes', 'No'].map(function (o) { return '<label><input type="radio" name="' + id + '" value="' + o + '" data-k="' + f.k + '"' + (val === o ? ' checked' : '') + '><span>' + esc(t(o === 'Yes' ? UI.yes : UI.no)) + '</span></label>'; }).join('') + '</div>';
+    } else if (f.t === 'select') {
+      body = '<label for="' + id + '">' + esc(t(f.label)) + star + '</label>' + hint +
+        '<select id="' + id + '" data-k="' + f.k + '"' + desc + '><option value="">' + esc(t(UI.choose)) + '</option>' +
+        f.opts.map(function (o) { return '<option value="' + esc(o[0]) + '"' + (val === o[0] ? ' selected' : '') + '>' + esc(S.lang === 'uk' ? o[1] : o[0]) + '</option>'; }).join('') + '</select>';
+    } else {
+      var type = f.t === 'date' ? 'date' : (f.t === 'email' ? 'email' : (f.t === 'tel' ? 'tel' : 'text'));
+      var extra = (f.ac ? ' autocomplete="' + f.ac + '"' : ' autocomplete="off"') + (f.im ? ' inputmode="' + f.im + '"' : '') + (f.v === 'pastDate' ? ' max="' + today() + '"' : '');
+      body = '<label for="' + id + '">' + esc(t(f.label)) + star + '</label>' + hint +
+        '<input type="' + type + '" id="' + id + '" data-k="' + f.k + '" value="' + esc(val) + '"' + extra + desc + '>';
+    }
+    return '<div class="' + cls + '" data-field="' + f.k + '">' + body + '<div class="ti-err" role="alert"></div></div>';
+  }
+
+  function visible(f, v) { return !f.show || f.show(v); }
+
+  function renderStep() {
+    var st = STEPS[S.step - 1], html = '';
+    $err.style.display = 'none';
+    if (S.step === 0) {
+      html = '<div class="ti-card"><h2>Preferred language / Мова</h2><div class="ti-langpick"><button type="button" data-lang="en">English</button><button type="button" data-lang="uk">Українська</button></div></div>';
+      $stepBox.innerHTML = html; $prog.hidden = true; $nav.hidden = true; $note.hidden = true; return;
+    }
+    $prog.hidden = false; $nav.hidden = false; $note.hidden = false;
+    $label.textContent = t(UI.step).replace('{n}', S.step).replace('{m}', STEPS.length);
+    $bar.style.width = (S.step / STEPS.length * 100) + '%';
+    document.querySelectorAll('.ti-lang button').forEach(function (b) { b.classList.toggle('on', b.dataset.lang === S.lang); });
+    html += '<div class="ti-card"><h2>' + esc(t(st.title)) + '</h2>' + (st.intro ? '<p class="ti-intro">' + esc(t(st.intro)) + '</p>' : '');
+    if (st.special === 'deps') html += depsHTML();
+    else if (st.special === 'docs') html += docsHTML();
+    else html += '<div class="ti-grid">' + st.fields.filter(function (f) { return visible(f, S.v); }).map(function (f) { return fieldHTML(f, S.v, 'f-' + f.k); }).join('') + '</div>';
+    html += '</div>';
+    $stepBox.innerHTML = html;
+    if (st.special === 'docs') renderFiles();
+    $back.textContent = t(UI.back);
+    $next.textContent = S.step === STEPS.length ? t(UI.submit) : t(UI.next);
+    $note.innerHTML = esc(t(UI.note)) + ' <a href="/privacy-policy" target="_blank" rel="noopener">' + esc(t(UI.noteLink)) + '</a>.';
+  }
+
+  function depsHTML() {
+    var h = fieldHTML({ k: 'hasDeps', t: 'yn', req: 1, full: 1, label: UI.hasDeps }, S.v, 'f-hasDeps');
+    if (S.v.hasDeps === 'Yes') {
+      S.deps.forEach(function (d, i) {
+        h += '<div class="ti-dep" data-dep="' + i + '"><div class="ti-dep-head"><b>' + esc(t(UI.dependant)) + ' ' + (i + 1) + '</b>' +
+          (S.deps.length > 1 ? '<button type="button" class="ti-link" data-rm="' + i + '">' + esc(t(UI.remove)) + '</button>' : '') + '</div><div class="ti-grid">' +
+          DEP_FIELDS.map(function (f) { return fieldHTML(f, d, 'd' + i + '-' + f.k); }).join('') + '</div></div>';
+      });
+      if (S.deps.length < MAX_DEPS) h += '<button type="button" class="ti-add" id="tiAddDep">' + esc(t(UI.addDep)) + '</button>';
+    }
+    return h;
+  }
+
+  function docsHTML() {
+    return '<div class="ti-field ti-full" data-field="comments"><label for="f-comments">' + esc(t(UI.commentsL)) + '</label><span class="ti-hint">' + esc(t(UI.commentsH)) + '</span>' +
+      '<textarea id="f-comments" data-k="comments">' + esc(S.v.comments || '') + '</textarea></div>' +
+      '<div class="ti-field ti-full" data-field="files"><span class="ti-q">' + esc(t(UI.filesL)) + '<span class="ti-req" aria-hidden="true">*</span></span><span class="ti-hint">' + esc(t(UI.filesH)) + '</span>' +
+      '<div class="ti-drop" id="tiDrop" tabindex="0" role="button"><strong>' + esc(t(UI.drop1)) + '</strong><small>' + esc(t(UI.drop2)) + '</small>' +
+      '<input type="file" id="tiFile" multiple accept=".pdf,.jpg,.jpeg,.png,.heic,.heif,.webp,.doc,.docx,.xls,.xlsx,.csv,.txt"></div><ul class="ti-files" id="tiFiles"></ul><div class="ti-err" role="alert"></div></div>';
+  }
+
+  function renderFiles() {
+    var ul = document.getElementById('tiFiles'); if (!ul) return;
+    ul.innerHTML = S.files.map(function (f, i) { return '<li><span>' + esc(f.name) + '<em>' + fmtSize(f.size) + '</em></span><button type="button" class="ti-link" data-rmf="' + i + '">' + esc(t(UI.remove)) + '</button></li>'; }).join('');
+  }
+
+  // ---- validation -------------------------------------------------------
+  function checkValue(f, val, v) {
+    val = (val || '').trim();
+    var required = f.req || (f.reqIf && f.reqIf(v));
+    if (!val) return required ? t(UI.eReq) : '';
+    if (f.v === 'email' && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val)) return t(UI.eEmail);
+    if (f.v === 'sin' && !/^\d{9}$/.test(val.replace(/[\s-]/g, ''))) return t(UI.eSin);
+    if (f.v === 'sinOpt' && !/^\d{9}$/.test(val.replace(/[\s-]/g, ''))) return t(UI.eSin);
+    if (f.v === 'postal' && !/^[A-Z]\d[A-Z] \d[A-Z]\d$/.test(val)) return t(UI.ePostal);
+    if (f.v === 'phone' && !/^\+1\d{10}$/.test(val)) return t(UI.ePhone);
+    if (f.v === 'money' && !/^\d+(\.\d{1,2})?$/.test(val.replace(/[\s,$]/g, ''))) return t(UI.eMoney);
+    if (f.t === 'date') { var d = new Date(val); if (isNaN(d) || d.getFullYear() < 1900 || (f.v === 'pastDate' && val > today())) return t(UI.eDate); }
+    return '';
+  }
+
+  function setErr(wrap, msg) {
+    if (!wrap) return;
+    wrap.classList.toggle('bad', !!msg);
+    var e = wrap.querySelector('.ti-err'); if (e) e.textContent = msg || '';
+  }
+
+  function validateStep() {
+    var st = STEPS[S.step - 1], bad = null;
+    function mark(wrap, msg) { setErr(wrap, msg); if (msg && !bad) bad = wrap; }
+    if (st.special === 'docs') {
+      var msg = S.files.length ? '' : t(UI.eFiles);
+      mark($stepBox.querySelector('[data-field="files"]'), msg);
+    } else if (st.special === 'deps') {
+      mark($stepBox.querySelector('[data-field="hasDeps"]'), S.v.hasDeps ? '' : t(UI.eReq));
+      if (S.v.hasDeps === 'Yes') S.deps.forEach(function (d, i) {
+        DEP_FIELDS.forEach(function (f) { mark($stepBox.querySelector('[data-dep="' + i + '"] [data-field="' + f.k + '"]'), checkValue(f, d[f.k], S.v)); });
+      });
+    } else {
+      st.fields.forEach(function (f) {
+        if (!visible(f, S.v)) return;
+        mark($stepBox.querySelector('[data-field="' + f.k + '"]'), checkValue(f, S.v[f.k], S.v));
+      });
+    }
+    if (bad) { var c = bad.querySelector('input,select,textarea,.ti-drop') || bad; if (c.scrollIntoView) c.scrollIntoView({ block: 'center', behavior: 'smooth' }); if (c.focus) c.focus({ preventScroll: true }); }
+    return !bad;
+  }
+
+  // ---- events -----------------------------------------------------------
+  function store(el) {
+    var dep = el.closest('[data-dep]'), target = dep ? S.deps[+dep.dataset.dep] : S.v, k = el.dataset.k, val = el.value;
+    if (k === 'postal') { val = val.toUpperCase().replace(/[^A-Z0-9]/g, ''); if (val.length > 3) val = val.slice(0, 3) + ' ' + val.slice(3, 6); el.value = val; }
+    target[k] = val; S.started = true;
+    return k;
+  }
+
+  $stepBox.addEventListener('input', function (e) {
+    var el = e.target; if (!el.dataset || !el.dataset.k || el.type === 'radio') return;
+    store(el); var w = el.closest('.ti-field'); if (w && w.classList.contains('bad')) setErr(w, '');
+  });
+  $stepBox.addEventListener('blur', function (e) {
+    var el = e.target; if (!el.dataset || el.dataset.k !== 'phone') return;
+    var d = el.value.replace(/[^\d+]/g, ''); if (/^\d{10}$/.test(d)) d = '+1' + d; else if (/^1\d{10}$/.test(d)) d = '+' + d; el.value = d; store(el);
+  }, true);
+  $stepBox.addEventListener('change', function (e) {
+    var el = e.target;
+    if (el.type === 'file') { addFiles(el.files); el.value = ''; return; }
+    if (!el.dataset || !el.dataset.k) return;
+    var k = store(el), w = el.closest('.ti-field'); setErr(w, '');
+    if (el.type === 'radio' && (k === 'statusChanged' || k === 'hasDeps' || k === 'resident')) {
+      if (k === 'hasDeps' && el.value === 'No') S.deps = [{}];
+      renderStep();
+    }
+  });
+  $stepBox.addEventListener('click', function (e) {
+    var b = e.target.closest('button,.ti-drop'); if (!b) return;
+    if (b.dataset.lang) { S.lang = b.dataset.lang; S.v.lang = S.lang; S.step = 1; renderStep(); window.scrollTo({ top: 0 }); return; }
+    if (b.id === 'tiAddDep') { S.deps.push({}); renderStep(); return; }
+    if (b.dataset.rm !== undefined) { S.deps.splice(+b.dataset.rm, 1); renderStep(); return; }
+    if (b.dataset.rmf !== undefined) { S.files.splice(+b.dataset.rmf, 1); renderFiles(); return; }
+    if (b.id === 'tiDrop') document.getElementById('tiFile').click();
+  });
+  $stepBox.addEventListener('keydown', function (e) { if ((e.key === 'Enter' || e.key === ' ') && e.target.id === 'tiDrop') { e.preventDefault(); document.getElementById('tiFile').click(); } });
+  ['dragover', 'dragleave', 'drop'].forEach(function (ev) {
+    $stepBox.addEventListener(ev, function (e) {
+      var d = e.target.closest('#tiDrop'); if (!d) return; e.preventDefault();
+      d.classList.toggle('over', ev === 'dragover'); if (ev === 'drop') addFiles(e.dataTransfer.files);
+    });
+  });
+  document.querySelectorAll('.ti-lang button').forEach(function (b) {
+    b.addEventListener('click', function () { if (S.step === 0) return; S.lang = b.dataset.lang; S.v.lang = S.lang; renderStep(); });
+  });
+
+  function addFiles(list) {
+    var wrap = $stepBox.querySelector('[data-field="files"]'), msg = '';
+    Array.prototype.forEach.call(list, function (f) {
+      if (!ALLOWED.test(f.name)) { msg = t(UI.eFileType) + ' ' + f.name; return; }
+      S.files.push(f);
+    });
+    var total = S.files.reduce(function (a, f) { return a + f.size; }, 0);
+    if (S.files.length > MAX_FILES) { S.files.length = MAX_FILES; msg = t(UI.eFileCount); }
+    while (total > MAX_TOTAL && S.files.length) { S.files.pop(); total = S.files.reduce(function (a, f) { return a + f.size; }, 0); msg = t(UI.eFileSize); }
+    setErr(wrap, msg); S.started = true; renderFiles();
+  }
+
+  $back.addEventListener('click', function () { if (S.step > 1) { S.step--; renderStep(); window.scrollTo({ top: 0 }); } });
+  $form.addEventListener('submit', function (e) { e.preventDefault(); });
+  $next.addEventListener('click', function () {
+    if (!validateStep()) return;
+    if (S.step < STEPS.length) { S.step++; renderStep(); window.scrollTo({ top: 0 }); } else send();
+  });
+
+  // ---- submit -----------------------------------------------------------
+  function readB64(file) {
+    return new Promise(function (res, rej) {
+      var r = new FileReader(); r.onerror = rej;
+      r.onload = function () { res({ name: file.name, type: file.type || 'application/octet-stream', data: String(r.result).split(',')[1] }); };
+      r.readAsDataURL(file);
+    });
+  }
+
+  function buildFields() {
+    var o = { 'Preferred Language': S.lang === 'uk' ? 'Українська' : 'English' };
+    STEPS.forEach(function (st) { (st.fields || []).forEach(function (f) { if (visible(f, S.v)) o[f.col] = (S.v[f.k] || '').trim(); }); });
+    if (o['SIN']) o['SIN'] = o['SIN'].replace(/[\s-]/g, '');
+    o['Has Dependants'] = S.v.hasDeps || '';
+    if (S.v.hasDeps === 'Yes') S.deps.forEach(function (d, i) {
+      DEP_FIELDS.forEach(function (f) { var val = (d[f.k] || '').trim(); if (f.k === 'sin') val = val.replace(/[\s-]/g, ''); if (f.k === 'netIncome') val = val.replace(/[\s,$]/g, ''); o['Dep' + (i + 1) + ' ' + f.col] = val; });
+    });
+    o['Comments'] = (S.v.comments || '').trim();
+    return o;
+  }
+
+  function fail(msg) { $err.textContent = msg; $err.style.display = 'block'; $next.disabled = false; $next.textContent = t(UI.submit); S.sending = false; }
+
+  function send() {
+    if (S.sending) return;
+    if (document.getElementById('tiHp').value) { return finish(); }       // honeypot
+    if (!INTAKE_ENDPOINT || INTAKE_ENDPOINT.indexOf('PASTE_') === 0) return fail(t(UI.eNoEndpoint));
+    S.sending = true; $next.disabled = true; $next.textContent = t(UI.sending); $err.style.display = 'none';
+    Promise.all(S.files.map(readB64)).then(function (files) {
+      var body = JSON.stringify({ submissionId: (window.crypto && crypto.randomUUID) ? crypto.randomUUID() : String(Date.now()) + Math.random(), fields: buildFields(), files: files });
+      return fetch(INTAKE_ENDPOINT, { method: 'POST', headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: body });
+    }).then(function (r) { return r.json(); }).then(function (j) {
+      if (j && j.result === 'success') finish(); else fail(t(UI.eSend));
+    }).catch(function () { fail(t(UI.eSend)); });
+  }
+
+  function finish() {
+    S.started = false;
+    $form.hidden = true; $prog.hidden = true;
+    $done.hidden = false;
+    $done.querySelector('h2').textContent = t(UI.doneT); $done.querySelector('p').textContent = t(UI.doneP);
+    window.scrollTo({ top: 0 });
+  }
+
+  window.addEventListener('beforeunload', function (e) { if (S.started) { e.preventDefault(); e.returnValue = ''; } });
+  renderStep();
+})();
+</script>
+
+</body>
+</html>

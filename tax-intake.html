@@ -714,13 +714,14 @@ function smoothScrollTop() { smoothScrollToY(0, 700); }
 /* ══════════ Tax intake wizard ══════════ */
 (function () {
   // Paste the Apps Script Web App URL (ends with /exec) here after deploying taxIntake.gs
-  var INTAKE_ENDPOINT = 'PASTE_APPS_SCRIPT_EXEC_URL_HERE';
+  var INTAKE_ENDPOINT = 'https://script.google.com/macros/s/AKfycbxnECwTiuNpzaWNEiUVBr7DETolsjf2W7pRW7jdmXgwT0A2njBuzdWqA5DBZ3xlcI19/exec';
 
   var MAX_FILES = 10, MAX_TOTAL = 20 * 1024 * 1024, MAX_DEPS = 5;
   var ALLOWED = /\.(pdf|jpe?g|png|heic|heif|webp|docx?|xlsx?|csv|txt)$/i;
 
   var PROV = [['Alberta','Альберта'],['British Columbia','Британська Колумбія'],['Manitoba','Манітоба'],['New Brunswick','Нью-Брансвік'],['Newfoundland and Labrador','Ньюфаундленд і Лабрадор'],['Northwest Territories','Північно-Західні території'],['Nova Scotia','Нова Шотландія'],['Nunavut','Нунавут'],['Ontario','Онтаріо'],['Prince Edward Island','Острів Принца Едуарда'],['Quebec','Квебек'],['Saskatchewan','Саскачеван'],['Yukon','Юкон']];
   var MARITAL = [['Married','Одружений(а)'],['Living common-law','Громадянський шлюб'],['Widowed','Овдовілий(а)'],['Divorced','Розлучений(а)'],['Separated','Не проживаєте разом'],['Single','Неодружений(а)']];
+  var STATUS_BEFORE = [['Married or common-law','Одружений(а) або громадянський шлюб'],['Single, separated, divorced, or widowed','Самотній(я), не проживаєте разом, розлучений(а), овдовілий(а)']];
   var REL = [['Child','Дитина'],['Parent','Батько'],['Grandchild','Онук(а)'],['Grandparent','Дідусь/Бабуся'],['Sibling','Брат/Сестра'],['Aunt/Uncle','Тітка/Дядько'],['Niece/Nephew','Племінник/Племінниця'],['Great-grandparent','Двоюрідні Дідусь/Бабуся'],['Great-aunt/Great-uncle','Двоюрідні Тітка/Дядько']];
 
   function L(en, uk) { return { en: en, uk: uk }; }
@@ -733,7 +734,6 @@ function smoothScrollTop() { smoothScrollToY(0, 700); }
       fields: [
         { k: 'lastName', col: 'Last Name', t: 'text', req: 1, ac: 'family-name', label: L('Last name', 'Прізвище'), hint: L('', 'Транслітерацією!') },
         { k: 'firstName', col: 'First Name', t: 'text', req: 1, ac: 'given-name', label: L('First name', 'Ім\'я'), hint: L('', 'Транслітерацією!') },
-        { k: 'middleName', col: 'Middle Name', t: 'text', ac: 'additional-name', label: L('Middle name', 'По батькові / друге ім\'я'), hint: L('Optional', 'Необов\'язково') },
         { k: 'sin', col: 'SIN', t: 'text', req: 1, v: 'sin', im: 'numeric', label: L('SIN number', 'SIN-номер'), hint: L('9 digits', '9 цифр') },
         { k: 'dob', col: 'Date of Birth', t: 'date', req: 1, v: 'pastDate', ac: 'bday', label: L('Date of birth', 'Дата народження') },
         { k: 'email', col: 'Email', t: 'email', req: 1, v: 'email', ac: 'email', label: L('E-mail', 'E-mail') }
@@ -751,7 +751,7 @@ function smoothScrollTop() { smoothScrollToY(0, 700); }
     { id: 'residency', title: L('Residency', 'Податкове резиденство'),
       fields: [
         { k: 'resident', col: 'Canadian Resident All Year', t: 'yn', req: 1, full: 1, label: L('Were you a Canadian resident for all of 2024?', 'Ви проживали в Канаді весь 2024 рік?') },
-        { k: 'entry', col: 'Date of Entry', t: 'date', full: 1, reqIf: function (v) { return v.resident === 'No'; }, label: L('Date of entry in Canada', 'Дата прибуття до Канади'), hint: L('Please indicate the date you arrived in Canada!', 'Вкажіть дату коли ви прибули до Канади!') }
+        { k: 'entry', col: 'Date of Entry', t: 'date', req: 1, full: 1, show: function (v) { return v.resident === 'No'; }, label: L('Date of entry in Canada', 'Дата прибуття до Канади'), hint: L('Please indicate the date you arrived in Canada!', 'Вкажіть дату коли ви прибули до Канади!') }
       ] },
     { id: 'province', title: L('About your province or territory', 'Про вашу провінцію чи територію'),
       intro: L('It is required to provide information about changes in residence during the year 2024.', 'Потрібно вказати зміни проживання протягом 2024 року.'),
@@ -766,7 +766,7 @@ function smoothScrollTop() { smoothScrollToY(0, 700); }
         { k: 'marital', col: 'Marital Status', t: 'select', opts: MARITAL, req: 1, full: 1, label: L('Marital status', 'Сімейний стан'), hint: L('On December 31, 2024', 'Станом на 31.12.2024р') },
         { k: 'statusChanged', col: 'Status Changed 2024', t: 'yn', req: 1, full: 1, label: L('Did your marital status change in 2024?', 'Чи змінився ваш сімейний стан у 2024 році?') },
         { k: 'statusDate', col: 'Status Change Date', t: 'date', req: 1, show: function (v) { return v.statusChanged === 'Yes'; }, label: L('Date of change', 'Дата зміни'), hint: L('Date of change of marital status', 'Дата зміни сімейного стану') },
-        { k: 'statusBefore', col: 'Status Before', t: 'select', opts: MARITAL, req: 1, show: function (v) { return v.statusChanged === 'Yes'; }, label: L('Status before', 'Статус до'), hint: L('What was your marital status before the change?', 'Яким був ваш сімейний стан до зміни?') }
+        { k: 'statusBefore', col: 'Status Before', t: 'select', opts: STATUS_BEFORE, req: 1, show: function (v) { return v.statusChanged === 'Yes'; }, label: L('Status before', 'Статус до'), hint: L('What was your marital status before the change?', 'Яким був ваш сімейний стан до зміни?') }
       ] },
     { id: 'deps', title: L('Dependants', 'Утриманці'), special: 'deps' },
     { id: 'cra', title: L('Additional questions from CRA', 'Додаткові запитання податкової'),
@@ -799,7 +799,7 @@ function smoothScrollTop() { smoothScrollToY(0, 700); }
   var UI = {
     step: L('Step {n} of {m}', 'Крок {n} з {m}'), next: L('Next', 'Далі'), back: L('Back', 'Назад'), submit: L('Submit', 'Надіслати'), sending: L('Sending…', 'Надсилання…'),
     yes: L('Yes', 'Так'), no: L('No', 'Ні'), choose: L('Select…', 'Вибрати…'),
-    hasDeps: L('Do you have any dependants?', 'У вас є утриманці?'), dependant: L('Dependant', 'Утриманець'), remove: L('Remove', 'Видалити'), addDep: L('+ Add another dependant', '+ Додати ще утриманця'),
+    hasDeps: L('Do you have any dependants?', 'У вас є утриманці?'), dependant: L('Dependant', 'Утриманець'), remove: L('Remove', 'Видалити'), addMore: L('Add another dependant', 'Додати ще одного утриманця'), addDep: L('+ Add another dependant', '+ Додати ще утриманця'),
     commentsL: L('Comments', 'Коментарі'), commentsH: L('In this field, you can provide additional comments regarding your documents or describe important facts that you believe may affect the calculation of your tax refund.', 'В даному полі ви можете внести додаткові зауваження до ваших документів, або описати важливі, на вашу думку, факти, що можуть вплинути на підрахунок податкового повернення.'),
     filesL: L('Attachments', 'Додатки'), filesH: L('Please upload all available files you have.', 'Завантажте усі наявні у вас файли.'),
     drop1: L('Click to choose files or drop them here', 'Натисніть, щоб обрати файли, або перетягніть їх сюди'), drop2: L('PDF, photos, Word or Excel · up to 10 files · 20 MB total', 'PDF, фото, Word або Excel · до 10 файлів · 20 МБ разом'),
@@ -815,7 +815,7 @@ function smoothScrollTop() { smoothScrollToY(0, 700); }
   };
 
   // ---- state ------------------------------------------------------------
-  var S = { lang: null, step: 0, v: {}, deps: [{}], files: [], started: false, sending: false };
+  var S = { lang: null, step: 0, v: {}, deps: [{}], files: [], started: false, sending: false, sid: null };
   var $stepBox = document.getElementById('tiStep'), $form = document.getElementById('tiForm');
   var $nav = document.getElementById('tiNav'), $back = document.getElementById('tiBack'), $next = document.getElementById('tiNext');
   var $prog = document.getElementById('tiProgress'), $label = document.getElementById('tiStepLabel'), $bar = document.getElementById('tiBar');
@@ -1016,15 +1016,27 @@ function smoothScrollTop() { smoothScrollToY(0, 700); }
     });
   }
 
+  function ddmmyyyy(v) { var m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(v || ''); return m ? m[3] + '.' + m[2] + '.' + m[1] : (v || ''); }
+  function outVal(f, v) {
+    v = (v || '').trim(); if (!v) return '';
+    if (f.t === 'yn') return t(v === 'Yes' ? UI.yes : UI.no);
+    if (f.t === 'select') { for (var i = 0; i < f.opts.length; i++) if (f.opts[i][0] === v) return S.lang === 'uk' ? f.opts[i][1] : f.opts[i][0]; return v; }
+    if (f.t === 'date') return ddmmyyyy(v);
+    if (f.k === 'sin') return v.replace(/[\s-]/g, '');
+    if (f.k === 'netIncome') return v.replace(/[\s,$]/g, '');
+    return v;
+  }
+
   function buildFields() {
-    var o = { 'Preferred Language': S.lang === 'uk' ? 'Українська' : 'English' };
-    STEPS.forEach(function (st) { (st.fields || []).forEach(function (f) { if (visible(f, S.v)) o[f.col] = (S.v[f.k] || '').trim(); }); });
-    if (o['SIN']) o['SIN'] = o['SIN'].replace(/[\s-]/g, '');
-    o['Has Dependants'] = S.v.hasDeps || '';
+    var o = { lang: S.lang === 'uk' ? 'Українська' : 'English' };
+    STEPS.forEach(function (st) { (st.fields || []).forEach(function (f) { if (visible(f, S.v)) o[f.k] = outVal(f, S.v[f.k]); }); });
+    o.hasDeps = S.v.hasDeps ? t(S.v.hasDeps === 'Yes' ? UI.yes : UI.no) : '';
     if (S.v.hasDeps === 'Yes') S.deps.forEach(function (d, i) {
-      DEP_FIELDS.forEach(function (f) { var val = (d[f.k] || '').trim(); if (f.k === 'sin') val = val.replace(/[\s-]/g, ''); if (f.k === 'netIncome') val = val.replace(/[\s,$]/g, ''); o['Dep' + (i + 1) + ' ' + f.col] = val; });
+      var n = i + 1;
+      DEP_FIELDS.forEach(function (f) { o['d' + n + '_' + f.k] = outVal(f, d[f.k]); });
+      if (i < S.deps.length - 1) o['d' + n + '_add'] = t(UI.addMore);
     });
-    o['Comments'] = (S.v.comments || '').trim();
+    o.comments = (S.v.comments || '').trim();
     return o;
   }
 
@@ -1036,7 +1048,8 @@ function smoothScrollTop() { smoothScrollToY(0, 700); }
     if (!INTAKE_ENDPOINT || INTAKE_ENDPOINT.indexOf('PASTE_') === 0) return fail(t(UI.eNoEndpoint));
     S.sending = true; $next.disabled = true; $next.textContent = t(UI.sending); $err.style.display = 'none';
     Promise.all(S.files.map(readB64)).then(function (files) {
-      var body = JSON.stringify({ submissionId: (window.crypto && crypto.randomUUID) ? crypto.randomUUID() : String(Date.now()) + Math.random(), fields: buildFields(), files: files });
+      if (!S.sid) S.sid = (window.crypto && crypto.randomUUID) ? crypto.randomUUID() : String(Date.now()) + Math.random();   // same id on every retry -> the script ignores duplicates
+      var body = JSON.stringify({ submissionId: S.sid, fields: buildFields(), files: files });
       return fetch(INTAKE_ENDPOINT, { method: 'POST', headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: body });
     }).then(function (r) { return r.json(); }).then(function (j) {
       if (j && j.result === 'success') finish(); else fail(t(UI.eSend));

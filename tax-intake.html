@@ -75,11 +75,11 @@
     .burger { display: none; }
 
     /* ── Tax intake wizard ── */
-    .ti-wrap { max-width: 780px; padding: 20px 0 90px; }
+    .ti-wrap { max-width: 780px; margin: 0 auto; padding: 20px 0 90px; }
     .ti-wrap [hidden] { display: none !important; }
     .section-label { font-size: 0.9rem; text-transform: uppercase; letter-spacing: 2px; color: #ffffff; font-weight: 600; display: flex; align-items: center; gap: 16px; margin-bottom: 28px; }
     .section-label::after { content: ''; width: 80px; height: 1px; background: linear-gradient(to right, rgba(167,109,69,0.7), transparent); }
-    .ti-title { font-size: clamp(2.2rem, 4vw, 3.4rem); font-weight: 300; line-height: 1.12; margin-bottom: 28px; color: #fff; letter-spacing: -0.5px; }
+    .ti-title { text-align: center; font-size: clamp(2.2rem, 4vw, 3.4rem); font-weight: 300; line-height: 1.12; margin-bottom: 34px; color: #fff; letter-spacing: -0.5px; }
     .ti-title strong { font-weight: 700; background: linear-gradient(135deg, var(--bronze-dark), var(--bronze), var(--bronze-light)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
 
     .ti-top { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin-bottom: 14px; }
@@ -148,7 +148,7 @@
     .ti-back:hover { border-color: #D59469; color: #fff; }
     .ti-nav .btn-consult { padding: 13px 34px; }
     .ti-nav .btn-consult:disabled { opacity: 0.6; cursor: wait; transform: none; }
-    .ti-note { font-size: 0.78rem; color: rgba(255,255,255,0.45); line-height: 1.6; margin-top: 18px; }
+    .ti-note { text-align: center; font-size: 0.78rem; color: rgba(255,255,255,0.45); line-height: 1.6; margin-top: 18px; }
     .ti-note a { color: #D59469; text-decoration: none; border-bottom: 1px solid rgba(213,148,105,0.35); }
     .ti-submit-err { display: none; margin-top: 16px; padding: 12px 14px; border: 1px solid rgba(200,70,70,0.5); background: rgba(180,50,50,0.08); border-radius: 6px; font-size: 0.85rem; color: #e8a0a0; line-height: 1.5; }
 

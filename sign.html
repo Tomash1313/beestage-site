@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign Document — B-Stage Bookkeeping</title>
+  <meta name="robots" content="noindex, nofollow, noarchive">
+  <meta name="referrer" content="no-referrer">
+
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Dancing+Script:wght@600&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg-color: #0b0b0c;
+      --card-bg: #121214;
+      --text-main: #ffffff;
+      --bronze: #A76D45;
+      --bronze-light: #D59469;
+      --bronze-dark: #7A4526;
+      --bronze-gradient: linear-gradient(135deg, #7A4526 0%, #A76D45 35%, #D59469 50%, #A76D45 65%, #7A4526 100%);
+      --bronze-hover: linear-gradient(135deg, #A76D45 0%, #D59469 50%, #7A4526 100%);
+    }
+    html { scroll-behavior: smooth; }
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Inter', sans-serif; }
+    ::-webkit-scrollbar { width: 4px; }
+    ::-webkit-scrollbar-track { background: #0b0b0c; }
+    ::-webkit-scrollbar-thumb { background: rgba(167,109,69,0.5); border-radius: 2px; }
+    body { background: var(--bg-color); color: var(--text-main); line-height: 1.6; overflow-x: hidden; padding-top: 95px; }
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+
+    header { position: fixed; top: 0; left: 0; width: 100%; z-index: 9999; padding: 20px 0; border-bottom: 2px solid rgba(167,109,69,0.35); background: rgba(11,11,12,0.97); }
+    .nav-wrapper { display: flex; justify-content: space-between; align-items: center; }
+    .logo { display: flex; align-items: center; gap: 8px; text-decoration: none; user-select: none; }
+    .secure-note { font-size: 0.78rem; color: rgba(255,255,255,0.5); display: flex; align-items: center; gap: 8px; }
+    .secure-note svg { width: 14px; height: 14px; stroke: var(--bronze); }
+
+    .page-label { font-size: 0.9rem; text-transform: uppercase; letter-spacing: 2px; color: #fff; font-weight: 600; display: flex; align-items: center; gap: 16px; margin: 20px 0 24px; }
+    .page-label::after { content: ''; flex: 1; height: 1px; background: linear-gradient(to right, rgba(167,109,69,0.7), rgba(167,109,69,0.1)); }
+    h1 { font-size: clamp(1.7rem, 3.4vw, 2.4rem); font-weight: 300; line-height: 1.2; margin-bottom: 10px; }
+    h1 strong { font-weight: 700; background: linear-gradient(135deg, #7A4526, #A76D45, #D59469); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    .sub { font-size: 0.92rem; font-weight: 300; color: rgba(255,255,255,0.6); max-width: 640px; margin-bottom: 28px; }
+
+    .layout { display: grid; grid-template-columns: minmax(0, 1fr) 380px; gap: 32px; align-items: start; padding-bottom: 60px; }
+    .doc-wrap { background: #1a1a1d; border: 1px solid rgba(167,109,69,0.2); border-radius: 10px; padding: 16px; }
+    .doc-title { font-size: 0.78rem; letter-spacing: 1.5px; text-transform: uppercase; color: var(--bronze); font-weight: 600; margin-bottom: 12px; word-break: break-word; }
+    .pages { display: flex; flex-direction: column; gap: 14px; }
+    .page { position: relative; background: #fff; box-shadow: 0 4px 18px rgba(0,0,0,0.5); touch-action: pan-y; }
+    .page canvas { display: block; width: 100%; height: auto; }
+    .page.placing { cursor: crosshair; }
+    .sig-overlay { position: absolute; transform: translate(-50%, -50%); border: 1.5px dashed var(--bronze); background: rgba(167,109,69,0.08); cursor: grab; touch-action: none; padding: 2px; border-radius: 3px; }
+    .sig-overlay:active { cursor: grabbing; }
+    .sig-overlay img { display: block; width: 100%; height: auto; pointer-events: none; user-select: none; }
+
+    .panel { position: sticky; top: 110px; background: var(--card-bg); border: 1px solid rgba(167,109,69,0.25); border-radius: 10px; padding: 24px; }
+    .panel h2 { font-size: 0.95rem; text-transform: uppercase; letter-spacing: 1px; color: var(--bronze); margin-bottom: 18px; }
+    .field-label { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 1.5px; color: rgba(255,255,255,0.45); margin-bottom: 6px; display: block; }
+    .inp { width: 100%; margin-bottom: 14px; padding: 11px 12px; background: #0e0e10; border: 1px solid rgba(255,255,255,0.08); color: #fff; border-radius: 6px; font-size: 14px; outline: none; transition: border-color 0.25s; }
+    .inp:focus { border-color: rgba(167,109,69,0.5); }
+    .inp.invalid { border-color: rgba(180,50,50,0.7); }
+
+    .tabs { display: flex; gap: 6px; margin-bottom: 10px; }
+    .tab { flex: 1; padding: 8px; background: transparent; border: 1px solid rgba(167,109,69,0.25); color: rgba(255,255,255,0.55); border-radius: 6px; font-size: 0.78rem; text-transform: uppercase; letter-spacing: 1px; font-weight: 600; cursor: pointer; transition: all 0.2s; }
+    .tab.active { border-color: var(--bronze); color: var(--bronze-light); background: rgba(167,109,69,0.1); }
+    .sig-box { position: relative; background: #fff; border-radius: 6px; height: 140px; margin-bottom: 8px; overflow: hidden; }
+    .sig-box canvas { position: absolute; inset: 0; width: 100%; height: 100%; touch-action: none; cursor: crosshair; }
+    .sig-box .baseline { position: absolute; left: 14px; right: 14px; bottom: 34px; border-bottom: 1px solid #c9c9c9; pointer-events: none; }
+    .sig-box .hint { position: absolute; left: 14px; bottom: 12px; font-size: 0.7rem; color: #999; pointer-events: none; }
+    .type-preview { display: flex; align-items: center; justify-content: center; height: 100%; font-family: 'Dancing Script', cursive; font-size: 2.6rem; color: #111; padding: 0 14px; text-align: center; overflow: hidden; }
+    .sig-actions { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; font-size: 0.78rem; }
+    .link-btn { background: none; border: none; color: var(--bronze-light); cursor: pointer; font-size: 0.78rem; text-decoration: underline; }
+    .place-status { font-size: 0.78rem; color: rgba(255,255,255,0.55); }
+    .place-status.ok { color: #8fbf8f; }
+
+    .consent { display: flex; gap: 10px; align-items: flex-start; font-size: 0.8rem; color: rgba(255,255,255,0.7); font-weight: 300; margin: 6px 0 18px; line-height: 1.5; }
+    .consent input { margin-top: 3px; accent-color: var(--bronze); flex-shrink: 0; }
+
+    .btn { width: 100%; background: var(--bronze-gradient); color: #fff; padding: 14px; border-radius: 6px; font-weight: 600; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; border: none; cursor: pointer; transition: transform 0.2s, box-shadow 0.2s, opacity 0.2s; }
+    .btn:hover:not(:disabled) { background: var(--bronze-hover); transform: translateY(-1px); box-shadow: 0 4px 15px rgba(167,109,69,0.4); }
+    .btn:disabled { opacity: 0.35; cursor: not-allowed; }
+    .btn-outline { background: transparent; border: 1px solid rgba(167,109,69,0.5); color: var(--bronze-light); margin-top: 10px; display: block; text-align: center; text-decoration: none; }
+    .fine { font-size: 0.72rem; color: rgba(255,255,255,0.38); margin-top: 14px; line-height: 1.6; font-weight: 300; }
+
+    .state-card { max-width: 560px; margin: 40px auto 80px; background: var(--card-bg); border: 1px solid rgba(167,109,69,0.25); border-radius: 10px; padding: 36px 32px; text-align: center; }
+    .state-card h2 { font-weight: 600; font-size: 1.3rem; margin-bottom: 10px; }
+    .state-card p { color: rgba(255,255,255,0.65); font-weight: 300; font-size: 0.92rem; }
+    .check { width: 52px; height: 52px; border-radius: 50%; border: 2px solid var(--bronze); display: flex; align-items: center; justify-content: center; margin: 0 auto 18px; }
+    .check svg { width: 26px; height: 26px; stroke: var(--bronze-light); }
+    .spinner { width: 34px; height: 34px; border: 3px solid rgba(167,109,69,0.25); border-top-color: var(--bronze); border-radius: 50%; animation: spin 0.9s linear infinite; margin: 0 auto 16px; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .hidden { display: none !important; }
+
+    .toast { position: fixed; bottom: 32px; left: 50%; transform: translateX(-50%) translateY(20px); background: #1a1a1c; border: 1px solid rgba(167,109,69,0.4); color: #fff; padding: 12px 28px; border-radius: 6px; font-size: 0.88rem; opacity: 0; transition: opacity 0.3s, transform 0.3s; z-index: 999999; pointer-events: none; max-width: 90vw; text-align: center; }
+    .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+    .toast.error { border-color: rgba(180,50,50,0.5); background: #1a1212; }
+
+    footer { padding: 24px 0 28px; border-top: 1px solid rgba(167,109,69,0.25); text-align: center; font-size: 0.8rem; color: rgba(255,255,255,0.4); }
+
+    @media (max-width: 992px) {
+      .layout { grid-template-columns: 1fr; }
+      .panel { position: static; }
+      .logo img { height: 36px !important; }
+      .logo span:first-child { font-size: 1.1rem !important; }
+      .logo span:last-child { font-size: 0.6rem !important; letter-spacing: 1.5px !important; }
+      .secure-note span { display: none; }
+      body { padding-top: 80px; }
+      header { padding: 14px 0; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="container nav-wrapper">
+    <a href="/" class="logo">
+      <img src="/logo.webp" alt="B-Stage Bookkeeping Logo" style="height:52px;width:auto;object-fit:contain;display:block;">
+      <div style="display:flex;flex-direction:column;justify-content:center;line-height:1.05;">
+        <span style="font-size:1.35rem;font-weight:700;letter-spacing:0.3px;color:#A76D45;text-transform:uppercase;">B-STAGE</span>
+        <span style="font-size:0.72rem;font-weight:500;letter-spacing:1.8px;color:#D59469;text-transform:uppercase;margin-top:2px;">BOOKKEEPING</span>
+      </div>
+    </a>
+    <div class="secure-note">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+      <span>Private signing link</span>
+    </div>
+  </div>
+</header>
+
+<main class="container">
+
+  <!-- Loading -->
+  <div id="st-loading" class="state-card">
+    <div class="spinner"></div>
+    <p>Loading your document…</p>
+  </div>
+
+  <!-- Error / invalid -->
+  <div id="st-error" class="state-card hidden">
+    <h2 id="err-title">This link is not valid</h2>
+    <p id="err-text">Please check the link or contact hello@beestage.ca.</p>
+  </div>
+
+  <!-- Done -->
+  <div id="st-done" class="state-card hidden">
+    <div class="check"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></div>
+    <h2>Document signed</h2>
+    <p id="done-text">A signed copy has been sent to your email.</p>
+    <a id="dl-btn" class="btn btn-outline" download="signed-document.pdf" href="#">Download signed copy</a>
+  </div>
+
+  <!-- Signing -->
+  <div id="st-sign" class="hidden">
+    <div class="page-label">Signature</div>
+    <h1>Review and <strong>sign.</strong></h1>
+    <p class="sub">Read the document below, then add your details and signature on the right. Drag the signature to the right place on the page if needed.</p>
+
+    <div class="layout">
+      <div class="doc-wrap">
+        <div class="doc-title" id="doc-title"></div>
+        <div class="pages" id="pages"></div>
+      </div>
+
+      <aside class="panel" id="panel">
+        <h2>Your signature</h2>
+
+        <label class="field-label" for="f-name">Full name</label>
+        <input class="inp" id="f-name" type="text" autocomplete="name" maxlength="120" placeholder="Your full legal name">
+
+        <label class="field-label" for="f-email">Email</label>
+        <input class="inp" id="f-email" type="email" autocomplete="email" maxlength="160" placeholder="you@company.com">
+
+        <span class="field-label">Signature</span>
+        <div class="tabs">
+          <button class="tab active" id="tab-draw" type="button">Draw</button>
+          <button class="tab" id="tab-type" type="button">Type</button>
+        </div>
+        <div class="sig-box">
+          <canvas id="sig-canvas"></canvas>
+          <div class="type-preview hidden" id="type-preview"></div>
+          <div class="baseline"></div>
+          <div class="hint" id="sig-hint">Sign here with your finger or mouse</div>
+        </div>
+        <div class="sig-actions">
+          <button class="link-btn" id="clear-btn" type="button">Clear</button>
+          <span class="place-status" id="place-status">Add your signature first</span>
+        </div>
+
+        <label class="consent">
+          <input type="checkbox" id="f-consent">
+          <span>I agree to sign this document electronically and that my electronic signature has the same effect as a handwritten one.</span>
+        </label>
+
+        <button class="btn" id="sign-btn" type="button" disabled>Sign document</button>
+        <button class="link-btn" id="goto-btn" type="button" style="display:block;margin:12px auto 0;">Show my signature on the document</button>
+
+        <p class="fine">Your name, email, time of signing and device details are recorded on a certificate page added to the signed PDF. A copy is emailed to you and to B-Stage Bookkeeping.</p>
+      </aside>
+    </div>
+  </div>
+</main>
+
+<footer>© 2026 B-Stage Bookkeeping · 595 River Avenue, Winnipeg, MB · hello@beestage.ca</footer>
+<div class="toast" id="toast"></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js"></script>
+<script>
+(function () {
+  'use strict';
+
+  /* ───────── Settings ───────── */
+  // Paste the Web App URL of the signing Apps Script here (ends with /exec).
+  var ENDPOINT = 'https://script.google.com/macros/s/AKfycbyjFQ7xJDY4OTeHpwaKOFYSdRDMQXIFZLFGCGXbO6xcquScPXevoRpYemiY9RIMHSVbFw/exec';
+  var SIG_W = 0.26;                 // signature width as a fraction of page width
+  var DEFAULT_POS = { x: 0.74, y: 0.86 };   // first guess on the last page; the signer can drag it
+
+  pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+
+  var $ = function (id) { return document.getElementById(id); };
+  var token = new URLSearchParams(location.search).get('t') || '';
+  var origBytes = null, docTitle = '', pageEls = [];
+  var sigPng = null;                // Uint8Array of the trimmed signature
+  var sigDataUrl = '';
+  var mode = 'draw';
+  var place = null;                 // { page, x, y } fractions of the page
+  var overlay = null;
+
+  /* ───────── Helpers ───────── */
+  function show(id) { ['st-loading', 'st-error', 'st-done', 'st-sign'].forEach(function (s) { $(s).classList.toggle('hidden', s !== id); }); }
+  function fail(title, text) { $('err-title').textContent = title; $('err-text').textContent = text; show('st-error'); }
+  function toast(msg, err) {
+    var t = $('toast'); t.textContent = msg; t.classList.remove('show', 'error');
+    if (err) t.classList.add('error');
+    requestAnimationFrame(function () { requestAnimationFrame(function () { t.classList.add('show'); setTimeout(function () { t.classList.remove('show'); }, 4200); }); });
+  }
+  function b64ToBytes(b64) { var bin = atob(b64), n = bin.length, u = new Uint8Array(n); for (var i = 0; i < n; i++) u[i] = bin.charCodeAt(i); return u; }
+  function bytesToB64(u) { var s = '', ch = 0x8000; for (var i = 0; i < u.length; i += ch) s += String.fromCharCode.apply(null, u.subarray(i, i + ch)); return btoa(s); }
+  function hex(buf) { return Array.prototype.map.call(new Uint8Array(buf), function (b) { return ('0' + b.toString(16)).slice(-2); }).join(''); }
+  function isEmail(v) { return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v); }
+  function fmtDate(d) { return d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }); }
+
+  /* Text → transparent PNG (works with any alphabet, unlike built-in PDF fonts). */
+  function textPng(text, font, color) {
+    var S = 3, c = document.createElement('canvas'), x = c.getContext('2d');
+    x.font = (14 * S) + 'px ' + font;
+    var w = Math.ceil(x.measureText(text).width) + 4 * S, h = 22 * S;
+    c.width = w; c.height = h; x = c.getContext('2d');
+    x.font = (14 * S) + 'px ' + font; x.fillStyle = color; x.textBaseline = 'middle'; x.fillText(text, 2 * S, h / 2);
+    return { bytes: b64ToBytes(c.toDataURL('image/png').split(',')[1]), w: w, h: h };
+  }
+
+  /* Crop transparent margins and return { bytes, dataUrl }. */
+  function trimCanvas(src) {
+    var w = src.width, h = src.height, d = src.getContext('2d').getImageData(0, 0, w, h).data;
+    var minX = w, minY = h, maxX = -1, maxY = -1;
+    for (var y = 0; y < h; y++) for (var x = 0; x < w; x++) if (d[(y * w + x) * 4 + 3] > 8) { if (x < minX) minX = x; if (x > maxX) maxX = x; if (y < minY) minY = y; if (y > maxY) maxY = y; }
+    if (maxX < 0) return null;
+    var pad = 6, sx = Math.max(0, minX - pad), sy = Math.max(0, minY - pad), sw = Math.min(w, maxX + pad) - sx, sh = Math.min(h, maxY + pad) - sy;
+    var o = document.createElement('canvas'); o.width = sw; o.height = sh;
+    o.getContext('2d').drawImage(src, sx, sy, sw, sh, 0, 0, sw, sh);
+    var url = o.toDataURL('image/png');
+    return { bytes: b64ToBytes(url.split(',')[1]), dataUrl: url };
+  }
+
+  /* ───────── Load document ───────── */
+  function load() {
+    if (!/^[a-f0-9]{32,128}$/i.test(token)) return fail('This link is not valid', 'Please use the full link we sent you, or contact hello@beestage.ca.');
+    fetch(ENDPOINT + '?action=doc&t=' + encodeURIComponent(token))
+      .then(function (r) { return r.json(); })
+      .then(function (j) {
+        if (!j || !j.ok) return fail('This link is not valid', 'Please check the link or contact hello@beestage.ca.');
+        if (j.status === 'signed') return fail('Already signed', 'This document has already been signed. A copy was emailed to the signer.');
+        docTitle = j.title || 'Document';
+        origBytes = b64ToBytes(j.pdf);
+        $('doc-title').textContent = docTitle;
+        return render().then(function () { show('st-sign'); layoutOverlay(); });
+      })
+      .catch(function () { fail('Could not load the document', 'Please check your connection and reload the page.'); });
+  }
+
+  function render() {
+    return pdfjsLib.getDocument({ data: origBytes.slice() }).promise.then(function (pdf) {
+      var host = $('pages'), chain = Promise.resolve();
+      host.innerHTML = ''; pageEls = [];
+      show('st-sign');   // need real width to render sharply
+      var width = host.clientWidth || 700, dpr = Math.min(window.devicePixelRatio || 1, 2);
+      for (var i = 1; i <= pdf.numPages; i++) (function (n) {
+        chain = chain.then(function () { return pdf.getPage(n); }).then(function (pg) {
+          var v1 = pg.getViewport({ scale: 1 }), sc = (width / v1.width) * dpr, vp = pg.getViewport({ scale: sc });
+          var wrap = document.createElement('div'); wrap.className = 'page'; wrap.dataset.idx = n - 1;
+          var cv = document.createElement('canvas'); cv.width = vp.width; cv.height = vp.height; wrap.appendChild(cv);
+          host.appendChild(wrap); pageEls.push(wrap);
+          wrap.addEventListener('click', onPageClick);
+          return pg.render({ canvasContext: cv.getContext('2d'), viewport: vp }).promise;
+        });
+      })(i);
+      return chain;
+    });
+  }
+
+  /* ───────── Placement ───────── */
+  function ensureOverlay() {
+    if (overlay) return overlay;
+    overlay = document.createElement('div'); overlay.className = 'sig-overlay';
+    overlay.appendChild(document.createElement('img'));
+    var drag = false;
+    overlay.addEventListener('pointerdown', function (e) { drag = true; overlay.setPointerCapture(e.pointerId); e.preventDefault(); e.stopPropagation(); });
+    overlay.addEventListener('pointermove', function (e) {
+      if (!drag || !place) return;
+      var el = document.elementFromPoint(e.clientX, e.clientY), pg = el && el.closest ? el.closest('.page') : null;
+      if (pg) { var idx = +pg.dataset.idx, r = pg.getBoundingClientRect(); setPlace(idx, (e.clientX - r.left) / r.width, (e.clientY - r.top) / r.height); }
+    });
+    overlay.addEventListener('pointerup', function () { drag = false; });
+    overlay.addEventListener('click', function (e) { e.stopPropagation(); });
+    return overlay;
+  }
+  function setPlace(idx, x, y) {
+    place = { page: idx, x: Math.min(0.97, Math.max(0.03, x)), y: Math.min(0.97, Math.max(0.03, y)) };
+    layoutOverlay(); updateUi();
+  }
+  function onPageClick(e) {
+    if (!sigPng) return toast('Add your signature first, then tap where it should go.', true);
+    var pg = e.currentTarget, r = pg.getBoundingClientRect();
+    setPlace(+pg.dataset.idx, (e.clientX - r.left) / r.width, (e.clientY - r.top) / r.height);
+  }
+  function layoutOverlay() {
+    if (!sigPng || !pageEls.length) { if (overlay && overlay.parentNode) overlay.parentNode.removeChild(overlay); return; }
+    if (!place) place = { page: pageEls.length - 1, x: DEFAULT_POS.x, y: DEFAULT_POS.y };
+    var o = ensureOverlay(), host = pageEls[place.page];
+    o.firstChild.src = sigDataUrl;
+    o.style.width = (SIG_W * 100) + '%'; o.style.left = (place.x * 100) + '%'; o.style.top = (place.y * 100) + '%';
+    if (o.parentNode !== host) host.appendChild(o);
+  }
+
+  /* ───────── Signature input ───────── */
+  var cv = $('sig-canvas'), ctx, drawing = false, last = null, hasInk = false;
+  function sizeSigCanvas() {
+    var r = cv.getBoundingClientRect(), dpr = window.devicePixelRatio || 1;
+    var keep = hasInk ? cv.toDataURL() : null;
+    cv.width = Math.max(1, r.width * dpr); cv.height = Math.max(1, r.height * dpr);
+    ctx = cv.getContext('2d'); ctx.scale(dpr, dpr);
+    ctx.lineWidth = 2.6; ctx.lineCap = 'round'; ctx.lineJoin = 'round'; ctx.strokeStyle = '#111';
+    if (keep) { var im = new Image(); im.onload = function () { ctx.drawImage(im, 0, 0, r.width, r.height); }; im.src = keep; }
+  }
+  function pt(e) { var r = cv.getBoundingClientRect(); return { x: e.clientX - r.left, y: e.clientY - r.top }; }
+  cv.addEventListener('pointerdown', function (e) { if (mode !== 'draw') return; drawing = true; last = pt(e); cv.setPointerCapture(e.pointerId); ctx.beginPath(); ctx.moveTo(last.x, last.y); ctx.lineTo(last.x + 0.01, last.y + 0.01); ctx.stroke(); hasInk = true; $('sig-hint').classList.add('hidden'); e.preventDefault(); });
+  cv.addEventListener('pointermove', function (e) { if (!drawing) return; var p = pt(e); ctx.beginPath(); ctx.moveTo(last.x, last.y); ctx.lineTo(p.x, p.y); ctx.stroke(); last = p; e.preventDefault(); });
+  function endDraw() { if (!drawing) return; drawing = false; captureDrawn(); }
+  cv.addEventListener('pointerup', endDraw); cv.addEventListener('pointercancel', endDraw);
+
+  function captureDrawn() {
+    var t = trimCanvas(cv);
+    if (t) { sigPng = t.bytes; sigDataUrl = t.dataUrl; } else { sigPng = null; sigDataUrl = ''; }
+    layoutOverlay(); updateUi();
+  }
+  function captureTyped() {
+    var name = $('f-name').value.trim();
+    $('type-preview').textContent = name || 'Your name';
+    if (!name) { sigPng = null; sigDataUrl = ''; layoutOverlay(); updateUi(); return; }
+    var S = 3, c = document.createElement('canvas'), x = c.getContext('2d'), f = (56 * S) + 'px "Dancing Script", cursive';
+    x.font = f; var w = Math.ceil(x.measureText(name).width) + 40 * S, h = 100 * S;
+    c.width = w; c.height = h; x = c.getContext('2d'); x.font = f; x.fillStyle = '#111'; x.textBaseline = 'middle'; x.fillText(name, 20 * S, h / 2);
+    var t = trimCanvas(c); if (t) { sigPng = t.bytes; sigDataUrl = t.dataUrl; }
+    layoutOverlay(); updateUi();
+  }
+  function setMode(m) {
+    mode = m;
+    $('tab-draw').classList.toggle('active', m === 'draw'); $('tab-type').classList.toggle('active', m === 'type');
+    cv.classList.toggle('hidden', m !== 'draw'); $('type-preview').classList.toggle('hidden', m !== 'type');
+    $('sig-hint').classList.toggle('hidden', m !== 'draw' || hasInk);
+    if (m === 'type') {
+      var go = function () { captureTyped(); };
+      if (document.fonts && document.fonts.load) document.fonts.load('56px "Dancing Script"').then(go, go); else go();
+    } else { if (hasInk) captureDrawn(); else { sigPng = null; sigDataUrl = ''; layoutOverlay(); updateUi(); } }
+  }
+  $('tab-draw').addEventListener('click', function () { setMode('draw'); });
+  $('tab-type').addEventListener('click', function () { setMode('type'); });
+  $('clear-btn').addEventListener('click', function () {
+    if (mode === 'draw') { var r = cv.getBoundingClientRect(); ctx.clearRect(0, 0, r.width, r.height); hasInk = false; $('sig-hint').classList.remove('hidden'); sigPng = null; sigDataUrl = ''; layoutOverlay(); updateUi(); }
+    else { $('f-name').value = ''; captureTyped(); }
+  });
+  $('f-name').addEventListener('input', function () { $('f-name').classList.remove('invalid'); if (mode === 'type') captureTyped(); else updateUi(); });
+  $('f-email').addEventListener('input', function () { $('f-email').classList.remove('invalid'); updateUi(); });
+  $('f-consent').addEventListener('change', updateUi);
+  $('goto-btn').addEventListener('click', function () { if (place && pageEls[place.page]) pageEls[place.page].scrollIntoView({ behavior: 'smooth', block: 'center' }); else toast('Add your signature first.', true); });
+  window.addEventListener('resize', function () { if (!drawing) sizeSigCanvas(); });
+
+  function updateUi() {
+    var okName = $('f-name').value.trim().length > 1, okMail = isEmail($('f-email').value.trim());
+    var ps = $('place-status');
+    if (!sigPng) { ps.textContent = 'Add your signature first'; ps.classList.remove('ok'); }
+    else { ps.textContent = 'Placed on page ' + (place ? place.page + 1 : '—') + ' — drag to move'; ps.classList.add('ok'); }
+    $('sign-btn').disabled = !(okName && okMail && sigPng && place && $('f-consent').checked);
+  }
+
+  /* ───────── Sign ───────── */
+  function getIp() {
+    var ctl = ('AbortController' in window) ? new AbortController() : null, to = setTimeout(function () { if (ctl) ctl.abort(); }, 3500);
+    return fetch('https://api.ipify.org?format=json', ctl ? { signal: ctl.signal } : {}).then(function (r) { return r.json(); }).then(function (j) { clearTimeout(to); return j.ip || 'not available'; }).catch(function () { clearTimeout(to); return 'not available'; });
+  }
+
+  function sign() {
+    var name = $('f-name').value.trim(), email = $('f-email').value.trim();
+    if (name.length < 2) { $('f-name').classList.add('invalid'); return toast('Please enter your full name.', true); }
+    if (!isEmail(email)) { $('f-email').classList.add('invalid'); return toast('Please enter a valid email.', true); }
+    var btn = $('sign-btn'); btn.disabled = true; btn.textContent = 'Signing…';
+    var now = new Date(), utc = now.toISOString().replace('T', ' ').slice(0, 19) + ' UTC';
+    var tz = (Intl.DateTimeFormat().resolvedOptions().timeZone) || '';
+    var hash, ip;
+
+    crypto.subtle.digest('SHA-256', origBytes).then(function (h) { hash = hex(h); return getIp(); })
+      .then(function (v) { ip = v; return PDFLib.PDFDocument.load(origBytes); })
+      .then(function (pdf) {
+        var P = PDFLib, pages = pdf.getPages(), pg = pages[Math.min(place.page, pages.length - 1)], size = pg.getSize();
+        return pdf.embedPng(sigPng).then(function (img) {
+          var w = size.width * SIG_W, h = w * img.height / img.width;
+          var x = place.x * size.width - w / 2, y = size.height - place.y * size.height - h / 2;
+          x = Math.max(8, Math.min(size.width - w - 8, x)); y = Math.max(20, Math.min(size.height - h - 8, y));
+          pg.drawImage(img, { x: x, y: y, width: w, height: h });
+          var cap = textPng(name + ' · ' + fmtDate(now), 'Helvetica, Arial, sans-serif', '#555555');
+          return pdf.embedPng(cap.bytes).then(function (ci) {
+            var ch = 8.5, cw = cap.w / cap.h * ch;
+            pg.drawImage(ci, { x: x, y: Math.max(8, y - ch - 1), width: Math.min(cw, w * 1.6), height: ch });
+            return pdf;
+          });
+        });
+      })
+      .then(function (pdf) { return addCertificate(pdf, { name: name, email: email, utc: utc, tz: tz, ip: ip, hash: hash, title: docTitle }).then(function () { return pdf.save(); }); })
+      .then(function (out) {
+        var body = JSON.stringify({ action: 'sign', t: token, name: name, email: email, origHash: hash, ip: ip, tz: tz, ua: navigator.userAgent.slice(0, 300), signedAtClient: utc, pdf: bytesToB64(out) });
+        return fetch(ENDPOINT, { method: 'POST', headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: body })
+          .then(function (r) { return r.json(); })
+          .then(function (j) {
+            if (!j || !j.ok) throw new Error((j && j.message) || 'Server error');
+            var url = URL.createObjectURL(new Blob([out], { type: 'application/pdf' }));
+            var a = $('dl-btn'); a.href = url; a.download = (docTitle.replace(/[^\w\- ]+/g, '').trim() || 'document') + ' - signed.pdf';
+            $('done-text').textContent = 'A signed copy has been sent to ' + email + '.';
+            show('st-done'); window.scrollTo(0, 0);
+          });
+      })
+      .catch(function (err) {
+        btn.textContent = 'Sign document'; updateUi();
+        toast(/already/i.test(err.message) ? 'This document has already been signed.' : 'Something went wrong. Please try again.', true);
+        if (window.console) console.error(err);
+      });
+  }
+  $('sign-btn').addEventListener('click', sign);
+
+  /* Certificate page appended to the signed PDF. */
+  function addCertificate(pdf, d) {
+    var P = PDFLib, pg = pdf.addPage([612, 792]), bronze = P.rgb(0.655, 0.427, 0.271), grey = P.rgb(0.35, 0.35, 0.35), dark = P.rgb(0.1, 0.1, 0.1);
+    return Promise.all([pdf.embedFont(P.StandardFonts.Helvetica), pdf.embedFont(P.StandardFonts.HelveticaBold), pdf.embedPng(textPng(d.name, 'Helvetica, Arial, sans-serif', '#111111').bytes), pdf.embedPng(textPng(d.email, 'Helvetica, Arial, sans-serif', '#111111').bytes), pdf.embedPng(textPng(d.title, 'Helvetica, Arial, sans-serif', '#111111').bytes)])
+      .then(function (r) {
+        var f = r[0], fb = r[1], nameImg = r[2], mailImg = r[3], titleImg = r[4], nameTxt = textPng(d.name, 'Helvetica, Arial, sans-serif', '#111'), mailTxt = textPng(d.email, 'Helvetica, Arial, sans-serif', '#111'), titleTxt = textPng(d.title, 'Helvetica, Arial, sans-serif', '#111');
+        var L = 56, y = 740;
+        pg.drawText('B-STAGE BOOKKEEPING', { x: L, y: y, size: 11, font: fb, color: bronze });
+        y -= 30; pg.drawText('Electronic Signature Certificate', { x: L, y: y, size: 22, font: fb, color: dark });
+        y -= 14; pg.drawLine({ start: { x: L, y: y }, end: { x: 556, y: y }, thickness: 1.2, color: bronze });
+        y -= 34;
+        function label(t) { pg.drawText(t.toUpperCase(), { x: L, y: y, size: 8, font: fb, color: grey }); y -= 15; }
+        function img(im, t) { var h = 15, w = Math.min(t.w / t.h * h, 480); pg.drawImage(im, { x: L, y: y - 4, width: w, height: h }); y -= 28; }
+        function line(t, size) { pg.drawText(t, { x: L, y: y, size: size || 11, font: f, color: dark }); y -= 28; }
+        label('Document'); img(titleImg, titleTxt);
+        label('Signed by'); img(nameImg, nameTxt);
+        label('Email address (entered by the signer)'); img(mailImg, mailTxt);
+        label('Date and time'); line(d.utc + (d.tz ? '   (signer time zone: ' + d.tz + ')' : ''));
+        label('IP address (as reported by the signer\'s browser)'); line(d.ip);
+        label('Original document fingerprint (SHA-256)');
+        pg.drawText(d.hash.slice(0, 32), { x: L, y: y, size: 10, font: f, color: dark }); y -= 14;
+        pg.drawText(d.hash.slice(32), { x: L, y: y, size: 10, font: f, color: dark }); y -= 34;
+        pg.drawLine({ start: { x: L, y: y + 12 }, end: { x: 556, y: y + 12 }, thickness: 0.5, color: P.rgb(0.8, 0.8, 0.8) });
+        var notes = [
+          'The signer confirmed on screen that they agree to sign this document electronically and that the',
+          'electronic signature has the same effect as a handwritten one.',
+          '',
+          'The fingerprint above identifies the exact document that was displayed and signed, before the signature',
+          'was added. If even one character of the original changed, the fingerprint would be different.',
+          '',
+          'The email address was entered by the signer and was not independently verified. The signing link was',
+          'sent privately by B-Stage Bookkeeping and can be used only once.'
+        ];
+        notes.forEach(function (t) { if (t) pg.drawText(t, { x: L, y: y - 10, size: 9, font: f, color: grey }); y -= 13; });
+        pg.drawText('B-Stage Bookkeeping · 595 River Avenue, Winnipeg, MB · hello@beestage.ca · beestage.ca', { x: L, y: 36, size: 8, font: f, color: grey });
+      });
+  }
+
+  /* ───────── Start ───────── */
+  window.addEventListener('load', function () { load(); });
+  // size the signature canvas once the signing view is visible
+  var obs = new MutationObserver(function () { if (!$('st-sign').classList.contains('hidden')) { sizeSigCanvas(); obs.disconnect(); } });
+  obs.observe($('st-sign'), { attributes: true, attributeFilter: ['class'] });
+})();
+</script>
+</body>
+</html>

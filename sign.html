@@ -216,7 +216,7 @@
   /* ───────── Settings ───────── */
   // Paste the Web App URL of the signing Apps Script here (ends with /exec).
   var ENDPOINT = 'https://script.google.com/macros/s/AKfycbwD6gjQ8fqGRE3glDq3Vuvqu-yFSkK5v5v9EuObaNW7fhrrYbtdWza9xZ0mJ8ACHXvCHA/exec';
-  var SIG_W = 0.16;                 // signature width as a fraction of page width
+  var SIG_W = 0.16; function sigWpt(ptW) { var b = sigPng, a = b ? ((b[16]<<24|b[17]<<16|b[18]<<8|b[19]) / (b[20]<<24|b[21]<<16|b[22]<<8|b[23])) : 3; return Math.min((mode === 'type' ? 16 : 30) * a, ptW * 0.3); }                 // signature width as a fraction of page width
   var DEFAULT_POS = { x: 0.74, y: 0.86 };   // first guess on the last page; the signer can drag it
 
   pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
@@ -292,7 +292,7 @@
       for (var i = 1; i <= pdf.numPages; i++) (function (n) {
         chain = chain.then(function () { return pdf.getPage(n); }).then(function (pg) {
           var v1 = pg.getViewport({ scale: 1 }), sc = (width / v1.width) * dpr, vp = pg.getViewport({ scale: sc });
-          var wrap = document.createElement('div'); wrap.className = 'page'; wrap.dataset.idx = n - 1;
+          var wrap = document.createElement('div'); wrap.className = 'page'; wrap.dataset.idx = n - 1; wrap.dataset.pt = v1.width;
           var cv = document.createElement('canvas'); cv.width = vp.width; cv.height = vp.height; wrap.appendChild(cv);
           host.appendChild(wrap); pageEls.push(wrap);
           wrap.addEventListener('click', onPageClick);
@@ -333,7 +333,7 @@
     if (!place) place = { page: pageEls.length - 1, x: DEFAULT_POS.x, y: DEFAULT_POS.y };
     var o = ensureOverlay(), host = pageEls[place.page];
     o.firstChild.src = sigDataUrl;
-    o.style.width = (SIG_W * 100) + '%'; o.style.left = (place.x * 100) + '%'; o.style.top = (place.y * 100) + '%';
+    o.style.width = (sigWpt(+host.dataset.pt || 612) / (+host.dataset.pt || 612) * 100) + '%'; o.style.left = (place.x * 100) + '%'; o.style.top = (place.y * 100) + '%';
     if (o.parentNode !== host) host.appendChild(o);
   }
 

@@ -418,7 +418,7 @@
       .then(function (pdf) {
         var P = PDFLib, pages = pdf.getPages(), pg = pages[Math.min(place.page, pages.length - 1)], size = pg.getSize();
         return pdf.embedPng(sigPng).then(function (img) {
-          var w = size.width * SIG_W, h = w * img.height / img.width;
+          var w = sigWpt(size.width), h = w * img.height / img.width;
           var x = place.x * size.width - w / 2, y = size.height - place.y * size.height - h / 2;
           x = Math.max(8, Math.min(size.width - w - 8, x)); y = Math.max(20, Math.min(size.height - h - 8, y));
           pg.drawImage(img, { x: x, y: y, width: w, height: h });

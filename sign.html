@@ -220,7 +220,7 @@
 
   var $ = function (id) { return document.getElementById(id); };
   var token = new URLSearchParams(location.search).get('t') || '';
-  var origBytes = null, docTitle = '', docEmail = '', pageEls = [];
+  var origBytes = null, docTitle = '', docEmail = '', pageEls = [], certBase = null;
   var sigPng = null;                // Uint8Array of the trimmed signature
   var sigDataUrl = '';
   var mode = 'draw';
@@ -268,6 +268,7 @@
   /* ───────── Load document ───────── */
   function load() {
     if (!/^[a-f0-9]{32,128}$/i.test(token)) return fail('This link is not valid', 'Please use the full link we sent you, or contact hello@beestage.ca.');
+    certBase = fetch(ENDPOINT + '?action=certbase').then(function (r) { return r.json(); }).then(function (j) { return (j && j.ok && j.pdf) ? b64ToBytes(j.pdf) : null; }).catch(function () { return null; });
     fetch(ENDPOINT + '?action=doc&t=' + encodeURIComponent(token))
       .then(function (r) { return r.json(); })
       .then(function (j) {
@@ -498,60 +499,75 @@
   }
   $('sign-btn').addEventListener('click', sign);
 
-  /* Certificate page appended to the signed PDF (same look as the agreement: Arial, bronze header, key/value table). */
+  /* Certificate page appended to the signed PDF. It is built on a copy of the agreement template page
+     (header, watermark, footer), fetched from the signing service, so it looks exactly like the other pages. */
   function addCertificate(pdf, d) {
-    var P = PDFLib, pg = pdf.addPage([612, 792]), bronze = P.rgb(0.655, 0.427, 0.271), grey = P.rgb(0.4, 0.4, 0.4), dark = P.rgb(0.07, 0.07, 0.07), faint = P.rgb(0.85, 0.85, 0.85);
+    var P = PDFLib, bronze = P.rgb(0.655, 0.427, 0.271), grey = P.rgb(0.4, 0.4, 0.4), dark = P.rgb(0.07, 0.07, 0.07), white = P.rgb(1, 1, 1);
     var fx = 'Helvetica, Arial, sans-serif';
-    return Promise.all([pdf.embedFont(P.StandardFonts.Helvetica), pdf.embedFont(P.StandardFonts.HelveticaBold), pdf.embedFont(P.StandardFonts.Courier), fetch('/cert-logo.png').then(function (x) { return x.ok ? x.arrayBuffer() : null; }).then(function (b) { return b ? pdf.embedPng(new Uint8Array(b)) : null; }).catch(function () { return null; }), pdf.embedPng(textPng(d.name, fx, '#111111').bytes), pdf.embedPng(textPng(d.email || '-', fx, '#111111').bytes), pdf.embedPng(textPng(d.title, fx, '#111111').bytes)])
-      .then(function (r) {
-        var f = r[0], fb = r[1], fm = r[2], logo = r[3], nameImg = r[4], mailImg = r[5], titleImg = r[6];
-        var nameTxt = textPng(d.name, fx, '#111'), mailTxt = textPng(d.email || '-', fx, '#111'), titleTxt = textPng(d.title, fx, '#111');
-        var L = 72, R = 540, V = 262, y;
+    var basePage = (certBase || Promise.resolve(null)).then(function (bytes) {
+      if (!bytes) return null;
+      return P.PDFDocument.load(bytes).then(function (bd) { return pdf.copyPages(bd, [0]); }).then(function (pp) { return pp[0]; }).catch(function () { return null; });
+    });
+    return basePage.then(function (bp) {
+      var pg = bp ? pdf.addPage(bp) : pdf.addPage([612, 792]);
+      var logoP = bp ? Promise.resolve(null) : fetch('/cert-logo.png').then(function (x) { return x.ok ? x.arrayBuffer() : null; }).then(function (b) { return b ? pdf.embedPng(new Uint8Array(b)) : null; }).catch(function () { return null; });
+      return Promise.all([pdf.embedFont(P.StandardFonts.Helvetica), pdf.embedFont(P.StandardFonts.HelveticaBold), pdf.embedFont(P.StandardFonts.Courier), logoP, pdf.embedPng(textPng(d.name, fx, '#111111').bytes), pdf.embedPng(textPng(d.email || '-', fx, '#111111').bytes), pdf.embedPng(textPng(d.title, fx, '#111111').bytes)])
+        .then(function (r) {
+          var f = r[0], fb = r[1], fm = r[2], logo = r[3], nameImg = r[4], mailImg = r[5], titleImg = r[6];
+          var nameTxt = textPng(d.name, fx, '#111'), mailTxt = textPng(d.email || '-', fx, '#111'), titleTxt = textPng(d.title, fx, '#111');
+          var L = 57, R = 555, V = 311, y;
 
-        /* header: logo + company name, centred, bronze rule */
-        var hs = 17, hw = fb.widthOfTextAtSize('B-STAGE BOOKKEEPING INC.', hs), lw = logo ? 30 : 0, lh = logo ? lw * logo.height / logo.width : 0, gap = logo ? 7 : 0, gx = (612 - (lw + gap + hw)) / 2;
-        y = 722;
-        if (logo) pg.drawImage(logo, { x: gx, y: y - 4 - (lh - hs) / 2, width: lw, height: lh });
-        pg.drawText('B-STAGE BOOKKEEPING INC.', { x: gx + lw + gap, y: y, size: hs, font: fb, color: bronze });
-        y -= 20; pg.drawLine({ start: { x: L, y: y }, end: { x: R, y: y }, thickness: 1, color: bronze });
+          if (bp) {
+            /* page numbers: the copied page says "Page 1 of 1"; renumber every page as "Page k of N" */
+            var pages = pdf.getPages(), n = pages.length;
+            pages.forEach(function (p, i) {
+              p.drawRectangle({ x: 506, y: 11, width: 56, height: 17, color: white });
+              var parts = [['Page ', 7.5], [String(i + 1), 9.5], [' of ', 7.5], [String(n), 9.5]], w = 0;
+              parts.forEach(function (t) { w += f.widthOfTextAtSize(t[0], t[1]); });
+              var x = 557 - w;
+              parts.forEach(function (t) { p.drawText(t[0], { x: x, y: 18, size: t[1], font: f, color: dark }); x += f.widthOfTextAtSize(t[0], t[1]); });
+            });
+          } else {
+            /* fallback header/footer if the template page could not be loaded */
+            var hs = 17, hw = fb.widthOfTextAtSize('B-STAGE BOOKKEEPING INC.', hs), lw = logo ? 30 : 0, lh = logo ? lw * logo.height / logo.width : 0, gap = logo ? 7 : 0, gx = (612 - (lw + gap + hw)) / 2;
+            if (logo) pg.drawImage(logo, { x: gx, y: 750 - (lh - hs) / 2, width: lw, height: lh });
+            pg.drawText('B-STAGE BOOKKEEPING INC.', { x: gx + lw + gap, y: 754, size: hs, font: fb, color: bronze });
+            pg.drawLine({ start: { x: L, y: 728 }, end: { x: R, y: 728 }, thickness: 1, color: bronze });
+            var ft = 'B-STAGE BOOKKEEPING INC.  •  1122 3 St SE, Ste 1906, #474, Calgary, AB T2G 0E7  •  (204) 892-1309  •  hello@beestage.ca  •  beestage.ca';
+            pg.drawText(ft, { x: (612 - f.widthOfTextAtSize(ft, 6)) / 2, y: 29, size: 6, font: f, color: dark });
+          }
 
-        /* title */
-        y -= 42; pg.drawText('ELECTRONIC SIGNATURE CERTIFICATE', { x: L, y: y, size: 19, font: fb, color: dark });
-        y -= 16; pg.drawText('Record of the electronic signing of the agreement named below', { x: L, y: y, size: 9.5, font: f, color: grey });
-        y -= 26;
+          /* title block, like the agreement */
+          y = 688; pg.drawText('ELECTRONIC SIGNATURE CERTIFICATE', { x: L, y: y, size: 18, font: fb, color: dark });
+          y -= 16; pg.drawText('Record of the electronic signing of the agreement named below', { x: L, y: y, size: 9, font: f, color: grey });
 
-        function rowLine() { pg.drawLine({ start: { x: L, y: y + 7 }, end: { x: R, y: y + 7 }, thickness: 0.4, color: faint }); }
-        function row(label, draw, step) { pg.drawText(label, { x: L, y: y, size: 9.5, font: fb, color: dark }); draw(); y -= (step || 26); rowLine(); }
-        function img(im, t) { var h = 15, w = Math.min(t.w / t.h * h, R - V); pg.drawImage(im, { x: V, y: y - 4.5, width: w, height: h }); }
-        function txt(t) { pg.drawText(t, { x: V, y: y, size: 9.5, font: f, color: dark }); }
-        rowLine(); y -= 18;
-        row('Document', function () { img(titleImg, titleTxt); });
-        row('Signed by', function () { img(nameImg, nameTxt); });
-        row('Signer email', function () { img(mailImg, mailTxt); });
-        row('Date and time', function () { txt(d.utc); });
-        row('Signer time zone', function () { txt(d.tz || 'not available'); });
-        row('IP address', function () { txt(d.ip); });
-        pg.drawText('Document fingerprint (SHA-256)', { x: L, y: y, size: 9.5, font: fb, color: dark });
-        pg.drawText(d.hash.slice(0, 32), { x: V, y: y, size: 9, font: fm, color: dark });
-        pg.drawText(d.hash.slice(32), { x: V, y: y - 12, size: 9, font: fm, color: dark });
-        y -= 30; rowLine();
+          /* key / value table, like the Effective Date table */
+          function row(label, draw) { pg.drawText(label, { x: L + 6, y: y, size: 9, font: fb, color: dark }); draw(); y -= 21; }
+          function img(im, t) { var h = 13.5, w = Math.min(t.w / t.h * h, R - V); pg.drawImage(im, { x: V, y: y - 4, width: w, height: h }); }
+          function txt(t) { pg.drawText(t, { x: V, y: y, size: 9, font: f, color: dark }); }
+          y -= 34;
+          row('Document', function () { img(titleImg, titleTxt); });
+          row('Signed by', function () { img(nameImg, nameTxt); });
+          row('Signer Email', function () { img(mailImg, mailTxt); });
+          row('Date and Time', function () { txt(d.utc); });
+          row('Signer Time Zone', function () { txt(d.tz || 'not available'); });
+          row('IP Address', function () { txt(d.ip); });
+          pg.drawText('Document Fingerprint (SHA-256)', { x: L + 6, y: y, size: 9, font: fb, color: dark });
+          pg.drawText(d.hash.slice(0, 32), { x: V, y: y, size: 8.5, font: fm, color: dark });
+          pg.drawText(d.hash.slice(32), { x: V, y: y - 11, size: 8.5, font: fm, color: dark });
+          y -= 30;
 
-        /* notes, styled like the agreement sections */
-        function head(t) { y -= 22; pg.drawText(t, { x: L, y: y, size: 12, font: fb, color: dark }); y -= 6; }
-        function para(lines) { lines.forEach(function (t) { y -= 13; pg.drawText(t, { x: L, y: y, size: 9.5, font: f, color: dark }); }); }
-        head('1 Electronic Signature');
-        para(['The signer confirmed on screen that they agree to sign this document electronically and that the', 'electronic signature has the same effect as a handwritten one.']);
-        head('2 Document Fingerprint');
-        para(['The fingerprint above identifies the exact document that was displayed and signed, before the', 'signature was added. If even one character of the original changed, the fingerprint would be different.']);
-        head('3 Signing Link');
-        para(['The signer email address is the address B-Stage Bookkeeping sent the signing link to. The link was sent', 'privately and can be used only once.']);
-
-        /* footer */
-        var ft = 'B-STAGE BOOKKEEPING INC.  •  1122 3 St SE, Ste 1906, #474, Calgary, AB T2G 0E7', ft2 = '(204) 892-1309  •  hello@beestage.ca  •  beestage.ca';
-        pg.drawLine({ start: { x: L, y: 56 }, end: { x: R, y: 56 }, thickness: 0.4, color: faint });
-        pg.drawText(ft, { x: (612 - f.widthOfTextAtSize(ft, 8.5)) / 2, y: 42, size: 8.5, font: f, color: grey });
-        pg.drawText(ft2, { x: (612 - f.widthOfTextAtSize(ft2, 8.5)) / 2, y: 30, size: 8.5, font: f, color: grey });
-      });
+          /* numbered sections, like the agreement */
+          function head(t) { y -= 18; pg.drawText(t, { x: L, y: y, size: 11, font: fb, color: dark }); y -= 3; }
+          function para(lines) { lines.forEach(function (t) { y -= 12; pg.drawText(t, { x: L, y: y, size: 9, font: f, color: dark }); }); }
+          head('1 Electronic Signature');
+          para(['The signer confirmed on screen that they agree to sign this document electronically and that the electronic', 'signature has the same effect as a handwritten one.']);
+          head('2 Document Fingerprint');
+          para(['The fingerprint above identifies the exact document that was displayed and signed, before the signature was', 'added. If even one character of the original changed, the fingerprint would be different.']);
+          head('3 Signing Link');
+          para(['The signer email address is the address B-Stage Bookkeeping sent the signing link to. The link was sent', 'privately and can be used only once.']);
+        });
+    });
   }
 
   /* ───────── Start ───────── */

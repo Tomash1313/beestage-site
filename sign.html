@@ -201,7 +201,7 @@
   </div>
 </main>
 
-<footer>© 2026 B-Stage Bookkeeping · 595 River Avenue, Winnipeg, MB · hello@beestage.ca</footer>
+<footer>© 2026 B-Stage Bookkeeping Inc. · 1122 3 St SE, Ste 1906, #474, Calgary, AB T2G 0E7 · hello@beestage.ca</footer>
 <div class="toast" id="toast"></div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
@@ -547,9 +547,10 @@
         para(['The signer email address is the address B-Stage Bookkeeping sent the signing link to. The link was sent', 'privately and can be used only once.']);
 
         /* footer */
-        var ft = 'B-Stage Bookkeeping Inc. · Calgary, Alberta · hello@beestage.ca · beestage.ca';
+        var ft = 'B-STAGE BOOKKEEPING INC.  •  1122 3 St SE, Ste 1906, #474, Calgary, AB T2G 0E7', ft2 = '(204) 892-1309  •  hello@beestage.ca  •  beestage.ca';
         pg.drawLine({ start: { x: L, y: 56 }, end: { x: R, y: 56 }, thickness: 0.4, color: faint });
-        pg.drawText(ft, { x: (612 - f.widthOfTextAtSize(ft, 8.5)) / 2, y: 40, size: 8.5, font: f, color: grey });
+        pg.drawText(ft, { x: (612 - f.widthOfTextAtSize(ft, 8.5)) / 2, y: 42, size: 8.5, font: f, color: grey });
+        pg.drawText(ft2, { x: (612 - f.widthOfTextAtSize(ft2, 8.5)) / 2, y: 30, size: 8.5, font: f, color: grey });
       });
   }
 

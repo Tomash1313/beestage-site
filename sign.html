@@ -171,9 +171,6 @@
         <label class="field-label" for="f-name">Full name</label>
         <input class="inp" id="f-name" type="text" autocomplete="name" maxlength="120" placeholder="Your full legal name">
 
-        <label class="field-label" for="f-email">Email</label>
-        <input class="inp" id="f-email" type="email" autocomplete="email" maxlength="160" placeholder="you@company.com">
-
         <span class="field-label">Signature</span>
         <div class="tabs">
           <button class="tab active" id="tab-draw" type="button">Draw</button>
@@ -198,7 +195,7 @@
         <button class="btn" id="sign-btn" type="button" disabled>Sign document</button>
         <button class="link-btn" id="goto-btn" type="button" style="display:block;margin:12px auto 0;">Show my signature on the document</button>
 
-        <p class="fine">Your name, email, time of signing and device details are recorded on a certificate page added to the signed PDF. A copy is emailed to you and to B-Stage Bookkeeping.</p>
+        <p class="fine">Your name, time of signing and device details are recorded on a certificate page added to the signed PDF. A copy is emailed to you and to B-Stage Bookkeeping.</p>
       </aside>
     </div>
   </div>
@@ -223,7 +220,7 @@
 
   var $ = function (id) { return document.getElementById(id); };
   var token = new URLSearchParams(location.search).get('t') || '';
-  var origBytes = null, docTitle = '', pageEls = [];
+  var origBytes = null, docTitle = '', docEmail = '', pageEls = [];
   var sigPng = null;                // Uint8Array of the trimmed signature
   var sigDataUrl = '';
   var mode = 'draw';
@@ -276,7 +273,7 @@
       .then(function (j) {
         if (!j || !j.ok) return fail('This link is not valid', 'Please check the link or contact hello@beestage.ca.');
         if (j.status === 'signed') return fail('Already signed', 'This document has already been signed. A copy was emailed to the signer.');
-        docTitle = j.title || 'Document';
+        docTitle = j.title || 'Document'; docEmail = isEmail(String(j.email || '')) ? String(j.email) : '';
         origBytes = b64ToBytes(j.pdf);
         $('doc-title').textContent = docTitle;
         return render().then(function () { show('st-sign'); layoutOverlay(); });
@@ -430,17 +427,16 @@
     else { $('f-name').value = ''; captureTyped(); }
   });
   $('f-name').addEventListener('input', function () { $('f-name').classList.remove('invalid'); if (mode === 'type') captureTyped(); else updateUi(); });
-  $('f-email').addEventListener('input', function () { $('f-email').classList.remove('invalid'); updateUi(); });
   $('f-consent').addEventListener('change', updateUi);
   $('goto-btn').addEventListener('click', function () { if (place && pageEls[place.page]) pageEls[place.page].scrollIntoView({ behavior: 'smooth', block: 'center' }); else toast('Add your signature first.', true); });
   window.addEventListener('resize', function () { if (!drawing) sizeSigCanvas(); });
 
   function updateUi() {
-    var okName = $('f-name').value.trim().length > 1, okMail = isEmail($('f-email').value.trim());
+    var okName = $('f-name').value.trim().length > 1;
     var ps = $('place-status');
     if (!sigPng) { ps.textContent = 'Add your signature first'; ps.classList.remove('ok'); }
     else { ps.textContent = 'Placed on page ' + (place ? place.page + 1 : '—') + ' — drag to move'; ps.classList.add('ok'); }
-    $('sign-btn').disabled = !(okName && okMail && sigPng && place && $('f-consent').checked);
+    $('sign-btn').disabled = !(okName && sigPng && place && $('f-consent').checked);
   }
 
   /* ───────── Sign ───────── */
@@ -450,9 +446,8 @@
   }
 
   function sign() {
-    var name = $('f-name').value.trim(), email = $('f-email').value.trim();
+    var name = $('f-name').value.trim(), email = docEmail;
     if (name.length < 2) { $('f-name').classList.add('invalid'); return toast('Please enter your full name.', true); }
-    if (!isEmail(email)) { $('f-email').classList.add('invalid'); return toast('Please enter a valid email.', true); }
     var btn = $('sign-btn'); btn.disabled = true; btn.textContent = 'Signing…';
     var now = new Date(), utc = now.toISOString().replace('T', ' ').slice(0, 19) + ' UTC';
     var tz = (Intl.DateTimeFormat().resolvedOptions().timeZone) || '';
@@ -491,7 +486,7 @@
             if (!j || !j.ok) throw new Error((j && j.message) || 'Server error');
             var url = URL.createObjectURL(new Blob([out], { type: 'application/pdf' }));
             var a = $('dl-btn'); a.href = url; a.download = (docTitle.replace(/[^\w\- ]+/g, '').trim() || 'document') + ' - signed.pdf';
-            $('done-text').textContent = 'A signed copy has been sent to ' + email + '.';
+            $('done-text').textContent = (email ? 'A signed copy has been sent to ' + email + '.' : 'A signed copy has been sent to your email.');
             show('st-done'); window.scrollTo(0, 0);
           });
       })
@@ -506,9 +501,9 @@
   /* Certificate page appended to the signed PDF. */
   function addCertificate(pdf, d) {
     var P = PDFLib, pg = pdf.addPage([612, 792]), bronze = P.rgb(0.655, 0.427, 0.271), grey = P.rgb(0.35, 0.35, 0.35), dark = P.rgb(0.1, 0.1, 0.1);
-    return Promise.all([pdf.embedFont(P.StandardFonts.Helvetica), pdf.embedFont(P.StandardFonts.HelveticaBold), pdf.embedPng(textPng(d.name, 'Helvetica, Arial, sans-serif', '#111111').bytes), pdf.embedPng(textPng(d.email, 'Helvetica, Arial, sans-serif', '#111111').bytes), pdf.embedPng(textPng(d.title, 'Helvetica, Arial, sans-serif', '#111111').bytes)])
+    return Promise.all([pdf.embedFont(P.StandardFonts.Helvetica), pdf.embedFont(P.StandardFonts.HelveticaBold), pdf.embedPng(textPng(d.name, 'Helvetica, Arial, sans-serif', '#111111').bytes), pdf.embedPng(textPng(d.email || '-', 'Helvetica, Arial, sans-serif', '#111111').bytes), pdf.embedPng(textPng(d.title, 'Helvetica, Arial, sans-serif', '#111111').bytes)])
       .then(function (r) {
-        var f = r[0], fb = r[1], nameImg = r[2], mailImg = r[3], titleImg = r[4], nameTxt = textPng(d.name, 'Helvetica, Arial, sans-serif', '#111'), mailTxt = textPng(d.email, 'Helvetica, Arial, sans-serif', '#111'), titleTxt = textPng(d.title, 'Helvetica, Arial, sans-serif', '#111');
+        var f = r[0], fb = r[1], nameImg = r[2], mailImg = r[3], titleImg = r[4], nameTxt = textPng(d.name, 'Helvetica, Arial, sans-serif', '#111'), mailTxt = textPng(d.email || '-', 'Helvetica, Arial, sans-serif', '#111'), titleTxt = textPng(d.title, 'Helvetica, Arial, sans-serif', '#111');
         var L = 56, y = 740;
         pg.drawText('B-STAGE BOOKKEEPING', { x: L, y: y, size: 11, font: fb, color: bronze });
         y -= 30; pg.drawText('Electronic Signature Certificate', { x: L, y: y, size: 22, font: fb, color: dark });
@@ -519,7 +514,7 @@
         function line(t, size) { pg.drawText(t, { x: L, y: y, size: size || 11, font: f, color: dark }); y -= 28; }
         label('Document'); img(titleImg, titleTxt);
         label('Signed by'); img(nameImg, nameTxt);
-        label('Email address (entered by the signer)'); img(mailImg, mailTxt);
+        label('Email address (the address the signing link was sent to)'); img(mailImg, mailTxt);
         label('Date and time'); line(d.utc + (d.tz ? '   (signer time zone: ' + d.tz + ')' : ''));
         label('IP address (as reported by the signer\'s browser)'); line(d.ip);
         label('Original document fingerprint (SHA-256)');
@@ -533,7 +528,7 @@
           'The fingerprint above identifies the exact document that was displayed and signed, before the signature',
           'was added. If even one character of the original changed, the fingerprint would be different.',
           '',
-          'The email address was entered by the signer and was not independently verified. The signing link was',
+          'The email address above is the one B-Stage Bookkeeping sent the signing link to. The signing link was',
           'sent privately by B-Stage Bookkeeping and can be used only once.'
         ];
         notes.forEach(function (t) { if (t) pg.drawText(t, { x: L, y: y - 10, size: 9, font: f, color: grey }); y -= 13; });

@@ -292,15 +292,40 @@
       for (var i = 1; i <= pdf.numPages; i++) (function (n) {
         chain = chain.then(function () { return pdf.getPage(n); }).then(function (pg) {
           var v1 = pg.getViewport({ scale: 1 }), sc = (width / v1.width) * dpr, vp = pg.getViewport({ scale: sc });
-          var wrap = document.createElement('div'); wrap.className = 'page'; wrap.dataset.idx = n - 1; wrap.dataset.pt = v1.width;
+          var wrap = document.createElement('div'); wrap.className = 'page'; wrap.dataset.idx = n - 1; wrap.dataset.pt = v1.width; wrap.dataset.ph = v1.height;
           var cv = document.createElement('canvas'); cv.width = vp.width; cv.height = vp.height; wrap.appendChild(cv);
           host.appendChild(wrap); pageEls.push(wrap);
           wrap.addEventListener('click', onPageClick);
           return pg.render({ canvasContext: cv.getContext('2d'), viewport: vp }).promise;
         });
       })(i);
-      return chain;
+      return chain.then(function () { return findAnchors(pdf); });
     });
+  }
+
+  /* Find the client's "Signature:" and "Date:" labels (right-hand column of the last page that has them). */
+  var anchors = null;
+  function findAnchors(pdf) {
+    anchors = null;
+    var n = pdf.numPages, found = null;
+    function look(i) {
+      if (i < 1 || found) return Promise.resolve();
+      return pdf.getPage(i).then(function (pg) {
+        var w = pg.getViewport({ scale: 1 }).width;
+        return pg.getTextContent().then(function (tc) {
+          var sig = null, dt = null;
+          tc.items.forEach(function (it) {
+            var t = (it.str || '').trim(), x = it.transform[4], y = it.transform[5];
+            if (x < w * 0.5) return;
+            if (/^Signature:$/i.test(t)) sig = { x: x + it.width, y: y };
+            if (/^Date:$/i.test(t)) dt = { x: x + it.width, y: y };
+          });
+          if (sig && dt) found = { page: i - 1, sig: sig, date: dt };
+          else return look(i - 1);
+        });
+      });
+    }
+    return look(n).then(function () { anchors = found; }).catch(function () { anchors = null; });
   }
 
   /* ───────── Placement ───────── */
@@ -330,7 +355,13 @@
   }
   function layoutOverlay() {
     if (!sigPng || !pageEls.length) { if (overlay && overlay.parentNode) overlay.parentNode.removeChild(overlay); return; }
-    if (!place) place = { page: pageEls.length - 1, x: DEFAULT_POS.x, y: DEFAULT_POS.y };
+    if (!place) {
+      if (anchors && pageEls[anchors.page]) {
+        var hp = pageEls[anchors.page], pw = +hp.dataset.pt || 612, ph = +hp.dataset.ph || 792, sw = sigWpt(pw), b = sigPng;
+        var asp = ((b[16]<<24|b[17]<<16|b[18]<<8|b[19]) / (b[20]<<24|b[21]<<16|b[22]<<8|b[23])) || 3, sh = sw / asp;
+        place = { page: anchors.page, x: Math.min(0.97, (anchors.sig.x + 10 + sw / 2) / pw), y: Math.min(0.97, 1 - (anchors.sig.y - 3 + sh / 2) / ph) };
+      } else place = { page: pageEls.length - 1, x: DEFAULT_POS.x, y: DEFAULT_POS.y };
+    }
     var o = ensureOverlay(), host = pageEls[place.page];
     o.firstChild.src = sigDataUrl;
     o.style.width = (sigWpt(+host.dataset.pt || 612) / (+host.dataset.pt || 612) * 100) + '%'; o.style.left = (place.x * 100) + '%'; o.style.top = (place.y * 100) + '%';
@@ -422,6 +453,13 @@
           var x = place.x * size.width - w / 2, y = size.height - place.y * size.height - h / 2;
           x = Math.max(8, Math.min(size.width - w - 8, x)); y = Math.max(20, Math.min(size.height - h - 8, y));
           pg.drawImage(img, { x: x, y: y, width: w, height: h });
+          if (anchors && pages[anchors.page]) {
+            var dpg = pages[anchors.page];
+            return pdf.embedFont(P.StandardFonts.Helvetica).then(function (hf) {
+              dpg.drawText(now.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' }), { x: anchors.date.x + 3, y: anchors.date.y, size: 9.5, font: hf, color: P.rgb(0.07, 0.07, 0.07) });
+              return pdf;
+            });
+          }
           var cap = textPng(name + ' · ' + fmtDate(now), 'Helvetica, Arial, sans-serif', '#555555');
           return pdf.embedPng(cap.bytes).then(function (ci) {
             var ch = 8.5, cw = cap.w / cap.h * ch;

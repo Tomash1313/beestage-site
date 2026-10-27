@@ -971,44 +971,97 @@ function isEmail(v) { return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v); }
 function isCanadianPhone(v) { const n = v.replace(/\D/g,''); return n.length===10||(n.length===11&&n.startsWith('1')); }
 
 /* ── Submit ── */
+/* ── Request form: sends the request and CONFIRMS it was really saved (never shows "success" blindly) ── */
+var __LEAD_URL = 'https://script.google.com/macros/s/AKfycbw2YujraMFJM9oeirw_VqFbxHiqKupEXlI6Sph5U-Bm1_O5p3dlzlMJEbfxx3GSl0d9xw/exec';
+var __LEAD_KEY = '66c28b1f5069ae701282';
+var __LEAD_TIMEOUT = 35000;
+var __leadOpenedAt = Date.now();
+(function () {
+  var orig = window.openConsultModal;
+  if (typeof orig === 'function') {
+    window.openConsultModal = function () {
+      __leadOpenedAt = Date.now();
+      __leadEnsureExtras();
+      var er = document.getElementById('consult-err'); if (er) er.style.display = 'none';
+      return orig.apply(this, arguments);
+    };
+  }
+})();
+function __leadEnsureExtras() {
+  var m = document.querySelector('#consultModal .consult-modal'); if (!m) return;
+  if (!document.getElementById('cx7')) {          // invisible trap field: real people never see or fill it, bots do
+    var hp = document.createElement('input');
+    hp.type = 'text'; hp.id = 'cx7'; hp.name = 'cx7'; hp.tabIndex = -1; hp.autocomplete = 'off';
+    hp.setAttribute('aria-hidden', 'true');
+    hp.style.cssText = 'position:absolute;left:-9999px;top:auto;width:1px;height:1px;opacity:0;pointer-events:none;';
+    m.appendChild(hp);
+  }
+  if (!document.getElementById('consult-err')) {
+    var er = document.createElement('div');
+    er.id = 'consult-err'; er.setAttribute('role', 'alert');
+    er.style.cssText = 'display:none;margin-top:14px;padding:11px 13px;border:1px solid rgba(200,70,70,.5);background:rgba(180,50,50,.08);border-radius:6px;color:#e8a0a0;font-size:.82rem;line-height:1.55;text-align:left;';
+    var b = m.querySelector('.btn-consult'); if (b && b.parentNode) b.parentNode.insertBefore(er, b.nextSibling); else m.appendChild(er);
+  }
+}
+if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', __leadEnsureExtras); else __leadEnsureExtras();
+function __leadShowError(msg) {
+  var er = document.getElementById('consult-err'); if (!er) { showToast(msg, 'error'); return; }
+  er.innerHTML = msg + ' <a href="mailto:hello@beestage.ca" style="color:#D59469;text-decoration:underline;">hello@beestage.ca</a> · <a href="tel:2048921309" style="color:#D59469;text-decoration:underline;">(204) 892-1309</a>';
+  er.style.display = 'block';
+}
 function submitConsultForm() {
-  const cfName = document.getElementById('cf-name');
-  const cfContact = document.getElementById('cf-contact');
-  const name = document.getElementById('ci-name').innerText.trim();
-  const contact = document.getElementById('ci-contact').innerText.trim();
-  const type = document.getElementById('consultType').value;
-  const message = document.getElementById('ci-msg').innerText.trim();
+  __leadEnsureExtras();
+  var cfName = document.getElementById('cf-name'), cfContact = document.getElementById('cf-contact');
+  var name = document.getElementById('ci-name').innerText.trim();
+  var contact = document.getElementById('ci-contact').innerText.trim();
+  var type = document.getElementById('consultType').value;
+  var message = document.getElementById('ci-msg').innerText.trim();
+  cfName.classList.remove('invalid'); cfContact.classList.remove('invalid');
+  var er = document.getElementById('consult-err'); if (er) er.style.display = 'none';
 
-  cfName.classList.remove('invalid');
-  cfContact.classList.remove('invalid');
+  var digits = contact.replace(/\D/g, '');
+  var phoneOk = digits.length === 10 || (digits.length === 11 && digits.charAt(0) === '1');
+  if (!name) { cfName.classList.add('invalid'); showToast('Please enter your name.', 'error'); return; }
+  if (!contact) { cfContact.classList.add('invalid'); showToast('Please enter your email or phone.', 'error'); return; }
+  if (!isEmail(contact) && !phoneOk) { cfContact.classList.add('invalid'); showToast('Invalid email or phone number.', 'error'); return; }
 
-  if(!name) { cfName.classList.add('invalid'); showToast('Please enter your name.', 'error'); return; }
-  if(!contact) { cfContact.classList.add('invalid'); showToast('Please enter your email or phone.', 'error'); return; }
-  if(!isEmail(contact) && !isCanadianPhone(contact)) { cfContact.classList.add('invalid'); showToast('Invalid email or phone number.', 'error'); return; }
-
-  const btn = document.querySelector('#consultModal .btn-consult');
+  var btn = document.getElementById('modal-submit-btn') || document.querySelector('#consultModal .btn-consult');
+  if (btn.disabled) return;
   btn.textContent = 'Sending...'; btn.disabled = true;
+  function reset() { btn.textContent = 'Send Request'; btn.disabled = false; }
 
-  const params = new URLSearchParams({name, contact, type, message});
-  const url = 'https://script.google.com/macros/s/AKfycbw2YujraMFJM9oeirw_VqFbxHiqKupEXlI6Sph5U-Bm1_O5p3dlzlMJEbfxx3GSl0d9xw/exec?' + params.toString();
+  var trap = document.getElementById('cx7');
+  var params = new URLSearchParams({
+    name: name, contact: contact, type: type, message: message,
+    website: trap ? trap.value : '', k: __LEAD_KEY,
+    el: String(Date.now() - __leadOpenedAt), page: location.pathname
+  });
+  var ctrl = ('AbortController' in window) ? new AbortController() : null;
+  var timer = setTimeout(function () { if (ctrl) ctrl.abort(); }, __LEAD_TIMEOUT);
 
-  fetch(url, {method:'GET', mode:'no-cors'})
-    .then(() => {
-      btn.textContent = 'Send Request'; btn.disabled = false;
-      closeConsultModal();
-      document.getElementById('ci-name').innerText = '';
-      document.getElementById('ci-contact').innerText = '';
-      document.getElementById('ci-msg').innerText = '';
-      document.getElementById('consultType').value = '';
-      document.getElementById('customSelectValue').textContent = 'Type of inquiry (optional)';
-      document.getElementById('customSelect').classList.remove('selected','open');
-      document.querySelectorAll('.custom-select-option').forEach(o => o.classList.remove('active'));
-      document.getElementById('charCount').textContent = '0';
-      showToast('Request sent successfully!');
+  fetch(__LEAD_URL + '?' + params.toString(), { method: 'GET', signal: ctrl ? ctrl.signal : undefined })
+    .then(function (r) { return r.text(); })
+    .then(function (t) { try { return JSON.parse(t); } catch (e) { return null; } })
+    .then(function (j) {
+      clearTimeout(timer); reset();
+      if (j && j.status === 'ok') {
+        closeConsultModal();
+        ['ci-name', 'ci-contact', 'ci-msg'].forEach(function (id) { var el = document.getElementById(id); if (el) el.innerText = ''; });
+        var ct = document.getElementById('consultType'); if (ct) ct.value = '';
+        var cv = document.getElementById('customSelectValue'); if (cv) cv.textContent = 'Type of inquiry (optional)';
+        var cs = document.getElementById('customSelect'); if (cs) cs.classList.remove('selected', 'open');
+        document.querySelectorAll('.custom-select-option').forEach(function (o) { o.classList.remove('active'); });
+        var cc = document.getElementById('charCount'); if (cc) cc.textContent = '0';
+        showToast('Request sent successfully!');
+      } else if (j && j.status === 'rejected') {
+        __leadShowError('We could not accept this request. Please check your name and contact details, or contact us directly:');
+      } else {
+        __leadShowError('We could not confirm that your request was received. Please try again in a moment, or contact us directly:');
+      }
     })
-    .catch(() => {
-      btn.textContent = 'Send Request'; btn.disabled = false;
-      showToast('Something went wrong. Please try again.', 'error');
+    .catch(function () {
+      clearTimeout(timer); reset();
+      __leadShowError('We could not confirm that your request was received. Please try again in a moment, or contact us directly:');
     });
 }
 

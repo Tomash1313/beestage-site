@@ -25,7 +25,12 @@
     ];
   }
   var NAMES = 'new-years-day easter victoria-day birthday canada-day labour-day ndtr thanksgiving halloween remembrance-day black-friday cyber-monday christmas-day boxing-day'.split(' ');
-  var now = new Date(), today = d(now.getFullYear(), now.getMonth() + 1, now.getDate()), pick = null, best = 1e9;
+  var now = new Date();
+  try {
+    var qd = (location.search.match(/[?&]date=(\d{4})-(\d{2})-(\d{2})/) || []);
+    if (qd[1]) now = new Date(+qd[1], +qd[2] - 1, +qd[3]); // test: ?date=2026-12-26
+  } catch (x) {}
+  var today = d(now.getFullYear(), now.getMonth() + 1, now.getDate()), pick = null, best = 1e9;
   try {
     var q = (location.search.match(/[?&]logo=([a-z-]+)/) || [])[1];
     if (q && NAMES.indexOf(q) > -1) pick = q;

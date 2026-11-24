@@ -433,6 +433,23 @@
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
     gtag('config', 'G-032Q2C6K6S');
+    gtag('config', 'AW-18245826870');
+  </script>
+  <!-- Event snippet for B-Stage — Website Consultation Form conversion page
+  In your html page, add the snippet and call gtag_report_conversion when someone clicks on the chosen link or button. -->
+  <script>
+  function gtag_report_conversion(url) {
+    var callback = function () {
+      if (typeof(url) != 'undefined') {
+        window.location = url;
+      }
+    };
+    gtag('event', 'conversion', {
+      'send_to': 'AW-18245826870/h22nCOzLy70dELbypPxD',
+      'event_callback': callback
+    });
+    return false;
+  }
   </script>
 </head>
 <body>
@@ -819,6 +836,7 @@ function submitConsultForm() {
     .then(function (j) {
       clearTimeout(timer); reset();
       if (j && j.status === 'ok') {
+        try { gtag_report_conversion(); } catch (e) {}
         closeConsultModal();
         ['ci-name', 'ci-contact', 'ci-msg'].forEach(function (id) { var el = document.getElementById(id); if (el) el.innerText = ''; });
         var ct = document.getElementById('consultType'); if (ct) ct.value = '';

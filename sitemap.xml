@@ -32,7 +32,7 @@
   </url>
   <url>
     <loc>https://beestage.ca/blog</loc>
-    <lastmod>2026-11-18</lastmod>
+    <lastmod>2026-11-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -75,6 +75,12 @@
   <url>
     <loc>https://beestage.ca/blog/signs-your-books-need-cleanup</loc>
     <lastmod>2026-09-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://beestage.ca/blog/black-friday-business-purchases-and-your-books</loc>
+    <lastmod>2026-11-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
